@@ -6,26 +6,25 @@ export const environment = {
                              base_url: "http://localhost:8081/",
             // base_url:"https://catrams.com/catrams-api-test/",
                 //    base_url: "https://catrams.com/catrams-api/",
-
-               SOCKET_ENDPOINT:"https://mychatserver-production.up.railway.app/",
-                //  SOCKET_ENDPOINT: "http://localhost:3000/",
+    SOCKET_ENDPOINT: "https://mychatserver-production.up.railway.app/",
+    //  SOCKET_ENDPOINT: "http://localhost:3000/",
     timeZone: "Asia/Kolkata",
 
-                    // base_img_url: "http://localhost:8080/",
-          base_img_url:"https://catrams.com/catrams-api-test/public/",
-            //    base_img_url: "https://catrams.com/catrams-api/public/",
-    us_phone:"9995110189",
-    us_name:"Rams_Admin",
-    us_email:"admin.rams@candourautotech.com",
-    us_pro_info:"Payment For Expert",
-    us_company_name:"Candour AutoTech",
-    us_company_address:"Candour AutoTech",
+    // base_img_url: "http://localhost:8080/",
+    base_img_url: "https://catrams.com/catrams-api-test/public/",
+    //    base_img_url: "https://catrams.com/catrams-api/public/",
+    us_phone: "9995110189",
+    us_name: "Rams_Admin",
+    us_email: "admin.rams@candourautotech.com",
+    us_pro_info: "Payment For Expert",
+    us_company_name: "Candour AutoTech",
+    us_company_address: "Candour AutoTech",
 
-    reload_time:30000, // 20000 milliseconds = 20 seconds
-  
-    base_version:'test', //local,test,prodcution
+    reload_time: 30000, // 20000 milliseconds = 20 seconds
 
-    
+    base_version: 'test', //local,test,prodcution
+
+
     firebaseConfig: {
         apiKey: "AIzaSyDmzctUwIAlURfsavhPtafkcDc-EYZLSMg",
         authDomain: "rams-v2-34582.firebaseapp.com",
