@@ -154,7 +154,24 @@ export class WorkCardEditModuleComponent implements OnInit {
                     if ((this.request_details.cus_media.documents.length) > 0) {
                         this.documents = this.request_details.cus_media.documents;
                     }
-                    if (rdata.services.filter((d : any) => (d.sitem_type === '0' && d.sitem_status_flag !== '2') || (d.sitem_type === '1' && d.sitem_status_flag === '4' && d.requet_details.sm_id === 16)).length === 0) {
+                    if (rdata.services.every((d: any) => {
+                        if (d.sitem_type === '0') {
+                            // Check only the conditions for sitem_type === '0'
+                            return d.sitem_hold_flag === '0' && 
+                                   ((d.sitem_active_flag == '3') || 
+                                   (d.sitem_active_flag == '1' && 
+                                   (d.sitem_status_flag == '2' || d.sitem_status_flag == '6')));
+                        } else if (d.sitem_type === '1') {
+                            // Check all the conditions for sitem_type === '1'
+                            return (d.sitem_status_flag == '3' || 
+                                    d.sitem_status_flag == '5' || 
+                                    (d.sitem_status_flag == '4' && 
+                                     d.requet_details && d.requet_details.sm_id == '16'));
+                        } else {
+                            // If sitem_type is neither '0' nor '1', return false
+                            return false;
+                        }
+                    })) {
                         this.completeflag = true;
                     }
                     this.medias = rdata.medias;
