@@ -174,6 +174,7 @@ export class WorkCardEditModuleComponent implements OnInit {
                     })) {
                         this.completeflag = true;
                     }
+                    console.log(" this.completeflag ", this.completeflag )
                     this.medias = rdata.medias;
                     this.app_workcard = rdata.app_workcard;
                     _lightboxConfig.enableTransition = false;
