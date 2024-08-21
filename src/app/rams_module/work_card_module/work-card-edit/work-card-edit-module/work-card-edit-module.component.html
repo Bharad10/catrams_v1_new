@@ -1414,11 +1414,11 @@
                                                                             appendTo="body"
                                                                             disabled
                                                                             [searchable]="true" [clearable]="false" class="custom-multiselect">
-                                                                            <ng-option [value]="-1">{{'Not Yet Accepted'|translate}}</ng-option>
-                                                                            <ng-option [value]="0" class="pend_status">{{'Pending'|translate}}</ng-option>
-                                                                            <ng-option [value]="1" class="inprog_status">{{'In Progress'|translate}}</ng-option>
-                                                                            <ng-option [value]="2" class="comp_status">{{'Completed'|translate}}</ng-option>
-                                                                            <ng-option [value]="6">{{'Expert Work Completed'|translate}}</ng-option>
+                                                                            <ng-option value="-1">{{'Not Yet Accepted'|translate}}</ng-option>
+                                                                            <ng-option value="0" class="pend_status">{{'Pending'|translate}}</ng-option>
+                                                                            <ng-option value="1" class="inprog_status">{{'In Progress'|translate}}</ng-option>
+                                                                            <ng-option value="2" class="comp_status">{{'Completed'|translate}}</ng-option>
+                                                                            <ng-option value="6">{{'Expert Work Completed'|translate}}</ng-option>
                                                                            </ng-select>
                                                                            </div>
                                                                         </span>
@@ -1515,10 +1515,10 @@
                                                                                     appendTo="body"
                                                                                     [disabled]="app_workcard.am_status==0||item.sitem_hold_flag==1||item.sitem_active_flag==2||item.sitem_active_flag==3||item.sitem_assignee_type==1"
                                                                                     [searchable]="true" [clearable]="false" class="custom-multiselect">
-                                                                                    <ng-option [value]="-1">{{'Not Yet Accepted'|translate}}</ng-option>
-                                                                                    <ng-option [value]="0" class="pend_status">{{'Pending'|translate}}</ng-option>
-                                                                                    <ng-option [value]="1" class="inprog_status">{{'In Progress'|translate}}</ng-option>
-                                                                                    <ng-option [value]="2" class="comp_status">{{'Completed'|translate}}</ng-option>
+                                                                                    <ng-option value="-1">{{'Not Yet Accepted'|translate}}</ng-option>
+                                                                                    <ng-option value="0" class="pend_status">{{'Pending'|translate}}</ng-option>
+                                                                                    <ng-option value="1" class="inprog_status">{{'In Progress'|translate}}</ng-option>
+                                                                                    <ng-option value="2" class="comp_status">{{'Completed'|translate}}</ng-option>
                                                                                    </ng-select>
                                                                                    </div>
                                                                             </span>
@@ -1535,7 +1535,7 @@
                                                                                 [searchable]="true" [clearable]="false" class="custom-multiselect"
                                                                                 >
                                                                                 [disabled]="item.sitem_active_flag==2">
-                                                                                <ng-option [value]="0" class="pend_status">{{'Service Pending'|translate}}</ng-option>
+                                                                                <ng-option value="0" class="pend_status">{{'Service Pending'|translate}}</ng-option>
                                                                             </ng-select>
                                                                             </span>
                                                                         </div>
@@ -1554,7 +1554,7 @@
                                                                                 [searchable]="true" [clearable]="false" class="custom-multiselect"
                                                                                 >
                                                                                 [disabled]="item.sitem_active_flag==3">
-                                                                                <ng-option [value]="0" class="pend_status">{{'Service Pending'|translate}}</ng-option>
+                                                                                <ng-option value="0" class="pend_status">{{'Service Rejected'|translate}}</ng-option>
                                                                             </ng-select>
                                                                             </span>
                                                                         </div>
