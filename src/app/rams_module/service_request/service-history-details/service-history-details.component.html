@@ -1,0 +1,191 @@
+
+<div class="mb-5">
+    <ol class="flex font-semibold text-primary dark:text-white-dark">
+      <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+        <a href="javascript:;" (click)="servlist()"
+          class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+          Service Request</a></li>
+          <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+            <a href="javascript:;" (click)="servhist()"
+              class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+              Service Request History</a></li>
+      <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
+        <a
+          class="relative flex h-full items-center bg-primary p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-primary ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-6 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180">
+          Request Details</a></li>
+
+    </ol>
+  </div>
+
+
+
+<div *ngIf="loader==false&&request_details">
+    
+    <br><br><br>
+    <button type="button" class="btn btn-outline-info gap-2" (click)="servdet()" >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" >
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 8.25C9.92893 8.25 8.25 9.92893 8.25 12C8.25 14.0711 9.92893 15.75 12 15.75C14.0711 15.75 15.75 14.0711 15.75 12C15.75 9.92893 14.0711 8.25 12 8.25ZM9.75 12C9.75 10.7574 10.7574 9.75 12 9.75C13.2426 9.75 14.25 10.7574 14.25 12C14.25 13.2426 13.2426 14.25 12 14.25C10.7574 14.25 9.75 13.2426 9.75 12Z" fill="#1C274C"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.25C7.48587 3.25 4.44529 5.9542 2.68057 8.24686L2.64874 8.2882C2.24964 8.80653 1.88206 9.28392 1.63269 9.8484C1.36564 10.4529 1.25 11.1117 1.25 12C1.25 12.8883 1.36564 13.5471 1.63269 14.1516C1.88206 14.7161 2.24964 15.1935 2.64875 15.7118L2.68057 15.7531C4.44529 18.0458 7.48587 20.75 12 20.75C16.5141 20.75 19.5547 18.0458 21.3194 15.7531L21.3512 15.7118C21.7504 15.1935 22.1179 14.7161 22.3673 14.1516C22.6344 13.5471 22.75 12.8883 22.75 12C22.75 11.1117 22.6344 10.4529 22.3673 9.8484C22.1179 9.28391 21.7504 8.80652 21.3512 8.28818L21.3194 8.24686C19.5547 5.9542 16.5141 3.25 12 3.25ZM3.86922 9.1618C5.49864 7.04492 8.15036 4.75 12 4.75C15.8496 4.75 18.5014 7.04492 20.1308 9.1618C20.5694 9.73159 20.8263 10.0721 20.9952 10.4545C21.1532 10.812 21.25 11.2489 21.25 12C21.25 12.7511 21.1532 13.188 20.9952 13.5455C20.8263 13.9279 20.5694 14.2684 20.1308 14.8382C18.5014 16.9551 15.8496 19.25 12 19.25C8.15036 19.25 5.49864 16.9551 3.86922 14.8382C3.43064 14.2684 3.17374 13.9279 3.00476 13.5455C2.84684 13.188 2.75 12.7511 2.75 12C2.75 11.2489 2.84684 10.812 3.00476 10.4545C3.17374 10.0721 3.43063 9.73159 3.86922 9.1618Z" fill="#1C274C"/>
+            </svg>
+            
+
+        View Details
+    </button>
+    <div class="mb-6 flex flex-wrap items-center justify-center gap-4 lg:justify-end">
+        <button type="button" class="btn btn-primary gap-2" (click)="print()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
+                <path
+                    d="M6 17.9827C4.44655 17.9359 3.51998 17.7626 2.87868 17.1213C2 16.2426 2 14.8284 2 12C2 9.17157 2 7.75736 2.87868 6.87868C3.75736 6 5.17157 6 8 6H16C18.8284 6 20.2426 6 21.1213 6.87868C22 7.75736 22 9.17157 22 12C22 14.8284 22 16.2426 21.1213 17.1213C20.48 17.7626 19.5535 17.9359 18 17.9827"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                />
+                <path opacity="0.5" d="M9 10H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M19 14L5 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                <path
+                    d="M18 14V16C18 18.8284 18 20.2426 17.1213 21.1213C16.2426 22 14.8284 22 12 22C9.17157 22 7.75736 22 6.87868 21.1213C6 20.2426 6 18.8284 6 16V14"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                />
+                <path
+                    opacity="0.5"
+                    d="M17.9827 6C17.9359 4.44655 17.7626 3.51998 17.1213 2.87868C16.2427 2 14.8284 2 12 2C9.17158 2 7.75737 2 6.87869 2.87868C6.23739 3.51998 6.06414 4.44655 6.01733 6"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                />
+                <circle opacity="0.5" cx="17" cy="10" r="1" fill="currentColor" />
+                <path opacity="0.5" d="M15 16.5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                <path opacity="0.5" d="M13 19H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+
+            Print
+        </button>
+    </div>
+    <div class="panel" >
+        <div class="flex flex-wrap justify-between gap-4 px-4">
+            <div class="text-2xl font-semibold uppercase">Service Details</div>
+            <div class="shrink-0">
+                <img src="/rams_test/admin/assets/images/ramslogo.png" alt="" class="w-14 ltr:ml-auto rtl:mr-auto" />
+            </div>
+        </div>
+        <div class="px-4 ltr:text-right rtl:text-left">
+            <div class="mt-6 space-y-1 text-white-dark">
+               
+               
+                
+                <div>1VP II/1148, Nettayam Road, Thiruvananthapuram, Kerala 695005</div>
+                <div>support@catrams.com</div>
+                <div>+91 954 441 6800</div>
+            </div>
+        </div>
+
+        <hr class="my-6 border-[#e0e6ed] dark:border-[#1b2e4b]" />
+<div>
+        <div class="flex flex-col flex-wrap justify-between gap-6 lg:flex-row" >
+            <div class="flex-1">
+                <div class="space-y-1 text-white-dark">
+                    <div>Issue For:</div>
+                  
+                    <div class="font-semibold text-black dark:text-white">{{request_details.cstm_name}}</div>
+                    <div>{{request_details.cstm_address}}</div>
+                </div>
+            </div>
+            <div class="flex flex-col justify-between gap-6 sm:flex-row lg:w-2/3">
+                <div class="xl:1/3 sm:w-1/2 lg:w-2/5">
+                    
+                    <div class="mb-2 flex w-full items-center justify-between">
+                        <div class="text-white-dark">Issue Date :</div>
+                        <div>{{date}}</div>
+                    </div>
+                    <div class="mb-2 flex w-full items-center justify-between">
+                        <div class="text-white-dark">Request ID :</div>
+                        <div>{{request_details.serm_number}}</div>
+                    </div>
+                    <!-- <div class="flex w-full items-center justify-between">
+                        <div class="text-white-dark">Shipment ID :</div>
+                        <div>#SHP-8594</div>
+                    </div> -->
+                </div>
+                <!-- <div class="xl:1/3 sm:w-1/2 lg:w-2/5">
+                    <div class="mb-2 flex w-full items-center justify-between">
+                        <div class="text-white-dark">Bank Name:</div>
+                        <div class="whitespace-nowrap">Bank Of America</div>
+                    </div>
+                    <div class="mb-2 flex w-full items-center justify-between">
+                        <div class="text-white-dark">Account Number:</div>
+                        <div>1234567890</div>
+                    </div>
+                    <div class="mb-2 flex w-full items-center justify-between">
+                        <div class="text-white-dark">SWIFT Code:</div>
+                        <div>S58K796</div>
+                    </div>
+                    <div class="mb-2 flex w-full items-center justify-between">
+                        <div class="text-white-dark">IBAN:</div>
+                        <div>L5698445485</div>
+                    </div>
+                    <div class="mb-2 flex w-full items-center justify-between">
+                        <div class="text-white-dark">Country:</div>
+                        <div>United States</div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="table-responsive mt-6" >
+            <table class="table-striped">
+                <thead>
+                    <tr>
+                        <ng-container *ngFor="let item of columns">
+                            <th [ngClass]="item.class">{{ item.label }}</th>
+                        </ng-container>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let data of services let i = index">
+                        <tr>
+                            <td>{{  i+1 }}</td>
+                            <td>
+                                <ng-container *ngIf="data.sitem_type==0">
+                                    {{ data.servpack_name }}
+                                </ng-container>
+                                <ng-container *ngIf="data.sitem_type==1">
+                                    {{ data.tool_name }}
+                                    &nbsp;&nbsp;<span class="badge badge-outline-info span-size" >
+                                        Recommended Tool
+                                </span>
+                                </ng-container>
+                                </td>
+                            
+                            <td class="ltr:text-right rtl:text-left">₹{{ data.sitem_cost }}</td>
+                            <td class="ltr:text-right rtl:text-left">₹{{ data.sitem_cost }}</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-6 grid grid-cols-1 px-4 sm:grid-cols-2">
+            <div></div>
+            <div class="space-y-2 ltr:text-right rtl:text-left">
+                <div class="flex items-center">
+                    <div class="flex-1">Subtotal</div>
+                    <div class="w-[37%]">₹{{ subtotal }}</div>
+                </div>
+                
+                <div class="flex items-center" *ngIf="request_details.serm_ad_charge_cost!=0">
+                    <div class="flex-1">{{request_details.serm_ad_charge}}</div>
+                    <div class="w-[37%]">₹{{request_details.serm_ad_charge_cost}}</div>
+                </div>
+                <div class="flex items-center">
+                    <div class="flex-1">Discount</div>
+                    <div class="w-[37%]">₹0</div>
+                </div>
+                <div class="flex items-center text-lg font-semibold">
+                    <div class="flex-1">Grand Total</div>
+                    <div class="w-[37%]">₹{{ request_details.serm_cost }}</div>
+                </div>
+            </div>
+        </div>
+</div>
+    </div>
+</div>
+<div *ngIf="loader==true||!request_details" class="loader"></div>
+

@@ -1,0 +1,33 @@
+<div class="-mx-5 mb-5 flex items-start justify-between border-b border-[#e0e6ed] p-5 pt-0 dark:border-[#1b2e4b] dark:text-white-light">
+    <h6 class=" font-semibold"> {{'New Orders'|translate}}</h6>
+    <div hlMenu class="dropdown">
+       
+    </div>
+</div>
+<ng-scrollbar *ngIf="open_tickets" style="height:75%;">
+    <div *ngFor="let data of open_tickets" >
+        <div *ngIf="data.sm_pk_id==1">
+            <a (click)="servreq(data.serm_id)" style="cursor: pointer;">
+            <div class="group relative flex items-center py-1.5">
+                <div class="h-1.5 w-1.5 rounded-full bg-secondary ltr:mr-1 rtl:ml-1.5"></div>
+                <div class="flex-1">{{data.serm_number}}</div>
+                <div class="text-xs text-white-dark ltr:ml-auto rtl:mr-auto dark:text-gray-500">
+            {{ data.serm_createdon | date:'dd-MMM-yyyy hh:mm a' }}</div>
+    
+                <span class="badge badge-outline-warning absolute bg-warning-light text-xs opacity-0 group-hover:opacity-100 ltr:right-0 rtl:left-0 dark:bg-[#0e1726]">{{data.sm_name}}</span>
+            </div>
+           </a>
+        </div>
+        <div *ngIf="data.sm_pk_id==0">
+            <a (click)="tooledit(data.tldet_id)" style="cursor: pointer;">
+            <div class="group relative flex items-center py-1.5">
+                <div class="h-1.5 w-1.5 rounded-full bg-success ltr:mr-1 rtl:ml-1.5"></div>
+                <div class="flex-1">{{data.tldt_number}}</div>
+                <div class="text-xs text-white-dark ltr:ml-auto rtl:mr-auto dark:text-gray-500"> {{ data.tldt_created_on | date:'dd-MMM-yyyy hh:mm a' }}</div>
+    
+                <span class="badge badge-outline-warning absolute bg-warning-light text-xs opacity-0 group-hover:opacity-100 ltr:right-0 rtl:left-0 dark:bg-[#0e1726]">{{data.sm_name}}</span>
+            </div>
+        </a>
+        </div>
+    </div>
+</ng-scrollbar>

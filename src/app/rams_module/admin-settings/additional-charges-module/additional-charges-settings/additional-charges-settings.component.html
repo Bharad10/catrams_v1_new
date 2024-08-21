@@ -1,0 +1,73 @@
+<div class="mb-5">
+    <ol class="flex font-semibold text-primary dark:text-white-dark">
+        <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+            <a href="javascript:;" (click)="adminsettings()"
+                class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+                Admin Settings</a>
+        </li>
+        <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
+            <a
+                class="relative flex h-full items-center bg-primary p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-primary ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-6 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180">
+                Expense</a>
+        </li>
+
+    </ol>
+</div>
+
+
+<div class="panel">
+    <div class="relative">
+        
+        <div class="mb-5 flex flex-col gap-5 md:flex-row md:items-center">
+            <div class=" flex flex-col gap-5 md:flex-row md:items-center">
+                <!-- <h5 class="text-lg font-semibold dark:text-white-light">Tool Request List </h5> -->
+                <div class="ltr:ml-auto rtl:mr-auto">
+                    <input [(ngModel)]=" search" type="text" class="form-input w-auto" placeholder=" {{'Search...'|translate}}" />
+                </div>
+            </div>
+            <div class="flex-2">
+                <button type="button" class="btn btn-info h-9 btn-sm" (click)="createexpense()">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.5" d="M12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22Z" fill="#eeeeee36"/>
+                        <path d="M12 8.25C12.4142 8.25 12.75 8.58579 12.75 9V11.25H15C15.4142 11.25 15.75 11.5858 15.75 12C15.75 12.4142 15.4142 12.75 15 12.75H12.75L12.75 15C12.75 15.4142 12.4142 15.75 12 15.75C11.5858 15.75 11.25 15.4142 11.25 15V12.75H9C8.58579 12.75 8.25 12.4142 8.25 12C8.25 11.5858 8.58579 11.25 9 11.25H11.25L11.25 9C11.25 8.58579 11.5858 8.25 12 8.25Z" fill="#FFFFFF"/>
+                      </svg>
+                      &nbsp;
+                        
+                     {{'Create Expense'|translate}}
+                    &nbsp;</button>
+            
+            </div>
+          
+        </div>
+    </div>
+   
+    <div class="datatable">
+        <ng-datatable [rows]="rows" [columns]="cols" [sortable]="true" skin="whitespace-nowrap bh-table-hover" [loading]="loading" [search]="search"
+            firstArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M13 19L7 12L13 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M16.9998 19L10.9998 12L16.9998 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+            lastArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M11 19L17 12L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M6.99976 19L12.9998 12L6.99976 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg> '
+            previousArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M15 5L9 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+            nextArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'>
+            <ng-template slot="Action" let-value="data">
+                <!-- <button type="button" ngxTippy data-tippy-content="Edit" 
+                    (click)="pay_details(value.tldet_id,value.sm_pk_id)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd" d="M3.25 22C3.25 21.5858 3.58579 21.25 4 21.25H20C20.4142 21.25 20.75 21.5858 20.75 22C20.75 22.4142 20.4142 22.75 20 22.75H4C3.58579 22.75 3.25 22.4142 3.25 22Z" fill="#1C274C"/>
+                        <path opacity="0.5" d="M19.0807 7.37162C20.3095 6.14279 20.3095 4.15046 19.0807 2.92162C17.8519 1.69279 15.8595 1.69279 14.6307 2.92162L13.9209 3.63141C13.9306 3.66076 13.9407 3.69052 13.9512 3.72066C14.2113 4.47054 14.7022 5.45356 15.6256 6.37698C16.549 7.30039 17.532 7.79126 18.2819 8.05142C18.3119 8.06183 18.3415 8.07187 18.3708 8.08155L19.0807 7.37162Z" fill="#1C274C"/>
+                        <path d="M13.9511 3.59961L13.9205 3.63017C13.9303 3.65952 13.9403 3.68928 13.9508 3.71942C14.211 4.4693 14.7018 5.45232 15.6252 6.37574C16.5487 7.29915 17.5317 7.79002 18.2816 8.05018C18.3113 8.0605 18.3407 8.07046 18.3696 8.08005L11.5198 14.9299C11.058 15.3917 10.827 15.6227 10.5724 15.8213C10.2721 16.0555 9.94711 16.2564 9.60326 16.4202C9.31177 16.5591 9.00196 16.6624 8.38235 16.869L5.11497 17.9581C4.81005 18.0597 4.47388 17.9804 4.24661 17.7531C4.01934 17.5258 3.93998 17.1897 4.04162 16.8847L5.13074 13.6173C5.33728 12.9977 5.44055 12.6879 5.57947 12.3964C5.74334 12.0526 5.94418 11.7276 6.17844 11.4273C6.37702 11.1727 6.60794 10.9418 7.06971 10.48L13.9511 3.59961Z" fill="#1C274C"/>
+                        </svg>
+                </button> -->
+                <button type="button" ngxTippy data-tippy-content="Delete" 
+                    (click)="show_cust_alert(value)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 6.52381C3 6.12932 3.32671 5.80952 3.72973 5.80952H8.51787C8.52437 4.9683 8.61554 3.81504 9.45037 3.01668C10.1074 2.38839 11.0081 2 12 2C12.9919 2 13.8926 2.38839 14.5496 3.01668C15.3844 3.81504 15.4756 4.9683 15.4821 5.80952H20.2703C20.6733 5.80952 21 6.12932 21 6.52381C21 6.9183 20.6733 7.2381 20.2703 7.2381H3.72973C3.32671 7.2381 3 6.9183 3 6.52381Z" fill="#1C274C"/>
+                        <path opacity="0.5" d="M11.5956 22.0001H12.4044C15.1871 22.0001 16.5785 22.0001 17.4831 21.1142C18.3878 20.2283 18.4803 18.7751 18.6654 15.8686L18.9321 11.6807C19.0326 10.1037 19.0828 9.31524 18.6289 8.81558C18.1751 8.31592 17.4087 8.31592 15.876 8.31592H8.12405C6.59127 8.31592 5.82488 8.31592 5.37105 8.81558C4.91722 9.31524 4.96744 10.1037 5.06788 11.6807L5.33459 15.8686C5.5197 18.7751 5.61225 20.2283 6.51689 21.1142C7.42153 22.0001 8.81289 22.0001 11.5956 22.0001Z" fill="#1C274C"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.42543 11.4815C9.83759 11.4381 10.2051 11.7547 10.2463 12.1885L10.7463 17.4517C10.7875 17.8855 10.4868 18.2724 10.0747 18.3158C9.66253 18.3592 9.29499 18.0426 9.25378 17.6088L8.75378 12.3456C8.71256 11.9118 9.01327 11.5249 9.42543 11.4815Z" fill="#1C274C"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5747 11.4815C14.9868 11.5249 15.2875 11.9118 15.2463 12.3456L14.7463 17.6088C14.7051 18.0426 14.3376 18.3592 13.9254 18.3158C13.5133 18.2724 13.2126 17.8855 13.2538 17.4517L13.7538 12.1885C13.795 11.7547 14.1625 11.4381 14.5747 11.4815Z" fill="#1C274C"/>
+                        </svg>
+                </button>
+
+            </ng-template>
+        </ng-datatable>
+    </div>
+    
+</div>

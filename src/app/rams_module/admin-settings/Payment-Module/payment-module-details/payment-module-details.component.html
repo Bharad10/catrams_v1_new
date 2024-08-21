@@ -1,0 +1,449 @@
+<div class="flex flex-col gap-2.5 xl:flex-row" >
+    <div class="panel flex-1 py-6 ltr:xl:mr-6 rtl:xl:ml-6" >
+        
+        <div class="flex flex-row space-x-4">
+            <div class="flex-1">
+                <label for="custname">Customer Name</label>
+                <div class="relative text-white-dark">
+                    <input id="custname" type="text"  [(ngModel)]="request_list.cstm_name"
+                    [ngModelOptions]="{standalone: true}"
+                        class="form-input placeholder:text-white-dark" 
+                        readonly />
+                </div>
+            </div>
+            <div class="flex-1">
+                <label for="toolquantity">Quantity</label>
+                <div class="relative text-white-dark">
+                    <input id="toolquantity" type="number"  [(ngModel)]="request_list.tldt_tool_quant"
+                    [ngModelOptions]="{standalone: true}"
+                        class="form-input placeholder:text-white-dark" 
+                        readonly />
+                </div>
+            </div>
+            <div class="flex-1">
+                <label for="toolduration">Rent Duration</label>
+                <div class="relative text-white-dark">
+                    <input id="toolduration" type="number" placeholder="{{request_list.tldt_tool_duration}} Days"
+                        class="form-input placeholder:text-white-dark" 
+                        readonly />
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-row space-x-4">
+            <div class="flex-1">
+                <label for="custaddress">Address</label>
+                <div class="relative text-white-dark">
+                    <textarea class="form-textarea" id="custaddress" placeholder="{{request_list.tldt_delivery_address}}"
+                         readonly></textarea>
+                </div>
+            </div>
+        </div>
+       
+        <hr>
+        <div class="flex flex-row space-x-4">
+            <div class="flex-1">
+                <label for="tool_cost">Total cost:</label>
+                <div class="relative text-white-dark">
+                    <input id="tool_cost" type="number" placeholder="₹{{request_list.tldt_cost}} "
+                        class="form-input placeholder:text-white-dark" 
+                        readonly style="width: 20%;"/>
+                </div>
+            </div>
+          
+
+          
+        </div>
+       
+        
+        
+       <br><br>
+        <span class="badge badge-outline-primary rounded-full" *ngIf="request_list.tldt_paymt_flag==0"> Payment Completed</span>
+        <span class="badge badge-outline-warning rounded-full" *ngIf="request_list.tldt_paymt_flag==1"> Payment Not Completed</span>
+        <hr>
+<br><br>
+
+<div class="flex flex-row space-x-4">
+    <div class="flex-1" *ngIf="request_list.tool_adv_payment==1">
+        <label for="tool_cost">Advance Payment Calculation</label>
+        <div class="relative text-white-dark">
+            <table class="adv table-stripped">
+                <thead >
+                    <tr>
+                        <td>
+                            Rent/Day  
+                        </td>
+                        <td>
+                            Rented Days  
+                        </td>
+                        <td>
+                            Rented Quantity 
+                        </td>
+                        <td colspan="2">
+                            Total Rent
+                        </td>
+
+                     </tr>
+                </thead>
+                <tbody>
+                 <tr>
+                    <td>
+                        {{request_list.tool_rent_cost}}
+                    </td>
+                    <td>
+                        {{request_list.tldt_tool_duration}}
+                    </td>
+                    <td>
+                        {{request_list.tldt_tool_quant}}
+                    </td>
+                    <td colspan="2" *ngIf="coupon_id==0">
+                        {{request_list.tldt_cost}}
+                    </td>
+                    <td colspan="2" *ngIf="coupon_id!=0">
+                        {{request_list.ct_bf_cost}}
+                    </td>
+                 </tr>
+                 <tr *ngIf="coupon_id!=0">
+                    <td colspan="3">
+                        Coupon Price
+                    </td>
+                    <td colspan="2">
+                        {{request_list.ct_cost}}
+                    </td>
+                 </tr>
+                 <tr *ngIf="coupon_id!=0">
+                    <td colspan="3">
+                        Updated Price
+                    </td>
+                    <td colspan="2">
+                        {{request_list.ct_af_cost}}
+                    </td>
+                 </tr>
+                 <tr>
+                    <td colspan="3">
+                        Advance 
+                    </td>
+                    <td colspan="2">
+                        {{request_list.tool_adv_price}}% *({{request_list.tldt_cost}})
+                    </td>
+                 </tr>
+                 <tr>
+                    <td colspan="3">
+                        Advance Amount
+                    </td>
+                    <td colspan="2">
+                        {{advance_price}}
+                    </td>
+                 </tr>
+                <tr style="background-color: #f6f8fa;">
+                    <td colspan="3">
+                        Total Amount to Pay after Advance Payment
+                    </td>
+                    <td colspan="2">
+                        {{total_amount}}
+                    </td> 
+                </tr>
+                 
+                </tbody>
+            </table>
+            <span class="adv" *ngIf="coupon_id==0">
+                Total Rent<b>({{actual_price}})</b>=(Rent/day<b>({{request_list.tool_rent_cost}})</b>)*(Rent days<b>({{request_list.tldt_tool_duration}})</b>)*(Rent Quantity<b>({{request_list.tldt_tool_quant}})</b>)
+            </span>
+            <span class="adv" *ngIf="coupon_id!=0">
+                Total Rent<b>({{actual_price}})</b>=(Rent/day<b>({{request_list.tool_rent_cost}})</b>)*(Rent days<b>({{request_list.tldt_tool_duration}})</b>)*(Rent Quantity<b>({{request_list.tldt_tool_quant}})</b>-Discount_price<b>({{request_list.ct_cost}})</b>)
+        
+            </span>
+            
+        </div>
+        
+    </div>
+    <div class="flex-1" *ngIf="request_list.tool_deposit_id==1">
+        <label for="tool_cost"  class="deposit">Deposit Payment Calculation</label>
+        <div class="relative text-white-dark">
+            <table class="deposit table-stripped">
+                <thead >
+                    <tr>
+                        <td>
+                            Rent/Day  
+                        </td>
+                        <td>
+                            Rented Days  
+                        </td>
+                        <td>
+                            Rented Quantity 
+                        </td>
+                        <td colspan="2">
+                            Total Rent
+                        </td>
+
+                     </tr>
+                </thead>
+                <tbody>
+                 <tr>
+                    <td>
+                        {{request_list.tool_rent_cost}}
+                    </td>
+                    <td>
+                        {{request_list.tldt_tool_duration}}
+                    </td>
+                    <td>
+                        {{request_list.tldt_tool_quant}}
+                    </td>
+                    <td colspan="2" *ngIf="coupon_id==0">
+                        {{request_list.tldt_cost}}
+                    </td>
+                    <td colspan="2" *ngIf="coupon_id!=0">
+                        {{request_list.ct_bf_cost}}
+                    </td>
+                 </tr>
+                 <tr *ngIf="coupon_id!=0">
+                    <td colspan="3">
+                        Coupon Price
+                    </td>
+                    <td colspan="2">
+                        {{request_list.ct_cost}}
+                    </td>
+                 </tr>
+                 <tr *ngIf="coupon_id!=0">
+                    <td colspan="3">
+                        Updated Price
+                    </td>
+                    <td colspan="2">
+                        {{request_list.ct_af_cost}}
+                    </td>
+                 </tr>
+                 <tr>
+                    <td colspan="3">
+                        Deposit 
+                    </td>
+                    <td colspan="2">
+                        {{request_list.tool_deposit_price}}% *({{request_list.tldt_cost}})
+                    </td>
+                 </tr>
+                 <tr>
+                    <td colspan="3">
+                        Deposit Amount
+                    </td>
+                    <td colspan="2">
+                        {{deposit_price}}
+                    </td>
+                 </tr>
+                 <tr>
+                    <td colspan="3">
+                        Total Amount
+                    </td>
+                    <td colspan="2">
+                        {{total_amount}}
+                    </td> 
+                 </tr>
+                <tr style="background-color: #f6f8fa;">
+                    <td colspan="3">
+                        Total Amount After Deposit Amount
+                    </td>
+                    <td colspan="2">
+                        {{updated_deposit}}
+                    </td> 
+                </tr>
+                 
+                </tbody>
+            </table>
+           
+            <span class="deposit" *ngIf="coupon_id==0">
+                Total Rent<b>({{actual_price}})</b>=(Rent/day<b>({{request_list.tool_rent_cost}})</b>)*(Rent days<b>({{request_list.tldt_tool_duration}})</b>)*(Rent Quantity<b>({{request_list.tldt_tool_quant}})</b>)
+            </span>
+            <span class="deposit" *ngIf="coupon_id!=0">
+                Total Rent<b>({{actual_price}})</b>=(Rent/day<b>({{request_list.tool_rent_cost}})</b>)*(Rent days<b>({{request_list.tldt_tool_duration}})</b>)*(Rent Quantity<b>({{request_list.tldt_tool_quant}})</b>-Discount_price<b>({{request_list.ct_cost}})</b>)
+        
+            </span>
+        </div>
+    </div>
+</div>
+<br>
+<div class="flex flex-row space-x-4" *ngIf="request_list.tool_deposit_id==1">
+    <div class="flex-2 " >
+        <label for="tool_cost" class="deposit">Deposit Amount</label>
+        <input id="toolduration" type="number" [(ngModel)]="deposit_price"
+        [ngModelOptions]="{standalone: true}" class="form-input placeholder:text-white-dark"
+        readonly />
+    </div>
+    <div class="flex-1 " >
+        <label for="tool_cost" class="deposit">Payment Status</label>
+        <ng-container *ngIf="request_list.rpt_amount==null">
+            <input id="toolduration" type="number" class="form-input placeholder:text-white-dark"
+            placeholder="Deposit Amount yet to be Paid"
+            readonly />
+        </ng-container>
+
+        <ng-container  *ngIf="request_list.rpt_status==0">
+            <ng-container *ngIf="request_list.tldt_advpaymt_flag==0">
+                <input id="toolduration" type="number"  class="form-input placeholder:text-white-dark"
+                placeholder="Deposit Amount paid ₹ {{deposit_price}}.Balance Amount to pay ₹ {{updated_deposit}}"
+                readonly />   
+            </ng-container>
+            
+            <ng-container *ngIf="request_list.tldt_advpaymt_flag==1">
+                <input id="toolduration" type="number"  class="form-input placeholder:text-white-dark"
+                placeholder="Deposit Amount not paid ₹ {{request_list.rpt_amount}}"
+                readonly />   
+            </ng-container>
+            
+        </ng-container>
+     
+
+
+        <ng-container *ngIf="request_list.rpt_status==2">
+            <input id="toolduration" type="number"  class="form-input placeholder:text-white-dark"
+            placeholder="amount to be paid ₹ {{request_list.rpt_amount}}"
+            readonly />   
+        </ng-container>
+        
+    </div>
+</div>
+<div class="flex flex-row space-x-4" *ngIf="request_list.tool_adv_payment==1">
+    <div class="flex-2">
+        <label for="tool_cost" class="adv">Advance Amount</label>
+        <input id="toolduration" type="number" [(ngModel)]="advance_price"
+        [ngModelOptions]="{standalone: true}" class="form-input placeholder:text-white-dark"
+        readonly />
+    </div>
+    <div class="flex-1">
+        <label for="tool_cost" class="adv">Payment Status</label>
+        <ng-container *ngIf="request_list.rpt_amount==null">
+            <input id="toolduration" type="number" class="form-input placeholder:text-white-dark"
+            placeholder="Advance Amount yet to be Paid"
+            readonly />
+        </ng-container>
+
+        <ng-container  *ngIf="request_list.rpt_status==0">
+            <ng-container *ngIf="request_list.tldt_advpaymt_flag==0">
+                <input id="toolduration" type="number"  class="form-input placeholder:text-white-dark"
+                placeholder="Deposit Amount paid ₹ {{request_list.advance_price}}.Balance Amount to pay ₹ {{updated_advance}}"
+                readonly />   
+            </ng-container>
+            
+            <ng-container *ngIf="request_list.tldt_advpaymt_flag==1">
+                <input id="toolduration" type="number"  class="form-input placeholder:text-white-dark"
+                placeholder="Advance Amount not paid ₹ {{request_list.rpt_amount}}"
+                readonly />   
+            </ng-container>
+            
+        </ng-container>
+     
+        <ng-container *ngIf="request_list.rpt_status==2">
+            <input id="toolduration" type="number"  class="form-input placeholder:text-white-dark"
+            placeholder="amount to be paid ₹ {{request_list.rpt_amount}}"
+            readonly />   
+        </ng-container>
+        
+    </div>
+</div>
+
+
+
+
+        <br><br>
+        <div class="row">
+            <div class="flex flex-row space-x-6" style="margin-left: 1%;">
+                <div class="flex-2">
+                    <button type="button" class="btn btn-outline-primary" (click)="tooledit()">View Details</button>
+                </div>
+                <div class="flex-2">
+                    <div *ngIf="request_list.tldt_paymt_flag==1">
+                        <button type="button" class="btn btn-outline-danger" (click)="due_alert()">Inititate Due Alert</button>
+                    </div>
+                </div>
+                <div class="flex-2">
+                    <button type="button" class="btn btn-outline-warning  " (click)="waiveoff.open()">
+                        Waive Off
+                    </button>
+                </div>
+        
+                <modal #waiveoff>
+                    <ng-template #modalHeader>
+                        <div>Waive off</div>
+                    </ng-template>
+                    <ng-template #modalBody>
+                        <div class="mt-4 flex items-center">
+                            <label for="reciever-name" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2 label-color">Refer for
+                                Closure</label>
+                            <textarea class="form-textarea mt-4" placeholder="Enter Reason" [(ngModel)]="reason" name="reason"
+                                ></textarea>
+                        </div>
+                    </ng-template>
+                    <ng-template #modalFooter>
+                        <button type="button" (click)="waiveoff.close()" class="btn btn-outline-danger">Close</button>
+                        &nbsp; &nbsp; &nbsp;
+                        <button type="button" (click)="payoff()" class="btn btn-outline-success" [disabled]="!reason">Waive
+                            off</button>
+                    </ng-template>
+                </modal>
+            </div>
+        </div>
+
+        <br><br><br><br>
+        <div class="flex flex-row space-x-4">
+            <div class="flex-1" *ngIf="request_list.payment_history&&request_list.payment_history.length>0">
+                <label for="tool_cost"> Payment History</label>
+                <div class="relative text-white-dark">
+                    <table class="table-stripped">
+                        <thead >
+                            <tr>
+                                <td>
+                                    Date  
+                                </td>
+                                <td>
+                                    Amount 
+                                </td>
+                                <td>
+                                    Transaction ID
+                                </td>
+                                <td colspan="2">
+                                    Status
+                                </td>
+        
+                             </tr>
+                        </thead>
+                        <tbody>
+                         <tr *ngFor="let data of request_list.payment_history">
+                            <td>
+                                
+                                {{ data.rph_created_on | date:'dd-MMM-yyyy ' }} &nbsp;&nbsp; {{ data.rph_created_on | date:' hh:mm a ' }}
+                            </td>
+                            <td>
+                                {{data.rph_amount}}
+                            </td>
+                            <td>
+                                {{data.rph_transaction_id}}
+                            </td>
+                            <td colspan="2" *ngIf="data.rph_status==0">
+                                   <span class="badge badge-outline-warning rounded-none">Payment Pending </span>
+                            </td>
+                            <td colspan="2" *ngIf="data.rph_status==1">
+                                
+                                <span class="badge badge-outline-info rounded-none">Payment Initiated </span>
+                            </td>
+                            <td colspan="2" *ngIf="data.rph_status==2">
+                                 
+                                <span class="badge badge-outline-success rounded-none">Payment Success </span>
+                            </td>
+                            <td colspan="2" *ngIf="data.rph_status==3">
+                                 
+                                <span class="badge badge-outline-danger rounded-none">Payment Failed </span>
+
+                            </td>
+                         </tr>                        
+                        </tbody>
+                    </table>
+
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+
+</div>
+
+
+
+
+

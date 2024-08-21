@@ -1,0 +1,291 @@
+
+<div >
+    <button (click)="toolinspection()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 12L10 12M10 12L13 15M10 12L13 9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path d="M7 16L7 12L7 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+            <path opacity="0.5"
+                d="M2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12Z"
+                stroke="#1C274C" stroke-width="1.5" />
+        </svg>
+    </button>
+    
+    <div >
+        <div >
+        <h5 class="text-xl font-semibold dark:text-white-light">Inspection Details</h5>
+        <div class="flex flex-col gap-2.5 xl:flex-row">
+            <div class="panel flex flex-row w-full ltr:xl:mr-6 rtl:xl:ml-6">
+                <form [formGroup]="ToolInspectionForm" class="flex-1 space-y-5 dark:text-white">
+                    <div class="flex flex-row space-x-4">
+                        <div class="flex-1">
+                            <label for="toolname">Tool Name</label>
+                            <div class="relative text-white-dark">
+                                <input id="toolname" type="text" placeholder="Launch X431 Pro"
+                                    class="form-input placeholder:text-white-dark" formControlName="toolname" readonly/>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <label for="quantity"> Quantity</label>
+                            <div class="relative text-white-dark">
+                                <input id="quantity" type="number" placeholder="3"
+                                    class="form-input placeholder:text-white-dark" formControlName="toolquantity"readonly/>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <label for="toolprice">Price</label>
+                            <div class="relative text-white-dark">
+                                <input id="toolprice" type="number" placeholder="900/days"
+                                    class="form-input placeholder:text-white-dark" formControlName="toolprice" readonly/>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <label for="toolduration">Rented Days</label>
+                            <div class="relative text-white-dark">
+                                <input id="toolduration" type="number" placeholder="900/days"
+                                    class="form-input placeholder:text-white-dark" formControlName="toolduration" readonly/>
+                            </div>
+                        </div>
+                    </div>.
+                    <div class="flex flex-row space-x-4">
+                        <div class="flex-1">
+                            <label for="tooldescription">Tool Description</label>
+                            <div class="relative text-white-dark">
+                                <textarea class="form-textarea mt-4"
+                                    name="tooldescription" rows="3" formControlName="tooldescription" readonly></textarea>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <br>
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-1 mt-6" *ngIf="request_list.tldt_status==12">
+                        <div class="flex justify-end">
+                            <button type="button" class="btn btn-danger gap-2" style="margin-right: 1%;"
+                                (click)="toggleReturnDetails()">
+                                Proceed as Tool Damaged
+                            </button>
+                            <button type="submit" class="btn btn-success gap-2 " (click)="acceptmodal.open()" *ngIf="request_list.tldt_damaged==0">
+                                Inspection Completed
+                            </button>
+                           
+                            <button type="submit" class="btn btn-success gap-2 " (click)="damagedtool.open()" *ngIf="request_list.tldt_damaged==1">
+                                Inspection Completed
+                            </button>
+                            <modal #acceptmodal>
+                                <ng-template #modalHeader>
+                                    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M12 6.25C12.4142 6.25 12.75 6.58579 12.75 7V13C12.75 13.4142 12.4142 13.75 12 13.75C11.5858 13.75 11.25 13.4142 11.25 13V7C11.25 6.58579 11.5858 6.25 12 6.25Z"
+                                                fill="#1C274C" />
+                                            <path
+                                                d="M12 17C12.5523 17 13 16.5523 13 16C13 15.4477 12.5523 15 12 15C11.4477 15 11 15.4477 11 16C11 16.5523 11.4477 17 12 17Z"
+                                                fill="#1C274C" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M1.25 12C1.25 6.06294 6.06294 1.25 12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12ZM12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 17.1086 6.89137 21.25 12 21.25C17.1086 21.25 21.25 17.1086 21.25 12C21.25 6.89137 17.1086 2.75 12 2.75Z"
+                                                fill="#1C274C" />
+                                        </svg>Proceed Tool Request</div>
+                                </ng-template>
+                                <ng-template #modalBody *ngIf="request_list.tool_deposit_id!=1">
+                                   Proceed For Inspection completed?
+                                </ng-template>
+                                
+                                <ng-template #modalFooter>
+                                    <button type="button" (click)="acceptmodal.close()"
+                                        class="btn btn-outline-danger">Cancel</button>
+                                    <button type="button" (click)="inspectioncompleted(request_list,0)"
+                                        class="btn btn-primary ltr:ml-4 rtl:mr-4" >Accept Request</button>
+
+                                </ng-template>
+                           
+                            </modal>
+
+                            <modal #damagedtool>
+                               
+                                    <ng-template #modalHeader>
+                                        <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M12 6.25C12.4142 6.25 12.75 6.58579 12.75 7V13C12.75 13.4142 12.4142 13.75 12 13.75C11.5858 13.75 11.25 13.4142 11.25 13V7C11.25 6.58579 11.5858 6.25 12 6.25Z"
+                                                    fill="#1C274C" />
+                                                <path
+                                                    d="M12 17C12.5523 17 13 16.5523 13 16C13 15.4477 12.5523 15 12 15C11.4477 15 11 15.4477 11 16C11 16.5523 11.4477 17 12 17Z"
+                                                    fill="#1C274C" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M1.25 12C1.25 6.06294 6.06294 1.25 12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12ZM12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 17.1086 6.89137 21.25 12 21.25C17.1086 21.25 21.25 17.1086 21.25 12C21.25 6.89137 17.1086 2.75 12 2.75Z"
+                                                    fill="#1C274C" />
+                                            </svg>Proceed Tool Request</div>
+                                    </ng-template>
+                                    <ng-template #modalBody >
+                                       Proceed For Inspection completed?
+                                    </ng-template>
+                                    
+                                    <ng-template #modalFooter>
+                                        <button type="button" (click)="damagedtool.close()"
+                                            class="btn btn-outline-danger">Cancel</button>
+                                       
+                                            <button type="button" (click)="admin_approval(0)"
+                                            class="btn btn-info ltr:ml-4 rtl:mr-4" >Proceed Request</button>
+                                    </ng-template>
+                           
+                            </modal>
+                            
+
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-1 mt-6" *ngIf="request_list.tldt_status==41">
+                        <div class="flex justify-end">
+                            <button type="submit" class="btn btn-success gap-2 " (click)="Toolreachedstatus(request_list)">
+                                Tool Reached 
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <div *ngIf="showReturnDetails" class="flex flex-col gap-2.5 xl:flex-row">
+            <div class="panel flex flex-row w-full ltr:xl:mr-6 rtl:xl:ml-6">
+                <div class="flex">
+                    
+                    <div class="flex-1">
+                        
+                            <div class="flex flex-row space-x-60">
+                                <div class="flex-1">
+                                    <label for="toolname">Tool Name</label>
+                                    <div class="relative text-white-dark">
+                                        <input id="toolname" type="text" 
+                                        [(ngModel)]="request_list.tool_name"
+                                        [ngModelOptions]="{standalone: true}"
+                                            class="form-input placeholder:text-white-dark" readonly/>
+                                    </div>
+                                </div> 
+
+                                <div class="flex-1">
+                                    <label for="toolname">Damaged Quantity</label>
+                                    <div class="relative text-white-dark">
+                                        <input id="toolname" type="text" 
+                                        [(ngModel)]="request_list.tldt_tool_quant"
+                                        [ngModelOptions]="{standalone: true}"
+                                            class="form-input placeholder:text-white-dark" />
+                                    </div>
+                                </div> 
+
+                                
+                                <div class="flex-1" *ngIf="request_list.tldt_damaged==0">
+                                    <label for="toolprice">Enter Due Price</label>
+                                    <div class="relative text-white-dark">
+                                        <input id="toolprice" type="number" placeholder="Enter Due Price"
+                                            class="form-input placeholder:text-white-dark" [(ngModel)]="price"/>
+                                    </div>
+                                </div>
+
+
+                                <div class="flex-1" *ngIf="request_list.tldt_damaged==1">
+                                    <label for="toolprice">Enter Due Price</label>
+                                    <div class="relative text-white-dark">
+                                        <input id="toolprice" type="number" placeholder="Enter Due Price"
+                                            class="form-input placeholder:text-white-dark" [(ngModel)]="due_cost"/>
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                        <hr>
+                        <h4 class="font-semibold text-lg mb-2 text-danger" style=" text-align: center; margin-top: 1%; ">
+                             Details</h4>
+                        <hr>
+                        <br>
+                        <div class="flex-container">
+                            <div class="flex-1">
+                                <label for="rejectreason">Damaged description</label>
+                                <div class="relative text-white-dark">
+                                 
+                                <textarea class="form-textarea mt-4" placeholder="" name="rejectreason"  [(ngModel)]="rejectreason" required  
+
+                                        rows="3">
+                                    </textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br><br>
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-1">
+                            <div class="flex justify-end" *ngIf="request_list.tldt_damaged==0">
+                                <button type="button" class="btn btn-dark gap-2" style="margin-right: 1%;" (click)="toggleReturnCancel()">
+                                    CANCEL
+                                </button>
+                                <button type="submit" class="btn btn-danger gap-2" (click)="toolDamaged()" *ngIf="rejectreason!=null&&price!=null">
+                                    Proceed
+                                </button>
+                                <button type="submit" class="btn btn-danger gap-2" (click)="toolDamaged()" *ngIf="rejectreason==null&&price==null" disabled>
+                                    Proceed
+                                </button>
+                            </div>
+                            <div class="flex justify-end" *ngIf="request_list.tldt_damaged==1">
+                                <button type="button" class="btn btn-dark gap-2" style="margin-right: 1%;" (click)="toggleReturnCancel()">
+                                    CANCEL
+                                </button>
+                                <button type="submit" class="btn btn-danger gap-2" (click)="admin_approval(1)" *ngIf="rejectreason!=null&&due_cost!=null">
+                                    Proceed
+                                </button>
+                                <button type="submit" class="btn btn-danger gap-2" (click)="admin_approval(1)" *ngIf="rejectreason==null&&due_cost==null" disabled>
+                                    Proceed
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel w-full lg:w-1/2">
+                <div class="flex flex-row space-x-4"  >
+                    <div class="flex-2">
+                        <div class="col-md-12 image-upload" align="center" style="height: 150px">
+                            <label for="file-input" class="label col-form-label">Package Image *</label><br />
+                            <img [src]="imageurl" class="user-img" accept="image/*" alt="" width="120px"
+                                height="120px" />
+                            <input id="file-input" 
+                            #file type="file"
+                             (change)="onFileChanged($event)"  style="margin-left: 34%; margin-top: 5%;" />
+                        </div>
+                        <div align="center" style="margin-top: 1%">
+                            <button type="button" class="btn btn-info gap-2"   (click)="file.click()">
+                                CHOOSE
+                            </button>
+                        </div>
+                    </div>
+          
+
+                </div>
+                <div class="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+                    <ng-container *ngFor="let item of titems; index as i">
+                        <a
+                            style="position: relative"
+                            href="javascript:;"
+                            [ngClass]="{ 'md:col-span-2 md:row-span-2': i == 4 }"
+                            (click)="opentool(i)"
+                        >
+                            <img [src]="item.src" alt="image-gallery" class="h-full w-full rounded-md object-cover" />
+                            <button style="position: absolute; top: 5px; right: 5px" (click)="deleteimage(i)">
+                                <img
+                                    class="w-7"
+                                    src="https://www.pngall.com/wp-content/uploads/4/Red-Close-Button-Transparent.png"
+                                />
+                            </button>
+                        </a>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+        <div>
+
+        </div>
+    </div>
+
+</div>
+</div>
+<div>
+
+</div>
+
+

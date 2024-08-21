@@ -1,0 +1,72 @@
+<div class="row">
+  <h5 class="text-xl font-semibold dark:text-white-light">User Role Create</h5>
+  <div class="col-lg-12">
+      <form [formGroup]="userForm" class="flex-1 space-y-5 dark:text-white" (ngSubmit)="updateuserole();">
+          <div class="panel">
+
+              <div>
+                  <div class="flex flex-row space-x-4">
+                      <div class="flex-2">
+                          <label for="rname">Role Name</label>
+                          <div class="relative text-white-dark">
+                              <input id="rname" type="text" placeholder="Role Name"
+                                  class="form-input placeholder:text-white-dark" maxlength="50" formControlName="rname" style="width:130%;"/>
+                                  
+                          </div>
+                      </div> 
+                      <div class="flex-2">
+                          <label for="rdesc" style="margin-left:60%;">Description</label>
+                          <div class="relative text-white-dark">
+                                  <textarea class="form-textarea mt-4" placeholder="Enter Description"  formControlName="rdesc"
+                              name="rdesc" style="width: 250%;margin-left: 60%;margin-top: -1%;"></textarea>
+                                  
+                          </div>
+                      </div>
+                  </div>
+                  <br> <hr><br>
+                  <div class="split-screen">
+                      <div class="left-side">
+                        <div class="row" *ngFor="let feature of featuredata">
+                          <div>
+                            <div class="flex flex-row space-x-6">
+                              <label class="flex-1 " style="color: #1f9acf;">Feature</label>
+                              <label class="flex-5 " style="color: #1f9acf;">Capabilities</label>
+                            </div>
+                          </div>
+                          <br><br>
+                          <ng-container >
+                            <div class="flex flex-row space-x-6" style="border-bottom: solid 1px #eee; margin-bottom: 1%;">
+                              <input type="hidden" value="{{feature.featureId}}" name="featureId">
+                              <label class="flex-1 labeltype"><p style="color:#07415a;font-size: 115%;">{{ feature.feature_name }}</p></label>
+                              <div class="flex-5">
+                                <input type="checkbox" class="form-checkbox text-info" [(ngModel)]="feature.add" name="add" [ngModelOptions]="{standalone: true}"><b style="color:#1f78a9;">Add</b><br><br>
+                                <input type="checkbox" class="form-checkbox text-info" [(ngModel)]="feature.update" name="update" [ngModelOptions]="{standalone: true}"><b style="color:#1f78a9;">Update</b><br><br>
+                                <input type="checkbox" class="form-checkbox text-info" [(ngModel)]="feature.delete" name="delete" [ngModelOptions]="{standalone: true}"><b style="color:#1f78a9;">Delete</b><br><br>
+                                <input type="checkbox" class="form-checkbox text-info" [(ngModel)]="feature.list" name="list" [ngModelOptions]="{standalone: true}"><b style="color:#1f78a9;">List</b><br><br>
+                                <input type="checkbox" class="form-checkbox text-info" [(ngModel)]="feature.view" name="view" [ngModelOptions]="{standalone: true}"><b style="color:#1f78a9;">View</b><br><br>
+                              </div>
+                            </div>
+                          </ng-container>
+                        </div>
+                      </div>
+                      <div class="right-side">
+                         
+                      </div>
+                    </div>
+                  <div class="flex justify-end">
+                      <button type="button" class="btn btn-dark gap-2" style="margin-right: 1%;">
+                          Cancel
+                      </button>
+                      <button type="submit" class="btn btn-success gap-2" >
+                          Update
+                      </button>
+                  </div>
+
+
+
+              </div>
+          </div>
+      </form>
+  </div>
+
+</div>

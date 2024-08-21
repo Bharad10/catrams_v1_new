@@ -1,0 +1,179 @@
+<div class="mb-5"  style="margin-left: -40px;">
+    <ol class="flex font-semibold text-primary dark:text-white-dark">
+      
+      <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
+        <a
+          class="relative flex h-full items-center bg-success p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-success ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-6 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180">
+          {{'Orders'|translate}} </a></li>
+
+    </ol>
+  </div>
+
+  
+
+<div *ngIf="this.permission_Denied==0">
+<div>
+    
+    <div class="panel mt-6 pb-0" style=" margin-left: -40px;">
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div class="mb-5 flex flex-col gap-5 md:flex-row md:items-center">
+            <div class=" flex flex-col gap-5 md:flex-row md:items-center">
+                <!-- <h5 class="text-lg font-semibold dark:text-white-light">Tool Request List </h5> -->
+                <div class="ltr:ml-auto rtl:mr-auto">
+                    <input [(ngModel)]=" search" type="text" class="form-input w-auto" placeholder=" {{'Search...'|translate}}" />
+                </div>
+            </div>
+            <div class="flex-2">
+                <button type="button" class="btn btn-info h-9 btn-sm" (click)="sale_history()">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle opacity="0.5" cx="12" cy="12" r="10" stroke="#ffff" stroke-width="1.5"/>
+                        <path d="M12 8V12L14.5 14.5" stroke="#ffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        
+                      &nbsp;
+                        
+                     {{'Sale History'|translate}}
+                    &nbsp;</button>
+            
+            </div>
+        </div>
+        <div class="mb-5 flex flex-col gap-5 md:flex-row md:items-center">
+            <div class=" flex flex-col gap-5 md:flex-row md:items-center">
+                <!-- <h5 class="text-lg font-semibold dark:text-white-light">Tool Request List </h5> -->
+              
+            </div>
+            <div class="flex-1" *ngIf="nrq_flag==true">
+                <div class="flex items-center rounded bg-warning-light p-3.5 text-warning dark:bg-warning-dark-light">
+                    <span class="ltr:pr-2 rtl:pl-2"><strong class="ltr:mr-1 rtl:ml-1">{{'New Request'|translate}}! {{open_request}}</strong>{{'new purchase request created'|translate}}!!.</span>
+                    <button type="button" class="hover:opacity-80 ltr:ml-auto rtl:mr-auto" (click)="nrq_flag=false">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24px"
+                            height="24px"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="h-5 w-5"
+                        >
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            
+            </div>
+          
+            
+        </div>
+    </div>
+        
+           
+            <div class="datatable" >
+                <ng-datatable
+                 [rows]="rows"
+                 [columns]="cols" 
+                 skin="whitespace-nowrap bh-table-hover"
+                 [loading]="loading"
+                 [sortable]="true"
+                 [search]="search"
+                 sortDirection="desc"
+                 sortColumn="order_number"
+
+                    firstArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M13 19L7 12L13 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M16.9998 19L10.9998 12L16.9998 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                    lastArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M11 19L17 12L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M6.99976 19L12.9998 12L6.99976 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg> '
+                    previousArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M15 5L9 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                    nextArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'>
+                    <ng-template slot="sm_name" let-value="data">
+                        <span class="badge badge-outline-warning" *ngIf="value.order_status==51||value.order_status==37"> {{ value.sm_name }}</span>
+                        <span class="badge badge-outline-info" *ngIf="value.order_status==52"> {{ value.sm_name }}</span>
+                        <span class="badge badge-outline-success" *ngIf="value.order_status==53||value.order_status==40||value.order_status==10||value.order_status==55"> {{ value.sm_name }}</span>
+                        <span class="badge badge-outline-danger" *ngIf="value.order_status==54||value.order_status==39"> {{ value.sm_name }}</span>
+                    </ng-template>
+                    <ng-template slot="date" let-value="data">
+                        <div class="flex flex-col gap-2 md:flex-row ">
+                            <div class="flex-2">
+                                
+                                <svg _ngcontent-lqu-c71="" width="16" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path _ngcontent-lqu-c71="" d="M2 12C2 8.22876 2 6.34315 3.17157 5.17157C4.34315 4 6.22876 4 10 4H14C17.7712 4 19.6569 4 20.8284 5.17157C22 6.34315 22 8.22876 22 12V14C22 17.7712 22 19.6569 20.8284 20.8284C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14V12Z" stroke="#1C274C" stroke-width="1.5"></path><path _ngcontent-lqu-c71="" d="M7 4V2.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path><path _ngcontent-lqu-c71="" d="M17 4V2.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path><path _ngcontent-lqu-c71="" d="M2.5 9H21.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path><path _ngcontent-lqu-c71="" d="M18 17C18 17.5523 17.5523 18 17 18C16.4477 18 16 17.5523 16 17C16 16.4477 16.4477 16 17 16C17.5523 16 18 16.4477 18 17Z" fill="#1C274C"></path><path _ngcontent-lqu-c71="" d="M18 13C18 13.5523 17.5523 14 17 14C16.4477 14 16 13.5523 16 13C16 12.4477 16.4477 12 17 12C17.5523 12 18 12.4477 18 13Z" fill="#1C274C"></path><path _ngcontent-lqu-c71="" d="M13 17C13 17.5523 12.5523 18 12 18C11.4477 18 11 17.5523 11 17C11 16.4477 11.4477 16 12 16C12.5523 16 13 16.4477 13 17Z" fill="#1C274C"></path><path _ngcontent-lqu-c71="" d="M13 13C13 13.5523 12.5523 14 12 14C11.4477 14 11 13.5523 11 13C11 12.4477 11.4477 12 12 12C12.5523 12 13 12.4477 13 13Z" fill="#1C274C"></path><path _ngcontent-lqu-c71="" d="M8 17C8 17.5523 7.55228 18 7 18C6.44772 18 6 17.5523 6 17C6 16.4477 6.44772 16 7 16C7.55228 16 8 16.4477 8 17Z" fill="#1C274C"></path><path _ngcontent-lqu-c71="" d="M8 13C8 13.5523 7.55228 14 7
+                                    14C6.44772 14 6 13.5523 6 13C6 12.4477 
+                                    6.44772 12 7 12C7.55228 12 8 12.4477 8 13Z" fill="#1C274C"></path></svg>
+                            </div>
+                            <div class="flex-2" style="font-size: small;">
+                                {{ value.order_updated_on | date:'dd-MMM-yyyy' }}
+                            </div>
+                        </div>
+                    
+                    </ng-template>  
+                    <ng-template slot="time" let-value="data">
+                        <div class="flex flex-col gap-2 md:flex-row ">
+                            <div class="flex-2">
+                                
+                                <svg _ngcontent-lqu-c71="" width="16" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle _ngcontent-lqu-c71="" cx="12" cy="12" r="10" stroke="#1C274C" stroke-width="1.5"></circle><path _ngcontent-lqu-c71="" d="M12 8V12L14.5 14.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                            </div>
+                            <div class="flex-2" style="font-size: small;">
+                                {{ value.order_updated_on | date:' hh:mm a' }}
+                            </div>
+                        </div>
+                       
+                    
+                    </ng-template>  
+                    <ng-template slot="Action" let-value="data">
+                        <button type="button" ngxTippy data-tippy-content="View Details"
+                                                (click)="tooledit(value.order_id)">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                                        fill="#1C274C" />
+                                                    <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                                        fill="#1C274C" />
+                                                    <path
+                                                        d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                                        fill="#1C274C" />
+                                                    <path opacity="0.5"
+                                                        d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                                        fill="#1C274C" />
+                                                </svg>
+        
+                                            </button>
+                        
+                    </ng-template>
+                </ng-datatable>
+            </div>
+        
+        
+          
+
+            
+            
+          </div>
+
+
+</div>
+
+
+</div>
+
+<div class="panel" *ngIf="this.permission_Denied==1">
+    <div class="relative flex min-h-screen items-center justify-center overflow-hidden">
+        <div
+            class="px-6 py-16 text-center font-semibold before:container before:absolute before:left-1/2 before:aspect-square before:-translate-x-1/2 before:rounded-full before:bg-[linear-gradient(180deg,#4361EE_0%,rgba(67,97,238,0)_50.73%)] before:opacity-10 md:py-20"
+        >
+            <div class="relative">
+                <img
+                    [src]="'/assets/images/error/403forbiddenerror.jpg'"
+                    alt="503"
+                    class="mx-auto w-full max-w-xs object-cover md:max-w-xl"
+                />
+                <p class="mt-5 text-base dark:text-white">{{'Service Unavailable'|translate}}!</p>
+                <button class="btn btn-danger mx-auto !mt-7 w-max border-0 uppercase shadow-none" type="button" (click)="tool_list()">
+                 {{"Home"|translate}}
+                </button>
+                
+            </div>
+        </div>
+    </div>
+</div>

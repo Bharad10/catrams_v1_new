@@ -1,0 +1,1642 @@
+<div class="mb-5">
+    <ol class="flex font-semibold text-primary dark:text-white-dark">
+        <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+            <a href="javascript:;" (click)="toolrequestlist()"
+                class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-b-transparent before:border-l-[#ebedf2] before:border-t-transparent hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pl-2 rtl:pr-3 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+                {{'Tool Request' | translate}}</a>
+        </li>
+        <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
+            <a
+                class="relative flex h-full items-center bg-primary p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-b-transparent before:border-l-primary before:border-t-transparent ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pl-2 rtl:pr-6 rtl:before:-left-[15px] rtl:before:rotate-180">
+                {{'Request Details' | translate}} </a>
+        </li>
+    </ol>
+</div>
+
+<div *ngIf="loader==false">
+    <!-- <button (click)="toolrequestlist()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 12L10 12M10 12L13 15M10 12L13 9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path d="M7 16L7 12L7 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+            <path opacity="0.5"
+                d="M2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12Z"
+                stroke="#1C274C" stroke-width="1.5" />
+        </svg>
+    </button> -->
+    <div>
+        <div class="flex flex-col gap-2.5 xl:flex-row">
+            <div class="mt-6 w-full xl:mt-0 xl:w-96">
+                <div class="mb-5 flex">
+                    <div
+                        class="w-full max-w-[22rem] rounded border border-[#e0e6ed] bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none">
+                        <div class="px-6 py-7">
+                            <div class="-mx-6 -mt-7 mb-7 h-[260px] overflow-hidden rounded-tl rounded-tr">
+                                <img src="{{ base_img_url + request_list.tool_images }}" alt=""
+                                    class="h-full w-full object-none" />
+                            </div>
+                            <div class="flex-1" *ngIf="request_list.tool_deposit_id == 1">
+                                <label for="toolquantity" class="deposit">{{'Tool Name' | translate}} </label>
+                                <div class="relative text-white-dark">
+                                    <input id="tool_name" type="text" [(ngModel)]="request_list.tool_name"
+                                        [ngModelOptions]="{ standalone: true }"
+                                        class="form-input placeholder:text-white-dark" readonly />
+                                </div>
+                            </div>
+                            <div class="flex-1" *ngIf="request_list.tool_adv_payment == 1">
+                                <label for="toolquantity" class="adv">{{'Tool Name' | translate}}</label>
+                                <div class="relative text-white-dark">
+                                    <input id="tool_name" type="text" [(ngModel)]="request_list.tool_name"
+                                        [ngModelOptions]="{ standalone: true }"
+                                        class="form-input placeholder:text-white-dark" readonly />
+                                </div>
+                            </div>
+                            <div class="flex-1"
+                                *ngIf="request_list.tool_adv_payment == 0 && request_list.tool_deposit_id == 0">
+                                <label for="toolquantity">{{'Tool Name' | translate}}</label>
+                                <div class="relative text-white-dark">
+                                    <input id="tool_name" type="text" [(ngModel)]="request_list.tool_name"
+                                        [ngModelOptions]="{ standalone: true }"
+                                        class="form-input placeholder:text-white-dark" readonly />
+                                </div>
+                            </div>
+                            <br /><br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel flex-1 py-6 ltr:xl:mr-6 rtl:xl:ml-6">
+                <form [formGroup]="ToolRequestForm" class="flex-1 space-y-5 dark:text-white">
+                    <div class="mb-5">
+                        <div class="mb-5 flex items-center justify-between" *ngIf="this.request_list">
+                            <div class="flex w-full">
+                              
+                                <div class="flex-1">
+                                    <h5 [ngClass]="getClass()" class="text-lg font-semibold dark:text-white-light f_color">
+                                        <span class="badge bg-info rounded-none">{{ request_list.tldt_number }}</span>
+                                        <!-- {{ 'Request ID' | translate }} {{ 'For' | translate }} <u>{{ request_list.tldt_number }}</u> -->
+                                      </h5>
+                                </div>
+                                  
+                                <br>
+                               
+                                    <h5 [ngClass]="getClass()" class="text-lg font-semibold dark:text-white-light f_color">
+                                        <span class="badge badge-outline-info rounded-none">{{ request_list.tldt_updated_on | date:'dd-MMM-yyyy'  }}</span>
+                                        <!-- {{ 'DATE' | translate }}  <u>{{ request_list.tldt_updated_on | date:'dd-MMM-yyyy'  }}</u>  -->
+                                      </h5>
+                               
+                            </div>
+                        </div>
+                        <div class="space-y-2 font-semibold">
+                            <div class="rounded border border-[#d3d3d3] dark:border-[#1b2e4b]">
+                                <button type="button"
+                                    class="flex w-full items-center p-4 text-white-dark dark:bg-[#1b2e4b]"
+                                    [ngClass]="{ '!text-primary': accordians3 === 1 }"
+                                    (click)="accordians3 === 1 ? (accordians3 = null) : (accordians3 = 1)">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+                                        <circle cx="9" cy="6" r="4" stroke="currentColor" stroke-width="1.5" />
+                                        <path opacity="0.5"
+                                            d="M12.5 4.3411C13.0375 3.53275 13.9565 3 15 3C16.6569 3 18 4.34315 18 6C18 7.65685 16.6569 9 15 9C13.9565 9 13.0375 8.46725 12.5 7.6589"
+                                            stroke="#1C274C" stroke-width="1.5" />
+                                        <ellipse cx="9" cy="17" rx="7" ry="4" stroke="currentColor"
+                                            stroke-width="1.5" />
+                                        <path opacity="0.5"
+                                            d="M18 14C19.7542 14.3847 21 15.3589 21 16.5C21 17.5293 19.9863 18.4229 18.5 18.8704"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    </svg>
+                                    &nbsp;&nbsp; 
+                                    <span class="badge badge-outline-info rounded-none">{{'Customer Details' | translate}}</span>
+
+                                    <div class="ltr:ml-auto rtl:mr-auto"
+                                        [ngClass]="{ 'rotate-180': accordians3 === 1 }">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+                                            <path d="M19 9L12 15L5 9" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                </button>
+                                <div [@slideDownUp]="accordians3 !== 1" class="accordion-content">
+                                    <div
+                                        class="space-y-2 border-t border-[#d3d3d3] p-4 text-[13px] text-white-dark dark:border-[#1b2e4b]">
+                                        <div class="flex flex-row space-x-4">
+                                            <div class="flex-2">
+                                                <label for="custname"
+                                                    *ngIf="request_list.tool_adv_payment == 0 && request_list.tool_deposit_id == 0"> {{"Request ID" | translate }} </label>
+                                                <label for="custname" class="deposit"
+                                                    *ngIf="request_list.tool_deposit_id == 1">{{"Request ID" | translate }}</label>
+                                                <label for="custname" class="adv"
+                                                    *ngIf="request_list.tool_adv_payment == 1">{{"Request ID" | translate }}</label>
+                                                <div class="relative text-white-dark">
+                                                    <input id="custname" type="text"
+                                                        [(ngModel)]="request_list.tldt_number"
+                                                        [ngModelOptions]="{ standalone: true }" class="form-input"
+                                                        style="color: red" readonly />
+                                                </div>
+                                            </div>
+                                            <ng-container *ngIf="request_list.tldt_reference != 0">
+                                                <div class="flex-2">
+                                                    <label for="custname"
+                                                        *ngIf="request_list.tool_adv_payment == 0 && request_list.tool_deposit_id == 0">{{'Reference ID' | translate }}</label>
+                                                    <label for="custname" class="deposit"
+                                                        *ngIf="request_list.tool_deposit_id == 1">{{'Reference ID' | translate }}</label>
+                                                    <label for="custname" class="adv"
+                                                        *ngIf="request_list.tool_adv_payment == 1">{{'Reference ID' | translate }}</label>
+
+                                                    <div class="relative text-white-dark">
+                                                        <input id="custname" type="text"
+                                                            [(ngModel)]="request_list.Service_request_details.serm_number"
+                                                            [ngModelOptions]="{ standalone: true }" class="form-input"
+                                                            style="color: red" readonly />
+                                                    </div>
+                                                </div>
+                                                <div class="flex-2">
+                                                    <label for="custname" style="color: white">{{'Request Details' | translate}}</label>
+                                                    <button type="button" class="btn btn-info btn-sm"
+                                                        (click)="wk_det(request_list.Service_request_details.serm_id)">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M10.5 9L13.5 12L10.5 15" stroke="#ffff"
+                                                                stroke-width="1.5" stroke-linecap="round"
+                                                                stroke-linejoin="round" />
+                                                            <path opacity="0.5"
+                                                                d="M2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12Z"
+                                                                stroke="#fff" stroke-width="1.5" />
+                                                        </svg>
+
+                                                      {{'View Details' | translate }}
+                                                    </button>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                        <div class="flex flex-row space-x-4">
+                                            <div class="flex-2">
+                                                <label for="custname"
+                                                    *ngIf="request_list.tool_adv_payment == 0 && request_list.tool_deposit_id == 0">Customer
+                                                    Name</label>
+                                                <label for="custname" class="deposit"
+                                                    *ngIf="request_list.tool_deposit_id == 1">{{'Customer Name' | translate }}</label>
+                                                <label for="custname" class="adv"
+                                                    *ngIf="request_list.tool_adv_payment == 1">{{'Customer Name' | translate }}</label>
+                                                <div class="relative text-white-dark">
+                                                    <input id="custname" type="text"
+                                                        [(ngModel)]="request_list.cstm_name"
+                                                        [ngModelOptions]="{ standalone: true }"
+                                                        class="form-input placeholder:text-white-dark" readonly />
+                                                </div>
+                                            </div>
+
+                                            <ng-container *ngIf="request_list.cstm_type == 1">
+                                                <ng-container *ngIf="
+                                                        request_list.customer_dicounts.cd_request_type == 1 ||
+                                                        request_list.customer_dicounts.cd_request_type == 3
+                                                    ">
+                                                    <div class="flex-2">
+                                                        <div class="relative inline-flex align-middle"
+                                                            style="margin-left: 2%">
+                                                            <div
+                                                                class="relative flex items-center rounded border !border-primary bg-primary-light p-3.5 text-primary before:absolute before:top-1/2 before:-mt-2 before:border-b-8 before:border-l-8 before:border-t-8 before:border-b-transparent before:border-l-inherit before:border-t-transparent ltr:border-l-[64px] ltr:before:left-0 rtl:border-r-[64px] rtl:before:right-0 rtl:before:rotate-180 dark:bg-primary-dark-light">
+                                                                <span
+                                                                    class="absolute inset-y-0 m-auto h-6 w-6 text-white ltr:-left-11 rtl:-right-11">
+                                                                    <svg width="20" height="20" viewBox="0 0 24 24"
+                                                                        fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                                        class="h-6 w-6">
+                                                                        <path
+                                                                            d="M19.0001 9.7041V9C19.0001 5.13401 15.8661 2 12.0001 2C8.13407 2 5.00006 5.13401 5.00006 9V9.7041C5.00006 10.5491 4.74995 11.3752 4.28123 12.0783L3.13263 13.8012C2.08349 15.3749 2.88442 17.5139 4.70913 18.0116C9.48258 19.3134 14.5175 19.3134 19.291 18.0116C21.1157 17.5139 21.9166 15.3749 20.8675 13.8012L19.7189 12.0783C19.2502 11.3752 19.0001 10.5491 19.0001 9.7041Z"
+                                                                            stroke="currentColor" stroke-width="1.5">
+                                                                        </path>
+                                                                        <path
+                                                                            d="M7.5 19C8.15503 20.7478 9.92246 22 12 22C14.0775 22 15.845 20.7478 16.5 19"
+                                                                            stroke="currentColor" stroke-width="1.5"
+                                                                            stroke-linecap="round"></path>
+                                                                        <path d="M12 6V10" stroke="currentColor"
+                                                                            stroke-width="1.5" stroke-linecap="round">
+                                                                        </path>
+                                                                    </svg>
+                                                                </span>
+                                                                <span class="ltr:pr-2 rtl:pl-2"><strong
+                                                                        class="ltr:mr-1 rtl:ml-1">{{'Premium Customer' | translate }} !</strong>{{'Discount' | translate }} {{'of' | translate}}
+                                                                    <ng-container
+                                                                        *ngIf="request_list.customer_dicounts.cd_type == 0">
+                                                                        ₹ </ng-container>
+                                                                    {{ request_list.customer_dicounts.cd_rate }}
+                                                                    <ng-container
+                                                                        *ngIf="request_list.customer_dicounts.cd_type == 1">
+                                                                        % </ng-container>
+                                                                    {{'Included at the time of payment' | translate }}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ng-container>
+                                            </ng-container>
+                                        </div>
+                                        <div class="flex flex-row space-x-4">
+                                            <div class="flex-2">
+                                                <label for="custname"
+                                                    *ngIf="request_list.tool_adv_payment == 0 && request_list.tool_deposit_id == 0">{{'Customer Phone' | translate }} </label>
+                                                <label for="custname" class="deposit"
+                                                    *ngIf="request_list.tool_deposit_id == 1">{{'Customer Phone' | translate }}</label>
+                                                <label for="custname" class="adv"
+                                                    *ngIf="request_list.tool_adv_payment == 1">{{'Customer Phone' | translate }}</label>
+                                                <div class="relative text-white-dark">
+                                                    <input id="custname" type="text"
+                                                        [(ngModel)]="request_list.cstm_phone"
+                                                        [ngModelOptions]="{ standalone: true }"
+                                                        class="form-input placeholder:text-white-dark" readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-row space-x-4">
+                                            <div class="flex-1">
+                                                <label for="custname"
+                                                    *ngIf="request_list.tool_adv_payment == 0 && request_list.tool_deposit_id == 0">{{'Address' | translate }}</label>
+                                                <label for="custname" class="deposit"
+                                                    *ngIf="request_list.tool_deposit_id == 1">{{'Address' | translate }}</label>
+                                                <label for="custname" class="adv"
+                                                    *ngIf="request_list.tool_adv_payment == 1">{{'Address' | translate }}</label>
+                                                <div class="relative text-white-dark">
+                                                    <textarea class="form-textarea" id="custaddress"
+                                                        [(ngModel)]="request_list.tldt_delivery_address"
+                                                        [ngModelOptions]="{ standalone: true }" readonly></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="rounded border border-[#d3d3d3] dark:border-[#1b2e4b]">
+                                <button type="button"
+                                    class="flex w-full items-center p-4 text-white-dark dark:bg-[#1b2e4b]"
+                                    [ngClass]="{ '!text-primary': accordians3 === 2 }"
+                                    (click)="accordians3 === 2 ? (accordians3 = null) : (accordians3 = 2)">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+                                        <path
+                                            d="M4 8C4 5.17157 4 3.75736 4.87868 2.87868C5.75736 2 7.17157 2 10 2H14C16.8284 2 18.2426 2 19.1213 2.87868C20 3.75736 20 5.17157 20 8V16C20 18.8284 20 20.2426 19.1213 21.1213C18.2426 22 16.8284 22 14 22H10C7.17157 22 5.75736 22 4.87868 21.1213C4 20.2426 4 18.8284 4 16V8Z"
+                                            stroke="currentColor" stroke-width="1.5" />
+                                        <path
+                                            d="M19.8978 16H7.89778C6.96781 16 6.50282 16 6.12132 16.1022C5.08604 16.3796 4.2774 17.1883 4 18.2235"
+                                            stroke="currentColor" stroke-width="1.5" />
+                                        <path opacity="0.5" d="M8 7H16" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" />
+                                        <path opacity="0.5" d="M8 10.5H13" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" />
+                                        <path opacity="0.5" d="M19.5 19H8" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" />
+                                    </svg>
+
+                                    &nbsp;&nbsp; 
+                                   <a (click)="bktab = 'bk1';accordians3 === 2"> <span class="badge badge-outline-info rounded-none">{{'Booking Details'| translate }}</span></a> 
+                                    &nbsp;
+                                    <a (click)="bktab = 'bk2';accordians3 === 2"><span class="badge badge-outline-info rounded-none">{{'Payment Calculation'| translate }}</span></a>
+                                    &nbsp;
+                                   <a (click)="bktab = 'bk4';accordians3 === 2"><span class="badge badge-outline-info rounded-none">{{'Due Calculation'| translate }}</span></a> 
+                                    <div class="ltr:ml-auto rtl:mr-auto"
+                                        [ngClass]="{ 'rotate-180': accordians3 === 2 }">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+                                            <path d="M19 9L12 15L5 9" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                </button>
+                                <div [@slideDownUp]="accordians3 !== 2" class="accordion-content">
+                                    <div
+                                        class="space-y-2 border-t border-[#d3d3d3] p-4 text-[13px] text-white-dark dark:border-[#1b2e4b]">
+                                       
+
+                                        <div class="mb-5 flex flex-col sm:flex-row">
+                                            <div class="mb-5 space-y-2 ltr:pr-4 rtl:pl-4 sm:mb-0 sm:flex-[0_0_20%]">
+                                                <br>
+                                                <a href="javascript:;"
+                                                    class="block rounded-md p-3.5 py-2 bg-[#f1f8ff] !outline-none transition-all duration-300 hover:bg-primary hover:text-white"
+                                                    [ngClass]="{ '!bg-info text-white': bktab.toLowerCase() === 'bk1' }" (click)="bktab = 'bk1'">
+                                                    {{"Booking Details"|translate}}
+                                                </a>
+                                                <br>
+                                                <a href="javascript:;"
+                                                    class="block rounded-md p-3.5 py-2 bg-[#f1f8ff] !outline-none transition-all duration-300 hover:bg-primary hover:text-white"
+                                                    [ngClass]="{ '!bg-info text-white': bktab.toLowerCase() === 'bk2' }" (click)="bktab = 'bk2'">
+                                                    {{"Payment Calculation"|translate}}
+                                                </a>
+                                                <br>
+                                                <a href="javascript:;"
+                                                    class="block rounded-md p-3.5 py-2 bg-[#f1f8ff] !outline-none transition-all duration-300 hover:bg-primary hover:text-white"
+                                                    [ngClass]="{ '!bg-info text-white': bktab.toLowerCase() === 'bk4' }"
+                                                    (click)="bktab = 'bk4'">
+                                                    {{"Due Calculation"|translate}}
+                                                </a>
+                                            </div>
+                                            <div class="flex-1 text-sm">
+                                                <div *ngIf="bktab.toLowerCase() === 'bk1'">
+                                                    <div class="flex flex-row space-x-6">
+                                                        <div class="flex-2">
+                                                            <label for="custname"
+                                                                *ngIf="request_list.tool_adv_payment == 0 && request_list.tool_deposit_id == 0">{{'Quantity Requested' | translate }}</label>
+                                                            <label for="custname" class="deposit"
+                                                                *ngIf="request_list.tool_deposit_id == 1">{{'Quantity Requested' | translate }}</label>
+                                                            <label for="custname" class="adv"
+                                                                *ngIf="request_list.tool_adv_payment == 1">{{'Quantity Requested' | translate }}</label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="toolquantity" type="number"
+                                                                    [(ngModel)]="request_list.tldt_tool_quant"
+                                                                    [ngModelOptions]="{ standalone: true }"
+                                                                    class="form-input flex-1" readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-2">
+                                                            <label for="custname"
+                                                                *ngIf="request_list.tool_adv_payment == 0 && request_list.tool_deposit_id == 0">{{'Rent Duration Requested' | translate }} </label>
+                                                            <label for="custname" class="deposit"
+                                                                *ngIf="request_list.tool_deposit_id == 1">{{'Rent Duration Requested' | translate }} 
+                                                            </label>
+                                                            <label for="custname" class="adv"
+                                                                *ngIf="request_list.tool_adv_payment == 1">{{'Rent Duration Requested' | translate }} 
+                                                            </label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="toolduration" type="number"
+                                                                    [(ngModel)]="request_list.tldt_tool_duration"
+                                                                    [ngModelOptions]="{ standalone: true }"
+                                                                    class="form-input placeholder:text-white-dark" readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-2">
+                                                            <label for="custname"
+                                                                *ngIf="request_list.tool_adv_payment == 0 && request_list.tool_deposit_id == 0">Rent Stock</label>
+                                                            <label for="custname" class="deposit"
+                                                                *ngIf="request_list.tool_deposit_id == 1">{{'Rent Stock' | translate}}</label>
+                                                            <label for="custname" class="adv"
+                                                                *ngIf="request_list.tool_adv_payment == 1">{{'Rent Stock' | translate}} </label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="toolduration" type="number"
+                                                                    [(ngModel)]="request_list.tool_rent_quantity"
+                                                                    [ngModelOptions]="{ standalone: true }"
+                                                                    class="form-input placeholder:text-white-dark" readonly />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-row space-x-4">
+                                                        <div class="flex-1" *ngIf="request_list.tool_adv_payment == 1">
+                                                            <label for="tool_cost"></label>
+                                                            <div class="relative text-white-dark">
+                                                                <span class="badge badge-outline-warning rounded-none">{{'Advance Payment is Needed For this tool' | translate}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1" *ngIf="request_list.tool_deposit_id == 1">
+                                                            <label for="tool_cost"></label>
+                                                            <div class="relative text-white-dark">
+                                                                <span class="badge badge-outline-info rounded-none">{{'Deposit Payment is Needed For this tool' | translate}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="bktab.toLowerCase() === 'bk2'">
+                                                    <div class="flex flex-row space-x-4">
+                                                        <!-- adv payment table -->
+                                                        <div class="flex-1" *ngIf="request_list.tool_adv_payment == 1">
+                                                            <label for="tool_cost">{{'Advance Payment Calculation' | translate }}</label>
+                                                            <div class="relative text-white-dark">
+                                                                <table class="adv table-stripped">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <td>{{'Rent/Day' | translate}}</td>
+                                                                            <td>{{'Rented Days'|  translate }}</td>
+                                                                            <td>{{'Rented Quantity' | translate }}</td>
+                                                                            <td colspan="2">{{'Total Rent' | translate }}</td>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                {{ request_list.tool_rent_cost }}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{ request_list.tldt_tool_duration }}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{ request_list.tldt_tool_quant }}
+                                                                            </td>
+                                                                            <td colspan="2" *ngIf="coupon_id == 0">
+                                                                                {{ request_list.tldt_cost }}
+                                                                            </td>
+                                                                            <td colspan="2" *ngIf="coupon_id != 0">
+                                                                                {{ request_list.ct_bf_cost }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr *ngIf="coupon_id != 0">
+                                                                            <td colspan="3">{{'Coupon Price' | translate}}</td>
+                                                                            <td colspan="2">
+                                                                                {{ request_list.ct_cost }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr *ngIf="coupon_id != 0">
+                                                                            <td colspan="3">{{'Updated Price' | translate }}</td>
+                                                                            <td colspan="2">
+                                                                                {{ request_list.ct_af_cost }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td colspan="3">{{'Advance' |  translate}}</td>
+                                                                            <td colspan="2">{{ request_list.tool_adv_price }}% *({{
+                                                                                request_list.tldt_cost }})</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td colspan="3">{{'Advance Amount' | translate}}</td>
+                                                                            <td colspan="2">
+                                                                                {{ advance_price }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr style="background-color: #f6f8fa">
+                                                                            <td colspan="3">{{'Total Amount to Pay after Advance Payment'|translate}}</td>
+                                                                            <td colspan="2">
+                                                                                {{ total_amount }}
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <span class="adv" *ngIf="coupon_id == 0">
+                                                                    {{'Total Rent' | translate  }}<b>({{ actual_price }})</b>=({{'Rent/Day' | translate }}<b>({{
+                                                                        request_list.tool_rent_cost }})</b>)*({{"Rent days"|translate}}<b>({{
+                                                                        request_list.tldt_tool_duration }})</b>)*({{'Rent Quantity'|translate}}<b>({{ request_list.tldt_tool_quant }})</b>)
+                                                                </span>
+                                                                <span class="adv" *ngIf="coupon_id != 0">
+                                                                    {{"Total Rent"|translate}}<b>({{ actual_price }})</b>=({{'Rent'|translate}}/{{"day"|translate}}<b>({{
+                                                                        request_list.tool_rent_cost }})</b>)*({{'Rent days'|translate}}<b>({{
+                                                                        request_list.tldt_tool_duration }})</b>)*({{'Rent Quantity'|translate}}<b>({{ request_list.tldt_tool_quant
+                                                                        }})</b>-{{'Discount price'|translate}}<b>({{ request_list.ct_cost }})</b>)
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                        
+                                                        <!-- Deposit payment table -->
+                                                        <div class="flex-1" *ngIf="request_list.tool_deposit_id == 1">
+                                                            <label for="tool_cost" class="deposit">{{"Deposit Payment Calculation"|translate}}</label>
+                                                            <div class="relative text-white-dark">
+                                                                <table class="deposit table-stripped">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <td>{{'Rent/Day'|translate}}</td>
+                                                                            <td>{{"Rented Days"|translate}}</td>
+                                                                            <td>{{"Rented Quantity"|translate}}</td>
+                                                                            <td colspan="2">{{"Total Rent"|translate}}</td>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                {{ request_list.tool_rent_cost }}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{ request_list.tldt_tool_duration }}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{ request_list.tldt_tool_quant }}
+                                                                            </td>
+                                                                            <td colspan="2" *ngIf="coupon_id == 0">
+                                                                                {{ request_list.tldt_cost }}
+                                                                            </td>
+                                                                            <td colspan="2" *ngIf="coupon_id != 0">
+                                                                                {{ request_list.ct_bf_cost }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr *ngIf="coupon_id != 0">
+                                                                            <td colspan="3">{{'Coupon Price'|translate}}</td>
+                                                                            <td colspan="2">
+                                                                                {{ request_list.ct_cost }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr *ngIf="coupon_id != 0">
+                                                                            <td colspan="3">{{'Updated Price'|translate}}</td>
+                                                                            <td colspan="2">
+                                                                                {{ request_list.ct_af_cost }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td colspan="3">{{"Deposit"|translate}}</td>
+                                                                            <td colspan="2">{{ request_list.tool_deposit_price }}%
+                                                                                *({{ request_list.tldt_cost }})</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td colspan="3">{{"Deposit Amount"|translate}}</td>
+                                                                            <td colspan="2">
+                                                                                {{ deposit_price }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td colspan="3">{{"Total Amount"|translate}}</td>
+                                                                            <td colspan="2">
+                                                                                {{ total_amount }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr style="background-color: #f6f8fa">
+                                                                            <td colspan="3">{{'Total Amount After Deposit Amount'|translate}}</td>
+                                                                            <td colspan="2">
+                                                                                {{ updated_deposit }}
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <span class="deposit" *ngIf="coupon_id == 0">
+                                                                    {{"Total Rent"|translate}}<b>({{ actual_price }})</b>=({{'Rent/day'|translate}}<b>({{
+                                                                        request_list.tool_rent_cost }})</b>)*({{'Rent days'|translate}}<b>({{
+                                                                        request_list.tldt_tool_duration }})</b>)*({{'Rent Quantity'|translate}}<b>({{ request_list.tldt_tool_quant }})</b>)
+                                                                </span>
+                                                                <span class="deposit" *ngIf="coupon_id != 0">
+                                                                    Total Rent<b>({{ actual_price }})</b>=({{'Rent/day'|translate}}<b>({{
+                                                                        request_list.tool_rent_cost }})</b>)*({{'Rent days'|translate}}<b>({{
+                                                                        request_list.tldt_tool_duration }})</b>)*({{'Rent Quantity'|translate}}<b>({{ request_list.tldt_tool_quant
+                                                                        }})</b>-{{"Discount price"|translate}}<b>({{ request_list.ct_cost }})</b>)
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                        
+                                                        <!-- Normal tool table -->
+                                        
+                                                        <div class="flex-1"
+                                                            *ngIf="request_list.tool_deposit_id != 1 && request_list.tool_adv_payment != 1">
+                                                            <label for="tool_cost">{{"Payment Calculation"|translate}}</label>
+                                                            <div class="relative text-white-dark">
+                                                                <table class="table-stripped">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <td>{{"Rent/Day"|translate}}</td>
+                                                                            <td>{{"Rented Days"|translate}}</td>
+                                                                            <td>{{'Rented Quantity'|translate}}</td>
+                                                                            <td colspan="2">{{"Total Rent"|translate}}</td>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                {{ request_list.tool_rent_cost }}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{ request_list.tldt_tool_duration }}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{ request_list.tldt_tool_quant }}
+                                                                            </td>
+                                                                            <td colspan="2" *ngIf="coupon_id == 0">
+                                                                                {{ request_list.tldt_rent_cost }}
+                                                                            </td>
+                                                                            <td colspan="2" *ngIf="coupon_id != 0">
+                                                                                {{ request_list.ct_bf_cost }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <ng-container *ngIf="coupon_id != 0">
+                                                                            <tr>
+                                                                                <td colspan="3">{{"Coupon Price"|translate}}</td>
+                                                                                <td colspan="2">
+                                                                                    {{ request_list.ct_cost }}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td colspan="3">{{'Updated Price'|translate}}</td>
+                                                                                <td colspan="2">
+                                                                                    {{ request_list.ct_af_cost }}
+                                                                                </td>
+                                                                            </tr>
+                                                                        </ng-container>
+                                        
+                                                                        <ng-container *ngIf="coupon_id == 0">
+                                                                            <tr *ngIf="request_list.customer_dicounts">
+                                                                                <td colspan="2">{{"Premium User Discount"|translate}}</td>
+                                                                                <td>
+                                                                                    <ng-container
+                                                                                        *ngIf="request_list.customer_dicounts.cd_type == 0">
+                                                                                        -₹{{ request_list.customer_dicounts.cd_rate
+                                                                                        }}
+                                                                                    </ng-container>
+                                                                                    <ng-container
+                                                                                        *ngIf="request_list.customer_dicounts.cd_type == 1">
+                                                                                        {{ request_list.customer_dicounts.cd_rate }}
+                                                                                        %
+                                                                                    </ng-container>
+                                                                                </td>
+                                        
+                                                                                <td colspan="2">
+                                                                                    {{
+                                                                                    request_list.customer_dicounts.updated_total_amount
+                                                                                    }}
+                                                                                </td>
+                                                                            </tr>
+                                                                        </ng-container>
+                                        
+                                                                        <tr>
+                                                                            <td colspan="3">{{"Total Amount"|translate}}</td>
+                                                                            <td colspan="2">
+                                                                                {{ actual_price }}
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <span *ngIf="coupon_id == 0">
+                                                                    <ng-container *ngIf="request_list.customer_dicounts">
+                                                                        {{"Total Rent"|translate}}<b>({{ actual_price }})</b>=({{"Rent/day"|translate}}<b>({{
+                                                                            request_list.tool_rent_cost }})</b>) *({{"Rent days"|translate}}<b>({{ request_list.tldt_tool_duration }})</b>) 
+                                                                            *
+                                                                            ({{"Rent Quantity"|translate}}<b>({{ request_list.tldt_tool_quant }})</b>)
+                                                                        -{{"Premium Discount"|translate}}(request_list.customer_dicounts.discount_amount)
+                                                                    </ng-container>
+                                                                    <ng-container *ngIf="!request_list.customer_dicounts">
+                                                                        {{"Total Rent"|translate}}<b>({{ actual_price }})</b>=({{"Rent/day"|translate}}<b>({{
+                                                                            request_list.tool_rent_cost }})</b>) *({{"Rent days"|translate}}<b>({{ request_list.tldt_tool_duration }})</b>) *({{"Rent  Quantity"|translate}}
+                                                                            <b>({{ request_list.tldt_tool_quant }})</b>)
+                                                                    </ng-container>
+                                                                </span>
+                                                                <span *ngIf="coupon_id != 0">
+                                                                    Total Rent<b>({{ actual_price }})</b>=({{"Rent/day"|translate}}<b>({{
+                                                                        request_list.tool_rent_cost }})</b>)*({{"Rent days"|translate}}<b>({{
+                                                                        request_list.tldt_tool_duration }})</b>)*({{"Rent Quantity"|translate}}<b>({{ request_list.tldt_tool_quant
+                                                                        }})</b>-{{"Discount price"|translate}}<b>({{ request_list.ct_cost }})</b>)
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="flex flex-row space-x-4" *ngIf="request_list.tool_deposit_id == 1">
+                                                        <div class="flex-2">
+                                                            <label for="tool_cost" class="deposit">{{"Deposit Amount"|translate}}</label>
+                                                            <input id="toolduration" type="number" [(ngModel)]="deposit_price"
+                                                                [ngModelOptions]="{ standalone: true }"
+                                                                class="form-input placeholder:text-white-dark" readonly />
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="tool_cost" class="deposit">{{"Payment Status"|translate}}</label>
+                                                            <ng-container *ngIf="request_list.rpt_amount == null">
+                                                                <input id="toolduration" type="number"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    placeholder="Deposit Amount yet to be Paid" readonly />
+                                                            </ng-container>
+                                        
+                                                            <ng-container *ngIf="request_list.rpt_status == 0">
+                                                                <ng-container *ngIf="request_list.tldt_advpaymt_flag == 0">
+                                                                    <input id="toolduration" type="number"
+                                                                        class="form-input placeholder:text-white-dark" placeholder="{{'Deposit Amount paid'|translate}} ₹ {{ deposit_price }}.{{'Balance Amount to pay'|translate}} {{'₹'|translate}} {{
+                                                                            updated_deposit
+                                                                        }}" readonly />
+                                                                </ng-container>
+                                        
+                                                                <ng-container *ngIf="request_list.tldt_advpaymt_flag == 1">
+                                                                    <input id="toolduration" type="number"
+                                                                        class="form-input placeholder:text-white-dark"
+                                                                        placeholder="{{'Deposit Amount not paid'|translate}} {{'₹'|translate}} {{ request_list.rpt_amount }}"
+                                                                        readonly />
+                                                                </ng-container>
+                                                            </ng-container>
+                                        
+                                                            <ng-container *ngIf="request_list.rpt_status == 2">
+                                                                <input id="toolduration" type="number"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    placeholder="{{'Amount to be paid'|translate}} ₹ {{ request_list.rpt_amount }}"
+                                                                    readonly />
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-row space-x-4" *ngIf="request_list.tool_adv_payment == 1">
+                                                        <div class="flex-2">
+                                                            <label for="tool_cost" class="adv">{{"Advance Amount"|translate}}</label>
+                                                            <input id="toolduration" type="number" [(ngModel)]="advance_price"
+                                                                [ngModelOptions]="{ standalone: true }"
+                                                                class="form-input placeholder:text-white-dark" readonly />
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="tool_cost" class="adv">{{"Payment Status"|translate}}</label>
+                                                            <ng-container *ngIf="request_list.rpt_amount == null">
+                                                                <input id="toolduration" type="number"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    placeholder="{{'Advance Amount yet to be Paid'|translate}}" readonly />
+                                                            </ng-container>
+                                        
+                                                            <ng-container *ngIf="request_list.rpt_status == 0">
+                                                                <ng-container *ngIf="request_list.tldt_advpaymt_flag == 0">
+                                                                    <input id="toolduration" type="number"
+                                                                        class="form-input placeholder:text-white-dark" placeholder=
+                                                                        
+                                                                        "{{'Advance Amount paid'|translate}} ₹ {{ advance_price }}.{{'Balance Amount to pay'|translate}} ₹ {{ total_amount}}" readonly />
+                                                                </ng-container>
+                                        
+                                                                <ng-container *ngIf="request_list.tldt_advpaymt_flag == 1">
+                                                                    <input id="toolduration" type="number"
+                                                                        class="form-input placeholder:text-white-dark"
+                                                                        placeholder="{{'Advance Amount not paid'|translate}} ₹ {{ request_list.rpt_amount }}"
+                                                                        readonly />
+                                                                </ng-container>
+                                                            </ng-container>
+                                        
+                                                            <ng-container *ngIf="request_list.rpt_status == 2">
+                                                                <input id="toolduration" type="number"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    placeholder="{{'Amount to be paid'|translate}} ₹ {{ request_list.rpt_amount }}"
+                                                                    readonly />
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div>
+                                                        <span class="badge badge-outline-warning rounded-full"
+                                                        *ngIf="request_list.rpt_status == 0">
+                                                        {{'Payment Not Completed'|translate}}</span>
+                                                    <span class="badge badge-outline-success rounded-full"
+                                                        *ngIf="request_list.rpt_status == 1">{{'Payment Completed'|translate}} </span>
+                                                    <span class="badge badge-outline-danger rounded-full"
+                                                        *ngIf="request_list.rpt_status == 2 && request_list.tldt_hold_flag == 0">
+                                                        {{"Payment Due"|translate}}</span>
+                                                    <span class="badge badge-outline-danger rounded-full"
+                                                        *ngIf="request_list.rpt_status == 2 && request_list.tldt_hold_flag == 1">{{'Request Holded'|translate}}</span>
+                                        
+                                                    <span class="badge badge-outline-info rounded-full"
+                                                        *ngIf="request_list.rpt_status == 3"> {{"Refund Approved"|translate}}</span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div *ngIf="bktab.toLowerCase() === 'bk4'">
+                                                    <div class="flex flex-row space-x-4">
+                                                        <div class="flex-1">
+                                                            <label for="tool_cost"><span style="color: green">{{'Initial Rent cost Before Due'|translate}}</span> </label>
+                                                            <ng-container *ngIf="request_list.tool_deposit_id == 1">
+                                        
+                                                                <div class="relative text-white-dark" >
+                                                                    <input id="tool_cost" type="number" [(ngModel)]="actual_price"
+                                                                        [ngModelOptions]="{ standalone: true }"
+                                                                        class="form-input placeholder:text-white-dark" readonly />
+                                                                </div>
+                                                            </ng-container>
+                                                            <ng-container *ngIf="request_list.tool_adv_payment == 1">
+                                        
+                                                                <div class="relative text-white-dark" >
+                                                                    <input id="tool_cost" type="number" [(ngModel)]="total_amount"
+                                                                        [ngModelOptions]="{ standalone: true }"
+                                                                        class="form-input placeholder:text-white-dark" readonly />
+                                                                </div>
+                                                            </ng-container >
+                                                           
+                                                            <ng-container *ngIf="request_list.tool_adv_payment == 0&&request_list.tool_deposit_id == 0">
+                                                                <div class="relative text-white-dark" >
+                                                                    <input id="tool_cost" type="number" [(ngModel)]="total_amount"
+                                                                        [ngModelOptions]="{ standalone: true }"
+                                                                        class="form-input placeholder:text-white-dark" readonly />
+                                                                </div>
+                                                            </ng-container>
+                                                            
+                                                        </div>
+                                                        <div class="flex-1" *ngIf="request_list.due_rent_price">
+                                                            <label for="tool_cost"><span style="color: red">{{"Updated Total cost After Due"|translate}}:</span></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="tool_cost" type="number"
+                                                                    [(ngModel)]="request_list.rpt_amount"
+                                                                    [ngModelOptions]="{ standalone: true }" class="form-input"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <br />
+                                                    <ng-container *ngIf="r_images">
+                                                        <div class="flex flex-row space-x-4">
+                                                            <div class="flex-4">
+                                                                <label for="custaddress">{{"Tool Recieved Date"|translate}}</label>
+                                                                <div class="relative text-white-dark">
+                                                                    <!-- <input id="toolduration" type="date" value="{{ request_list.tldt_R_date | date:'YYYY-MM-DD' }}" disabled/> -->
+                                        
+                                                                    <input id="tooldate" type="text" [value]="recieve_Date"
+                                                                        class="form-input placeholder:text-white-dark" disabled />
+                                                                    <input id="tooltime" type="text" [value]="recieve_time"
+                                                                        class="form-input placeholder:text-white-dark" disabled />
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex-4">
+                                                                <label for="custaddress">{{'Due Date'|translate}}</label>
+                                                                <div class="relative text-white-dark">
+                                                                    <input id="due_Date" name="due_Date" type="date" [value]="due_Date"
+                                                                        class="form-input placeholder:text-white-dark"
+                                                                        (change)="hold_function($event)" />
+                                                                    <span style="font-style: italic; color: red"
+                                                                        *ngIf="request_list.expected_Days">*{{'Due Days in'|translate}} :<b>{{
+                                                                            request_list.expected_Days }}{{'days'|translate}}</b>.</span>
+                                        
+                                                                    <span style="font-style: italic; color: red">*{{'Adjust Due date if neccesary'|translate}}.</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex-4" *ngIf="request_list.due_rent_price">
+                                                                <label for="custaddress">{{'Due Price'|translate}}</label>
+                                                                <div class="relative text-white-dark">
+                                                                    <input id="toolduration" type="text"
+                                                                        [value]="request_list.due_rent_price"
+                                                                        class="form-input placeholder:text-white-dark" disabled />
+                                                                    <span style="font-style: italic; color: red">*{{"Due Days"|translate}}:<b>{{
+                                                                            request_list.due_days }}{{'days'|translate}}</b>.</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex-4" *ngIf="this.hold == '1'">
+                                                                <label for="custaddress">*{{'Proceed For Holding Rent'|translate}}</label>
+                                                                <div class="relative text-white-dark">
+                                                                    <button type="button" class="btn btn-info"
+                                                                        (click)="custom_confirm_modal()">{{'Hold'|translate}}</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                      
+                                    </div>
+                                  
+                                </div>
+                            </div>
+
+                            <div class="rounded border border-[#d3d3d3] dark:border-[#1b2e4b]">
+                                <button type="button"
+                                    class="flex w-full items-center p-4 text-white-dark dark:bg-[#1b2e4b]"
+                                    [ngClass]="{ '!text-primary': accordians3 === 3 }"
+                                    (click)="accordians3 === 3 ? (accordians3 = null) : (accordians3 = 3)">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+                                        <path opacity="0.5"
+                                            d="M18 8L18.9487 8.31623C19.9387 8.64624 20.4337 8.81124 20.7169 9.20407C21 9.5969 21 10.1187 21 11.1623V16.829C21 18.1199 21 18.7653 20.6603 19.18C20.5449 19.3208 20.4048 19.4394 20.247 19.5301C19.7821 19.797 19.1455 19.6909 17.8721 19.4787C16.6157 19.2693 15.9875 19.1646 15.3648 19.2167C15.1463 19.235 14.9292 19.2676 14.715 19.3144C14.1046 19.4477 13.5299 19.735 12.3806 20.3097C10.8809 21.0596 10.131 21.4345 9.33284 21.5501C9.09242 21.5849 8.8498 21.6021 8.60688 21.6016C7.80035 21.6001 7.01186 21.3373 5.43488 20.8116L5.05132 20.6838C4.06129 20.3538 3.56627 20.1888 3.28314 19.7959C3 19.4031 3 18.8813 3 17.8377V12.908C3 11.2491 3 10.4197 3.48841 9.97358C3.57388 9.89552 3.66809 9.82762 3.76917 9.77122C4.34681 9.44894 5.13369 9.71123 6.70746 10.2358"
+                                            stroke="currentColor" stroke-width="1.5" />
+                                        <path
+                                            d="M6 7.70031C6 4.55211 8.68629 2 12 2C15.3137 2 18 4.55211 18 7.70031C18 10.8238 16.085 14.4687 13.0972 15.7721C12.4007 16.076 11.5993 16.076 10.9028 15.7721C7.91499 14.4687 6 10.8238 6 7.70031Z"
+                                            stroke="currentColor" stroke-width="1.5" />
+                                        <circle cx="12" cy="8" r="2" stroke="currentColor" stroke-width="1.5" />
+                                    </svg>
+                                    &nbsp; {{'Tracking Details'|translate}}
+                                    <div class="ltr:ml-auto rtl:mr-auto"
+                                        [ngClass]="{ 'rotate-180': accordians3 === 3 }">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+                                            <path d="M19 9L12 15L5 9" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                </button>
+                                <div [@slideDownUp]="accordians3 !== 3" class="accordion-content">
+                                    <div
+                                        class="space-y-2 border-t border-[#d3d3d3] p-4 text-[13px] text-white-dark dark:border-[#1b2e4b]">
+                                        <h1 style="font-size: large; font-weight: 700"
+                                            *ngIf="request_list.tldt_status >= 8">
+                                            {{"Tracking Details"|translate}}</h1>
+
+                                        <ng-container *ngIf="request_list.tldt_status == 8">
+                                            <div class="flex flex-row space-x-4">
+                                                <div class="flex-2">
+                                                    <label for="tool_cost">Tracking ID*</label>
+                                                    <input id="toolduration" type="text" [(ngModel)]="track_id"
+                                                        placeholder="{{'Enter Tracking ID'|translate}}"
+                                                        [ngModelOptions]="{ standalone: true }"
+                                                        (ngModelChange)="checkTrackValid(1)"
+                                                        class="form-input placeholder:text-white-dark" />
+                                                </div>
+                                                <!-- <span *ngIf="!track_id" style="font-style: italic;color: red;">*Please Provide Tracking ID</span> -->
+                                                <div class="flex-2">
+                                                    <label for="tool_cost">Tracking URL</label>
+                                                    <input id="toolduration" type="text" [(ngModel)]="track_url"
+                                                        placeholder="{{'Enter Tracking URL'|translate}}"
+                                                        [ngModelOptions]="{ standalone: true }"
+                                                        (ngModelChange)="checkTrackValid(2)"
+                                                        class="form-input placeholder:text-white-dark" />
+                                                </div>
+                                                <div class="flex-2">
+                                                    <label for="tool_cost">Reference</label>
+                                                    <input id="toolduration" type="text" [(ngModel)]="track_reference"
+                                                        placeholder="Enter Reference(Optional)"
+                                                        [ngModelOptions]="{ standalone: true }"
+                                                        class="form-input placeholder:text-white-dark" />
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-row space-x-4">
+                                                <div class="flex-2">
+                                                    <div class="col-md-12 image-upload" align="center"
+                                                        style="height: 150px">
+                                                        <label for="file-input" class="label col-form-label">ToolImage
+                                                            *</label><br />
+                                                        <img [src]="imageurl" class="user-img" accept="image/*" alt=""
+                                                            width="120px" height="120px" />
+
+                                                    </div>
+                                                    <div align="center" style="margin-top: 1%">
+                                                        <button type="button" class="btn btn-info mb-11 gap-2"
+                                                            (click)="file.click()">CHOOSE
+                                                            <input id="file-input" #file type="file"
+                                                                (change)="onFileChanged($event)"
+                                                                style="display: none" /></button>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div
+                                                class="mb-4 mt-11 flex grid grid-cols-1 flex-col gap-3 sm:grid-cols-2 md:grid-cols-3">
+                                                <ng-container *ngFor="let item of titems; index as i">
+                                                    <a style="position: relative" href="javascript:;"
+                                                        [ngClass]="{ 'md:col-span-2 md:row-span-2': i == 4 }"
+                                                        (click)="opentool(i)">
+                                                        <img [src]="item.src" alt="image-gallery"
+                                                            class="h-full w-full rounded-md object-cover" />
+                                                        <button style="position: absolute; top: 5px; right: 5px"
+                                                            (click)="deleteimage(i)">
+                                                            <img class="w-7"
+                                                                src="https://www.pngall.com/wp-content/uploads/4/Red-Close-Button-Transparent.png" />
+                                                        </button>
+                                                    </a>
+                                                </ng-container>
+                                            </div>
+                                            <div class="flex flex-row space-x-4">
+                                                <div class="flex-2">
+
+
+                                                    <button type="button" class="btn btn-warning btn-sm"
+                                                        (click)="update_tracking_details(request_list)"
+                                                        [disabled]="track_valid==false"
+                                                        *ngIf="request_list.tldt_status == 8 && button_act_state == 0">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                d="M12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 17.1086 6.89137 21.25 12 21.25C17.1086 21.25 21.25 17.1086 21.25 12C21.25 6.89137 17.1086 2.75 12 2.75ZM1.25 12C1.25 6.06294 6.06294 1.25 12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12ZM8.46967 10.4697L11.4697 7.46967C11.7626 7.17678 12.2374 7.17678 12.5303 7.46967L15.5303 10.4697C15.8232 10.7626 15.8232 11.2374 15.5303 11.5303C15.2374 11.8232 14.7626 11.8232 14.4697 11.5303L12.75 9.81066V16C12.75 16.4142 12.4142 16.75 12 16.75C11.5858 16.75 11.25 16.4142 11.25 16V9.81066L9.53033 
+                                                            11.5303C9.23744 11.8232 8.76256 11.8232 8.46967 11.5303C8.17678 11.2374 8.17678 10.7626 8.46967 10.4697Z"
+                                                                fill="#ffff" />
+                                                        </svg>&nbsp;&nbsp;
+                                                        Upload Tracking Details & Proceed</button>
+
+                                                    <button type="button" class="btn btn-warning btn-sm"
+                                                        *ngIf="request_list.tldt_status == 8 &&button_act_state == 1">
+                                                        <svg viewBox="0 0 24 24" width="24" height="24"
+                                                            stroke="currentColor" stroke-width="1.5" fill="none"
+                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                            class="inline-block h-5 w-5 shrink-0 animate-[spin_2s_linear_infinite] align-middle ltr:mr-2 rtl:ml-2">
+                                                            <line x1="12" y1="2" x2="12" y2="6"></line>
+                                                            <line x1="12" y1="18" x2="12" y2="22"></line>
+                                                            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                                                            <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                                                            <line x1="2" y1="12" x2="6" y2="12"></line>
+                                                            <line x1="18" y1="12" x2="22" y2="12"></line>
+                                                            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                                                            <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </ng-container>
+                                        <ng-container *ngIf="request_list.tldt_status > 8">
+                                            <div class="flex flex-row space-x-4">
+                                                <div class="flex-2">
+                                                    <label for="tool_cost">Tracking ID*</label>
+                                                    <input id="toolduration" type="text"
+                                                        [(ngModel)]="request_list.shipment_details.shm_track_id"
+                                                        placeholder="Enter Tracking ID"
+                                                        [ngModelOptions]="{ standalone: true }"
+                                                        class="form-input placeholder:text-white-dark" readonly />
+                                                </div>
+                                                <div class="flex-2">
+                                                    <label for="tool_cost">Tracking URL</label>
+                                                    <input id="toolduration" type="text"
+                                                        [(ngModel)]="request_list.shipment_details.shm_track_url"
+                                                        placeholder="Enter Tracking URL"
+                                                        [ngModelOptions]="{ standalone: true }"
+                                                        class="form-input placeholder:text-white-dark"
+                                                        [disabled]="request_list.shm_track_url" readonly/>
+                                                </div>
+                                                <div class="flex-2">
+                                                    <label for="tool_cost">Reference</label>
+                                                    <input id="toolduration" type="text"
+                                                        [(ngModel)]="request_list.shipment_details.shm_reference"
+                                                        placeholder="{{'Reference Not Provided'|translate}}"
+                                                        [ngModelOptions]="{ standalone: true }"
+                                                        class="form-input placeholder:text-white-dark"
+                                                        [disabled]="request_list.shm_track_url" readonly/>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-row space-x-4">
+                                                <div class="flex-2">
+                                                    <div class="flex items-center justify-center">
+                                                        <button type="button" class="btn btn-info"
+                                                            (click)="usrimagemodal.open()">View Attached Images</button>
+                                                    </div>
+                                                    <modal #usrimagemodal>
+                                                        <ng-template #modalHeader>
+                                                            <div>
+                                                                <p style="color: #267fac; font-family: calibiri">Tool
+                                                                    Images</p>
+                                                            </div>
+                                                        </ng-template>
+                                                        <ng-template #modalBody>
+                                                            <div
+                                                                class="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+                                                                <ng-container *ngFor="let item of usritems; index as i">
+                                                                    <a href="javascript:;"
+                                                                        [ngClass]="{ 'md:col-span-2 md:row-span-2': i == 4 }"
+                                                                        (click)="opentoolusr(i)">
+                                                                        <img [src]="item.src" alt="image-gallery"
+                                                                            class="h-full w-full rounded-md object-cover" />
+                                                                    </a>
+                                                                </ng-container>
+                                                            </div>
+                                                        </ng-template>
+                                                        <ng-template #modalFooter>
+                                                            <button type="button" (click)="usrimagemodal.close()"
+                                                                class="btn btn-outline-danger">Cancel</button>
+                                                        </ng-template>
+                                                    </modal>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+
+                                        <ng-container *ngIf="request_list.shipment_details_customer">
+                                            <hr />
+
+                                            <h1 style="font-size: large; font-weight: 700">Tracking Details(Customer)
+                                            </h1>
+                                            <div class="flex flex-row space-x-4">
+                                                <div class="flex-2">
+                                                    <label for="tool_cost">Tracking ID*</label>
+                                                    <input id="toolduration" type="text"
+                                                        [(ngModel)]="request_list.shipment_details_customer.shm_track_id"
+                                                        placeholder="Enter Tracking ID"
+                                                        [ngModelOptions]="{ standalone: true }"
+                                                        class="form-input placeholder:text-white-dark" readonly />
+                                                </div>
+                                                <div class="flex-2">
+                                                    <label for="tool_cost">Tracking URL</label>
+                                                    <input id="toolduration" type="text"
+                                                        [(ngModel)]="request_list.shipment_details_customer.shm_track_url"
+                                                        placeholder="Enter Tracking URL"
+                                                        [ngModelOptions]="{ standalone: true }"
+                                                        class="form-input placeholder:text-white-dark" readonly />
+                                                </div>
+                                                <div class="flex-2">
+                                                    <label for="tool_cost">Reference</label>
+                                                    <input id="toolduration" type="text"
+                                                        [(ngModel)]="request_list.shipment_details.shipment_details_customer"
+                                                        placeholder="Enter Reference"
+                                                        [ngModelOptions]="{ standalone: true }"
+                                                        class="form-input placeholder:text-white-dark" readonly />
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rounded border border-[#d3d3d3] dark:border-[#1b2e4b]">
+                                <button type="button"
+                                    class="flex w-full items-center p-4 text-white-dark dark:bg-[#1b2e4b]"
+                                    [ngClass]="{ '!text-primary': accordians3 === 4 }"
+                                    (click)="accordians3 === 4 ? (accordians3 = null) : (accordians3 = 4)">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+                                        <circle opacity="0.5" cx="12" cy="12" r="10" stroke="currentColor"
+                                            stroke-width="1.5" />
+                                        <path d="M12 8V12L14.5 14.5" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    &nbsp; Status Details
+                                    <div class="ltr:ml-auto rtl:mr-auto"
+                                        [ngClass]="{ 'rotate-180': accordians3 === 4 }">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+                                            <path d="M19 9L12 15L5 9" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                </button>
+                                <div [@slideDownUp]="accordians3 !== 4" class="accordion-content">
+                                    <div
+                                        class="space-y-2 border-t border-[#d3d3d3] p-4 text-[13px] text-white-dark dark:border-[#1b2e4b]">
+                                        <div *ngFor="let data of history_list; let last = last">
+                                            <div class="mx-auto max-w-[900px]">
+                                                <div class="flex">
+                                                    <b>
+                                                        <p class="min-w-[58px] max-w-[100px] py-2.5 text-base font-semibold text-[#3b3f5c] dark:text-white-light"
+                                                            style="font-size: 12px; color: currentColor; font-family: system-ui">
+                                                            {{ data.status_created_on | date : 'dd-MMM-yyyy hh:mm:ss a'
+                                                            }}
+                                                        </p>
+                                                    </b>
+                                                    <div
+                                                        class="relative before:absolute before:left-1/2 before:top-[15px] before:h-2.5 before:w-2.5 before:-translate-x-1/2 before:rounded-full before:border-2 before:border-primary after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2 after:border-primary">
+                                                    </div>
+                                                    <div class="self-center p-2.5 ltr:ml-2.5 rtl:ml-2.5 rtl:ltr:mr-2.5">
+                                                        <span class="badge badge-outline-success rounded-none"
+                                                            *ngIf="data.status_id == 1">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-warning rounded-none"
+                                                            *ngIf="data.status_id == 2">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-primary rounded-none"
+                                                            *ngIf="data.status_id == 3">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-primary rounded-none"
+                                                            *ngIf="data.status_id == 4">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-warning rounded-none"
+                                                            *ngIf="data.status_id == 5">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-success rounded-none"
+                                                            *ngIf="data.status_id == 6">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-primary rounded-none"
+                                                            *ngIf="data.status_id == 7">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-primary rounded-none"
+                                                            *ngIf="data.status_id == 8">Send Tool to Customer</span>
+                                                        <span class="badge badge-outline-success rounded-none"
+                                                            *ngIf="data.status_id == 9">Tool Dispatched</span>
+                                                        <span class="badge badge-outline-primary rounded-none"
+                                                            *ngIf="data.status_id == 10">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-primary rounded-none"
+                                                            *ngIf="data.status_id == 11">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-primary rounded-none"
+                                                            *ngIf="data.status_id == 12">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-primary rounded-none"
+                                                            *ngIf="data.status_id == 13">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-danger rounded-none"
+                                                            *ngIf="data.status_id == 14">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-danger rounded-none"
+                                                            *ngIf="data.status_id == 15">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-primary rounded-none"
+                                                            *ngIf="data.status_id == 16">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-primary rounded-none"
+                                                            *ngIf="data.status_id == 17">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-primary rounded-none"
+                                                            *ngIf="data.status_id == 18">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-warning rounded-none"
+                                                            *ngIf="data.status_id == 38">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-danger rounded-none"
+                                                            *ngIf="data.status_id == 36">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-warning rounded-none"
+                                                            *ngIf="data.status_id == 37">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-warning rounded-none"
+                                                            *ngIf="data.status_id == 39">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-success rounded-none"
+                                                            *ngIf="data.status_id == 40">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-success rounded-none"
+                                                            *ngIf="data.status_id == 41">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-warning rounded-none"
+                                                            *ngIf="data.status_id == 42">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-success rounded-none"
+                                                            *ngIf="data.status_id == 43">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-primary rounded-none"
+                                                            *ngIf="data.status_id == 44">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-warning rounded-none"
+                                                            *ngIf="data.status_id == 45">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-success rounded-none"
+                                                            *ngIf="data.status_id == 46">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-danger rounded-none"
+                                                            *ngIf="data.status_id == 47">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-warning rounded-none"
+                                                            *ngIf="data.status_id == 48">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-success rounded-none"
+                                                            *ngIf="data.status_id == 49">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                        <span class="badge badge-outline-success rounded-none"
+                                                            *ngIf="data.status_id == 55">{{
+                                                            data.status_name
+                                                            }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div *ngIf="data.status_id == 8 && button_act_state == 0">
+
+                                                <button *ngIf="last" type="button" class="btn btn-info"
+                                                    (click)="statusmaster(data)" [disabled]="track_valid==false"
+                                                    style="margin-left: 60%">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="#ffff"
+                                                        viewBox="0 0 24 24" height="24" width="24">
+                                                        <path fill="#ffffff"
+                                                            d="M15.5303 12.5303C15.8232 12.2374 15.8232 11.7626 15.5303 11.4697L13.0303 8.96967C12.7374 8.67678 12.2626 8.67678 11.9697 8.96967C11.6768 9.26256 11.6768 9.73744 11.9697 10.0303L13.1893 11.25H6C5.58579 11.25 5.25 11.5858 5.25 12C5.25 12.4142 5.58579 12.75 6 12.75H13.1893L11.9697 13.9697C11.6768 14.2626 11.6768 14.7374 11.9697 15.0303C12.2626 15.3232 12.7374 15.3232 13.0303 15.0303L15.5303 12.5303Z">
+                                                        </path>
+                                                        <path fill="#ffffff"
+                                                            d="M13.9451 1.25H15.0549C16.4225 1.24998 17.5248 1.24996 18.3918 1.36652C19.2919 1.48754 20.0497 1.74643 20.6517 2.34835C21.2536 2.95027 21.5125 3.70814 21.6335 4.60825C21.75 5.47522 21.75 6.57754 21.75 7.94513V16.0549C21.75 17.4225 21.75 18.5248 21.6335 19.3918C21.5125 20.2919 21.2536 21.0497 20.6517 21.6517C20.0497 22.2536 19.2919 22.5125 18.3918 22.6335C17.5248 22.75 16.4225 22.75 15.0549 22.75H13.9451C12.5775 22.75 11.4752 22.75 10.6083 22.6335C9.70814 22.5125 8.95027 22.2536 8.34835 21.6517C7.94855 21.2518 7.70008 20.7832 7.54283 20.2498C6.59156 20.2486 5.79901 20.2381 5.15689 20.1518C4.39294 20.0491 3.7306 19.8268 3.20191 19.2981C2.67321 18.7694 2.45093 18.1071 2.34822 17.3431C2.24996 16.6123 2.24998 15.6865 2.25 14.5537V9.44631C2.24998 8.31349 2.24996 7.38774 2.34822 6.65689C2.45093 5.89294 2.67321 5.2306 3.20191 4.7019C3.7306 4.17321 4.39294 3.95093 5.15689 3.84822C5.79901 3.76189 6.59156 3.75142 7.54283 3.75017C7.70008 3.21677 7.94855 2.74816 8.34835 2.34835C8.95027 1.74643 9.70814 1.48754 10.6083 1.36652C11.4752 1.24996 12.5775 1.24998 13.9451 1.25ZM7.25 16.0549C7.24999 17.1048 7.24997 17.9983 7.30271 18.7491C6.46829 18.7459 5.84797 18.7312 5.35676 18.6652C4.75914 18.5848 4.46611 18.441 4.26257 18.2374C4.05903 18.0339 3.91519 17.7409 3.83484 17.1432C3.7516 16.5241 3.75 15.6997 3.75 14.5V9.5C3.75 8.30029 3.7516 7.47595 3.83484 6.85676C3.91519 6.25914 4.05903 5.9661 4.26257 5.76256C4.46611 5.55902 4.75914 5.41519 5.35676 5.33484C5.84797 5.2688 6.46829 5.25415 7.30271 5.25091C7.24997 6.00167 7.24999 6.89522 7.25 7.94512L7.25 8C7.25 8.41422 7.58579 8.75 8 8.75C8.41422 8.75 8.75 8.41422 8.75 8C8.75 6.56459 8.7516 5.56347 8.85315 4.80812C8.9518 4.07435 9.13225 3.68577 9.40901 3.40901C9.68578 3.13225 10.0743 2.9518 10.8081 2.85315C11.5635 2.75159 12.5646 2.75 14 2.75H15C16.4354 2.75 17.4365 2.75159 18.1919 2.85315C18.9257 2.9518 19.3142 3.13225 19.591 3.40901C19.8678 3.68577 20.0482 4.07435 20.1469 4.80812C20.2484 5.56347 20.25 6.56459 20.25 8V16C20.25 17.4354 20.2484 18.4365 20.1469 19.1919C20.0482 19.9257 19.8678 20.3142 19.591 20.591C19.3142 20.8678 18.9257 21.0482 18.1919 21.1469C17.4365 21.2484 16.4354 21.25 15 21.25H14C12.5646 21.25 11.5635 21.2484 10.8081 21.1469C10.0743 21.0482 9.68578 20.8678 9.40901 20.591C9.13225 20.3142 8.9518 19.9257 8.85315 19.1919C8.7516 18.4365 8.75 17.4354 8.75 16C8.75 15.5858 8.41422 15.25 8 15.25C7.58579 15.25 7.25 15.5858 7.25 16L7.25 16.0549Z"
+                                                            clip-rule="evenodd" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                    Update Status If Tool Dispatched
+                                                </button>
+
+                                                <ng-container >
+                                                    <br>
+                                                    <ng-container *ngIf="request_list.tldt_status==8&&track_valid==false">
+                                                        <div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-2" (click)="change_to_tracking()">
+                                                         
+                                                          <div class="flex-1"></div>
+                                                          <div
+                                                          class="relative flex items-center rounded border border-danger bg-danger-light p-3.5 text-danger before:absolute before:top-1/2 before:-mt-2 before:inline-block before:border-r-8 before:border-t-8 before:border-b-8 before:border-t-transparent before:border-b-transparent before:border-r-inherit ltr:border-r-[64px] ltr:before:right-0 rtl:border-l-[64px] rtl:before:left-0 rtl:before:rotate-180 dark:bg-danger-dark-light"
+                                                      >
+                                                          <span class="absolute inset-y-0 m-auto h-6 w-6 text-white ltr:-right-11 rtl:-left-11">
+                                                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6">
+                                                                  <circle opacity="0.5" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
+                                                                  <path d="M12 7V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                                                  <circle cx="12" cy="16" r="1" fill="currentColor" />
+                                                              </svg>
+                                                          </span>
+                                                          <span class="ltr:pr-2 rtl:pl-2"><strong class="ltr:mr-1 rtl:ml-1">{{'Warning'|translate}}!</strong>{{'Tracking Details Not Provided'|translate}}.</span>
+                                                          <button type="button" class="hover:opacity-80 ltr:ml-auto rtl:mr-auto">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12Z" stroke="#e7515a" stroke-width="1.5"/>
+                                                                <path d="M8.5 9L11.5 12L8.5 15" stroke="#e7515a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path d="M12.5 9L15.5 12L12.5 15" stroke="#e7515a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                </svg>
+                                                                
+                                                          </button>
+                                                      </div>
+                                                        </div>
+                                                    </ng-container>
+                                                </ng-container>
+
+
+                                            </div>
+
+
+                                            <div *ngIf="data.status_id == 8 && button_act_state == 1">
+                                                <button *ngIf="last" type="button" class="btn btn-info"
+                                                    (click)="statusmaster(data)" style="margin-left: 60%" disabled>
+                                                    <svg viewBox="0 0 24 24" width="24" height="24"
+                                                        stroke="currentColor" stroke-width="1.5" fill="none"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="inline-block h-5 w-5 shrink-0 animate-[spin_2s_linear_infinite] align-middle ltr:mr-2 rtl:ml-2">
+                                                        <line x1="12" y1="2" x2="12" y2="6"></line>
+                                                        <line x1="12" y1="18" x2="12" y2="22"></line>
+                                                        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                                                        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                                                        <line x1="2" y1="12" x2="6" y2="12"></line>
+                                                        <line x1="18" y1="12" x2="22" y2="12"></line>
+                                                        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                                                        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                                                    </svg>
+                                                </button>
+                                            </div>
+
+                                            <div *ngIf="data.status_id == 9 && button_act_state == 0">
+                                                <button *ngIf="last" type="button" class="btn btn-success"
+                                                    (click)="statusmaster(data)" style="margin-left: 60%">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="#ffff"
+                                                        viewBox="0 0 24 24" height="24" width="24">
+                                                        <path fill="#ffffff"
+                                                            d="M15.5303 12.5303C15.8232 12.2374 15.8232 11.7626 15.5303 11.4697L13.0303 8.96967C12.7374 8.67678 12.2626 8.67678 11.9697 8.96967C11.6768 9.26256 11.6768 9.73744 11.9697 10.0303L13.1893 11.25H6C5.58579 11.25 5.25 11.5858 5.25 12C5.25 12.4142 5.58579 12.75 6 12.75H13.1893L11.9697 13.9697C11.6768 14.2626 11.6768 14.7374 11.9697 15.0303C12.2626 15.3232 12.7374 15.3232 13.0303 15.0303L15.5303 12.5303Z">
+                                                        </path>
+                                                        <path fill="#ffffff"
+                                                            d="M13.9451 1.25H15.0549C16.4225 1.24998 17.5248 1.24996 18.3918 1.36652C19.2919 1.48754 20.0497 1.74643 20.6517 2.34835C21.2536 2.95027 21.5125 3.70814 21.6335 4.60825C21.75 5.47522 21.75 6.57754 21.75 7.94513V16.0549C21.75 17.4225 21.75 18.5248 21.6335 19.3918C21.5125 20.2919 21.2536 21.0497 20.6517 21.6517C20.0497 22.2536 19.2919 22.5125 18.3918 22.6335C17.5248 22.75 16.4225 22.75 15.0549 22.75H13.9451C12.5775 22.75 11.4752 22.75 10.6083 22.6335C9.70814 22.5125 8.95027 22.2536 8.34835 21.6517C7.94855 21.2518 7.70008 20.7832 7.54283 20.2498C6.59156 20.2486 5.79901 20.2381 5.15689 20.1518C4.39294 20.0491 3.7306 19.8268 3.20191 19.2981C2.67321 18.7694 2.45093 18.1071 2.34822 17.3431C2.24996 16.6123 2.24998 15.6865 2.25 14.5537V9.44631C2.24998 8.31349 2.24996 7.38774 2.34822 6.65689C2.45093 5.89294 2.67321 5.2306 3.20191 4.7019C3.7306 4.17321 4.39294 3.95093 5.15689 3.84822C5.79901 3.76189 6.59156 3.75142 7.54283 3.75017C7.70008 3.21677 7.94855 2.74816 8.34835 2.34835C8.95027 1.74643 9.70814 1.48754 10.6083 1.36652C11.4752 1.24996 12.5775 1.24998 13.9451 1.25ZM7.25 16.0549C7.24999 17.1048 7.24997 17.9983 7.30271 18.7491C6.46829 18.7459 5.84797 18.7312 5.35676 18.6652C4.75914 18.5848 4.46611 18.441 4.26257 18.2374C4.05903 18.0339 3.91519 17.7409 3.83484 17.1432C3.7516 16.5241 3.75 15.6997 3.75 14.5V9.5C3.75 8.30029 3.7516 7.47595 3.83484 6.85676C3.91519 6.25914 4.05903 5.9661 4.26257 5.76256C4.46611 5.55902 4.75914 5.41519 5.35676 5.33484C5.84797 5.2688 6.46829 5.25415 7.30271 5.25091C7.24997 6.00167 7.24999 6.89522 7.25 7.94512L7.25 8C7.25 8.41422 7.58579 8.75 8 8.75C8.41422 8.75 8.75 8.41422 8.75 8C8.75 6.56459 8.7516 5.56347 8.85315 4.80812C8.9518 4.07435 9.13225 3.68577 9.40901 3.40901C9.68578 3.13225 10.0743 2.9518 10.8081 2.85315C11.5635 2.75159 12.5646 2.75 14 2.75H15C16.4354 2.75 17.4365 2.75159 18.1919 2.85315C18.9257 2.9518 19.3142 3.13225 19.591 3.40901C19.8678 3.68577 20.0482 4.07435 20.1469 4.80812C20.2484 5.56347 20.25 6.56459 20.25 8V16C20.25 17.4354 20.2484 18.4365 20.1469 19.1919C20.0482 19.9257 19.8678 20.3142 19.591 20.591C19.3142 20.8678 18.9257 21.0482 18.1919 21.1469C17.4365 21.2484 16.4354 21.25 15 21.25H14C12.5646 21.25 11.5635 21.2484 10.8081 21.1469C10.0743 21.0482 9.68578 20.8678 9.40901 20.591C9.13225 20.3142 8.9518 19.9257 8.85315 19.1919C8.7516 18.4365 8.75 17.4354 8.75 16C8.75 15.5858 8.41422 15.25 8 15.25C7.58579 15.25 7.25 15.5858 7.25 16L7.25 16.0549Z"
+                                                            clip-rule="evenodd" fill-rule="evenodd"></path>
+                                                    </svg>Update Status if Tool Delivered to Customer
+                                                </button>
+                                            </div>
+                                            <div *ngIf="data.status_id == 9 && button_act_state == 1">
+                                                <button *ngIf="last" type="button" class="btn btn-success"
+                                                    (click)="statusmaster(data)" disabled style="margin-left: 60%">
+                                                    <svg viewBox="0 0 24 24" width="24" height="24"
+                                                        stroke="currentColor" stroke-width="1.5" fill="none"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="inline-block h-5 w-5 shrink-0 animate-[spin_2s_linear_infinite] align-middle ltr:mr-2 rtl:ml-2">
+                                                        <line x1="12" y1="2" x2="12" y2="6"></line>
+                                                        <line x1="12" y1="18" x2="12" y2="22"></line>
+                                                        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                                                        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                                                        <line x1="2" y1="12" x2="6" y2="12"></line>
+                                                        <line x1="18" y1="12" x2="22" y2="12"></line>
+                                                        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                                                        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                                                    </svg>
+                                                </button>
+                                            </div>
+
+                                            <div *ngIf="data.status_id == 41 && button_act_state == 0">
+                                                <button *ngIf="last" type="button" class="btn btn-success"
+                                                    (click)="statusmaster(data)" style="margin-left: 60%">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="#ffff"
+                                                        viewBox="0 0 24 24" height="24" width="24">
+                                                        <path fill="#ffffff"
+                                                            d="M15.5303 12.5303C15.8232 12.2374 15.8232 11.7626 15.5303 11.4697L13.0303 8.96967C12.7374 8.67678 12.2626 8.67678 11.9697 8.96967C11.6768 9.26256 11.6768 9.73744 11.9697 10.0303L13.1893 11.25H6C5.58579 11.25 5.25 11.5858 5.25 12C5.25 12.4142 5.58579 12.75 6 12.75H13.1893L11.9697 13.9697C11.6768 14.2626 11.6768 14.7374 11.9697 15.0303C12.2626 15.3232 12.7374 15.3232 13.0303 15.0303L15.5303 12.5303Z">
+                                                        </path>
+                                                        <path fill="#ffffff"
+                                                            d="M13.9451 1.25H15.0549C16.4225 1.24998 17.5248 1.24996 18.3918 1.36652C19.2919 1.48754 20.0497 1.74643 20.6517 2.34835C21.2536 2.95027 21.5125 3.70814 21.6335 4.60825C21.75 5.47522 21.75 6.57754 21.75 7.94513V16.0549C21.75 17.4225 21.75 18.5248 21.6335 19.3918C21.5125 20.2919 21.2536 21.0497 20.6517 21.6517C20.0497 22.2536 19.2919 22.5125 18.3918 22.6335C17.5248 22.75 16.4225 22.75 15.0549 22.75H13.9451C12.5775 22.75 11.4752 22.75 10.6083 22.6335C9.70814 22.5125 8.95027 22.2536 8.34835 21.6517C7.94855 21.2518 7.70008 20.7832 7.54283 20.2498C6.59156 20.2486 5.79901 20.2381 5.15689 20.1518C4.39294 20.0491 3.7306 19.8268 3.20191 19.2981C2.67321 18.7694 2.45093 18.1071 2.34822 17.3431C2.24996 16.6123 2.24998 15.6865 2.25 14.5537V9.44631C2.24998 8.31349 2.24996 7.38774 2.34822 6.65689C2.45093 5.89294 2.67321 5.2306 3.20191 4.7019C3.7306 4.17321 4.39294 3.95093 5.15689 3.84822C5.79901 3.76189 6.59156 3.75142 7.54283 3.75017C7.70008 3.21677 7.94855 2.74816 8.34835 2.34835C8.95027 1.74643 9.70814 1.48754 10.6083 1.36652C11.4752 1.24996 12.5775 1.24998 13.9451 1.25ZM7.25 16.0549C7.24999 17.1048 7.24997 17.9983 7.30271 18.7491C6.46829 18.7459 5.84797 18.7312 5.35676 18.6652C4.75914 18.5848 4.46611 18.441 4.26257 18.2374C4.05903 18.0339 3.91519 17.7409 3.83484 17.1432C3.7516 16.5241 3.75 15.6997 3.75 14.5V9.5C3.75 8.30029 3.7516 7.47595 3.83484 6.85676C3.91519 6.25914 4.05903 5.9661 4.26257 5.76256C4.46611 5.55902 4.75914 5.41519 5.35676 5.33484C5.84797 5.2688 6.46829 5.25415 7.30271 5.25091C7.24997 6.00167 7.24999 6.89522 7.25 7.94512L7.25 8C7.25 8.41422 7.58579 8.75 8 8.75C8.41422 8.75 8.75 8.41422 8.75 8C8.75 6.56459 8.7516 5.56347 8.85315 4.80812C8.9518 4.07435 9.13225 3.68577 9.40901 3.40901C9.68578 3.13225 10.0743 2.9518 10.8081 2.85315C11.5635 2.75159 12.5646 2.75 14 2.75H15C16.4354 2.75 17.4365 2.75159 18.1919 2.85315C18.9257 2.9518 19.3142 3.13225 19.591 3.40901C19.8678 3.68577 20.0482 4.07435 20.1469 4.80812C20.2484 5.56347 20.25 6.56459 20.25 8V16C20.25 17.4354 20.2484 18.4365 20.1469 19.1919C20.0482 19.9257 19.8678 20.3142 19.591 20.591C19.3142 20.8678 18.9257 21.0482 18.1919 21.1469C17.4365 21.2484 16.4354 21.25 15 21.25H14C12.5646 21.25 11.5635 21.2484 10.8081 21.1469C10.0743 21.0482 9.68578 20.8678 9.40901 20.591C9.13225 20.3142 8.9518 19.9257 8.85315 19.1919C8.7516 18.4365 8.75 17.4354 8.75 16C8.75 15.5858 8.41422 15.25 8 15.25C7.58579 15.25 7.25 15.5858 7.25 16L7.25 16.0549Z"
+                                                            clip-rule="evenodd" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                    Update Status to Tool Reached Workshop
+                                                </button>
+                                            </div>
+
+                                            <div *ngIf="data.status_id == 41 && button_act_state == 1">
+                                                <button *ngIf="last && button_act_state == 1" type="button"
+                                                    class="btn btn-success" (click)="statusmaster(data)" disabled
+                                                    style="margin-left: 60%">
+                                                    <svg viewBox="0 0 24 24" width="24" height="24"
+                                                        stroke="currentColor" stroke-width="1.5" fill="none"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="inline-block h-5 w-5 shrink-0 animate-[spin_2s_linear_infinite] align-middle ltr:mr-2 rtl:ml-2">
+                                                        <line x1="12" y1="2" x2="12" y2="6"></line>
+                                                        <line x1="12" y1="18" x2="12" y2="22"></line>
+                                                        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                                                        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                                                        <line x1="2" y1="12" x2="6" y2="12"></line>
+                                                        <line x1="18" y1="12" x2="22" y2="12"></line>
+                                                        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                                                        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                                                    </svg>
+                                                </button>
+                                            </div>
+
+                                            <div
+                                                *ngIf="data.status_id == 36 && data.status_id == 37 && data.status_id == 45 && data.status_id == 47">
+                                                <button *ngIf="last" type="button" class="btn btn-outline-secondary"
+                                                    (click)="admin_approval_list()" style="margin-left: 60%">
+                                                    <svg viewBox="0 0 24 24" width="24" height="24"
+                                                        stroke="currentColor" stroke-width="1.5" fill="none"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="inline-block h-5 w-5 shrink-0 animate-[spin_2s_linear_infinite] align-middle ltr:mr-2 rtl:ml-2">
+                                                        <line x1="12" y1="2" x2="12" y2="6"></line>
+                                                        <line x1="12" y1="18" x2="12" y2="22"></line>
+                                                        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                                                        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                                                        <line x1="2" y1="12" x2="6" y2="12"></line>
+                                                        <line x1="18" y1="12" x2="22" y2="12"></line>
+                                                        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                                                        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div *ngIf="data.status_id == 12">
+                                                <button *ngIf="last" type="button" (click)="Inspection_list()"
+                                                    style="margin-left: 60%">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12 7V13" stroke="#1C274C" stroke-width="1.5"
+                                                            stroke-linecap="round" />
+                                                        <circle cx="12" cy="16" r="1" fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12Z"
+                                                            stroke="#1C274C" stroke-width="1.5" />
+                                                    </svg>
+
+                                                    <span class="badge badge-outline-warning rounded-full"> View
+                                                        Inspection List</span>
+                                                </button>
+                                            </div>
+
+                                            <div *ngIf="
+                                                    data.status_id == 5 ||
+                                                    data.status_id == 3 ||
+                                                    data.status_id == 42 ||
+                                                    data.status_id == 3 ||
+                                                    data.status_id == 48
+                                                ">
+                                                <button *ngIf="last">
+                                                    <span class="badge badge-outline-danger rounded-full">Payment
+                                                        Pending from customer</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row space-x-4" *ngIf="request_list.tldt_status == 2">
+                        <div class="flex-2">
+                            <button type="button" class="btn btn-outline-success" (click)="acceptmodal?.open()"
+                                *ngIf="request_list.tool_adv_payment == 0 && request_list.tool_deposit_id == 0">
+                                Accept Request
+                            </button>
+                            <button type="button" class="btn btn-outline-warning" (click)="acceptmodal?.open()"
+                                *ngIf="request_list.tool_adv_payment == 1 && request_list.tool_deposit_id == 0">
+                                Proceed for Advance Payment
+                            </button>
+                            <button type="button" class="btn btn-outline-info" (click)="acceptmodal?.open()"
+                                *ngIf="request_list.tool_adv_payment == 0 && request_list.tool_deposit_id == 1">
+                                Proceed for Deposit Payment
+                            </button>
+                        </div>
+
+                        <div class="flex-2">
+                            <button type="button" class="btn btn-outline-danger" (click)="deletemodal?.open()">Reject
+                                Request</button>
+                        </div>
+
+                        <modal #acceptmodal>
+                            <ng-template #modalHeader>
+                                <div>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12 6.25C12.4142 6.25 12.75 6.58579 12.75 7V13C12.75 13.4142 12.4142 13.75 12 13.75C11.5858 13.75 11.25 13.4142 11.25 13V7C11.25 6.58579 11.5858 6.25 12 6.25Z"
+                                            fill="#1C274C" />
+                                        <path
+                                            d="M12 17C12.5523 17 13 16.5523 13 16C13 15.4477 12.5523 15 12 15C11.4477 15 11 15.4477 11 16C11 16.5523 11.4477 17 12 17Z"
+                                            fill="#1C274C" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M1.25 12C1.25 6.06294 6.06294 1.25 12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12ZM12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 17.1086 6.89137 21.25 12 21.25C17.1086 21.25 21.25 17.1086 21.25 12C21.25 6.89137 17.1086 2.75 12 2.75Z"
+                                            fill="#1C274C" />
+                                    </svg>Accept Tool Request
+                                </div>
+                            </ng-template>
+                            <ng-template #modalBody>
+                                <p *ngIf="request_list.tool_adv_payment == 0 && request_list.tool_deposit_id == 0">
+                                    Accept request?</p>
+                                <p *ngIf="request_list.tool_adv_payment == 1">Proceed For Advance Payment?</p>
+                                <p *ngIf="request_list.tool_deposit_id == 1">Proceed For Deposit Payment?</p>
+                            </ng-template>
+                            <ng-template #modalFooter>
+                                <button type="button" (click)="acceptmodal.close()" class="btn btn-outline-danger"
+                                    *ngIf="button_act_state == 0">Cancel</button>
+
+                                <ng-container *ngIf="button_act_state == 0">
+                                    <button type="button" (click)="acceptrequest(request_list)"
+                                        class="btn btn-primary ltr:ml-4 rtl:mr-4"
+                                        *ngIf="request_list.tool_adv_payment == 0 && request_list.tool_deposit_id == 0">
+                                        Accept Request
+                                    </button>
+                                </ng-container>
+                                <ng-container *ngIf="button_act_state == 1">
+                                    <button type="button" (click)="acceptrequest(request_list)"
+                                        class="btn btn-primary ltr:ml-4 rtl:mr-4"
+                                        *ngIf="request_list.tool_adv_payment == 0 && request_list.tool_deposit_id == 0"
+                                        disabled>
+                                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor"
+                                            stroke-width="1.5" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="inline-block h-5 w-5 shrink-0 animate-[spin_2s_linear_infinite] align-middle ltr:mr-2 rtl:ml-2">
+                                            <line x1="12" y1="2" x2="12" y2="6"></line>
+                                            <line x1="12" y1="18" x2="12" y2="22"></line>
+                                            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                                            <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                                            <line x1="2" y1="12" x2="6" y2="12"></line>
+                                            <line x1="18" y1="12" x2="22" y2="12"></line>
+                                            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                                            <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                                        </svg>
+                                    </button>
+                                </ng-container>
+
+                                <ng-container *ngIf="button_act_state == 0">
+                                    <button type="button" (click)="acceptrequest(request_list)"
+                                        class="btn btn-primary ltr:ml-4 rtl:mr-4"
+                                        *ngIf="request_list.tool_adv_payment == 1 || request_list.tool_deposit_id == 1">
+                                        Proceed Request
+                                    </button>
+                                </ng-container>
+
+                                <ng-container *ngIf="button_act_state == 1">
+                                    <button type="button" 
+                                        class="btn btn-primary ltr:ml-4 rtl:mr-4"
+                                        *ngIf="request_list.tool_adv_payment == 1 || request_list.tool_deposit_id == 1"
+                                        disabled>
+                                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor"
+                                            stroke-width="1.5" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="inline-block h-5 w-5 shrink-0 animate-[spin_2s_linear_infinite] align-middle ltr:mr-2 rtl:ml-2">
+                                            <line x1="12" y1="2" x2="12" y2="6"></line>
+                                            <line x1="12" y1="18" x2="12" y2="22"></line>
+                                            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                                            <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                                            <line x1="2" y1="12" x2="6" y2="12"></line>
+                                            <line x1="18" y1="12" x2="22" y2="12"></line>
+                                            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                                            <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                                        </svg>
+                                    </button>
+                                </ng-container>
+                            </ng-template>
+                        </modal>
+
+                        <modal #deletemodal>
+                            <ng-template #modalHeader>
+                                <div>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12 6.25C12.4142 6.25 12.75 6.58579 12.75 7V13C12.75 13.4142 12.4142 13.75 12 13.75C11.5858 13.75 11.25 13.4142 11.25 13V7C11.25 6.58579 11.5858 6.25 12 6.25Z"
+                                            fill="#1C274C" />
+                                        <path
+                                            d="M12 17C12.5523 17 13 16.5523 13 16C13 15.4477 12.5523 15 12 15C11.4477 15 11 15.4477 11 16C11 16.5523 11.4477 17 12 17Z"
+                                            fill="#1C274C" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M1.25 12C1.25 6.06294 6.06294 1.25 12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12ZM12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 17.1086 6.89137 21.25 12 21.25C17.1086 21.25 21.25 17.1086 21.25 12C21.25 6.89137 17.1086 2.75 12 2.75Z"
+                                            fill="#1C274C" />
+                                    </svg>Reject Tool Request
+                                </div>
+                            </ng-template>
+                            <ng-template #modalBody>
+                                <p>{{'Comments if any'|translate}}</p>
+                                <textarea class="form-textarea min-h-[130px]" [(ngModel)]="rejectreason" (ngModelChange)="checkRejectReason()"
+                                    [ngModelOptions]="{ standalone: true }" required></textarea>
+                            </ng-template>
+                            <ng-template #modalFooter>
+                                <button type="button" (click)="deletemodal.close()" [disabled]="button_act_state == 1"
+                                    class="btn btn-outline-danger">
+                                    Cancel
+                                </button>
+
+                                <button type="button" (click)="deletereq(request_list)" *ngIf="button_act_state == 0"
+                               
+                                    [disabled]="isValid==false"  class="btn btn-outline-warning ltr:ml-4 rtl:mr-4">
+                                    Reject Request
+                                </button>
+
+                                <button type="button" (click)="deletereq(request_list)" *ngIf="button_act_state == 1"
+                                    disabled class="btn btn-primary ltr:ml-4 rtl:mr-4">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor"
+                                        stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                                        class="inline-block h-5 w-5 shrink-0 animate-[spin_2s_linear_infinite] align-middle ltr:mr-2 rtl:ml-2">
+                                        <line x1="12" y1="2" x2="12" y2="6"></line>
+                                        <line x1="12" y1="18" x2="12" y2="22"></line>
+                                        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                                        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                                        <line x1="2" y1="12" x2="6" y2="12"></line>
+                                        <line x1="18" y1="12" x2="22" y2="12"></line>
+                                        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                                        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                                    </svg>
+                                </button>
+                            </ng-template>
+                        </modal>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br /><br />
+
+    <div *ngIf="r_images">
+        <div class="flex items-center justify-center">
+            <button type="button" class="btn btn-info" (click)="imagemodal.open()">View Attachments</button>
+        </div>
+        <modal #imagemodal>
+            <ng-template #modalHeader>
+                <div>
+                    <p style="color: #267fac; font-family: calibiri">Medias</p>
+                </div>
+            </ng-template>
+            <ng-template #modalBody>
+                <div class="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+                    <ng-container *ngFor="let item of items; index as i">
+                        <a href="javascript:;" [ngClass]="{ 'md:col-span-2 md:row-span-2': i == 4 }" (click)="open(i)">
+                            <img [src]="item.src" alt="image-gallery" class="h-full w-full rounded-md object-cover" />
+                        </a>
+                    </ng-container>
+                </div>
+            </ng-template>
+            <ng-template #modalFooter>
+                <button type="button" (click)="imagemodal.close()" class="btn btn-outline-danger">Cancel</button>
+            </ng-template>
+        </modal>
+    </div>
+</div>
+<div *ngIf="loader==true" class="loader"></div>

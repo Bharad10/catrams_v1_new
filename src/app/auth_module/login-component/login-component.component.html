@@ -1,0 +1,209 @@
+
+
+
+<div>
+    <div class="absolute inset-0" style="background-color: grey;">
+        <!-- <img src="/assets/images/catramsshortlogo.png alt="image" class="h-full w-full object-cover" /> -->
+    </div>
+    <div
+        class="relative flex min-h-screen items-center justify-center  bg-cover bg-center bg-no-repeat px-6 py-10 dark:bg-[#060818] sm:px-16"
+    >
+        
+        <div
+            class="relative flex w-full max-w-[1502px] flex-col justify-between overflow-hidden rounded-md bg-white/60 backdrop-blur-lg dark:bg-black/50 lg:min-h-[758px] lg:flex-row lg:gap-10 xl:gap-0"
+        >
+            <div
+                class="relative hidden w-full items-center justify-center bg-[linear-gradient(325deg,#00000099,#eb5d5a)] p-5 lg:inline-flex lg:max-w-[835px] xl:-ms-28 ltr:xl:skew-x-[14deg] rtl:xl:skew-x-[-14deg]"
+            >
+                <div
+                    class="absolute inset-y-0 w-8 from-primary/10 via-transparent to-transparent ltr:-right-10 ltr:bg-gradient-to-r rtl:-left-10 rtl:bg-gradient-to-l xl:w-16 ltr:xl:-right-20 rtl:xl:-left-20"
+                ></div>
+                <div class="ltr:xl:-skew-x-[14deg] rtl:xl:skew-x-[14deg]">
+                    <a routerLink="/" class="block w-48 lg:w-72 ms-10">
+                        <img src="assets/images/catramsshortlogo.png" alt="Logo" class="w-full" />
+                    </a>
+                    <div class="mt-24 hidden w-full max-w-[430px] lg:block">
+                        <!-- <img src="/rams_test/admin/assets/images/auth/login.svg" alt="Cover Image" class="w-full" /> -->
+                    </div>
+                </div>
+            </div>
+            <div class="relative flex w-full flex-col items-center justify-center gap-6 px-4 pb-16 pt-6 sm:px-6 lg:max-w-[667px]">
+                <div class="flex w-full max-w-[440px] items-center gap-2 lg:absolute lg:end-6 lg:top-6 lg:max-w-full">
+                    <a routerLink="/" class="block w-8 lg:hidden">
+                        <img src="assets/images/logo.svg" alt="Logo" class="mx-auto w-10" />
+                    </a>
+                    <div class="dropdown ms-auto w-max">
+                        <div hlMenu>
+                            <button
+                                type="button"
+                                hlMenuButton
+                                class="block rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary dark:bg-dark/40 dark:hover:bg-dark/60"
+                            >
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"  xmlns="http://www.w3.org/2000/svg">
+                                <path  stroke="
+                                #888ea8" stroke-width="1.5" opacity="0.5" d="M2 12H22M16 12C16 13.3132 15.8965 14.6136 15.6955 15.8268C15.4945 17.0401 15.1999 18.1425 14.8284 19.0711C14.457 19.9997 14.016 20.7362 13.5307 21.2388C13.0454 21.7413 12.5253 22 12 22C11.4747 22 10.9546 21.7413 10.4693 21.2388C9.98396 20.7362 9.54301 19.9997 9.17157 19.0711C8.80014 18.1425 8.5055 17.0401 8.30448 15.8268C8.10346 14.6136 8 13.3132 8 12C8 10.6868 8.10346 9.38642 8.30448 8.17316C8.5055 6.95991 8.80014 5.85752 9.17157 4.92893C9.54301 4.00035 9.98396 3.26375 10.4693 2.7612C10.9546 2.25866 11.4747 2 12 2C12.5253 2 13.0454 2.25866 13.5307 2.76121C14.016 3.26375 14.457 4.00035 14.8284 4.92893C15.1999 5.85752 15.4945 6.95991 15.6955 8.17317C15.8965 9.38642 16 10.6868 16 12Z"  stroke-linecap="round"/>
+                                <path  stroke="
+                                #888ea8" stroke-width="1.5" d="M22 12C22 13.3132 21.7413 14.6136 21.2388 15.8268C20.7362 17.0401 19.9997 18.1425 19.0711 19.0711C18.1425 19.9997 17.0401 20.7362 15.8268 21.2388C14.6136 21.7413 13.3132 22 12 22C10.6868 22 9.38642 21.7413 8.17317 21.2388C6.95991 20.7362 5.85752 19.9997 4.92893 19.0711C4.00035 18.1425 3.26375 17.0401 2.7612 15.8268C2.25866 14.6136 2 13.3132 2 12C2 10.6868 2.25866 9.38642 2.76121 8.17316C3.26375 6.95991 4.00035 5.85752 4.92893 4.92893C5.85752 4.00035 6.95991 3.26375 8.17317 2.7612C9.38642 2.25866 10.6868 2 12 2C13.3132 2 14.6136 2.25866 15.8268 2.76121C17.0401 3.26375 18.1425 4.00035 19.0711 4.92893C19.9997 5.85752 20.7362 6.95991 21.2388 8.17317C21.7413 9.38642 22 10.6868 22 12L22 12Z" />
+                                </svg>
+                                
+                                
+                            </button>
+                            <ul
+                                *hlMenuItems
+                                @toggleAnimation
+                                class="top-11 grid w-[280px] grid-cols-2 gap-2 !px-2 font-semibold text-dark ltr:-right-14 rtl:-left-14 dark:text-white-dark dark:text-white-light/90 sm:ltr:-right-2 sm:rtl:-left-2"
+                            >
+                                <li *ngFor="let item of languages">
+                                    <button
+                                        *hlMenuItem="let menuItem"
+                                        type="button"
+                                        class="w-full hover:text-primary"
+                                        (click)="changeLanguage(item)"
+                                    >
+                                       
+                                        <span class="ltr:ml-3 rtl:mr-3">{{ item.name }}</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="w-full max-w-[440px] lg:mt-16">
+                    <div class="mb-10">
+                        <h1 class="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl" style="color: #aa1c17;"> {{ 'Sign in' |translate }}</h1>
+                        <p class="text-base font-bold leading-normal text-white-dark"> {{ 'Enter your email and password to login' |translate }}</p>
+                    </div>
+                    
+                    <form [formGroup]="loginForm" class="space-y-5 dark:text-white" (ngSubmit)="logintodash()" novalidate>
+                        <div [ngClass]="isSubmitForm1 ? loginForm.controls['email'].errors ? 'has-error' : 'has-success' : ''">
+                            
+                                <label for="Email">  {{ 'Email' | translate }}</label>
+                                <div class="relative text-white-dark">
+                                    <input
+                                      id="Email"
+                                      type="email"
+                                      placeholder=" {{ 'Enter Email' |translate }}"
+                                      class="form-input ps-10 placeholder:text-white-dark"
+                                      style="background-color: rgb(232 240 254) !important"
+                                      maxlength="100"
+                                      formControlName="email"
+                                    />
+                                    <span class="absolute start-4 top-1/2 -translate-y-1/2">
+                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                            <path
+                                                opacity="0.5"
+                                                d="M10.65 2.25H7.35C4.23873 2.25 2.6831 2.25 1.71655 3.23851C0.75 4.22703 0.75 5.81802 0.75 9C0.75 12.182 0.75 13.773 1.71655 14.7615C2.6831 15.75 4.23873 15.75 7.35 15.75H10.65C13.7613 15.75 15.3169 15.75 16.2835 14.7615C17.25 13.773 17.25 12.182 17.25 9C17.25 5.81802 17.25 4.22703 16.2835 3.23851C15.3169 2.25 13.7613 2.25 10.65 2.25Z"
+                                                fill="currentColor"
+                                            />
+                                            <path
+                                                d="M14.3465 6.02574C14.609 5.80698 14.6445 5.41681 14.4257 5.15429C14.207 4.89177 13.8168 4.8563 13.5543 5.07507L11.7732 6.55931C11.0035 7.20072 10.4691 7.6446 10.018 7.93476C9.58125 8.21564 9.28509 8.30993 9.00041 8.30993C8.71572 8.30993 8.41956 8.21564 7.98284 7.93476C7.53168 7.6446 6.9973 7.20072 6.22761 6.55931L4.44652 5.07507C4.184 4.8563 3.79384 4.89177 3.57507 5.15429C3.3563 5.41681 3.39177 5.80698 3.65429 6.02574L5.4664 7.53583C6.19764 8.14522 6.79033 8.63914 7.31343 8.97558C7.85834 9.32604 8.38902 9.54743 9.00041 9.54743C9.6118 9.54743 10.1425 9.32604 10.6874 8.97558C11.2105 8.63914 11.8032 8.14522 12.5344 7.53582L14.3465 6.02574Z"
+                                                fill="currentColor"
+                                            />
+                                        </svg>
+                                    </span>
+                                     
+                                  </div>
+                            <ng-container *ngIf="isSubmitForm1 && !loginForm.controls['email'].errors">
+                               
+                            </ng-container>
+                            <ng-container *ngIf="isSubmitForm1 && loginForm.controls['email'].errors">
+                                <p class="mt-1 text-danger"> {{ 'Please Provide a Valid E-Mail' |translate }}</p>
+                            </ng-container>
+                        </div>
+                      
+                        <div [ngClass]="isSubmitForm1 ? loginForm.controls['password'].errors ? 'has-error' : 'has-success' : ''">
+                            
+                            <label for="Password">  {{ 'Password' |translate }}</label>
+                            <div class="relative text-white-dark">
+                                <input id="Password" 
+                                       type="password"
+                                       placeholder="{{ 'Enter Password' |translate }}"
+                                       class="form-input ps-10 placeholder:text-white-dark"
+                                       style="background-color: rgb(232 240 254) !important"
+                                       maxlength="20"
+                                       formControlName="password" />
+                                       <span class="absolute start-4 top-1/2 -translate-y-1/2">
+                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                            <path
+                                                opacity="0.5"
+                                                d="M1.5 12C1.5 9.87868 1.5 8.81802 2.15901 8.15901C2.81802 7.5 3.87868 7.5 6 7.5H12C14.1213 7.5 15.182 7.5 15.841 8.15901C16.5 8.81802 16.5 9.87868 16.5 12C16.5 14.1213 16.5 15.182 15.841 15.841C15.182 16.5 14.1213 16.5 12 16.5H6C3.87868 16.5 2.81802 16.5 2.15901 15.841C1.5 15.182 1.5 14.1213 1.5 12Z"
+                                                fill="currentColor"
+                                            />
+                                            <path
+                                                d="M6 12.75C6.41421 12.75 6.75 12.4142 6.75 12C6.75 11.5858 6.41421 11.25 6 11.25C5.58579 11.25 5.25 11.5858 5.25 12C5.25 12.4142 5.58579 12.75 6 12.75Z"
+                                                fill="currentColor"
+                                            />
+                                            <path
+                                                d="M9 12.75C9.41421 12.75 9.75 12.4142 9.75 12C9.75 11.5858 9.41421 11.25 9 11.25C8.58579 11.25 8.25 11.5858 8.25 12C8.25 12.4142 8.58579 12.75 9 12.75Z"
+                                                fill="currentColor"
+                                            />
+                                            <path
+                                                d="M12.75 12C12.75 12.4142 12.4142 12.75 12 12.75C11.5858 12.75 11.25 12.4142 11.25 12C11.25 11.5858 11.5858 11.25 12 11.25C12.4142 11.25 12.75 11.5858 12.75 12Z"
+                                                fill="currentColor"
+                                            />
+                                            <path
+                                                d="M5.0625 6C5.0625 3.82538 6.82538 2.0625 9 2.0625C11.1746 2.0625 12.9375 3.82538 12.9375 6V7.50268C13.363 7.50665 13.7351 7.51651 14.0625 7.54096V6C14.0625 3.20406 11.7959 0.9375 9 0.9375C6.20406 0.9375 3.9375 3.20406 3.9375 6V7.54096C4.26488 7.51651 4.63698 7.50665 5.0625 7.50268V6Z"
+                                                fill="currentColor"
+                                            />
+                                        </svg>
+                                    </span>
+                        
+                            </div>
+                            <ng-container *ngIf="isSubmitForm1 && !loginForm.controls['password'].errors">
+                               
+                            </ng-container>
+                            <ng-container *ngIf="isSubmitForm1 && loginForm.controls['password'].errors">
+                                <p class="mt-1 text-danger"> {{ 'Please Provide password' |translate }}</p>
+                            </ng-container>
+                        </div>
+                      
+                      
+                        <button type="submit" *ngIf="button_act_state==0" class="btn btn-gradient !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"  style="background-color: #b82a27;color: #f1ffd7f5;">
+                          {{ 'Sign in' |
+                          translate }}
+                        </button>
+                        <button type="submit" class="btn btn-gradient
+                         !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"  *ngIf="button_act_state==1"
+                         disabled style="background-color: #b82a27;color: #f1ffd7f5;">
+                            <svg
+                            viewBox="0 0 24 24"
+                            width="24"
+                            height="24"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="inline-block h-5 w-5 shrink-0 animate-[spin_2s_linear_infinite] align-middle ltr:mr-2 rtl:ml-2" >
+                            <line x1="12" y1="2" x2="12" y2="6"></line>
+                            <line x1="12" y1="18" x2="12" y2="22"></line>
+                            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                            <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                            <line x1="2" y1="12" x2="6" y2="12"></line>
+                            <line x1="18" y1="12" x2="22" y2="12"></line>
+                            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                            <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                        </svg>
+                          
+                            
+                          </button>
+                       
+                      </form>
+                      <!-- <a routerLink="/privacy-policy">
+                        
+                            
+                            Privacy Policy
+                    </a> -->
+                    
+                    
+                   
+                </div>
+                
+                <p class="absolute bottom-6 w-full text-center dark:text-white">© {{ currYear }}.. {{ 'CATRAMS All Rights Reserved'| translate }}</p>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>

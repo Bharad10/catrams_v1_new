@@ -1,0 +1,271 @@
+<div class="mb-5">
+    <ol class="flex font-semibold text-primary dark:text-white-dark">
+        <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+            <a href="javascript:;" (click)="adminsettings()"
+                class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+                Admin Settings</a>
+        </li>
+        <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
+            <a
+                class="relative flex h-full items-center bg-primary p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-primary ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-6 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180">
+                Premium Customer Settings</a>
+        </li>
+
+    </ol>
+</div>
+<div class="mb-5 flex flex-col gap-5 md:flex-row md:items-center">
+
+
+    <div class="ltr:ml-auto rtl:mr-auto">
+        <button class="btn btn-outline-success rounded-full" (click)="disc_create()">
+            Create Discount
+        </button>
+    </div>
+</div>
+
+
+
+<ng-container >
+    <div class="mb-6 grid gap-6 xl:grid-cols-4" style="margin-left: -40px;margin-top: -10px;">
+        <div class="panel h-full xl:col-span-2 " style="height: 400px;width: 800px; margin-left: 40px;">
+            <h1 class="pmcst"><b>Discount Presets</b></h1>
+
+            <ng-scrollbar>
+                <div class="datatable">
+                    <ng-datatable [rows]="rows" [columns]="cols" skin="whitespace-nowrap bh-table-hover" [loading]="loading"
+                        firstArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M13 19L7 12L13 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M16.9998 19L10.9998 12L16.9998 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                        lastArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M11 19L17 12L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M6.99976 19L12.9998 12L6.99976 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg> '
+                        previousArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M15 5L9 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                        nextArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'>
+                        <ng-template slot="Action" let-value="data">
+
+                            <ng-container *ngIf="value.cd_active_flag==1">
+                                <button type="button" ngxTippy data-tippy-content="Edit" (click)="assign.open()"c>
+                                    <svg _ngcontent-emk-c46="" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" height="24" width="24">
+                                        <path _ngcontent-emk-c46="" fill="#00ab55" d="M10.4348 0.306033C10.7164 0.42145 10.9004 0.695644 10.9004 
+                                        1.00002V1.97774C11.2467 1.97676 11.6074 1.97676 11.9829 1.97676L12.0577 1.97676C14.1301 1.97675 15.7631
+                                         1.97674 17.0391 2.1509C18.3498 2.32979 19.3952 2.70489 20.2163 3.53846C21.0359 4.37046 21.4033 5.42707 
+                                         21.5788 6.75221C21.75 8.04542 21.75 9.70124 21.75 11.8071V11.9196C21.75 14.0254 21.75 15.6812 21.5788
+                                          16.9744C21.4033 18.2996 21.0359 19.3562 20.2163 20.1882C19.3952 21.0217 18.3498 21.3968 17.0391
+                                           21.5757C15.7631 21.7499 14.1301 21.7499 12.0577 21.7499H11.9423C9.86991 21.7499 8.23694 21.7499 
+                                           6.96085 21.5757C5.65019 21.3968 4.60483 21.0217 3.78371 20.1882C2.96414 19.3562 2.59674 18.2996 2.42124
+                                            16.9744C2.24998 15.6812 2.24999 14.0254 2.25 11.9196V11.8071C2.24999 9.70125 2.24998 8.04542 2.42124 6.75221C2.59674 5.42708 2.96414 
+                                            4.37046 3.78371 3.53846C4.07439 3.24337 4.54925 3.23979 4.84434 3.53047C5.13943 3.82115 5.14301 4.29601 4.85233
+                                             4.5911C4.35388 5.09711 4.06227 5.78627 3.90826 6.94914C3.75155 8.13245 3.75 9.68892 3.75 11.8633C3.75 14.0377 
+                                             3.75155 15.5942 3.90826 16.7775C4.06227 17.9404 4.35388 18.6295 4.85233 19.1355C5.34923 19.64 6.02354 19.9339
+                                              7.1637 20.0895C8.32662 20.2482 9.85717 20.2499 12 20.2499C14.1428 20.2499 
+                                              15.6734 20.2482 16.8363 20.0895C17.9765 19.9339 18.6508 19.64 19.1477 19.1355C19.6461 18.6295 19.9377 
+                                              17.9404 20.0917 16.7775C20.2485 15.5942 20.25 14.0377 20.25 11.8633C20.25 9.68892 20.2485 8.13245 20.0917
+                                               6.94914C19.9377 5.78627 19.6461 5.09711 19.1477 4.5911C18.6508 4.08666 17.9765 3.79274 16.8363 3.63713C15.6734
+                                                3.4784 14.1428 3.47676 12 3.47676C11.6146 3.47676 11.2486 3.47678 10.9004 3.47777V4.55407C10.9004 4.85845 10.7165 5.13264 10.4348 5.24806C10.1532
+                                               5.36348 9.8297 5.29724 9.6161 5.0804L7.86569 3.30343C7.57811 3.01148 7.5781 2.54276 7.86567 2.2508L9.61608 0.473718C9.82968
+                                                0.256868 10.1532 0.190617 10.4348 0.306033Z" clip-rule="evenodd"
+                                            fill-rule="evenodd"></path>
+                                        <path _ngcontent-emk-c46="" fill="#00ab55"
+                                            d="M16.0303 10.0302C16.3232 9.7373 16.3232 9.26243 16.0303 8.96953C15.7374 8.67664 
+                                                15.2626 8.67664 14.9697 8.96953L10.5 13.4392L9.03033 11.9695C8.73744 11.6766 8.26256 11.6766 7.96967 11.9695C7.67678 12.2624 
+                                        7.67678 12.7373 7.96967 13.0302L9.96967 15.0302C10.2626 15.3231 10.7374 15.3231 11.0303 15.0302L16.0303 10.0302Z"></path>
+                                    </svg>
+    
+                                </button>
+                                <modal class="rounded-smz" #assign [closeOnOutsideClick]="false">
+                                    <ng-template #modalBody>
+                                        <p>
+                                          Set This Preset as Default?
+                                        </p>
+                                    </ng-template>
+                                    <ng-template #modalFooter>
+                                        <button type="button" (click)="assign.close()"
+                                            class="btn btn-outline-danger">No</button>
+                                        <button type="button" (click)="set_active_status(value.cd_id )"
+                                            class="btn btn-primary ltr:ml-4 rtl:mr-4">Yes</button>
+                                    </ng-template>
+                                </modal>
+                            </ng-container>
+                            <ng-container *ngIf="value.cd_active_flag==0">
+                                <button type="button" ngxTippy data-tippy-content="Edit" disabled >
+                                    <svg _ngcontent-ohw-c46="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="24" width="24"><path _ngcontent-ohw-c46="" fill="#e7515a" d="M12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22ZM8.96965 8.96967C9.26254 8.67678 9.73742 8.67678 10.0303 8.96967L12 10.9394L13.9696 8.96969C14.2625 8.6768 14.7374 8.6768
+                                        15.0303 8.96969C15.3232 9.26258 15.3232 9.73746 15.0303 10.0303L13.0606 12L15.0303 
+                                        13.9697C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 
+                                        13.9696 15.0303L12 13.0607L10.0303 15.0303C9.73744 15.3232 9.26256
+                                         15.3232 8.96967 15.0303C8.67678 14.7374 8.67678 14.2626 8.96967 13.9697L10.9393
+                                          12L8.96965 10.0303C8.67676 9.73744 8.67676 9.26256 8.96965 8.96967Z"
+                                           clip-rule="evenodd" fill-rule="evenodd"></path></svg></button>
+                            </ng-container>
+                            
+                            <modal #deletecus [closeOnOutsideClick]="false">
+                                <ng-template #modalBody>
+                                    <p>
+                                        Do you really want to delete?
+                                    </p>
+                                </ng-template>
+                                <ng-template #modalFooter>
+                                    <button type="button" (click)="deletecus.close()"
+                                        class="btn btn-outline-danger">No</button>
+                                    <button type="button" (click)="deletedisc(value.cd_id )"
+                                        class="btn btn-primary ltr:ml-4 rtl:mr-4">Yes</button>
+                                </ng-template>
+                            </modal>
+                           
+
+
+
+                        </ng-template>
+                        <ng-template slot="request_type" let-value="data">
+                            <span *ngIf="value.cd_request_type==1">
+                                <span class="badge badge-outline-info rounded-none">Tool Request</span>
+                            </span>
+                            <span *ngIf="value.cd_request_type==0">
+                                <span class="badge badge-outline-success rounded-none">Service Request</span>
+                            </span>
+                            <span *ngIf="value.cd_request_type==2">
+                                <span class="badge badge-outline-secondary rounded-none">Order Request</span>
+                            </span>
+                            <span *ngIf="value.cd_request_type==3">
+                                <span class="badge badge-outline-warning rounded-none">All Requests</span>
+                            </span>
+
+                        </ng-template>
+                        <ng-template slot="type" let-value="data">
+                            <span *ngIf="value.cd_type==0">
+                                <span class="badge badge-outline-info rounded-none">CASH</span>
+                            </span>
+                            <span *ngIf="value.cd_type==1">
+                                <span class="badge badge-outline-info rounded-none">PERCENT</span>
+                            </span>
+                        </ng-template>
+                        <ng-template slot="rate" let-value="data">
+                            <span *ngIf="value.cd_type==0">
+                                <span class="pmcst">₹{{value.cd_rate}}</span>
+                            </span>
+                            <span *ngIf="value.cd_type==1">
+                                <span class="pmcst">{{value.cd_rate}}%</span>
+                            </span>
+                        </ng-template>
+                        <ng-template slot="created_by" let-value="data">
+                            <span>{{value.us_firstname}}</span>
+                        </ng-template>
+
+                        <ng-template slot="created_on" let-value="data">
+                            <span>{{value.cd_created_on}}</span>
+                        </ng-template>
+                    </ng-datatable>
+                </div>
+            </ng-scrollbar>
+
+        </div>
+
+        <div class="panel h-full xl:col-span-2   " style="height:400px;width:82%;margin-left: auto;" *ngIf="salesByCategory!=null">
+            <div class="mb-5 flex items-center">
+                <h1 class="text-lg font-semibold dark:text-white-light">
+                    Total Customers-<b>{{total_cust}}</b></h1>
+            </div>
+            <div class="overflow-hidden">
+
+                <apx-chart [series]="salesByCategory.series" [chart]="salesByCategory.chart" 
+                [fill]="salesByCategory.fill"
+                    [dataLabels]="salesByCategory.dataLabels" [stroke]="salesByCategory.stroke"
+                    [colors]="salesByCategory.colors" [legend]="salesByCategory.legend"
+                    [plotOptions]="salesByCategory.plotOptions" [labels]="salesByCategory.labels"
+                    [states]="salesByCategory.states" class="rounded-lg bg-white dark:bg-black">
+                    <!-- loader -->
+                    <div
+                        class="grid min-h-[460px] place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
+                        <span
+                            class="inline-flex h-5 w-5 animate-spin rounded-full border-2 border-black !border-l-transparent dark:border-white"></span>
+                    </div>
+                </apx-chart>
+            </div>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="datatable">
+            <ng-datatable [rows]="cust_list" [columns]="colscust" skin="whitespace-nowrap bh-table-hover" [loading]="loading"
+                firstArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M13 19L7 12L13 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M16.9998 19L10.9998 12L16.9998 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                lastArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M11 19L17 12L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M6.99976 19L12.9998 12L6.99976 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg> '
+                previousArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M15 5L9 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                nextArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'>
+                <ng-template slot="Action" let-value="data">
+
+                    <button type="button" ngxTippy data-tippy-content="Edit"
+                    (click)="editcustomer(value.cstm_id)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                            fill="#1C274C" />
+                        <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                            fill="#1C274C" />
+                        <path
+                            d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                            fill="#1C274C" />
+                        <path opacity="0.5"
+                            d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                            fill="#1C274C" />
+                    </svg>
+
+</button>
+                    <modal #deletecus [closeOnOutsideClick]="false">
+                        <ng-template #modalBody>
+                            <p>
+                                Do you really want to delete?
+                            </p>
+                        </ng-template>
+                        <ng-template #modalFooter>
+                            <button type="button" (click)="deletecus.close()" class="btn btn-outline-danger">No</button>
+                            <button type="button" (click)="deletedisc(value.ads_id )"
+                                class="btn btn-primary ltr:ml-4 rtl:mr-4">Yes</button>
+                        </ng-template>
+                    </modal>
+
+
+                </ng-template>
+                <ng-template slot="cust_name" let-value="data">
+
+                    <span *ngIf="value.cp_id" class="pmcst">
+                        <b>{{value.cstm_name}}</b>
+                    </span>
+                    <span *ngIf="!value.cp_id">
+                        <b>{{value.cstm_name}}</b>
+                    </span>
+
+                </ng-template>
+                <ng-template slot="p_number" let-value="data">
+
+                    <span *ngIf="value.cp_id" class="pmcst">
+                        <b>{{value.cstm_phone}}</b>
+                    </span>
+                    <span *ngIf="!value.cp_id">
+                        <b>{{value.cstm_phone}}</b>
+                    </span>
+
+                </ng-template>
+                <ng-template slot="gstin" let-value="data">
+
+                    <span *ngIf="value.cp_id" class="pmcst">
+                        <b>{{value.cstm_gstin}}</b>
+                    </span>
+                    <span *ngIf="!value.cp_id">
+                        <b>{{value.cstm_gstin}}</b>
+                    </span>
+
+                </ng-template>
+                <ng-template slot="created_on" let-value="data">
+
+                    <span *ngIf="value.cp_id" class="pmcst">
+                        <b>{{value.cstm_created_on}}</b>
+                    </span>
+                    <span *ngIf="!value.cp_id">
+                        <b>{{value.cstm_created_on}}</b>
+                    </span>
+
+                </ng-template>
+
+
+
+            </ng-datatable>
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,426 @@
+<div *ngIf="loading==false">
+    <div class="panel" *ngIf="cust_info">
+        <div class="mb-5">
+            <div class="space-y-2 font-semibold">
+                <div class="rounded border border-[#d3d3d3] dark:border-[#1b2e4b]">
+                    <button type="button" class="flex w-full items-center p-4 text-white-dark dark:bg-[#1b2e4b]"
+                        [ngClass]="{ '!text-primary': accordians1 === 1 }"
+                        (click)="accordians1 === 1 ? (accordians1 = null) : (accordians1 = 1)">
+                        {{'Expert Details'|translate}}
+                        <div class="ltr:ml-auto rtl:mr-auto" [ngClass]="{ 'rotate-180': accordians1 === 1 }">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+                                <path d="M19 9L12 15L5 9" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                    </button>
+                    <div [@slideDownUp]="accordians1 !== 1" class="accordion-content">
+                        <div
+                            class="space-y-2 border-t border-[#d3d3d3] p-4 text-[13px] text-white-dark dark:border-[#1b2e4b]">
+                            <div class="flex flex-col gap-2.5 xl:flex-row">
+                                <div class=" flex flex-row w-full ltr:xl:mr-6 rtl:xl:ml-6">
+
+                                    <div class="flex flex-row space-x-4">
+                                        <div class="flex-1">
+                                            <label for="Tool Name">Expert Name</label>
+                                            <div class="relative text-white-dark">
+                                                <input id="customername" type="text" placeholder="Enter Customer Name"
+                                                    [(ngModel)]="cust_info.cstm_name"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    class="form-input placeholder:text-white-dark" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="flex-1">
+                                            <label for="customerphone">Expert Phone</label>
+                                            <div class="relative text-white-dark">
+                                                <input id="customerphone" type="number"
+                                                    placeholder="Enter Customer Phone"
+                                                    [(ngModel)]="cust_info.cstm_phone"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    class="form-input placeholder:text-white-dark" readonly />
+                                            </div>
+                                        </div>
+
+                                        <div class="flex-1">
+                                            <label for="rentdays">Expert Email</label>
+                                            <div class="relative text-white-dark">
+                                                <input id="email" type="email" placeholder="Enter Email"
+                                                    [(ngModel)]="cust_info.cstm_email"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    class="form-input placeholder:text-white-dark" readonly />
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class=" flex flex-row w-full ltr:xl:mr-6 rtl:xl:ml-6">
+
+                                    <div class="flex flex-row space-x-4">
+                                        <div class="flex-1">
+                                            <label for="Tool Name">Expert Cash Percent</label>
+                                            <div class="relative text-white-dark">
+                                                <input id="customername" type="text" placeholder="Enter Customer Name"
+                                                    [(ngModel)]="cust_info.cstm_vendor_percent"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    class="form-input placeholder:text-white-dark" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="flex-1">
+                                            <label for="customerphone">Expert GSTIN</label>
+                                            <div class="relative text-white-dark">
+                                                <input id="customerphone" type="number"
+                                                    placeholder="Enter Customer Phone"
+                                                    [(ngModel)]="cust_info.cstm_gstin"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    class="form-input placeholder:text-white-dark" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded border border-[#d3d3d3] dark:border-[#1b2e4b]">
+                    <button type="button" class="flex w-full items-center p-4 text-white-dark dark:bg-[#1b2e4b]"
+                        [ngClass]="{ '!text-primary': accordians1 === 2 }"
+                        (click)="accordians1 === 2 ? (accordians1 = null) : (accordians1 = 2)">
+                        {{'Request Details'|translate}}
+                        <div class="ltr:ml-auto rtl:mr-auto" [ngClass]="{ 'rotate-180': accordians1 === 2 }">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+                                <path d="M19 9L12 15L5 9" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                    </button>
+                    <div [@slideDownUp]="accordians1 !== 2" class="accordion-content">
+                        <div class="border-t border-[#d3d3d3] p-4 text-[13px] dark:border-[#1b2e4b]">
+                            
+                            <div class="rounded border border-[#d3d3d3] font-semibold dark:border-[#3b3f5c]">
+                                <div class="table-responsive" *ngIf="filteredRows">
+                                    <table class="table-hover">
+                                        <tbody>
+                                            <tr *ngFor="let value of filteredRows;let i = index">
+                                                <div class="border-b border-[#d3d3d3] dark:border-[#3b3f5c]">
+                                                    <button type="button"
+                                                        class="flex w-full items-center p-4 text-white-dark dark:bg-[#1b2e4b]"
+                                                        [ngClass]="{ '!text-primary': accordians2 === i }"
+                                                        (click)="accordians2 === i ? (accordians2 = null) : (accordians2 = i)">
+
+                                                        <td class="whitespace-nowrap">{{ value.serm_number }}</td>
+                                                        <td>
+                                                            <span class="badge badge-outline-success"
+                                                                *ngIf="value.serm_status==23 || value.serm_status==24 || value.serm_status==29 || value.serm_status==31 || value.serm_status==32 || value.serm_status==33">
+                                                                {{ value.sm_name }}</span>
+                                                            <span class="badge badge-outline-warning"
+                                                                *ngIf=" value.serm_status==28 || value.serm_status==30 || value.serm_status==50 ">
+                                                                {{ value.sm_name }}</span>
+                                                            <span class="badge badge-outline-danger"
+                                                                *ngIf="value.serm_status==22 || value.serm_status==34 ">{{
+                                                                value.sm_name
+                                                                }}</span>
+                                                            <span class="badge badge-outline-primary"
+                                                                *ngIf="value.serm_status==21 || value.serm_status==19 || value.serm_status==25">{{
+                                                                value.sm_name }}</span>
+                                                            <span class="badge badge-outline-info"
+                                                                *ngIf="value.serm_status==26 || value.serm_status==27 ">{{
+                                                                value.sm_name
+                                                                }}</span>
+                                                            <span class="badge badge-outline-warning"
+                                                                *ngIf="value.serm_status==20 &&value.serm_vendor_flag==1">Quote
+                                                                Pending By
+                                                                Expert</span>
+                                                            <span class="badge badge-outline-warning"
+                                                                *ngIf="value.serm_status==20&& value.serm_vendor_flag==0">Quote
+                                                                Pending </span>
+
+
+                                                        </td>
+                                                        <td>
+                                                            <span class="badge badge-outline-info">{{
+                                                                value.services.length }} Service</span>
+
+                                                        </td>
+                                                        <td>
+
+                                                            <span class="badge badge-outline-info">{{
+                                                                value.serm_cost}}</span>
+
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span class="badge badge-outline-warning"
+                                                                *ngIf="value.vm_payment_status==0">Payment
+                                                                Pending </span>
+
+                                                            <span class="badge badge-outline-info"
+                                                                *ngIf="value.vm_payment_status==1">Part
+                                                                Payment Completed </span>
+
+                                                            <span class="badge badge-outline-success"
+                                                                *ngIf="value.vm_payment_status==2">Payment
+                                                                Completed </span>
+                                                        </td>
+
+                                                        <td class="text-center">
+                                                            {{value.serm_updatedon}}
+                                                        </td>
+                                                        <div class="ltr:ml-auto rtl:mr-auto"
+                                                            [ngClass]="{ 'rotate-180': accordians2 === i }">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+                                                                <path d="M19 9L12 15L5 9" stroke="currentColor"
+                                                                    stroke-width="1.5" stroke-linecap="round"
+                                                                    stroke-linejoin="round" />
+                                                            </svg>
+                                                        </div>
+                                                    </button>
+                                                    <div [@slideDownUp]="accordians2 !== i" class="accordion-content">
+                                                        <div class="space-y-2 p-4 text-[13px] text-white-dark">
+                                                            <div class="mb-5">
+                                                                <div class="table-responsive">
+                                                                    <table class="table-hover">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Service Name</th>
+                                                                                <th>Service Cost</th>
+                                                                                <th></th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr *ngFor="let data of value.services;">
+                                                                                <td class="whitespace-nowrap">{{ data.sitem_vendor }}</td>
+                                                                                <td>{{ data.sitem_cost }}</td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                               <td>Sub Total</td> 
+                                                                               <td>{{value.serm_cost}}</td> 
+                                                                               <td></td>
+
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Workshop Cutoff({{value.vm_cash_percent}}%)</td> 
+                                                                                <td>{{ (value.vm_total_cost * value.vm_cash_percent) / 100 }}</td>
+                                                                                <td></td>
+
+                                                                             </tr>
+                                                                             <tr>
+                                                                                <td>Amount Payable to Expert</td> 
+                                                                                <td>{{value.vm_total_cost}}</td> 
+                                                                                <td>
+
+                                                                                    <button type="button" class="btn btn-info btn-sm" (click)="intiate_pays.open()">Pay</button>
+                                                                                    <modal #intiate_pays class="extra-large-modal" [closeOnOutsideClick]="false">
+                                                                                        <ng-template #modalHeader>
+                                                                                            <b style="padding: 2%;"> {{'Payment Details'|translate}}</b>
+                                                                                        </ng-template>
+                                                                                    
+                                                                                        <!-- <ng-template #modalBody>
+                                                                                            <div class="w-full lg:w-1/2">
+                                                                                                <div class="flex flex-2">
+                                                                                                    <div
+                                                                                                        class="flex items-center justify-center border border-[#e0e6ed] 
+                                                                                                        bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                                                                                                        {{'Transaction ID'|translate}}
+                                                                                                    </div>
+                                                                                                    <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
+                                                                                                        placeholder="{{'UPI ID'|translate}}" [(ngModel)]="cus_upi_id"
+                                                                                                        [ngModelOptions]="{standalone: true}"  />
+                                                                                                </div>
+                                                                                    
+                                                                                                <br>
+                                                                                                <div class="flex flex-2">
+                                                                                                    <div
+                                                                                                        class="flex items-center justify-center border border-[#e0e6ed] 
+                                                                                                        bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 
+                                                                                                        rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                                                                                                        {{'Bank Account Number'|translate}}
+                                                                                                    </div>
+                                                                                                    <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
+                                                                                                        placeholder="{{'Bank Account Number'|translate}}"
+                                                                                                         [(ngModel)]="cus_b_account"
+                                                                                                        [ngModelOptions]="{standalone: true}"  />
+                                                                                                </div>
+                                                                                                <br>
+                                                                                                <div class="flex flex-2">
+                                                                                                    <div
+                                                                                                        class="flex items-center justify-center border
+                                                                                                         border-[#e0e6ed] bg-[#eee] px-3 font-semibold
+                                                                                                          ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0
+                                                                                                           dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                                                                                                        {{'IFSC Code'|translate}}
+                                                                                                    </div>
+                                                                                                    <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
+                                                                                                        placeholder="{{'IFSC Code'|translate}}" [(ngModel)]="cus_ifsc"
+                                                                                                        [ngModelOptions]="{standalone: true}"  />
+                                                                                                </div>
+                                                                                    
+                                                                                                
+                                                                                                
+                                                                                    
+                                                                                    
+                                                                                            </div>
+                                                                                    
+                                                                                    
+                                                                                        </ng-template> -->
+
+                                                                                        <ng-template #modalBody>
+                                                                                            <div class="w-full lg:w-1/2">
+                                                                                                <div class="flex flex-2">
+                                                                                                    <div
+                                                                                                        class="flex items-center justify-center border border-[#e0e6ed] 
+                                                                                                        bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                                                                                                        {{'Transaction ID'|translate}}
+                                                                                                    </div>
+                                                                                                    <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
+                                                                                                        placeholder="{{'Transaction ID'|translate}}" [(ngModel)]="txn_id"
+                                                                                                        [ngModelOptions]="{standalone: true}"  />
+                                                                                                </div>
+                                                                                    
+                                                                                                <br>
+                                                                                                <div class="flex flex-2">
+                                                                                                    <div
+                                                                                                        class="flex items-center justify-center border border-[#e0e6ed] 
+                                                                                                        bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 
+                                                                                                        rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                                                                                                        {{'Amount Paid'|translate}}
+                                                                                                    </div>
+                                                                                                    <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
+                                                                                                        placeholder="{{'Amount Paid'|translate}}"
+                                                                                                         [(ngModel)]="cus_amount"
+                                                                                                        [ngModelOptions]="{standalone: true}"  />
+                                                                                                </div>
+                                                                                                <br>
+                                                                                            </div>
+                                                                                    
+                                                                                    
+                                                                                        </ng-template>
+
+                                                                                        <ng-template #modalFooter>
+                                                                                            <button type="button" (click)="intiate_pays.close()" class="btn btn-outline-danger">{{'close'|translate}}</button>
+                                                                                           
+                                                                                           
+                                                                                            &nbsp;&nbsp;
+
+                                                                                            <button type="button" [disabled]="!cus_amount&&!txn_id" (click)="payment_response(value);intiate_pays.close()"
+                                                                                            class="btn btn-outline-success">{{'Payment Completed'|translate}}</button>
+
+
+                                                                                            <!-- <button type="button"  (click)="intiate_payment(value);intiate_pays.close()"
+                                                                                                class="btn btn-outline-success">{{'Initiate Payment'|translate}}</button> -->
+
+                                                                                                
+                                                                                        </ng-template>
+                                                                                    </modal>
+                                                                                    <!-- <button id="ebz-checkout-btn">Proceed to Pay</button> -->
+                                                                             
+                                                                                </td>
+
+                                                                             </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </tr>
+                                            <br>
+                                            <!-- <tr>
+                                                <div class="mb-5">
+                                                    <div class="flex w-full flex-col justify-center">
+                                                       
+                                                        <ul class="m-auto inline-flex items-center space-x-1 rtl:space-x-reverse">
+                                                            <li>
+                                                                <button
+                                                                    type="button"
+                                                                    class="flex justify-center rounded-full bg-white-light p-2 font-semibold text-dark transition hover:bg-primary hover:text-white dark:bg-[#191e3a] dark:text-white-light dark:hover:bg-primary"
+                                                                >
+                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 rtl:rotate-180">
+                                                                        <path d="M15 5L9 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                                    </svg>
+                                                                </button>
+                                                            </li>
+                                                            <li>
+                                                                <button
+                                                                    type="button"
+                                                                    class="flex justify-center rounded-full bg-white-light px-3.5 py-2 font-semibold text-dark transition hover:bg-primary hover:text-white dark:bg-[#191e3a] dark:text-white-light dark:hover:bg-primary"
+                                                                >
+                                                                    1
+                                                                </button>
+                                                            </li>
+                                                            <li>
+                                                                <button
+                                                                    type="button"
+                                                                    class="flex justify-center rounded-full bg-primary px-3.5 py-2 font-semibold text-white transition dark:bg-primary dark:text-white-light"
+                                                                >
+                                                                    2
+                                                                </button>
+                                                            </li>
+                                                            <li>
+                                                                <button
+                                                                    type="button"
+                                                                    class="flex justify-center rounded-full bg-white-light px-3.5 py-2 font-semibold text-dark transition hover:bg-primary hover:text-white dark:bg-[#191e3a] dark:text-white-light dark:hover:bg-primary"
+                                                                >
+                                                                    3
+                                                                </button>
+                                                            </li>
+                                                            <li>
+                                                                <button
+                                                                    type="button"
+                                                                    class="flex justify-center rounded-full bg-white-light p-2 font-semibold text-dark transition hover:bg-primary hover:text-white dark:bg-[#191e3a] dark:text-white-light dark:hover:bg-primary"
+                                                                >
+                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 rtl:rotate-180">
+                                                                        <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                                    </svg>
+                                                                </button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div> 
+                                            </tr> -->
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded border border-[#d3d3d3] dark:border-[#1b2e4b]">
+                    <button type="button" class="flex w-full items-center p-4 text-white-dark dark:bg-[#1b2e4b]"
+                        [ngClass]="{ '!text-primary': accordians1 === 3 }"
+                        (click)="accordians1 === 3 ? (accordians1 = null) : (accordians1 = 3)">
+                        {{'Sales Details'|translate}}
+                        <div class="ltr:ml-auto rtl:mr-auto" [ngClass]="{ 'rotate-180': accordians1 === 3 }">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+                                <path d="M19 9L12 15L5 9" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                    </button>
+                    <div [@slideDownUp]="accordians1 !== 3" class="accordion-content">
+                        <div class="border-t border-[#d3d3d3] p-4 text-[13px] dark:border-[#1b2e4b]">
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<div class="loader" *ngIf="loading==true">
+
+</div>
+

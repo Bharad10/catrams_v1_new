@@ -1,0 +1,1673 @@
+<div class="mb-5">
+    <ol class="flex font-semibold text-primary dark:text-white-dark">
+        <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+            <a href="javascript:;" 
+                class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+                {{'Admin Settings'|translate}}</a>
+        </li>
+        <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
+            <a
+                class="relative flex h-full items-center bg-primary p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-primary ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-6 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180">
+                {{'Admin Approvals'|translate}}</a>
+        </li>
+
+    </ol>
+</div>
+
+<div class="panel">
+    <div class="mb-5">
+
+        <div class="mt-3 mb-5 flex flex-wrap border-b border-white-light dark:border-[#191e3a]">
+            <a
+                href="javascript:;"
+                class="relative -mb-[1px] flex items-center p-5 py-3 !outline-none transition duration-300 before:absolute before:bottom-0 before:left-0 before:right-0 before:m-auto before:h-[1px] before:w-0 before:bg-secondary before:transition-all before:duration-700 hover:text-secondary hover:before:w-full"
+                [ngClass]="{ 'before:!w-full text-secondary': tab17.toLowerCase() === 'request' }"
+                (click)="tab17 = 'request'"
+            >
+                <!-- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ltr:mr-2 rtl:ml-2">
+                    <path
+                        opacity="0.5"
+                        d="M2 12.2039C2 9.91549 2 8.77128 2.5192 7.82274C3.0384 6.87421 3.98695 6.28551 5.88403 5.10813L7.88403 3.86687C9.88939 2.62229 10.8921 2 12 2C13.1079 2 14.1106 2.62229 16.116 3.86687L18.116 5.10812C20.0131 6.28551 20.9616 6.87421 21.4808 7.82274C22 8.77128 22 9.91549 22 12.2039V13.725C22 17.6258 22 19.5763 20.8284 20.7881C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.7881C2 19.5763 2 17.6258 2 13.725V12.2039Z"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                    />
+                    <path d="M12 15L12 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg> -->
+                {{'Approvals'|translate}}
+            </a>
+
+            <a
+                href="javascript:;"
+                class="relative -mb-[1px] flex items-center p-5 py-3 !outline-none transition duration-300 before:absolute before:bottom-0 before:left-0 before:right-0 before:m-auto before:h-[1px] before:w-0 before:bg-secondary before:transition-all before:duration-700 hover:text-secondary hover:before:w-full"
+                [ngClass]="{ 'before:!w-full text-secondary': tab17.toLowerCase() === 'settings' }"
+                (click)="app_service();tab17 = 'settings'"
+            >
+                <!-- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ltr:mr-2 rtl:ml-2">
+                    <circle cx="12" cy="6" r="4" stroke="currentColor" stroke-width="1.5" />
+                    <ellipse opacity="0.5" cx="12" cy="17" rx="7" ry="4" stroke="currentColor" stroke-width="1.5" />
+                </svg> -->
+                {{'Service Approvals'|translate}}
+            </a>
+
+           
+        </div>
+        <div class="flex-1 text-sm">
+            <div *ngIf="tab17.toLowerCase() === 'request'">
+                <div class="mb-5 flex flex-col gap-5 md:flex-row md:items-center">
+                    <div class=" flex flex-col gap-5 md:flex-row md:items-center">
+                        <!-- <h5 class="text-lg font-semibold dark:text-white-light">Tool Request List </h5> -->
+                        <div class="ltr:ml-auto rtl:mr-auto">
+                            <input [(ngModel)]=" searchvalue" type="text" class="form-input w-auto" placeholder=" {{'Search...'|translate}}" />
+                        </div>
+                    </div>
+                    
+                  
+                </div>
+
+                <div class="datatable">
+                    <ng-datatable [rows]="filteredRows" [columns]="cols" skin="whitespace-nowrap bh-table-hover" [loading]="loading1" [search]="searchvalue"
+                        firstArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M13 19L7 12L13 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M16.9998 19L10.9998 12L16.9998 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                        lastArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M11 19L17 12L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M6.99976 19L12.9998 12L6.99976 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg> '
+                        previousArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M15 5L9 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                        nextArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'>
+                  
+                        <ng-template slot="am_updatedon_date" let-value="data">
+                      
+                            {{ value.am_createdon | date:'dd-MMM-yyyy' }}
+ 
+                         </ng-template>
+                         <ng-template slot="am_updatedon_time" let-value="data">
+                      
+                            {{ value.am_createdon | date:'hh:mm a' }}
+ 
+                         </ng-template>
+
+                        <ng-template slot="tool_name" let-value="data">
+                            <span *ngIf="!value.pm_code">{{value.tool_name}}</span>
+                            <span *ngIf="value.pm_code">{{value.pm_name}}</span>
+                            
+ 
+                         </ng-template>
+                        <ng-template slot="number" let-value="data">
+                           <span *ngIf="value.tldt_number">{{value.tldt_number}}</span>
+                           <span *ngIf="value.order_number">{{value.order_number}}</span>
+                           <span *ngIf="value.pm_code">
+                           <span style="    background:-webkit-linear-gradient(#1c63d2, #06b1f7);
+                           -webkit-background-clip: text;
+                           -webkit-text-fill-color: transparent;">Premium Customer Request</span> 
+                        </span>
+
+                        </ng-template>
+                        <ng-template slot="Status" let-value="data">
+                            <span class="badge badge-outline-warning" *ngIf="value.am_status==0&& value.am_type!=3 "> PENDING</span>
+                            <span class="badge badge-outline-success" *ngIf="value.am_status==1 "> APPROVED</span>
+                            <span class="badge badge-outline-danger" *ngIf="value.am_status== 2"> REJECTED</span>
+                            <span class="badge badge-outline-success" *ngIf="value.am_status== 3 && !value.quote_det">
+                                Tool Purchase Approved</span>
+                            <span class="badge badge-outline-danger" *ngIf="value.am_status== 4"> Tool Purchase
+                                Rejected</span>
+                            <span class="badge badge-outline-danger"
+                                *ngIf="value.am_status== 3 && value.quote_det">Quote Rejected by customer</span>
+                            <span class="badge badge-outline-warning" *ngIf="value.am_type== 3 && value.am_status==0 ">Rent
+                                Hold Request Pending</span>
+
+                        </ng-template>
+                        <ng-template slot="Action" let-value="data">
+                            <button type="button" ngxTippy data-tippy-content="Edit" (click)="purchase.open()"
+                                *ngIf="value.am_referenceid && !value.quote_det && value.am_type==1">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                        fill="#1C274C" />
+                                    <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                        fill="#1C274C" />
+                                    <path
+                                        d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                        fill="#1C274C" />
+                                    <path opacity="0.5"
+                                        d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                        fill="#1C274C" />
+                                </svg>
+
+                            </button>
+                            <button type="button" ngxTippy data-tippy-content="Edit" (click)="repurchase.open()"
+                                *ngIf="value.am_referenceid && value.quote_det && value.am_type==3">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                        fill="#1C274C" />
+                                    <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                        fill="#1C274C" />
+                                    <path
+                                        d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                        fill="#1C274C" />
+                                    <path opacity="0.5"
+                                        d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                        fill="#1C274C" />
+                                </svg>
+
+                            </button>
+                            <button type="button" ngxTippy data-tippy-content="Edit" (click)="renthold.open()"
+                                *ngIf="value.am_type==3">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                        fill="#1C274C" />
+                                    <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                        fill="#1C274C" />
+                                    <path
+                                        d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                        fill="#1C274C" />
+                                    <path opacity="0.5"
+                                        d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                        fill="#1C274C" />
+                                </svg>
+                            </button>
+
+
+                            <button type="button" ngxTippy data-tippy-content="Edit" (click)="details.open()" *ngIf="value.am_type==0">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                    fill="#1C274C" />
+                                <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                    fill="#1C274C" />
+                                <path
+                                    d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                    fill="#1C274C" />
+                                <path opacity="0.5"
+                                    d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                    fill="#1C274C" />
+                            </svg>
+
+                        </button>
+
+                        <button type="button" ngxTippy data-tippy-content="Edit" (click)="inspectsuccess.open()" *ngIf="value.am_type==8||value.am_type==9">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                    fill="#1C274C" />
+                                <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                    fill="#1C274C" />
+                                <path
+                                    d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                    fill="#1C274C" />
+                                <path opacity="0.5"
+                                    d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                    fill="#1C274C" />
+                            </svg>
+
+                        </button>
+                        <button type="button" ngxTippy data-tippy-content="Edit" (click)="damagedorder.open()" *ngIf="value.am_type==10">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                    fill="#1C274C" />
+                                <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                    fill="#1C274C" />
+                                <path
+                                    d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                    fill="#1C274C" />
+                                <path opacity="0.5"
+                                    d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                    fill="#1C274C" />
+                            </svg>
+
+                        </button>
+                        <button type="button" ngxTippy data-tippy-content="Edit" (click)="premiumcust.open()" *ngIf="value.am_type==11">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                    fill="#1C274C" />
+                                <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                    fill="#1C274C" />
+                                <path
+                                    d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                    fill="#1C274C" />
+                                <path opacity="0.5"
+                                    d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                    fill="#1C274C" />
+                            </svg>
+
+                        </button>
+                            <modal #renthold class="extra-large-modal">
+                                <ng-template #modalHeader>
+                                    <div>Rent Hold Request</div>
+                                </ng-template>
+                                <ng-template #modalBody>
+                                    <div class="panel">
+                                        <div class="mb-5">
+                                            <div
+                                                class="mt-3 mb-5 flex flex-wrap justify-center space-x-3 rtl:space-x-reverse">
+                                                <a href="javascript:;"
+                                                    class="flex h-16 w-16 flex-col items-center justify-center rounded-full bg-[#f1f2f3] !outline-none transition-all duration-300 hover:!bg-info hover:text-white hover:shadow-[0_5px_15px_0_rgba(0,0,0,0.30)] dark:bg-[#191e3a]"
+                                                    [ngClass]="{ '!bg-info text-white': tab18.toLowerCase() == 'home' }"
+                                                    (click)="tab18 = 'home'">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M15.5 7.5C15.5 9.433 13.933 11 12 11C10.067 11 8.5 9.433 8.5 7.5C8.5 5.567 10.067 4 12 4C13.933 4 15.5 5.567 15.5 7.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M19.5 7.5C19.5 8.88071 18.3807 10 17 10C15.6193 10 14.5 8.88071 14.5 7.5C14.5 6.11929 15.6193 5 17 5C18.3807 5 19.5 6.11929 19.5 7.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M4.5 7.5C4.5 8.88071 5.61929 10 7 10C8.38071 10 9.5 8.88071 9.5 7.5C9.5 6.11929 8.38071 5 7 5C5.61929 5 4.5 6.11929 4.5 7.5Z"
+                                                            fill="#1C274C" />
+                                                        <path
+                                                            d="M18 16.5C18 18.433 15.3137 20 12 20C8.68629 20 6 18.433 6 16.5C6 14.567 8.68629 13 12 13C15.3137 13 18 14.567 18 16.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M22 16.5C22 17.8807 20.2091 19 18 19C15.7909 19 14 17.8807 14 16.5C14 15.1193 15.7909 14 18 14C20.2091 14 22 15.1193 22 16.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M2 16.5C2 17.8807 3.79086 19 6 19C8.20914 19 10 17.8807 10 16.5C10 15.1193 8.20914 14 6 14C3.79086 14 2 15.1193 2 16.5Z"
+                                                            fill="#1C274C" />
+                                                    </svg>
+
+                                                </a>
+
+                                            </div>
+                                            <div class="flex-1 text-sm">
+                                                <div *ngIf="tab18.toLowerCase() === 'home'">
+                                                    <span class="badge badge-outline-info">Customer Details</span>
+                                                    <br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b> Customer Name</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.cstm_name}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="customerphone"><b> Customer Phone</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customerphone" type="number"
+                                                                    placeholder="{{value.cstm_phone}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="alternatenumber"><b> Address</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="alternatenumber" type="number"
+                                                                    placeholder="{{value.tldt_delivery_address}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <br><br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+
+                                                        <br><br><br><br>
+                                                        <div class="flex flex-row space-x-4">
+                                                            <div class="flex-1">
+                                                                <label for="Tool Name"><b>Tool Name</b></label>
+                                                                <div class="relative text-white-dark">
+                                                                    <input id="customername" type="text"
+                                                                        placeholder="{{value.tool_name}}"
+                                                                        class="form-input placeholder:text-white-dark"
+                                                                        readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex-1">
+                                                                <label for="Tool Name"><b>Tool Quantity</b></label>
+                                                                <div class="relative text-white-dark">
+                                                                    <input id="customername" type="text"
+                                                                        placeholder="{{value.tldt_tool_quant}}"
+                                                                        class="form-input placeholder:text-white-dark"
+                                                                        readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex-1">
+                                                                <label for="Tool Name"><b>Total Due so Far</b></label>
+                                                                <div class="relative text-white-dark">
+                                                                    <input id="customername" type="text"
+                                                                        placeholder="{{value.rpt_amount}}"
+                                                                        class="form-input placeholder:text-white-dark"
+                                                                        readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex-1">
+                                                                <label for="Tool Name"><b>Tool Due Date</b></label>
+                                                                <div class="relative text-white-dark">
+                                                                    <input id="customername" type="text"
+                                                                        placeholder="{{value.tldt_due_date}}"
+                                                                        class="form-input placeholder:text-white-dark"
+                                                                        readonly />
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                    </div>
+                                                    <br><br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+                                                        <div class="flex-1">
+                                                            <label for="alternatenumber"><b> Hold Reason</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <textarea id="alternatenumber" type="text"
+                                                                
+                                                                class="form-input placeholder:text-white-dark"
+                                                                readonly>
+                                                                {{value.am_reason}}
+                                                                </textarea>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="alternatenumber"><b> Rent So far After Due</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="alternatenumber" type="number"
+                                                                    placeholder="{{value.rpt_amount}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </ng-template>
+                                <ng-template #modalFooter>
+                                    <button type="button" class="btn btn-outline-danger"
+                                        (click)="holdrequest_update(value.am_id,6,value.tldet_id,0)">Reject
+                                        Request</button>
+                                    <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4"
+                                        (click)="holdrequest_update(value.am_id,1,value.tldet_id,0)">Adjust Due
+                                        Date</button>
+                                </ng-template>
+                            </modal>
+
+                            <modal #purchase class="extra-large-modal">
+                                <ng-template #modalHeader>
+                                    <div>Request Purchase</div>
+                                </ng-template>
+                                <ng-template #modalBody>
+                                    <div class="panel">
+                                        <div class="mb-5">
+                                            <div
+                                                class="mt-3 mb-5 flex flex-wrap justify-center space-x-3 rtl:space-x-reverse">
+                                                <a href="javascript:;"
+                                                    class="flex h-16 w-16 flex-col items-center justify-center rounded-full bg-[#f1f2f3] !outline-none transition-all duration-300 hover:!bg-info hover:text-white hover:shadow-[0_5px_15px_0_rgba(0,0,0,0.30)] dark:bg-[#191e3a]"
+                                                    [ngClass]="{ '!bg-info text-white': tab18.toLowerCase() == 'home' }"
+                                                    (click)="tab18 = 'home'">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M15.5 7.5C15.5 9.433 13.933 11 12 11C10.067 11 8.5 9.433 8.5 7.5C8.5 5.567 10.067 4 12 4C13.933 4 15.5 5.567 15.5 7.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M19.5 7.5C19.5 8.88071 18.3807 10 17 10C15.6193 10 14.5 8.88071 14.5 7.5C14.5 6.11929 15.6193 5 17 5C18.3807 5 19.5 6.11929 19.5 7.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M4.5 7.5C4.5 8.88071 5.61929 10 7 10C8.38071 10 9.5 8.88071 9.5 7.5C9.5 6.11929 8.38071 5 7 5C5.61929 5 4.5 6.11929 4.5 7.5Z"
+                                                            fill="#1C274C" />
+                                                        <path
+                                                            d="M18 16.5C18 18.433 15.3137 20 12 20C8.68629 20 6 18.433 6 16.5C6 14.567 8.68629 13 12 13C15.3137 13 18 14.567 18 16.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M22 16.5C22 17.8807 20.2091 19 18 19C15.7909 19 14 17.8807 14 16.5C14 15.1193 15.7909 14 18 14C20.2091 14 22 15.1193 22 16.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M2 16.5C2 17.8807 3.79086 19 6 19C8.20914 19 10 17.8807 10 16.5C10 15.1193 8.20914 14 6 14C3.79086 14 2 15.1193 2 16.5Z"
+                                                            fill="#1C274C" />
+                                                    </svg>
+
+                                                </a>
+
+                                            </div>
+                                            <div class="flex-1 text-sm">
+                                                <div *ngIf="tab18.toLowerCase() === 'home'">
+                                                    <span class="badge badge-outline-info">Customer Details</span>
+                                                    <br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b> Customer Name</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.cstm_name}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="customerphone"><b> Customer Phone</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customerphone" type="number"
+                                                                    placeholder="{{value.cstm_phone}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="alternatenumber"><b> Address</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="alternatenumber" type="number"
+                                                                    placeholder="{{value.tldt_delivery_address}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <br><br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+
+                                                        <br><br><br><br>
+                                                        <div class="flex flex-row space-x-4">
+                                                            <div class="flex-1">
+                                                                <label for="Tool Name"><b>Tool Name</b></label>
+                                                                <div class="relative text-white-dark">
+                                                                    <input id="customername" type="text"
+                                                                        placeholder="{{value.tool_name}}"
+                                                                        class="form-input placeholder:text-white-dark"
+                                                                        readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex-1">
+                                                                <label for="Tool Name"><b>Tool Quantity</b></label>
+                                                                <div class="relative text-white-dark">
+                                                                    <input id="customername" type="text"
+                                                                        placeholder="{{value.tldt_tool_quant}}"
+                                                                        class="form-input placeholder:text-white-dark"
+                                                                        readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex-1">
+                                                                <label for="Tool Name"><b>Tool Price</b></label>
+                                                                <div class="relative text-white-dark">
+                                                                    <input id="customername" type="text"
+                                                                        placeholder="{{value.tool_cost}}"
+                                                                        class="form-input placeholder:text-white-dark"
+                                                                        readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex-1">
+                                                                <label for="Tool Name"><b>Enter Price for the
+                                                                        tool</b></label>
+                                                                <div class="relative text-white-dark">
+                                                                    <input id="customername" type="number"
+                                                                        class="form-input" [(ngModel)]="tool_price"
+                                                                        required />
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </ng-template>
+                                <ng-template #modalFooter>
+                                    <button type="button" class="btn btn-outline-danger"
+                                        (click)="request_update(value.am_id,4,value.tldet_id)">Reject Request</button>
+                                    <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4"
+                                        (click)="request_update(value.am_id,3,value.tldet_id)">Send Quoation</button>
+                                </ng-template>
+                            </modal>
+
+                            <!-- repurchase -->
+                            <modal #repurchase class="extra-large-modal">
+                                <ng-template #modalHeader>
+                                    <div>Request for re-Purchase</div>
+                                </ng-template>
+                                <ng-template #modalBody>
+                                    <div class="panel">
+                                        <div class="mb-5">
+                                            <div
+                                                class="mt-3 mb-5 flex flex-wrap justify-center space-x-3 rtl:space-x-reverse">
+
+                                                <a href="javascript:;"
+                                                    class="flex h-16 w-16 flex-col items-center justify-center rounded-full bg-[#f1f2f3] !outline-none transition-all duration-300 hover:!bg-info hover:text-white hover:shadow-[0_5px_15px_0_rgba(0,0,0,0.30)] dark:bg-[#191e3a]"
+                                                    [ngClass]="{ '!bg-primary text-white': tab18.toLowerCase() == 'reason' }"
+                                                    (click)="tab18 = 'reason'">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M2.75458 14.716L3.27222 16.6479C3.87647 18.9029 4.17859 20.0305 4.86351 20.7618C5.40432 21.3392 6.10421 21.7433 6.87466 21.9229C7.85044 22.1504 8.97798 21.8483 11.2331 21.244C13.4881 20.6398 14.6157 20.3377 15.347 19.6528C15.4077 19.5959 15.4664 19.5373 15.5233 19.477C15.1891 19.449 14.852 19.3952 14.5094 19.3271C13.8133 19.1887 12.9862 18.967 12.008 18.7049L11.9012 18.6763L11.8764 18.6697C10.8121 18.3845 9.92281 18.1457 9.21277 17.8892C8.46607 17.6195 7.7876 17.287 7.21148 16.7474C6.41753 16.0038 5.86193 15.0414 5.61491 13.982C5.43567 13.2133 5.48691 12.4594 5.62666 11.6779C5.76058 10.929 6.00109 10.0315 6.28926 8.95613L6.28926 8.95611L6.82365 6.96174L6.84245 6.8916C4.9219 7.40896 3.91101 7.71505 3.23687 8.34646C2.65945 8.88726 2.25537 9.58715 2.07573 10.3576C1.84821 11.3334 2.15033 12.4609 2.75458 14.716Z"
+                                                            fill="#1C274C" />
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M20.8293 10.7154L20.3116 12.6473C19.7074 14.9024 19.4052 16.0299 18.7203 16.7612C18.1795 17.3386 17.4796 17.7427 16.7092 17.9223C16.6129 17.9448 16.5152 17.9621 16.415 17.9744C15.4999 18.0873 14.3834 17.7881 12.3508 17.2435C10.0957 16.6392 8.96815 16.3371 8.23687 15.6522C7.65945 15.1114 7.25537 14.4115 7.07573 13.641C6.84821 12.6652 7.15033 11.5377 7.75458 9.28263L8.27222 7.35077C8.3591 7.02654 8.43979 6.7254 8.51621 6.44561C8.97128 4.77957 9.27709 3.86298 9.86351 3.23687C10.4043 2.65945 11.1042 2.25537 11.8747 2.07573C12.8504 1.84821 13.978 2.15033 16.2331 2.75458C18.4881 3.35883 19.6157 3.66095 20.347 4.34587C20.9244 4.88668 21.3285 5.58657 21.5081 6.35703C21.7356 7.3328 21.4335 8.46034 20.8293 10.7154ZM11.0524 9.80589C11.1596 9.40579 11.5709 9.16835 11.971 9.27556L16.8006 10.5697C17.2007 10.6769 17.4381 11.0881 17.3309 11.4882C17.2237 11.8883 16.8125 12.1257 16.4124 12.0185L11.5827 10.7244C11.1826 10.6172 10.9452 10.206 11.0524 9.80589ZM10.2756 12.7033C10.3828 12.3032 10.794 12.0658 11.1941 12.173L14.0919 12.9495C14.492 13.0567 14.7294 13.4679 14.6222 13.868C14.515 14.2681 14.1038 14.5056 13.7037 14.3984L10.8059 13.6219C10.4058 13.5147 10.1683 13.1034 10.2756 12.7033Z"
+                                                            fill="#1C274C" />
+                                                    </svg>
+
+
+                                                </a>
+                                                <a href="javascript:;"
+                                                    class="flex h-16 w-16 flex-col items-center justify-center rounded-full bg-[#f1f2f3] !outline-none transition-all duration-300 hover:!bg-info hover:text-white hover:shadow-[0_5px_15px_0_rgba(0,0,0,0.30)] dark:bg-[#191e3a]"
+                                                    [ngClass]="{ '!bg-primary text-white': tab18.toLowerCase() == 'home' }"
+                                                    (click)="tab18 = 'home'">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM15 9C15 10.6569 13.6569 12 12 12C10.3431 12 9 10.6569 9 9C9 7.34315 10.3431 6 12 6C13.6569 6 15 7.34315 15 9ZM12 20.5C13.784 20.5 15.4397 19.9504 16.8069 19.0112C17.4108 18.5964 17.6688 17.8062 17.3178 17.1632C16.59 15.8303 15.0902 15 11.9999 15C8.90969 15 7.40997 15.8302 6.68214 17.1632C6.33105 17.8062 6.5891 18.5963 7.19296 19.0111C8.56018 19.9503 10.2159 20.5 12 20.5Z"
+                                                            fill="#1C274C" />
+                                                    </svg>
+                                                </a>
+
+
+                                            </div>
+                                            <div class="flex-1 text-sm">
+                                                <div *ngIf="tab18.toLowerCase() === 'home'">
+                                                    <span class="badge badge-outline-info">Customer Details</span>
+                                                    <br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b> Customer Name</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.cstm_name}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="customerphone"><b> Customer Phone</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customerphone" type="number"
+                                                                    placeholder="{{value.cstm_phone}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="alternatenumber"><b> Address</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="alternatenumber" type="number"
+                                                                    placeholder="{{value.tldt_delivery_address}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <br><br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+
+                                                        <br><br><br><br>
+                                                        <div class="flex flex-row space-x-4">
+                                                            <div class="flex-1">
+                                                                <label for="Tool Name"><b>Tool Name</b></label>
+                                                                <div class="relative text-white-dark">
+                                                                    <input id="customername" type="text"
+                                                                        placeholder="{{value.tool_name}}"
+                                                                        class="form-input placeholder:text-white-dark"
+                                                                        readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex-1">
+                                                                <label for="Tool Name"><b>Tool Quantity</b></label>
+                                                                <div class="relative text-white-dark">
+                                                                    <input id="customername" type="text"
+                                                                        placeholder="{{value.tldt_tool_quant}}"
+                                                                        class="form-input placeholder:text-white-dark"
+                                                                        readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex-1">
+                                                                <label for="Tool Name"><b>Tool Price</b></label>
+                                                                <div class="relative text-white-dark">
+                                                                    <input id="customername" type="text"
+                                                                        placeholder="{{value.tool_cost}}"
+                                                                        class="form-input placeholder:text-white-dark"
+                                                                        readonly />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="tab18.toLowerCase() === 'reason'">
+                                                    <span class="badge badge-outline-warning">Quote details</span>
+                                                    <br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b> Quote id</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.quote_det.qtm_number}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="customerphone"><b>Quote Initial Cost</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customerphone" type="number"
+                                                                    placeholder="₹{{value.quote_det.qtm_cost}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="alternatenumber"><b>Quote last updated
+                                                                    on</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="alternatenumber" type="number"
+                                                                    placeholder="{{value.quote_det.qtm_updated_on}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <br><br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b>Rejected Reason by
+                                                                    customer</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <textarea
+                                                                    class="form-textarea mt-4 ng-untouched ng-pristine ng-valid placeholder:text-white-dark"
+                                                                    placeholder="{{value.quote_det.qtm_rejected_reason}}"
+                                                                    readonly></textarea>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <br><br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+
+
+                                                        <div class="flex-1">
+                                                            <label for="alternatenumber"><b>Initial Quote
+                                                                    Cost</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="alternatenumber" type="number"
+                                                                    placeholder="₹{{value.quote_det.qtm_cost}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b>Enter a new price for
+                                                                    tool</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="number"
+                                                                    class="form-input" [(ngModel)]="tool_price"
+                                                                    required />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </ng-template>
+                                <ng-template #modalFooter>
+                                    <button type="button" class="btn btn-outline-danger"
+                                        (click)="request_update(value.am_id,4,value.tldet_id)">Reject Request</button>
+                                    <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4 "
+                                        (click)="request_update(value.am_id,3,value.tldet_id)" *ngIf="tool_price">Send
+                                        Quoation</button>
+
+                                    <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4"
+                                        (click)="request_update(value.am_id,3,value.tldet_id)" *ngIf="!tool_price"
+                                        disabled>Send Quoation</button>
+                                </ng-template>
+                            </modal>
+                           
+                            <modal #details class="extra-large-modal">
+                                <ng-template #modalHeader>
+                                    <div>Request Details-Damaged Tool</div>
+                                </ng-template>
+                                <ng-template #modalBody>
+                                    <div class="panel">
+                                        <div class="mb-5">
+                                            <div
+                                                class="mt-3 mb-5 flex flex-wrap justify-center space-x-3 rtl:space-x-reverse">
+                                                <a href="javascript:;"
+                                                    class="flex h-16 w-16 flex-col items-center justify-center rounded-full bg-[#f1f2f3] !outline-none transition-all duration-300 hover:!bg-info hover:text-white hover:shadow-[0_5px_15px_0_rgba(0,0,0,0.30)] dark:bg-[#191e3a]"
+                                                    [ngClass]="{ '!bg-info text-white': tab18.toLowerCase() == 'home' }"
+                                                    (click)="tab18 = 'home'">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M15.5 7.5C15.5 9.433 13.933 11 12 11C10.067 11 8.5 9.433 8.5 7.5C8.5 5.567 10.067 4 12 4C13.933 4 15.5 5.567 15.5 7.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M19.5 7.5C19.5 8.88071 18.3807 10 17 10C15.6193 10 14.5 8.88071 14.5 7.5C14.5 6.11929 15.6193 5 17 5C18.3807 5 19.5 6.11929 19.5 7.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M4.5 7.5C4.5 8.88071 5.61929 10 7 10C8.38071 10 9.5 8.88071 9.5 7.5C9.5 6.11929 8.38071 5 7 5C5.61929 5 4.5 6.11929 4.5 7.5Z"
+                                                            fill="#1C274C" />
+                                                        <path
+                                                            d="M18 16.5C18 18.433 15.3137 20 12 20C8.68629 20 6 18.433 6 16.5C6 14.567 8.68629 13 12 13C15.3137 13 18 14.567 18 16.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M22 16.5C22 17.8807 20.2091 19 18 19C15.7909 19 14 17.8807 14 16.5C14 15.1193 15.7909 14 18 14C20.2091 14 22 15.1193 22 16.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M2 16.5C2 17.8807 3.79086 19 6 19C8.20914 19 10 17.8807 10 16.5C10 15.1193 8.20914 14 6 14C3.79086 14 2 15.1193 2 16.5Z"
+                                                            fill="#1C274C" />
+                                                    </svg>
+
+                                                </a>
+                                               
+                                            </div>
+                                            <div class="flex-1 text-sm">
+                                                <div *ngIf="tab18.toLowerCase() === 'home'">
+                                                    <span class="badge badge-outline-info">Customer Details</span>
+
+                                                    <br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b> Customer Name</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.cstm_name}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="customerphone"><b> Customer Phone</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customerphone" type="number"
+                                                                    placeholder="{{value.cstm_phone}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="alternatenumber"><b> Address</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="alternatenumber" type="number"
+                                                                    placeholder="{{value.tldt_tool_quant}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <br><br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b>Tool Quantity</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.tldt_tool_quant}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="customerphone"><b> Total Price</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customerphone" type="number"
+                                                                    placeholder="{{value.tldt_cost}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b>Rent Duration</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.tldt_tool_duration}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br><br><br><br>
+                                                    <div *ngIf="value.tracker_data">
+                                                        <b>Damaged Tool Images</b>
+                                                        <br><br>
+
+                                                        <div *ngFor="let image of value.tracker_data">
+                                                            <ng-container *ngIf="image.trt_url_type==0">
+                                                                <img src="{{baseurl+image.trt_url}}"
+                                                                style="width: 30%;    margin-left: 38%;max-height:fit-content;" >
+                                                            </ng-container>
+                                                            <ng-container *ngIf="image.trt_url_type==1">
+                                                                <audio controls>
+                                                                    <source src="{{baseurl+image.trt_url}}" type="audio/ogg">
+                                                                  </audio>
+                                                            </ng-container>
+                                                            
+                                                            <br><br>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                                <ng-template #modalFooter>
+                                    <button type="button" class="btn btn-outline-danger"
+                                        (click)="request_update(value.am_id,2,value.tldet_id)">Reject</button>
+                                    <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4"
+                                        (click)="request_update(value.am_id,1,value.tldet_id)">Approve</button>
+                                </ng-template>
+                            </modal>
+
+                            <modal #inspectsuccess class="extra-large-modal">
+                                <ng-template #modalHeader>
+                                    <div>Request Details-Damaged Tool Request</div>
+                                </ng-template>
+                                <ng-template #modalBody>
+                                    <div class="panel">
+                                        <div class="mb-5">
+                                            <div
+                                                class="mt-3 mb-5 flex flex-wrap justify-center space-x-3 rtl:space-x-reverse">
+                                                <a href="javascript:;"
+                                                    class="flex h-16 w-16 flex-col items-center justify-center rounded-full bg-[#f1f2f3] !outline-none transition-all duration-300 hover:!bg-info hover:text-white hover:shadow-[0_5px_15px_0_rgba(0,0,0,0.30)] dark:bg-[#191e3a]"
+                                                    [ngClass]="{ '!bg-info text-white': tab18.toLowerCase() == 'home' }"
+                                                    (click)="tab18 = 'home'">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M15.5 7.5C15.5 9.433 13.933 11 12 11C10.067 11 8.5 9.433 8.5 7.5C8.5 5.567 10.067 4 12 4C13.933 4 15.5 5.567 15.5 7.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M19.5 7.5C19.5 8.88071 18.3807 10 17 10C15.6193 10 14.5 8.88071 14.5 7.5C14.5 6.11929 15.6193 5 17 5C18.3807 5 19.5 6.11929 19.5 7.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M4.5 7.5C4.5 8.88071 5.61929 10 7 10C8.38071 10 9.5 8.88071 9.5 7.5C9.5 6.11929 8.38071 5 7 5C5.61929 5 4.5 6.11929 4.5 7.5Z"
+                                                            fill="#1C274C" />
+                                                        <path
+                                                            d="M18 16.5C18 18.433 15.3137 20 12 20C8.68629 20 6 18.433 6 16.5C6 14.567 8.68629 13 12 13C15.3137 13 18 14.567 18 16.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M22 16.5C22 17.8807 20.2091 19 18 19C15.7909 19 14 17.8807 14 16.5C14 15.1193 15.7909 14 18 14C20.2091 14 22 15.1193 22 16.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M2 16.5C2 17.8807 3.79086 19 6 19C8.20914 19 10 17.8807 10 16.5C10 15.1193 8.20914 14 6 14C3.79086 14 2 15.1193 2 16.5Z"
+                                                            fill="#1C274C" />
+                                                    </svg>
+
+                                                </a>
+                                                <a href="javascript:;"
+                                                    class="flex h-16 w-16 flex-col items-center justify-center rounded-full bg-[#f1f2f3] !outline-none transition-all duration-300 hover:!bg-info hover:text-white hover:shadow-[0_5px_15px_0_rgba(0,0,0,0.30)] dark:bg-[#191e3a]"
+                                                    [ngClass]="{ '!bg-info text-white': tab18.toLowerCase() == 'details' }"
+                                                    (click)="tab18 = 'details'">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M15.7281 3.88396C17.1624 2.44407 19.2604 2.41383 20.4219 3.57981C21.5856 4.74798 21.5542 6.85922 20.1189 8.30009L17.6951 10.7333C17.4028 11.0268 17.4037 11.5017 17.6971 11.794C17.9906 12.0863 18.4655 12.0854 18.7578 11.7919L21.1816 9.35869C23.0929 7.43998 23.3329 4.37665 21.4846 2.5212C19.6342 0.663551 16.5776 0.905664 14.6653 2.82536L9.81768 7.69182C7.90639 9.61053 7.66643 12.6739 9.5147 14.5293C9.80702 14.8228 10.2819 14.8237 10.5754 14.5314C10.8688 14.2391 10.8697 13.7642 10.5774 13.4707C9.41376 12.3026 9.4451 10.1913 10.8804 8.75042L15.7281 3.88396Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M14.4846 9.4707C14.1923 9.17724 13.7174 9.17632 13.4239 9.46864C13.1305 9.76097 13.1296 10.2358 13.4219 10.5293C14.5856 11.6975 14.5542 13.8087 13.1189 15.2496L8.27129 20.1161C6.83696 21.556 4.73889 21.5862 3.57742 20.4202C2.41376 19.2521 2.4451 17.1408 3.8804 15.6999L6.30424 13.2666C6.59657 12.9732 6.59565 12.4983 6.30219 12.206C6.00873 11.9137 5.53386 11.9146 5.24153 12.208L2.81769 14.6413C0.906387 16.56 0.666428 19.6234 2.5147 21.4788C4.36518 23.3365 7.42173 23.0944 9.334 21.1747L14.1816 16.3082C16.0929 14.3895 16.3329 11.3262 14.4846 9.4707Z"
+                                                            fill="#1C274C" />
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                            <div class="flex-1 text-sm">
+                                                <div *ngIf="tab18.toLowerCase() === 'home'">
+                                                    <span class="badge badge-outline-info">Customer Details</span>
+
+                                                    <br><br><br>
+                                                    <div class="flex-1">
+                                                        <div class="relative text-white-dark">
+                                                            <input id="customername" type="text"
+                                                                placeholder="Inspection has been completed"
+                                                                class="form-input placeholder:text-white-dark"
+                                                                readonly />
+                                                        </div>
+                                                    </div>
+                                                    <br><br>
+                                                    <div class="flex flex-row space-x-4">
+
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b> Customer Name</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.cstm_name}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="customerphone"><b> Customer Phone</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customerphone" type="number"
+                                                                    placeholder="{{value.cstm_phone}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="alternatenumber"><b> Address</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="alternatenumber" type="number"
+                                                                    placeholder="{{value.tldt_tool_quant}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <br><br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b>Tool Quantity</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.tldt_tool_quant}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="customerphone"><b> Total Price</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customerphone" type="number"
+                                                                    placeholder="{{value.tldt_cost}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b>Rent Duration</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.tldt_tool_duration}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br><br><br><br>
+
+                                                    <div class="flex flex-row space-x-4" *ngIf="value.tool_rent_quantity<=10">
+
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b>Tool Rent Stock</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.tool_rent_quantity}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                            <span *ngIf="value.tool_rent_quantity<10"><b style="color: red;font-style: italic;">*Low Rent Quantity</b></span>
+
+                                                        </div>
+                                                        <div class="flex-1" *ngIf="value.rpt_amount==0">
+                                                            <label for="customerphone"><b>Paid Amount</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customerphone" type="number"
+                                                                    placeholder="{{value.tldt_cost}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1" *ngIf="value.rpt_amount!=0">
+                                                            <label for="customerphone"><b>Due Amount</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customerphone" type="number"
+                                                                    placeholder="{{value.tldt_cost}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-row space-x-4" *ngIf="value.tool_rent_quantity<10">
+                                                            <label for="Tool Name"><b style="color: red;">No Rentable Stock</b></label>
+                                                       
+                                                    </div>
+                                                    <br><br><br><br>
+                                                    
+                                                </div>
+                                                <div *ngIf="tab18.toLowerCase()==='details'">
+                                                    <div *ngIf="value.tracker_data">
+                                                        <b>Damaged Tool Images</b>
+                                                        <br><br>
+                                                        <div *ngFor="let image of value.tracker_data">
+
+                                                            <img src="{{baseurl+image.trt_url}}"
+                                                                style="width: 30%;    margin-left: 38%;max-height:fit-content;" >
+                                                            <br><br>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                                <ng-template #modalFooter>
+                                    <ng-container *ngIf="(value.tool_rent_quantity)>10">
+                                        
+                                        <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4" 
+                                            (click)="update_amount(value.am_id,value.tldet_id,value.rpt_id,0)">Approve and Send Another Tool</button>
+                                    </ng-container>
+                                    <ng-container *ngIf="(value.tool_rent_quantity)<9">
+                                        
+                                        <button type="button" class="btn btn-outline-danger" *ngIf="value.rpt_amount!= 0  " 
+                                        (click)="update_amount(value.am_id,value.tldet_id,value.rpt_id,1)">Close Request</button>
+
+                                        <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4" *ngIf="value.rpt_amount== 0 "
+                                        (click)="update_amount(value.am_id,value.tldet_id,value.rpt_id,1)">Proceed For Refund</button>
+                                    </ng-container>
+                                </ng-template>
+                            </modal>
+
+                            <modal #damagedorder class="extra-large-modal">
+                                <ng-template #modalHeader>
+                                    <div>Request Details</div>
+                                </ng-template>
+                                <ng-template #modalBody>
+                                    <div class="panel">
+                                        <div class="mb-5">
+                                            <div
+                                                class="mt-3 mb-5 flex flex-wrap justify-center space-x-3 rtl:space-x-reverse">
+                                                <a href="javascript:;"
+                                                    class="flex h-16 w-16 flex-col items-center justify-center rounded-full bg-[#f1f2f3] !outline-none transition-all duration-300 hover:!bg-info hover:text-white hover:shadow-[0_5px_15px_0_rgba(0,0,0,0.30)] dark:bg-[#191e3a]"
+                                                    [ngClass]="{ '!bg-info text-white': tab18.toLowerCase() == 'home' }"
+                                                    (click)="tab18 = 'home'">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M15.5 7.5C15.5 9.433 13.933 11 12 11C10.067 11 8.5 9.433 8.5 7.5C8.5 5.567 10.067 4 12 4C13.933 4 15.5 5.567 15.5 7.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M19.5 7.5C19.5 8.88071 18.3807 10 17 10C15.6193 10 14.5 8.88071 14.5 7.5C14.5 6.11929 15.6193 5 17 5C18.3807 5 19.5 6.11929 19.5 7.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M4.5 7.5C4.5 8.88071 5.61929 10 7 10C8.38071 10 9.5 8.88071 9.5 7.5C9.5 6.11929 8.38071 5 7 5C5.61929 5 4.5 6.11929 4.5 7.5Z"
+                                                            fill="#1C274C" />
+                                                        <path
+                                                            d="M18 16.5C18 18.433 15.3137 20 12 20C8.68629 20 6 18.433 6 16.5C6 14.567 8.68629 13 12 13C15.3137 13 18 14.567 18 16.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M22 16.5C22 17.8807 20.2091 19 18 19C15.7909 19 14 17.8807 14 16.5C14 15.1193 15.7909 14 18 14C20.2091 14 22 15.1193 22 16.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M2 16.5C2 17.8807 3.79086 19 6 19C8.20914 19 10 17.8807 10 16.5C10 15.1193 8.20914 14 6 14C3.79086 14 2 15.1193 2 16.5Z"
+                                                            fill="#1C274C" />
+                                                    </svg>
+
+                                                </a>
+                                                <a href="javascript:;"
+                                                    class="flex h-16 w-16 flex-col items-center justify-center rounded-full bg-[#f1f2f3] !outline-none transition-all duration-300 hover:!bg-info hover:text-white hover:shadow-[0_5px_15px_0_rgba(0,0,0,0.30)] dark:bg-[#191e3a]"
+                                                    [ngClass]="{ '!bg-info text-white': tab18.toLowerCase() == 'details' }"
+                                                    (click)="tab18 = 'details'">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M15.7281 3.88396C17.1624 2.44407 19.2604 2.41383 20.4219 3.57981C21.5856 4.74798 21.5542 6.85922 20.1189 8.30009L17.6951 10.7333C17.4028 11.0268 17.4037 11.5017 17.6971 11.794C17.9906 12.0863 18.4655 12.0854 18.7578 11.7919L21.1816 9.35869C23.0929 7.43998 23.3329 4.37665 21.4846 2.5212C19.6342 0.663551 16.5776 0.905664 14.6653 2.82536L9.81768 7.69182C7.90639 9.61053 7.66643 12.6739 9.5147 14.5293C9.80702 14.8228 10.2819 14.8237 10.5754 14.5314C10.8688 14.2391 10.8697 13.7642 10.5774 13.4707C9.41376 12.3026 9.4451 10.1913 10.8804 8.75042L15.7281 3.88396Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M14.4846 9.4707C14.1923 9.17724 13.7174 9.17632 13.4239 9.46864C13.1305 9.76097 13.1296 10.2358 13.4219 10.5293C14.5856 11.6975 14.5542 13.8087 13.1189 15.2496L8.27129 20.1161C6.83696 21.556 4.73889 21.5862 3.57742 20.4202C2.41376 19.2521 2.4451 17.1408 3.8804 15.6999L6.30424 13.2666C6.59657 12.9732 6.59565 12.4983 6.30219 12.206C6.00873 11.9137 5.53386 11.9146 5.24153 12.208L2.81769 14.6413C0.906387 16.56 0.666428 19.6234 2.5147 21.4788C4.36518 23.3365 7.42173 23.0944 9.334 21.1747L14.1816 16.3082C16.0929 14.3895 16.3329 11.3262 14.4846 9.4707Z"
+                                                            fill="#1C274C" />
+                                                    </svg>
+                                                </a>
+                                                
+                                            </div>
+                                            <div class="flex-1 text-sm">
+                                                <div *ngIf="tab18.toLowerCase() === 'home'">
+                                                    <span class="badge badge-outline-info">Customer Details</span>
+
+                                                    <br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b> Customer Name</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.cstm_name}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="customerphone"><b> Customer Phone</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customerphone" type="number"
+                                                                    placeholder="{{value.cstm_phone}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="alternatenumber"><b> Address</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="alternatenumber" type="number"
+                                                                    placeholder="{{value.order_address}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <br><br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+                                                       
+                                                        <div class="flex-1">
+                                                            <label for="customerphone"><b> Total Price</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customerphone" type="number"
+                                                                    placeholder="{{value.order_total_cost}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b>Paid</b></label>
+                                                            <div class="relative text-white-dark" *ngIf="value.order_pay==0">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="Not Paid"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                            <div class="relative text-white-dark" *ngIf="value.order_pay==1">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="Paid"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br><br><br><br>
+
+                                                    <div class="flex flex-row space-x-4" *ngIf="value.tool_rent_quantity<=10">
+
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b>Tool Rent Stock</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.tool_rent_quantity}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                            <span *ngIf="value.tool_rent_quantity<10"><b style="color: red;font-style: italic;">*Low Rent Quantity</b></span>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex flex-row space-x-4" *ngIf="value.tool_rent_quantity>5">
+                                                            <label for="Tool Name"><b style="color: red;">No Rentable Stock</b></label>
+                                                       
+                                                    </div>
+                                                    <br><br><br><br>
+                                                    
+                                                </div>
+                                                <div *ngIf="tab18.toLowerCase()==='details'">
+                                                    <div *ngIf="value.tracker_data">
+                                                        <b>Damaged Tool Images</b>
+                                                        <br><br>
+                                                        <div *ngFor="let image of value.tracker_data">
+
+                                                            <img src="{{baseurl+image.trt_url}}"
+                                                                style="width: 30%;    margin-left: 38%;max-height:fit-content;" >
+                                                            <br><br>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                                <ng-template #modalFooter>
+                                    
+                                        <button type="button" class="btn btn-outline-danger" *ngIf="value.rpt_amount!=0&&value.tool_rent_quantity<=10" 
+                                        (click)="sale_rejected(value.am_id,value.order_id ,1)">Reject Request</button>
+
+
+                                        <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4" *ngIf="value.tool_rent_quantity>=5"
+                                        (click)="sale_rejected(value.am_id,value.order_id ,0)">Proceed Request</button>
+
+                                        
+                                </ng-template>
+                            </modal>
+
+                            <modal #premiumcust class="extra-large-modal">
+                                <ng-template #modalHeader>
+                                    <div>Request Details</div>
+                                </ng-template>
+                                <ng-template #modalBody>
+                                    <div class="panel">
+                                        <div class="mb-5">
+                                           
+                                            <div class="flex-1 text-sm">
+                                           
+                                                    <span class="badge badge-outline-info">Customer Details</span>
+
+                                                    <br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b> Customer Name</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.cstm_name}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="customerphone"><b> Customer Phone</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customerphone" type="number"
+                                                                    placeholder="{{value.cstm_phone}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="alternatenumber"><b> Customer Email</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="alternatenumber" type="number"
+                                                                    placeholder="{{value.cstm_email}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br><br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b>Product Name</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.pm_name}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="customerphone"><b> Product Serial ID</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customerphone" type="number"
+                                                                    placeholder="{{value.pm_sl_nm}}" 
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    disabled/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b>Product</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.pm_code}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br><br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b>Product Status</b></label>
+                                                            <div class="relative text-white-dark" *ngIf="value.pm_delete_flag==0">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="Product is Genuine as per the records"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                            <div class="relative text-white-dark" *ngIf="value.pm_delete_flag==1">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="Product is Not Genuine as per the records!!"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <br><br><br><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                                <ng-template #modalFooter>
+                                   
+                                    <ng-container>
+                                        
+                                        <button type="button" class="btn btn-outline-danger" 
+                                        (click)="reject_request(value.pm_id,value.cstm_id,value.am_id,value.cp_id )">Reject</button>
+
+                                        <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4" 
+                                        (click)="accept_request(value.pm_id,value.cstm_id,value.am_id,value.cp_id)">Approve</button>
+                                    </ng-container>
+                                </ng-template>
+                            </modal>
+                            
+                            <!-- <modal #inspectfail class="extra-large-modal">
+                                <ng-template #modalHeader>
+                                    <div>Request Details</div>
+                                </ng-template>
+                                <ng-template #modalBody>
+                                    <div class="panel">
+                                        <div class="mb-5">
+                                            <div
+                                                class="mt-3 mb-5 flex flex-wrap justify-center space-x-3 rtl:space-x-reverse">
+                                                <a href="javascript:;"
+                                                    class="flex h-16 w-16 flex-col items-center justify-center rounded-full bg-[#f1f2f3] !outline-none transition-all duration-300 hover:!bg-info hover:text-white hover:shadow-[0_5px_15px_0_rgba(0,0,0,0.30)] dark:bg-[#191e3a]"
+                                                    [ngClass]="{ '!bg-info text-white': tab18.toLowerCase() == 'home' }"
+                                                    (click)="tab18 = 'home'">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M15.5 7.5C15.5 9.433 13.933 11 12 11C10.067 11 8.5 9.433 8.5 7.5C8.5 5.567 10.067 4 12 4C13.933 4 15.5 5.567 15.5 7.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M19.5 7.5C19.5 8.88071 18.3807 10 17 10C15.6193 10 14.5 8.88071 14.5 7.5C14.5 6.11929 15.6193 5 17 5C18.3807 5 19.5 6.11929 19.5 7.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M4.5 7.5C4.5 8.88071 5.61929 10 7 10C8.38071 10 9.5 8.88071 9.5 7.5C9.5 6.11929 8.38071 5 7 5C5.61929 5 4.5 6.11929 4.5 7.5Z"
+                                                            fill="#1C274C" />
+                                                        <path
+                                                            d="M18 16.5C18 18.433 15.3137 20 12 20C8.68629 20 6 18.433 6 16.5C6 14.567 8.68629 13 12 13C15.3137 13 18 14.567 18 16.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M22 16.5C22 17.8807 20.2091 19 18 19C15.7909 19 14 17.8807 14 16.5C14 15.1193 15.7909 14 18 14C20.2091 14 22 15.1193 22 16.5Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M2 16.5C2 17.8807 3.79086 19 6 19C8.20914 19 10 17.8807 10 16.5C10 15.1193 8.20914 14 6 14C3.79086 14 2 15.1193 2 16.5Z"
+                                                            fill="#1C274C" />
+                                                    </svg>
+
+                                                </a>
+                                                <a href="javascript:;"
+                                                    class="flex h-16 w-16 flex-col items-center justify-center rounded-full bg-[#f1f2f3] !outline-none transition-all duration-300 hover:!bg-info hover:text-white hover:shadow-[0_5px_15px_0_rgba(0,0,0,0.30)] dark:bg-[#191e3a]"
+                                                    [ngClass]="{ '!bg-info text-white': tab18.toLowerCase() == 'Inspection_details' }"
+                                                    (click)="tab18 = 'Inspection_details'">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M15.7281 3.88396C17.1624 2.44407 19.2604 2.41383 20.4219 3.57981C21.5856 4.74798 21.5542 6.85922 20.1189 8.30009L17.6951 10.7333C17.4028 11.0268 17.4037 11.5017 17.6971 11.794C17.9906 12.0863 18.4655 12.0854 18.7578 11.7919L21.1816 9.35869C23.0929 7.43998 23.3329 4.37665 21.4846 2.5212C19.6342 0.663551 16.5776 0.905664 14.6653 2.82536L9.81768 7.69182C7.90639 9.61053 7.66643 12.6739 9.5147 14.5293C9.80702 14.8228 10.2819 14.8237 10.5754 14.5314C10.8688 14.2391 10.8697 13.7642 10.5774 13.4707C9.41376 12.3026 9.4451 10.1913 10.8804 8.75042L15.7281 3.88396Z"
+                                                            fill="#1C274C" />
+                                                        <path opacity="0.5"
+                                                            d="M14.4846 9.4707C14.1923 9.17724 13.7174 9.17632 13.4239 9.46864C13.1305 9.76097 13.1296 10.2358 13.4219 10.5293C14.5856 11.6975 14.5542 13.8087 13.1189 15.2496L8.27129 20.1161C6.83696 21.556 4.73889 21.5862 3.57742 20.4202C2.41376 19.2521 2.4451 17.1408 3.8804 15.6999L6.30424 13.2666C6.59657 12.9732 6.59565 12.4983 6.30219 12.206C6.00873 11.9137 5.53386 11.9146 5.24153 12.208L2.81769 14.6413C0.906387 16.56 0.666428 19.6234 2.5147 21.4788C4.36518 23.3365 7.42173 23.0944 9.334 21.1747L14.1816 16.3082C16.0929 14.3895 16.3329 11.3262 14.4846 9.4707Z"
+                                                            fill="#1C274C" />
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                            <div class="flex-1 text-sm">
+                                                <div *ngIf="tab18.toLowerCase() === 'home'">
+                                                    <span class="badge badge-outline-info">Customer Details</span>
+
+                                                    <br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b> Customer Name</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.cstm_name}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="customerphone"><b> Customer Phone</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customerphone" type="number"
+                                                                    placeholder="{{value.cstm_phone}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="alternatenumber"><b> Address</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="alternatenumber" type="number"
+                                                                    placeholder="{{value.tldt_tool_quant}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <br><br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b>Tool Quantity</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.tldt_tool_quant}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="customerphone"><b> Total Price</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customerphone" type="number"
+                                                                    placeholder="{{value.tldt_cost}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b>Rent Duration</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text"
+                                                                    placeholder="{{value.tldt_tool_duration}}"
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br><br><br><br>
+                                                    <div *ngIf="value.tracker_data">
+                                                        <b>Damaged Tool Images</b>
+                                                        <br><br>
+                                                        <div *ngFor="let image of value.tracker_data">
+
+                                                            <img src="{{baseurl+image.trt_url}}"
+                                                                style="width: 30%;    margin-left: 38%;max-height:fit-content;" >
+                                                            <br><br>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                                <ng-template #modalFooter>
+                                    <button type="button" class="btn btn-outline-danger"
+                                        (click)="request_update(value.am_id,2,value.tldet_id)">Reject</button>
+                                    <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4"
+                                        (click)="request_update(value.am_id,1,value.tldet_id)">Approve</button>
+                                </ng-template>
+                            </modal> -->
+
+
+                        </ng-template>
+                    </ng-datatable>
+                </div>
+            </div>
+            <div *ngIf="tab17.toLowerCase() === 'settings'">
+                <div class="mb-5 flex flex-col gap-5 md:flex-row md:items-center">
+                    <div class=" flex flex-col gap-5 md:flex-row md:items-center">
+                        <!-- <h5 class="text-lg font-semibold dark:text-white-light">Tool Request List </h5> -->
+                        <div class="ltr:ml-auto rtl:mr-auto">
+                            <input [(ngModel)]=" search" type="text" class="form-input w-auto" placeholder=" {{'Search...'|translate}}" />
+                        </div>
+                    </div>
+                    
+                  
+                </div>
+               
+                <div class="datatable" >
+                    <ng-datatable [rows]="filteredRows2" [columns]="service" skin="whitespace-nowrap bh-table-hover" [search]="search" [loading]="loading2"
+                        firstArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M13 19L7 12L13 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M16.9998 19L10.9998 12L16.9998 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                        lastArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M11 19L17 12L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M6.99976 19L12.9998 12L6.99976 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg> '
+                        previousArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M15 5L9 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                        nextArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'>
+                        <ng-template slot="Status" let-value="data">
+                            <span class="badge badge-outline-warning" *ngIf="value.am_status==0 "> {{'PENDING'|translate}}</span>
+                            <span class="badge badge-outline-success" *ngIf="value.am_status==1 "> {{'APPROVED'|translate}}</span>
+                            <span class="badge badge-outline-danger" *ngIf="value.am_status== 2"> {{'REJECTED'|translate}}</span>
+                        </ng-template>
+                        <ng-template slot="requested_by" let-value="data">
+                            <span  *ngIf="value.us_id"> {{value.us_firstname}}({{'USER'|translate}})</span>
+                            <span  *ngIf="value.cstm_id"> {{value.cstm_name}}({{'CUSTOMER'|translate}})</span>
+                        </ng-template>
+                        <ng-template slot="Action" let-value="data">
+                            <button type="button" ngxTippy data-tippy-content="Edit" (click)="sermhold.open()" *ngIf="value.am_type==4||value.am_type==6">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                        fill="#1C274C" />
+                                    <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                        fill="#1C274C" />
+                                    <path
+                                        d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                        fill="#1C274C" />
+                                    <path opacity="0.5"
+                                        d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                        fill="#1C274C" />
+                                </svg>
+                            </button>
+                            <button type="button" ngxTippy data-tippy-content="Edit" (click)="sitemhold.open()" *ngIf="value.am_type==5||value.am_type==7">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                        fill="#1C274C" />
+                                    <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                        fill="#1C274C" />
+                                    <path
+                                        d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                        fill="#1C274C" />
+                                    <path opacity="0.5"
+                                        d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                        fill="#1C274C" />
+                                </svg>
+                            </button>
+                            <modal #sermhold [closeOnOutsideClick]="false" class="extra-large-modal">
+                                <ng-template #modalHeader>
+                                    <div *ngIf="value.am_type==4">{{'Hold Workcard Request'|translate}}</div>
+                                    <div *ngIf="value.am_type==6">{{'Unhold Workcard Request'|translate}}</div>
+                                </ng-template>
+                                <ng-template #modalBody>
+                                    <div class="flex flex-row space-x-4">
+                                        <div class="flex-1">
+                                            <label for="tool_cost"><span style="color: green;">{{'Request ID'|translate}}</span>
+                                               </label>
+                                            <div class="relative text-white-dark">
+                                                <input id="tool_cost" type="text" [(ngModel)]="value.serm_number"
+                                                    [ngModelOptions]="{standalone: true}" class="form-input placeholder:text-white-dark"
+                                                    disabled />
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="flex flex-row space-x-4">
+                                        <div class="flex-1" >
+                                            <label for="tool_cost"><span style="color: red;">{{'Hold Reason'|translate}}:</span></label>
+                                                    <textarea class="form-textarea min-h-[130px]" [(ngModel)]="value.am_reason"  [ngModelOptions]="{standalone: true}"
+                                                    disabled></textarea>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                                <ng-template #modalFooter>
+                                    <button type="button" class="btn btn-outline-info"
+                                    (click)="workcard_module(value.serm_id)">{{'View WorkCard Details'|translate}}</button>
+                                    
+                                    <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4" *ngIf="value.am_type==4"
+                                        (click)="workcardhold(value.serm_id,value.am_id,value.am_reason)">{{'Hold Work Card'|translate}}</button>
+                                        <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4" *ngIf="value.am_type==6"
+                                        (click)="workcard_unhold(value.serm_id,value.am_id)">{{'Unhold Work Card'|translate}}</button>
+                                </ng-template>
+                            </modal>
+
+
+                            <modal #sitemhold [closeOnOutsideClick]="false" class="extra-large-modal">
+                                <ng-template #modalHeader>
+                                    <div *ngIf="value.am_type==5">{{'Hold Job Request'|translate}}</div>
+                                    <div *ngIf="value.am_type==7">{{'Unhold Job Request'|translate}}</div>
+                                </ng-template>
+                                <ng-template #modalBody>
+                                    <div class="flex flex-row space-x-4">
+                                        <div class="flex-1">
+                                            <label for="tool_cost"><span style="color: green;">{{'Request ID'|translate}}</span>
+                                               </label>
+                                            <div class="relative text-white-dark">
+                                                <input id="tool_cost" type="text" [(ngModel)]="value.serm_number"
+                                                    [ngModelOptions]="{standalone: true}" class="form-input placeholder:text-white-dark"
+                                                    disabled />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-row space-x-4">
+                                        <div class="flex-1">
+                                            <label for="tool_cost"><span style="color: green;">{{'Service Name'|translate}}</span>
+                                               </label>
+                                            <div class="relative text-white-dark">
+                                                <input id="tool_cost" type="text" [(ngModel)]="value.servpack_name"
+                                                    [ngModelOptions]="{standalone: true}" class="form-input placeholder:text-white-dark"
+                                                    disabled />
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="flex flex-row space-x-4">
+                                        <div class="flex-1" >
+                                            <label for="tool_cost"><span style="color: red;">{{'Hold Reason'|translate}}:</span></label>
+                                                    <textarea class="form-textarea min-h-[130px]" [(ngModel)]="value.am_reason"  [ngModelOptions]="{standalone: true}"
+                                                    disabled></textarea>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                                <ng-template #modalFooter>
+                                    <button type="button" class="btn btn-outline-info"
+                                    (click)="workcard_module(value.serm_id)">{{'View WorkCard Details'|translate}}</button>
+                                    
+                                    <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4" *ngIf="value.am_type==5"
+                                        (click)="jobhold(value.sitem_id,value.serm_id,value.am_id,value.am_reason)">Hold job</button>
+                                        <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4" *ngIf="value.am_type==7"
+                                        (click)="job_unhold(value.serm_id,value.am_id,value.sitem_id)">Unhold Job</button>
+                                </ng-template>
+                            </modal>
+                        
+                        </ng-template>
+                    </ng-datatable>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

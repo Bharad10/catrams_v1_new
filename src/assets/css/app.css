@@ -1,0 +1,6 @@
+@import 'swiper/swiper-bundle.min.css';
+@import 'tailwind.css';
+@import 'lightbox.css';
+@import 'multiselect.css';
+@import 'tippy.js/dist/tippy.css';
+@import '@ng-select/ng-select/themes/default.theme.css';

@@ -1,0 +1,97 @@
+.label-class{
+    font-size: smaller;
+    color: #8086a2;
+}
+.span-class{
+    color: red;
+    font-size: medium;
+}
+
+.pmcst{
+    font-weight: 700;
+    background: -webkit-linear-gradient(#160f6b, #4361ee );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: system-ui;
+    font-size: large;
+}
+  
+.curs{
+    cursor: pointer;
+}
+
+
+.loader {
+    margin-left: 45%;
+    margin-top: 25%;
+    width: 4px;
+    color: #04b7f9;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    box-shadow: 
+      19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px,
+      19px 0     0 5px, 38px 0     0 5px, 57px 0     0 5px,
+      19px 19px  0 0px, 38px 19px  0 0px, 57px 19px  0 0px;
+    transform: translateX(-38px);
+    animation: l26 2s infinite linear;
+  }
+  @keyframes l26 {
+    12.5% {box-shadow: 
+      19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 5px,
+      19px 0     0 5px, 38px 0     0 0px, 57px 0     0 5px,
+      19px 19px  0 0px, 38px 19px  0 0px, 57px 19px  0 0px}
+    25%   {box-shadow: 
+      19px -19px 0 5px, 38px -19px 0 0px, 57px -19px 0 5px,
+      19px 0     0 0px, 38px 0     0 0px, 57px 0     0 0px,
+      19px 19px  0 0px, 38px 19px  0 5px, 57px 19px  0 0px}
+    50%   {box-shadow: 
+      19px -19px 0 5px, 38px -19px 0 5px, 57px -19px 0 0px,
+      19px 0     0 0px, 38px 0     0 0px, 57px 0     0 0px,
+      19px 19px  0 0px, 38px 19px  0 0px, 57px 19px  0 5px}
+    62.5% {box-shadow: 
+      19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px,
+      19px 0     0 5px, 38px 0     0 0px, 57px 0     0 0px,
+      19px 19px  0 0px, 38px 19px  0 5px, 57px 19px  0 5px}
+    75%   {box-shadow: 
+      19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px,
+      19px 0     0 0px, 38px 0     0 0px, 57px 0     0 5px,
+      19px 19px  0 0px, 38px 19px  0 0px, 57px 19px  0 5px}
+    87.5% {box-shadow: 
+      19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px,
+      19px 0     0 0px, 38px 0     0 5px, 57px 0     0 0px,
+      19px 19px  0 5px, 38px 19px  0 0px, 57px 19px  0 0px}
+  }
+
+
+  /* HTML: <div class="loader"></div> */
+.veh_loader {
+    margin-left: 45%;
+    margin-top: 25%;
+    width: 50px;
+    aspect-ratio: 1;
+    --_c:no-repeat radial-gradient(farthest-side,#04b7f9 92%,#0000);
+    background: 
+      var(--_c) top,
+      var(--_c) left,
+      var(--_c) right,
+      var(--_c) bottom;
+    background-size: 12px 12px;
+    animation: l7 1s infinite;
+  }
+  @keyframes l7 {to{transform: rotate(.5turn)}}
+
+  /* ::ng-deep .custom-multiselect.ng-select .ng-select-container {
+    min-height: 35px;
+}
+
+::ng-deep .custom-multiselect.ng-select.ng-select-single .ng-select-container {
+    height:35px;
+}
+
+::ng-deep  .bh-datatable .bh-table-responsive table.compact-table tbody tr td, .bh-datatable .bh-table-responsive table.bh-table-compact thead tr th{
+    padding: .3rem .75rem !important; 
+}
+
+::ng-deep .ng-select .ng-select-container .ng-value-container{
+    padding-left: 1rem !important;
+} */

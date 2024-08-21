@@ -1,0 +1,203 @@
+<div class="mb-5">
+    <ol class="flex font-semibold text-primary dark:text-white-dark">
+        <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+            <a href="javascript:;" (click)="adminsettings()"
+                class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+                Admin Settings</a>
+        </li>
+      <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+        <a href="javascript:;" (click)="toollist()"
+          class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+          Tool List</a></li>
+      <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
+        <a
+          class="relative flex h-full items-center bg-primary p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-primary ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-6 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180">
+          Tool Create</a></li>
+
+    </ol>
+  </div>
+
+<div>
+    
+   
+    <div class="flex flex-col gap-2.5 xl:flex-row">
+        <div class="panel flex flex-row w-full ltr:xl:mr-6 rtl:xl:ml-6">
+            <form [formGroup]="ToolForm" class="flex-1 space-y-5 dark:text-white" (ngSubmit)="toolupdate()">
+                <div class="flex flex-row space-x-4">
+                    <div class="flex-1">
+                        <label for="Tool Name">Tool Name</label>
+                        <div class="relative text-white-dark">
+                            <input id="toolname" type="text" placeholder="Enter Tool Name"
+                                class="form-input placeholder:text-white-dark" formControlName="toolname" required />
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <label for="tool_total_quantity">Total Stock</label>
+                        <div class="relative text-white-dark">
+                            <input id="tool_total_quantity" type="number" placeholder="Enter Available Quantity"
+                                class="form-input placeholder:text-white-dark" formControlName="tool_total_quantity"
+                                 required (change)="stock_div()"/>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <label for="Price">Enter Tool Sale Price </label>
+                        <div class="relative text-white-dark">
+                            <input id="tool_cost" type="number" placeholder="Enter Tool Price"
+                                class="form-input placeholder:text-white-dark" formControlName="tool_cost"
+                                (change)="rentprice_cal()" min="0" required />
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="flex flex-row space-x-4">
+
+                    <div class="flex-1">
+                        <label for="tooldescription">Tool Description</label>
+                        <div class="relative text-white-dark">
+                            <textarea id="tooldescription" class="form-textarea mt-4" rows="8"
+                                placeholder="Enter Tool Description" name="tooldescription"
+                                formControlName="tooldescription"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <hr style="color: black;font-weight: 600;">
+                <br>
+
+                <br>
+                <hr style="color: black;font-weight: 600;">
+                <br>
+                <div class="flex flex-row space-x-4">
+                    <div class="flex-1">
+                        <br>
+                        <label class="inline-flex">
+                            <input id="renttool_id" type="checkbox" class="form-checkbox text-success"
+                                [checked]="renttool_id" name="tool_rent_id"  />
+                            <span>Include in Rent Tool Category</span>
+                        </label>
+                    </div>
+
+                    <div class="flex-1" *ngIf="renttool_id=== true">
+                        <br>
+
+                        <label for="rentstock">Rent Stock</label>
+                        <div class="relative text-white-dark">
+                            <input id="rentstock" type="number" placeholder="Enter Rent Stock"
+                                class="form-input placeholder:text-white-dark" formControlName="tool_rent_quantity" required
+                                min="0" (change)="stock_cal()" />
+                            <br><br>
+                            <span>
+                                <p style="font-style:italic bold;">Available Saleble
+                                    Stock:<span style="color: red;">{{this.s_stock}}</span></p>
+                            </span>
+                            <br>
+                            <span>
+                                <p style="font-style:italic bold;">Available Rent
+                                    Stock:<span style="color: red;">{{this.ToolForm.value.tool_rent_quantity}}</span></p>
+                            </span>
+                        </div>
+                        <br><br>
+                        <label for="rentprice">Rent Price</label>
+                        <div class="relative text-white-dark">
+                            <input id="rentprice" type="number" placeholder="Enter Rent Price per day"
+                                class="form-input placeholder:text-white-dark" formControlName="tool_rent_cost" required
+                                min="0" />
+                            <br><br>
+                            <span>
+                                <p style="font-style:italic bold;">Tool Sale Price:₹<span style="color: red;">{{this.ToolForm.value.tool_cost}}</span></p>
+                            </span>
+                        </div>
+
+                        <br><br>
+                        <label for="rentdelay">Tool Delay Due</label>
+                        <div class="relative text-white-dark">
+                            <input id="rentdelay" type="number" placeholder="Enter Percentage for delayed return "
+                                class="form-input placeholder:text-white-dark" formControlName="tool_delay_percentage" required
+                                min="0" (change)="delay_cal()"/>
+                            <br><br>
+                            <span>
+                                <p style="font-style:italic bold;">Due Amount Per Day:₹<span style="color: red;">{{delay_price}}</span></p>
+                            </span>
+                        </div>
+
+                        <br>
+
+
+                        <label class="inline-flex">
+                            <input id="advanceflag" type="checkbox" class="form-checkbox text-success"
+                                [checked]="advanceflag" name="advanceflag" />
+                            <span>Need Advance Payment</span>
+                        </label>
+
+                        <br>
+                        <div class="flex-1">
+                            <div *ngIf="advanceflag=== true">
+                                <label for="advancePayment">Advance Payment Amount:<span style="color: red;">₹{{adv_price}}</span></label>
+                                <input type="number" id="advancePayment" class="form-input placeholder:text-white-dark"
+                                    name="advancePayment" placeholder="Enter Percentage %"
+                                    formControlName="advancePayment" [ngModel]="ToolForm.value.advancePayment"
+                                    (change)="advpercent_cal()" style=" width: 60%;" min="0">
+                                <span>
+                                    <p style="font-style:italic;color: red;">Enter Maximum Percentage with respect to Price</p>
+                                </span>
+                                <span>Advance Price Per Day:₹<span style="color: red;" >{{adv_price}}</span></span>
+                            </div>
+                        </div>
+                        <br>
+                        <label class="inline-flex">
+                            <input id="depositflag" type="checkbox" class="form-checkbox text-success"
+                                [checked]="depositflag" name="depositflag" />
+                            <span>Need Deposit</span>
+                        </label>
+                        <br>
+                        <div class="flex-1">
+                            <div *ngIf="depositflag === true">
+                                <label for="depositflag"> Deposit Amount:<span style="color: red;">₹{{dep_price}}</span></label>
+                                <input type="number" id="depositamount" class="form-input placeholder:text-white-dark"
+                                    name="depositamount" placeholder="Enter Percentage %"
+                                    formControlName="tool_deposit_price" [(ngModel)]="ToolForm.value.tool_deposit_price"
+                                    (change)="depost_cal()" style=" width: 60%;" min="0">
+                                <span>
+                                    <p style="font-style:italic;color: red;">Enter Maximum Percentage with respect to Price</p>
+                                </span>
+                                <span>Deposit Price Per Day:₹<span style="color: red;">{{dep_price}}</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                <div class="flex flex-row space-x-4">
+                    <br><br>
+                    <div class="flex-2">
+                        <div class="col-md-12 image-upload" align="center" style="height: 150px">
+                            <label for="file-input" class="label col-form-label">Package Image *</label><br />
+                            <img [src]="imageurl" class="user-img" accept="image/*" alt="" width="120px"
+                                height="120px" />
+                            <input id="file-input" #file type="file" (change)="onFileChanged($event)" />
+                        </div>
+                        <div align="center" style="margin-top: 2%">
+                            <button type="button" class="btn btn-info gap-2" (click)="file.click()">
+                                CHOOSE
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-1">
+                    <div class="flex justify-end">
+                        <button type="button" class="btn btn-dark gap-2" style="margin-right: 1%;">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-success gap-2">
+                            Update
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

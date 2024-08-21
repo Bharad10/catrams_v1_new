@@ -1,0 +1,9 @@
+/* @import 'swiper/swiper-bundle.min.css';
+@import 'swipe/css'; */
+
+
+.ng-autocomplete{
+    position: absolute !important;
+    width:25%;
+}
+

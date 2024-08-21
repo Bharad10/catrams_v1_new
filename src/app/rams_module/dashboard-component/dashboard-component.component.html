@@ -1,0 +1,205 @@
+<div *ngIf="user_list" id="main-body">
+        <div class="mb-6 grid grid-cols-1 gap-6 text-white  sm:grid-cols-2 gap-6  xl:grid-cols-5 gap-6" style="margin-left: -40px;margin-top: -10px;">
+          
+            <div class="panel bg-gradient-to-r from-cyan-500 to-cyan-400 fon_style" style="width: 210px;height: 100px;background: linear-gradient(323deg, #1778dc1a  , #ffffff );" >
+                <div class="flex justify-between">
+                    <div class="text-md font-semibold ltr:mr-1 rtl:ml-1" style="color: #1778dc;"> {{'Total Requests'|translate}}</div>
+                    <div hlMenu class="dropdown">
+                        <button type="button" hlMenuButton>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="24" width="24">
+                                <circle stroke-width="1.5" stroke="#1778dc" r="2" cy="12" cx="5"></circle>
+                                <circle stroke-width="1.5" stroke="#1778dc" r="2" cy="12" cx="12" opacity="0.5"></circle>
+                                <circle stroke-width="1.5" stroke="#1778dc" r="2" cy="12" cx="19"></circle>
+                                </svg>
+                                
+                        </button>
+                        <ul *hlMenuItems @toggleAnimation class="text-black ltr:right-0 rtl:left-0 dark:text-white-dark">
+                            <li>
+                                <a routerLink="/service-request-list" *hlMenuItem="let menuItem">{{'View service'|translate}}</a>
+                            </li>
+                            <li>
+                                <a routerLink="/tool-request-list" *hlMenuItem="let menuItem">{{'View tool'|translate}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-5 flex items-center">
+                    <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3" style="font-size: 2.87rem;line-height: 2.87rem;color: #1778dc;margin-top: -10%;" >{{total_tickets}}</div>
+                    <div class="badge bg-white/30" style="color: #1778dc;"> {{'Tool'|translate}} {{tool_total}}</div>
+                    <div class="badge bg-white/30" style="color: #1778dc;"> {{'Service'|translate}} {{service_total}}</div>
+
+                </div>  
+            </div>
+
+            <div class="panel bg-gradient-to-r from-violet-500 to-violet-400 fon_style" style="width: 210px;height: 100px;background: linear-gradient(323deg, #f941431c  , #ffffff );">
+                <div class="flex justify-between">
+                    <div class="text-md font-semibold ltr:mr-1 rtl:ml-1" style="color: #f94143;"> {{'Pending Requests'|translate}}</div>
+                    <div hlMenu class="dropdown">
+                        <button type="button" hlMenuButton>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="24" width="24">
+                                <circle stroke-width="1.5" stroke="#f94143" r="2" cy="12" cx="5"></circle>
+                                <circle stroke-width="1.5" stroke="#f94143" r="2" cy="12" cx="12" opacity="0.5"></circle>
+                                <circle stroke-width="1.5" stroke="#f94143" r="2" cy="12" cx="19"></circle>
+                                </svg>
+                        </button>
+                        <ul *hlMenuItems @toggleAnimation class="text-black ltr:right-0 rtl:left-0 dark:text-white-dark">
+                            <li>
+                                <a routerLink="/service-request-list" *hlMenuItem="let menuItem">{{'View service'|translate}}</a>
+                            </li>
+                            <li>
+                                <a routerLink="/tool-request-list" *hlMenuItem="let menuItem">{{'View tool'|translate}} </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-5 flex items-center">
+                    <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3" style="font-size: 2.87rem;line-height: 2.87rem;color: #f94143;margin-top: -10%;">{{total_open}}</div>
+                    <div class="badge bg-white/30" style="color: #f94143;"> {{'Tool'|translate}} {{tool_open}}</div>
+                    <div class="badge bg-white/30" style="color: #f94143;"> {{'Service'|translate}} {{service_open}}</div>
+
+                </div>
+                
+            </div>
+
+            
+            <div class="panel bg-gradient-to-r from-blue-500 to-blue-400 fon_style" style="width: 210px;height: 100px;background: linear-gradient(323deg,  #26ad601a  , #ffffff );">
+                <div class="flex justify-between">
+                    <div class="text-md font-semibold ltr:mr-1 rtl:ml-1" style="color: #26ad60;"> {{'Closed Requests'|translate}}</div>
+                    <div hlMenu class="dropdown">
+                        <button type="button" hlMenuButton>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="24" width="24">
+                                <circle stroke-width="1.5" stroke="#26ad60" r="2" cy="12" cx="5"></circle>
+                                <circle stroke-width="1.5" stroke="#26ad60" r="2" cy="12" cx="12" opacity="0.5"></circle>
+                                <circle stroke-width="1.5" stroke="#26ad60" r="2" cy="12" cx="19"></circle>
+                                </svg>
+                        </button>
+                        <ul *hlMenuItems @toggleAnimation class="text-black ltr:right-0 rtl:left-0 dark:text-white-dark">
+                            <li>
+                                <a routerLink="/service-request-history" *hlMenuItem="let menuItem">{{'View service'|translate}}</a>
+                            </li>
+                            <li>
+                                <a routerLink="/tool-request-history" *hlMenuItem="let menuItem">{{'View tool'|translate}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-5 flex items-center">
+                    <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3" style="font-size: 2.875rem;line-height: 1.25rem;color: #26ad60;margin-top: -10%;">{{total_closed}}</div>
+                    <div class="badge bg-white/30" style="color: #26ad60;">{{'Tool'|translate}} {{tool_closed}}</div>
+                    <div class="badge bg-white/30" style="color: #26ad60;">{{'Service'|translate}} {{service_closed}}</div>
+                </div>
+                
+            </div>
+
+            <div class="panel bg-gradient-to-r from-blue-500 to-blue-400 fon_style" style="width: 210px;height: 100px;background: linear-gradient(323deg,  #ffe89a    , #ffffff );">
+                <div class="flex justify-between">
+                    <div class="text-md font-semibold ltr:mr-1 rtl:ml-1" style="color: #b7a017bd;"> {{'Requests On Hold'|translate}}</div>
+                    <div hlMenu class="dropdown">
+                        <button type="button" hlMenuButton>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="24" width="24">
+                                <circle stroke-width="1.5" stroke="#b7a017bd" r="2" cy="12" cx="5"></circle>
+                                <circle stroke-width="1.5" stroke="#b7a017bd" r="2" cy="12" cx="12" opacity="0.5"></circle>
+                                <circle stroke-width="1.5" stroke="#b7a017bd" r="2" cy="12" cx="19"></circle>
+                                </svg>
+                        </button>
+                        <ul *hlMenuItems @toggleAnimation class="text-black ltr:right-0 rtl:left-0 dark:text-white-dark">
+                            <li>
+                                <a routerLink="/work-card-list" *hlMenuItem="let menuItem"> {{'View service'|translate}}</a>
+                            </li>
+                            <li>
+                                <a routerLink="/tool-request-list" *hlMenuItem="let menuItem"> {{'View tool'|translate}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-5 flex items-center">
+                    <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3" style="font-size: 2.875rem;line-height: 1.25rem;color: #b7a017bd;margin-top: -10%;">{{holded_tickets}}</div>
+                    <div class="badge bg-white/30" style="color: #b7a017bd;">{{'Tool'|translate}} {{tool_hold}}</div>
+                    <div class="badge bg-white/30" style="color: #b7a017bd;">{{'Service'|translate}} {{serm_hold}}</div>
+                </div>
+            </div>
+
+            <a routerLink="/admin-payment">
+            <div class="panel bg-gradient-to-r from-fuchsia-500 to-fuchsia-400 fon_style" style="width: 210px;height: 100px;background: linear-gradient(323deg,#d0a2f730  , #ffffff );">
+                <div class="flex justify-between">
+                    <div class="text-md font-semibold ltr:mr-1 rtl:ml-1" style="color: #D0A2F7;"> {{'Payment Due Requests'|translate}}</div>
+
+                </div>
+                <div class="mt-5 flex items-center">
+                    <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3" style="font-size: 2.875rem;line-height: 1.25rem;color: #D0A2F7;margin-top: -10%;">{{total_pay_pending}}</div>
+                    <div class="badge bg-white/30" style="color: #D0A2F7;">{{'Tool'|translate}} {{tool_pay_pend}}</div>
+                    <div class="badge bg-white/30" style="color: #D0A2F7;">{{'Service'|translate}} {{serv_pay_pend}}</div>
+                </div>
+                
+            </div>
+        </a>
+        </div>
+         
+    
+    <div class="mb-6 grid gap-6 xl:grid-cols-4" style="margin-left: -40px;margin-top: -10px;">
+        <div class="panel h-full xl:col-span-2" style="height: 300px;">
+                <app-dashboard-due-tickets [rows]="rows"></app-dashboard-due-tickets>
+        </div>
+        
+
+        
+            <div class="panel h-full xl:col-span-2 " style="height:300px;" >
+                <div class="mb-5 flex items-center">
+                    <h6 class=" font-semibold dark:text-white-light">  {{'Total Statistics'|translate}}</h6>
+                </div>
+                <div class="overflow-hidden" *ngIf="salesByCategory">
+                    <apx-chart
+                        [series]="salesByCategory.series"
+                        [chart]="salesByCategory.chart"
+                        [dataLabels]="salesByCategory.dataLabels"
+                        [stroke]="salesByCategory.stroke"
+                        [colors]="salesByCategory.colors"
+                        [fill]="salesByCategory.fill"
+                        [plotOptions]="salesByCategory.plotOptions"
+                        [labels]="salesByCategory.labels"
+                        [states]="salesByCategory.states"
+                        class="rounded-lg bg-white dark:bg-black"
+                    >
+                        
+                        <div class="grid min-h-[460px] place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
+                            <span class="inline-flex h-5 w-5 animate-spin rounded-full border-2 border-black !border-l-transparent dark:border-white"></span>
+                        </div>
+                    </apx-chart>
+                </div>
+            
+            </div>  
+    </div>
+
+    
+    <div class="mb-6 grid gap-6 xl:grid-cols-3" style="margin-left: -40px;margin-top: -15px;">
+        <div class="panel h-full xl:col-span-2" style="height: 250px ;">
+            <apx-chart [series]="followers.series" [chart]="followers.chart" [stroke]="followers.stroke"
+            [colors]="followers.colors" [legend]="followers.legend" [grid]="followers.grid"
+            [yaxis]="followers.yaxis" [tooltip]="followers.tooltip" class="rounded-lg bg-white dark:bg-black">
+            <div
+                class="grid min-h-[176px] place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
+                <span
+                    class="inline-flex h-5 w-5 animate-spin rounded-full border-2 border-black !border-l-transparent dark:border-white"></span>
+            </div>
+        </apx-chart>
+        </div>
+
+        <div class="panel h-full" style="height:  auto;">
+            <app-dashboard-new-tickets [open_tickets]="open_tickets"></app-dashboard-new-tickets>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!user_list" class="loader">
+</div>
+
+<ng-container>
+<modal #update_message [closeOnOutsideClick]="false">
+    <div class="panel">
+        <div >
+            <img src="../../../assets/images/TARF_Logo_white.png">
+
+        </div>
+    </div>
+</modal>
+</ng-container>

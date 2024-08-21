@@ -1,0 +1,138 @@
+<div *ngIf="loading==0">
+    <h5 class="text-xl font-semibold dark:text-white-light">Coupon Update</h5>
+    <div class="flex flex-col gap-2.5 xl:flex-row">
+        <div class="panel flex flex-row w-full ltr:xl:mr-6 rtl:xl:ml-6">
+            <form [formGroup]="CouponForm" class="flex-1 space-y-5 dark:text-white" (ngSubmit)="update_coup()">
+                <div class="flex flex-row space-x-4">
+                    <ng-container *ngIf="selectedCouponType === 'cstm_specific'">
+                        <div class="flex-1">
+                            <label for="ctnSelect1">Coupon Type</label>
+                            
+                            <div class="relative text-white-dark">
+                                <input id="coupon_code" type="text" placeholder="Customer Specific"   
+                                    class="form-input placeholder:text-white-dark" name="coupon_code" disabled/>
+                            </div> 
+                            
+                        </div>
+    
+                        
+    
+                        <div class="CustomerSpecific flex-1" >
+                            <label for="availableQuantity">Customer</label>
+                            
+                            <ng-container *ngIf="custed_list.length>0">
+                                <span style=" border-radius: 0.375rem;border-width: 1px;padding: 1%;border-color: #04b5f8;">
+        
+                                    <b *ngFor="let toolname of custed_list,let i=index">
+        
+                                        <span class="badge badge-outline-primary rounded-full">
+                                            <a style="cursor:pointer">{{toolname.cstm_name}}</a>
+                                        </span>&nbsp;
+                                    </b>
+                                </span>
+                            </ng-container>   
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="selectedCouponType !== 'cstm_specific'">
+                        <div class="relative text-white-dark">
+                            <input id="coupon_code" type="text" placeholder="Festival Specific"   
+                                class="form-input placeholder:text-white-dark" name="coupon_code" disabled/>
+                        </div>
+                    </ng-container>
+                    <div class="flex-1" style="    margin-left: 10%;">
+                        <label for="coupon_code">Coupon Code</label>
+                        <div class="relative text-white-dark">
+                            <input id="coupon_code" type="text" placeholder="Coupon Code" formControlName="coupon_code"
+                                class="form-input placeholder:text-white-dark" name="coupon_code"/>
+                        </div>
+                    </div>
+                    <div class="flex-1" style="    margin-left: 10%;">
+                        <label for="coupon_description">Coupon Description</label>
+                        <div class="relative text-white-dark">
+                            <input id="coupon_description" type="text" placeholder="Coupon Description" formControlName="coupon_description"
+                                class="form-input placeholder:text-white-dark" name="coupon_description"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-row space-x-4">
+                    <div class="flex-1">
+                        <label for="coupon_valid_from">Coupon Valid From</label>
+                        <div class="relative text-white-dark">
+                            <input id="coupon_valid_from" type="date" placeholder="Enter date" formControlName="coupon_valid_from"
+                                class="form-input placeholder:text-white-dark" name="coupon_valid_from" />
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <label for="coupon_valid_to">Coupon Valid To</label>
+                        <div class="relative text-white-dark">
+                            <input id="coupon_valid_to" type="date" placeholder="Enter date" formControlName="coupon_valid_to"
+                                class="form-input placeholder:text-white-dark" name="coupon_valid_to" />
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <label for="coupon_total_usage">No of Usage</label>
+                        <div class="relative text-white-dark">
+                            <input id="coupon_total_usage" type="number" placeholder="Enter No: of usage" formControlName="coupon_total_usage"
+                                class="form-input placeholder:text-white-dark" name="coupon_total_usage"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-row space-x-4">
+                    <div class="flex-1">
+                        <label for="coupon_max_discount">Maximum discount amount</label>
+                        <div class="relative text-white-dark">
+                            <input id="coupon_max_discount" type="number" placeholder="Enter Maximum discount amount" formControlName="coupon_max_discount"
+                                class="form-input placeholder:text-white-dark" name="coupon_max_discount"/>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <label for="coupon_min_amount">Minimum Service Amount</label>
+                        <div class="relative text-white-dark">
+                            <input id="coupon_min_amount" type="number" placeholder="Enter no: of Services" formControlName="coupon_min_amount"
+                                class="form-input placeholder:text-white-dark" name="coupon_min_amount"/>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <label for="coupon_discount_type">Discount Type</label>
+                        <select id="coupon_discount_type" class="form-select text-white-dark" required  formControlName="coupon_discount_type">
+                            <option value="0">Select Discount Type</option>
+                            <option value="1">In Cash</option>
+                            <option value="2">In Percentage</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex flex-row space-x-4">
+                    <div class="flex-1">
+                        <label for="coupon_discount">Discount</label>
+                        <div class="relative text-white-dark">
+                            <input id="coupon_discount" type="number" placeholder="Enter Discount Value" formControlName="coupon_discount"
+                                class="form-input placeholder:text-white-dark" name="coupon_discount" />
+                        </div>
+                    </div>
+                    <div class="flex-1">
+
+                    </div>
+                    <div class="flex-1">
+
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-1">
+                    <div class="flex justify-end">
+                        <button type="button" class="btn btn-dark gap-2" style="margin-right: 1%;">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-success gap-2"  [disabled]="!CouponForm.valid">
+                            Update
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="panel" *ngIf="loading==1">
+    <span class="animate-spin border-8 border-[#f1f2f3] border-l-primary rounded-full w-14 h-14 inline-block align-middle m-auto mb-10" style="margin-left: 46%;"></span>
+</div>
+<div class="panel" *ngIf="nodetails==1">
+    No active banners found
+</div>

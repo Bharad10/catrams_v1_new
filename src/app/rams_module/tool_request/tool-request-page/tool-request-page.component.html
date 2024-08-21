@@ -1,0 +1,501 @@
+
+<div class="mb-5">
+    <ol class="flex font-semibold text-primary dark:text-white-dark">
+      <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+        <a href="javascript:;" (click)="toolrequestlist()"
+          class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+          Tool Request</a></li>
+          
+      <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
+        <a
+          class="relative flex h-full items-center bg-primary p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-primary ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-6 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180">
+          Pending Request</a></li>
+
+    </ol>
+  </div>
+
+
+
+<div>
+    <div class="flex flex-wrap items-center justify-between gap-4">
+        <h2 class="text-xl">Pending Tool Request</h2>
+        <div class="flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:items-center sm:gap-3">
+            <div class="flex gap-3">
+                <!-- <div>
+                    <button type="button" class="btn btn-primary" (click)="modal6.open()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 ltr:mr-2 rtl:ml-2">
+                            <circle cx="10" cy="6" r="4" stroke="currentColor" stroke-width="1.5" />
+                            <path opacity="0.5"
+                                d="M18 17.5C18 19.9853 18 22 10 22C2 22 2 19.9853 2 17.5C2 15.0147 5.58172 13 10 13C14.4183 13 18 15.0147 18 17.5Z"
+                                stroke="currentColor" stroke-width="1.5" />
+                            <path d="M21 10H19M19 10H17M19 10L19 8M19 10L19 12" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" />
+                        </svg>
+
+                        Add Tool Request
+                    </button>
+                </div> -->
+                <!-- List View Button -->
+                <!-- <div>
+                    <button
+                        type="button"
+                        class="btn btn-outline-primary p-2"
+                        [ngClass]="{ 'bg-primary text-white': displayType === 'list' }"
+                        (click)="displayType = 'list'"
+                    >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
+                            <path d="M2 5.5L3.21429 7L7.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                opacity="0.5"
+                                d="M2 12.5L3.21429 14L7.5 10"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <path d="M2 19.5L3.21429 21L7.5 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M22 19L12 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                            <path opacity="0.5" d="M22 12L12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                            <path d="M22 5L12 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div> -->
+                <!-- Grid View Button -->
+                <!-- <div>
+                    <button
+                        type="button"
+                        class="btn btn-outline-primary p-2"
+                        [ngClass]="{ 'bg-primary text-white': displayType === 'grid' }"
+                        (click)="displayType = 'grid'"
+                    >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
+                            <path
+                                opacity="0.5"
+                                d="M2.5 6.5C2.5 4.61438 2.5 3.67157 3.08579 3.08579C3.67157 2.5 4.61438 2.5 6.5 2.5C8.38562 2.5 9.32843 2.5 9.91421 3.08579C10.5 3.67157 10.5 4.61438 10.5 6.5C10.5 8.38562 10.5 9.32843 9.91421 9.91421C9.32843 10.5 8.38562 10.5 6.5 10.5C4.61438 10.5 3.67157 10.5 3.08579 9.91421C2.5 9.32843 2.5 8.38562 2.5 6.5Z"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                            />
+                            <path
+                                opacity="0.5"
+                                d="M13.5 17.5C13.5 15.6144 13.5 14.6716 14.0858 14.0858C14.6716 13.5 15.6144 13.5 17.5 13.5C19.3856 13.5 20.3284 13.5 20.9142 14.0858C21.5 14.6716 21.5 15.6144 21.5 17.5C21.5 19.3856 21.5 20.3284 20.9142 20.9142C20.3284 21.5 19.3856 21.5 17.5 21.5C15.6144 21.5 14.6716 21.5 14.0858 20.9142C13.5 20.3284 13.5 19.3856 13.5 17.5Z"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                            />
+                            <path
+                                d="M2.5 17.5C2.5 15.6144 2.5 14.6716 3.08579 14.0858C3.67157 13.5 4.61438 13.5 6.5 13.5C8.38562 13.5 9.32843 13.5 9.91421 14.0858C10.5 14.6716 10.5 15.6144 10.5 17.5C10.5 19.3856 10.5 20.3284 9.91421 20.9142C9.32843 21.5 8.38562 21.5 6.5 21.5C4.61438 21.5 3.67157 21.5 3.08579 20.9142C2.5 20.3284 2.5 19.3856 2.5 17.5Z"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                            />
+                            <path
+                                d="M13.5 6.5C13.5 4.61438 13.5 3.67157 14.0858 3.08579C14.6716 2.5 15.6144 2.5 17.5 2.5C19.3856 2.5 20.3284 2.5 20.9142 3.08579C21.5 3.67157 21.5 4.61438 21.5 6.5C21.5 8.38562 21.5 9.32843 20.9142 9.91421C20.3284 10.5 19.3856 10.5 17.5 10.5C15.6144 10.5 14.6716 10.5 14.0858 9.91421C13.5 9.32843 13.5 8.38562 13.5 6.5Z"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                            />
+                        </svg>
+                    </button>
+                </div> -->
+            </div>
+
+            <!-- <div class="relative">
+                <input
+                    type="text"
+                    placeholder="Search datas"
+                    class="peer form-input py-2 ltr:pr-11 rtl:pl-11"
+                    [(ngModel)]="searchUser"
+                    name="searchUser"
+                    (ngModelChange)="searchdata()"
+
+                />
+                <div class="absolute top-1/2 -translate-y-1/2 peer-focus:text-primary ltr:right-[11px] rtl:left-[11px]">
+                    <svg class="mx-auto" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11.5" cy="11.5" r="9.5" stroke="currentColor" stroke-width="1.5" opacity="0.5"></circle>
+                        <path d="M18.5 18.5L22 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <!-- List View -->
+    <!-- <div class="panel mt-5 overflow-hidden border-0 p-0">
+        <ng-container *ngIf="displayType === 'list'">
+            <div class="table-responsive">
+                <table class="table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Customer Location</th>
+                            <th>Customer phone</th>
+                            <th class="!text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let data of filterddatasList" key="data.id">
+                            <tr>
+                                <td>
+                                    <div class="flex w-max items-center">
+                                        <div *ngIf="data.path" class="w-max">
+                                            <img
+                                                [src]="'/rams_test/admin/assets/images/' + data.path"
+                                                class="h-8 w-8 rounded-full object-cover ltr:mr-2 rtl:ml-2"
+                                                alt="avatar"
+                                            />
+                                        </div>
+                                        <div
+                                            *ngIf="!data.path && data.name"
+                                            class="grid h-8 w-8 place-content-center rounded-full bg-primary text-sm font-semibold text-white ltr:mr-2 rtl:ml-2"
+                                        >
+                                            {{ data.name.charAt(0) + '' + data.name.charAt(data.name.indexOf(' ') + 1) }}
+                                        </div>
+                                        <div
+                                            *ngIf="!data.path && !data.name"
+                                            class="grid h-8 w-8 place-content-center rounded-full border border-gray-300 ltr:mr-2 rtl:ml-2 dark:border-gray-800"
+                                        >
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5">
+                                                <circle cx="12" cy="6" r="4" stroke="currentColor" stroke-width="1.5"></circle>
+                                                <ellipse opacity="0.5" cx="12" cy="17" rx="7" ry="4" stroke="currentColor" stroke-width="1.5"></ellipse>
+                                            </svg>
+                                        </div>
+                                        <div>{{ data.name }}</div>
+                                    </div>
+                                </td>
+                                
+                                <td class="whitespace-nowrap">{{ data.location }}</td>
+                                <td class="whitespace-nowrap">{{ data.phone }}</td>
+                                <td>
+                                    <div class="flex items-center justify-center gap-4">
+                                        <button type="button" class="btn btn-outline-primary" (click)="editUser(data)">View Details</button>
+                                        <button type="button" class="btn btn-sm btn-outline-success" (click)="editUser(data)">Accept</button>
+                                        <button type="button" class="btn btn-sm btn-outline-danger" (click)="deleteUser(data)">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </ng-container>
+    </div> -->
+    <ng-container *ngIf="displayType === 'grid'">
+        <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+            <ng-container *ngFor="let data of request_list" key="data.id">
+                <div *ngIf="data.tldt_status!=37">
+                <div class="relative overflow-hidden rounded-md bg-white text-center shadow dark:bg-[#1c232f]">
+                    <div
+                      >
+                        <ng-container *ngIf="data.tool_images">
+                            <img class="mx-auto max-h-40 w-4/5 object-contain" src="{{baseurl+data.tool_images}}" />
+                        </ng-container>
+                    </div>
+                    <div class="relative -mt-10 px-6 pb-24">
+                        <div class="rounded-md bg-white px-2 py-4 shadow-md dark:bg-gray-900">
+                            <div class="text-xl">{{ data.tool_name }}</div>
+                            <div class="text-white-dark">#{{data.tldt_number }}</div>
+
+
+                        </div>
+                        <div class="mt-6 grid grid-cols-1 gap-4 ltr:text-left rtl:text-right">
+                            <div class="flex items-center">
+                                <div class="flex-none ltr:mr-2 rtl:ml-2">Customer Name :</div>
+                                <div class="text-white-dark">{{ data.cstm_name }}</div>
+                            </div>
+                            <!-- <div class="flex items-center">
+                                <div class="flex-none ltr:mr-2 rtl:ml-2">Customer Email :</div>
+                                <div class="truncate text-white-dark">{{ data.customer_email }}</div>
+                            </div> -->
+                            <div class="flex items-center">
+                                <div class="flex-none ltr:mr-2 rtl:ml-2">Customer Phone :</div>
+                                <div class="text-white-dark">{{ data.cstm_phone }}</div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 mt-6 flex w-full gap-3 p-6 ltr:left-0 rtl:right-0" style="width: 65%;">
+                        <button type="button" class="btn btn-outline-primary w-1/2" 
+                        (click)="request_det?.open()">
+                        View Details
+                        </button>
+                            <modal #request_det class="modal-top extra-large-modal">
+                                <ng-template #modalHeader> <div>Request Details</div> </ng-template>
+                                <ng-template #modalBody>
+                                    <div class="panel">            
+                                        <div class="mb-5">
+                                            <div class="mt-3 mb-5 flex flex-wrap justify-center space-x-3 rtl:space-x-reverse">
+                                                <a
+                                                    href="javascript:;"
+                                                    class="flex h-16 w-16 flex-col items-center justify-center rounded-full bg-[#f1f2f3] !outline-none transition-all duration-300 hover:!bg-info hover:text-white hover:shadow-[0_5px_15px_0_rgba(0,0,0,0.30)] dark:bg-[#191e3a]"
+                                                    [ngClass]="{ '!bg-info text-white': tab18.toLowerCase() == 'home' }"
+                                                    (click)="tab18 = 'home'"
+                                                >
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M15.5 7.5C15.5 9.433 13.933 11 12 11C10.067 11 8.5 9.433 8.5 7.5C8.5 5.567 10.067 4 12 4C13.933 4 15.5 5.567 15.5 7.5Z" fill="#1C274C"/>
+                                                    <path opacity="0.5" d="M19.5 7.5C19.5 8.88071 18.3807 10 17 10C15.6193 10 14.5 8.88071 14.5 7.5C14.5 6.11929 15.6193 5 17 5C18.3807 5 19.5 6.11929 19.5 7.5Z" fill="#1C274C"/>
+                                                    <path opacity="0.5" d="M4.5 7.5C4.5 8.88071 5.61929 10 7 10C8.38071 10 9.5 8.88071 9.5 7.5C9.5 6.11929 8.38071 5 7 5C5.61929 5 4.5 6.11929 4.5 7.5Z" fill="#1C274C"/>
+                                                    <path d="M18 16.5C18 18.433 15.3137 20 12 20C8.68629 20 6 18.433 6 16.5C6 14.567 8.68629 13 12 13C15.3137 13 18 14.567 18 16.5Z" fill="#1C274C"/>
+                                                    <path opacity="0.5" d="M22 16.5C22 17.8807 20.2091 19 18 19C15.7909 19 14 17.8807 14 16.5C14 15.1193 15.7909 14 18 14C20.2091 14 22 15.1193 22 16.5Z" fill="#1C274C"/>
+                                                    <path opacity="0.5" d="M2 16.5C2 17.8807 3.79086 19 6 19C8.20914 19 10 17.8807 10 16.5C10 15.1193 8.20914 14 6 14C3.79086 14 2 15.1193 2 16.5Z" fill="#1C274C"/>
+                                                    </svg>
+                                                    
+                                                    
+                                                </a>
+                                    
+                                                <a
+                                                    href="javascript:;"
+                                                    class="flex h-16 w-16 flex-col items-center justify-center rounded-full bg-[#f1f2f3] !outline-none transition-all duration-300 hover:!bg-info hover:text-white hover:shadow-[0_5px_15px_0_rgba(0,0,0,0.30)] dark:bg-[#191e3a]"
+                                                    [ngClass]="{ '!bg-info text-white': tab18.toLowerCase() == 'profile' }"
+                                                    (click)="tab18 = 'profile'"
+                                                >
+
+
+
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd" d="M14.2788 2.15224C13.9085 2 13.439 2 12.5 2C11.561 2 11.0915 2 10.7212 2.15224C10.2274 2.35523 9.83509 2.74458 9.63056 3.23463C9.53719 3.45834 9.50065 3.7185 9.48635 4.09799C9.46534 4.65568 9.17716 5.17189 8.69017 5.45093C8.20318 5.72996 7.60864 5.71954 7.11149 5.45876C6.77318 5.2813 6.52789 5.18262 6.28599 5.15102C5.75609 5.08178 5.22018 5.22429 4.79616 5.5472C4.47814 5.78938 4.24339 6.1929 3.7739 6.99993C3.30441 7.80697 3.06967 8.21048 3.01735 8.60491C2.94758 9.1308 3.09118 9.66266 3.41655 10.0835C3.56506 10.2756 3.77377 10.437 4.0977 10.639C4.57391 10.936 4.88032 11.4419 4.88029 12C4.88026 12.5581 4.57386 13.0639 4.0977 13.3608C3.77372 13.5629 3.56497 13.7244 3.41645 13.9165C3.09108 14.3373 2.94749 14.8691 3.01725 15.395C3.06957 15.7894 3.30432 16.193 3.7738 17C4.24329 17.807 4.47804 18.2106 4.79606 18.4527C5.22008 18.7756 5.75599 18.9181 6.28589 18.8489C6.52778 18.8173 6.77305 18.7186 7.11133 18.5412C7.60852 18.2804 8.2031 18.27 8.69012 18.549C9.17714 18.8281 9.46533 19.3443 9.48635 19.9021C9.50065 20.2815 9.53719 20.5417 9.63056 20.7654C9.83509 21.2554 10.2274 21.6448 10.7212 21.8478C11.0915 22 11.561 22 12.5 22C13.439 22 13.9085 22 14.2788 21.8478C14.7726 21.6448 15.1649 21.2554 15.3694 20.7654C15.4628 20.5417 15.4994 20.2815 15.5137 19.902C15.5347 19.3443 15.8228 18.8281 16.3098 18.549C16.7968 18.2699 17.3914 18.2804 17.8886 18.5412C18.2269 18.7186 18.4721 18.8172 18.714 18.8488C19.2439 18.9181 19.7798 18.7756 20.2038 18.4527C20.5219 18.2105 20.7566 17.807 21.2261 16.9999C21.6956 16.1929 21.9303 15.7894 21.9827 15.395C22.0524 14.8691 21.9088 14.3372 21.5835 13.9164C21.4349 13.7243 21.2262 13.5628 20.9022 13.3608C20.4261 13.0639 20.1197 12.558 20.1197 11.9999C20.1197 11.4418 20.4261 10.9361 20.9022 10.6392C21.2263 10.4371 21.435 10.2757 21.5836 10.0835C21.9089 9.66273 22.0525 9.13087 21.9828 8.60497C21.9304 8.21055 21.6957 7.80703 21.2262 7C20.7567 6.19297 20.522 5.78945 20.2039 5.54727C19.7799 5.22436 19.244 5.08185 18.7141 5.15109C18.4722 5.18269 18.2269 5.28136 17.8887 5.4588C17.3915 5.71959 16.7969 5.73002 16.3099 5.45096C15.8229 5.17191 15.5347 4.65566 15.5136 4.09794C15.4993 3.71848 15.4628 3.45833 15.3694 3.23463C15.1649 2.74458 14.7726 2.35523 14.2788 2.15224Z" fill="#1C274C"/>
+                                                    <path d="M15.5227 12C15.5227 13.6569 14.1694 15 12.4999 15C10.8304 15 9.47705 13.6569 9.47705 12C9.47705 10.3431 10.8304 9 12.4999 9C14.1694 9 15.5227 10.3431 15.5227 12Z" fill="#1C274C"/>
+                                                    </svg>
+                                                    
+                                                    
+                                                </a>
+                                    
+                                               
+                                    
+                                             
+                                            </div>
+                                            <div class="flex-1 text-sm">
+                                                <div *ngIf="tab18.toLowerCase() === 'home'">
+
+                                                   
+                                                    
+                                                    <span class="badge badge-outline-info">Customer Details</span>
+                                                    
+                                                    <br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+                                                        
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b> Customer Name</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text" placeholder="{{ data.cstm_name }}"
+                                                                    class="form-input placeholder:text-white-dark" readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="customerphone"><b> Customer Phone</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customerphone" type="number" placeholder="{{ data.cstm_phone }}"
+                                                                    class="form-input placeholder:text-white-dark"  readonly/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="alternatenumber"><b> Address</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="alternatenumber" type="number" placeholder="{{data.tldt_delivery_address}}"
+                                                                    class="form-input placeholder:text-white-dark" readonly/>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <br><br><br><br>
+                                                    <div class="flex flex-row space-x-4">
+                                                        <div class="flex-1">
+                                                            <label for="Tool Name"><b>Tool Quantity</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customername" type="text" placeholder="{{data.tldt_tool_quant}}"
+                                                                    class="form-input placeholder:text-white-dark" readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="customerphone"><b> Rent Duration</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="customerphone" type="number" placeholder="{{ data.tldt_tool_duration }}"
+                                                                    class="form-input placeholder:text-white-dark"  readonly/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <label for="alternatenumber"><b>Total Cost</b></label>
+                                                            <div class="relative text-white-dark">
+                                                                <input id="alternatenumber" type="number" placeholder="{{data.tldt_cost}}"
+                                                                    class="form-input placeholder:text-white-dark" readonly/>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                               </div>
+                                                <div *ngIf="tab18.toLowerCase() === 'profile'">
+                                                    
+                                                    <span class="badge badge-outline-primary">Tool Details</span>
+                                                    <br><br><br>
+                                                    <div class="flex items-start">
+                                                        
+                                                        <div class="flex-auto">
+                                                            <div class="flex flex-row space-x-4">
+                                                                <div class="flex-1">
+                                                                    <label for="Tool Name"><b>Tool Name</b></label>
+                                                                    <div class="relative text-white-dark">
+                                                                        <input id="customername" type="text" placeholder="{{data.tool_name}}"
+                                                                            class="form-input placeholder:text-white-dark" readonly />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex-1">
+                                                                    <label for="Tool Name"><b> Tool Rent Quantity:</b> </label>
+                                                                    <div class="relative text-white-dark">
+                                                                        <input id="customername" type="text" placeholder="{{data.tool_rent_quantity}}"
+                                                                            class="form-input placeholder:text-white-dark" readonly />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex-1">
+                                                                    <label for="Tool Name"><b>Tool Rent Cost</b></label>
+                                                                    <div class="relative text-white-dark">
+                                                                        <input id="customername" type="text" placeholder="{{data.tool_rent_cost}}"
+                                                                            class="form-input placeholder:text-white-dark" readonly />
+                                                                    </div>
+                                                                </div>
+                                                             
+                                                                
+                                                                
+                                                            </div>
+                                                            <div class="flex flex-row space-x-4">
+                                                                <div class="flex-1">
+                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-top: 62px;">
+                                                                        <path opacity="0.5" d="M16.1569 3.80211L16.8431 4.20846C18.8718 5.40987 19.8862 6.01057 20.4431 7C21 7.98943 21 9.19084 21 11.5937V12.4063C21 14.8092 21 16.0106 20.4431 17C19.8862 17.9894 18.8718 18.5901 16.8431 19.7915L16.1569 20.1979C14.1282 21.3993 13.1138 22 12 22C10.8862 22 9.8718 21.3993 7.84308 20.1979L7.15692 19.7915C5.1282 18.5901 4.11384 17.9894 3.55692 17C3 16.0106 3 14.8092 3 12.4063V11.5937C3 9.19084 3 7.98943 3.55692 7C4.11384 6.01057 5.1282 5.40987 7.15692 4.20846L7.84308 3.80211C9.8718 2.6007 10.8862 2 12 2C13.1138 2 14.1282 2.6007 16.1569 3.80211Z" fill="#1C274C"/>
+                                                                        <path d="M12 6.25C12.4142 6.25 12.75 6.58579 12.75 7V13C12.75 13.4142 12.4142 13.75 12 13.75C11.5858 13.75 11.25 13.4142 11.25 13V7C11.25 6.58579 11.5858 6.25 12 6.25Z" fill="#1C274C"/>
+                                                                        <path d="M12 17C12.5523 17 13 16.5523 13 16C13 15.4477 12.5523 15 12 15C11.4477 15 11 15.4477 11 16C11 16.5523 11.4477 17 12 17Z" fill="#1C274C"/>
+                                                                        </svg>
+                                                                        
+                                                                    <label for="alternatenumber"><b>Advance Payment</b></label>
+                                                                    <div class="relative text-white-dark">
+                                                                        <input id="alternatenumber" type="number" placeholder="{{ data.tool_adv_payment == 0 ? 'No advance payment for this tool' : 'Advance payment is needed for this tool' }}"
+                                                                            class="form-input placeholder:text-dark" readonly style="font-style: italic;"/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex-1">
+                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-top: 62px;">
+                                                                        <path opacity="0.5" d="M16.1569 3.80211L16.8431 4.20846C18.8718 5.40987 19.8862 6.01057 20.4431 7C21 7.98943 21 9.19084 21 11.5937V12.4063C21 14.8092 21 16.0106 20.4431 17C19.8862 17.9894 18.8718 18.5901 16.8431 19.7915L16.1569 20.1979C14.1282 21.3993 13.1138 22 12 22C10.8862 22 9.8718 21.3993 7.84308 20.1979L7.15692 19.7915C5.1282 18.5901 4.11384 17.9894 3.55692 17C3 16.0106 3 14.8092 3 12.4063V11.5937C3 9.19084 3 7.98943 3.55692 7C4.11384 6.01057 5.1282 5.40987 7.15692 4.20846L7.84308 3.80211C9.8718 2.6007 10.8862 2 12 2C13.1138 2 14.1282 2.6007 16.1569 3.80211Z" fill="#1C274C"/>
+                                                                        <path d="M12 6.25C12.4142 6.25 12.75 6.58579 12.75 7V13C12.75 13.4142 12.4142 13.75 12 13.75C11.5858 13.75 11.25 13.4142 11.25 13V7C11.25 6.58579 11.5858 6.25 12 6.25Z" fill="#1C274C"/>
+                                                                        <path d="M12 17C12.5523 17 13 16.5523 13 16C13 15.4477 12.5523 15 12 15C11.4477 15 11 15.4477 11 16C11 16.5523 11.4477 17 12 17Z" fill="#1C274C"/>
+                                                                        </svg>
+                                                                        
+                                                                    <label for="alternatenumber"><b>Deposit Payment</b></label>
+                                                                    <div class="relative text-white-dark">
+                                                                        <input id="alternatenumber" type="number" placeholder="{{ data.tool_deposit_id == 0 ? 'No Deposit payment for this tool' :'Deposit payment is needed for this tool' }}"
+                                                                            class="form-input placeholder:text-dark" readonly style="font-style: italic;"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </ng-template>
+                                <ng-template #modalFooter>
+                                    <button type="button" class="btn btn-outline-danger" (click)="request_det.close()">Close</button>
+                                   
+                                </ng-template>
+                            </modal>
+                        <button type="button" class="btn btn-outline-success w-1/2" 
+                        (click)="acceptmodal?.open()" *ngIf="data.tool_adv_payment == 0&&data.tool_deposit_id == 0">
+                            Accept Request
+                        </button>
+                        <button type="button" class="btn btn-outline-warning w-1/2" 
+                        (click)="acceptmodal?.open()" *ngIf="data.tool_adv_payment == 1&&data.tool_deposit_id == 0">
+                            Adv Payment 
+                        </button>
+                        <button type="button" class="btn btn-outline-info w-1/2" 
+                        (click)="acceptmodal?.open()" *ngIf="data.tool_adv_payment == 0&&data.tool_deposit_id == 1">
+                         Deposit Payment
+                        </button>
+                        <modal #acceptmodal>
+                            <ng-template #modalHeader>
+                                <!-- <div>
+                                    Accept Tool Request
+                                </div> -->
+                            </ng-template>
+                            <ng-template #modalBody>
+                                <p *ngIf="data.tool_adv_payment == 0&&data.tool_deposit_id == 0">
+                                    Accept request?
+                                </p>
+                                <p *ngIf="data.tool_adv_payment == 1">
+                                    Proceed For Advance Payment?
+                                </p>
+                                <p *ngIf="data.tool_deposit_id == 1">
+                                    Proceed For Deposit Payment?
+                                </p>
+                                <!-- <button type="button" (click)="charges_change(0)" *ngIf="charges==0"
+                                class="btn btn-outline-success">Add Charges</button>
+                                <button type="button" (click)="charges_change(1)" *ngIf="charges==1"
+                                class="btn btn-outline-danger">close</button>
+                                <div *ngIf="charges==1">
+                                    <select id="ctnSelect1" class="form-select text-white-dark" required (change)="selectEvent($event)" style="width: 60%;">
+                                        <option disabled selected value="">Select Assignee</option>
+                                        <option *ngFor="let user of expense_list" [value]="user.exp_id" >{{ user.exp_name }}</option>
+                                      </select>
+                                </div> -->
+                            </ng-template>
+                            <ng-template #modalFooter>
+                                <button type="button" (click)="acceptmodal.close()"
+                                    class="btn btn-outline-danger">Cancel</button>
+                                <button type="button" (click)="acceptrequest(data)"
+                                    class="btn btn-primary ltr:ml-4 rtl:mr-4" *ngIf="data.tool_adv_payment == 0&&data.tool_deposit_id == 0">Accept Request</button>
+                                    <button type="button" (click)="acceptrequest(data)"
+                                    class="btn btn-primary ltr:ml-4 rtl:mr-4" *ngIf="data.tool_adv_payment == 1||data.tool_deposit_id == 1">Proceed Request</button>
+                            </ng-template>
+                        </modal>
+                        <button type="button" class="btn btn-outline-danger w-1/2"
+                            (click)="deletemodal?.open()">Reject Request</button>
+                            <modal #deletemodal>
+                                <ng-template #modalHeader>
+                                    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M12 6.25C12.4142 6.25 12.75 6.58579 12.75 7V13C12.75 13.4142 12.4142 13.75 12 13.75C11.5858 13.75 11.25 13.4142 11.25 13V7C11.25 6.58579 11.5858 6.25 12 6.25Z"
+                                                fill="#1C274C" />
+                                            <path
+                                                d="M12 17C12.5523 17 13 16.5523 13 16C13 15.4477 12.5523 15 12 15C11.4477 15 11 15.4477 11 16C11 16.5523 11.4477 17 12 17Z"
+                                                fill="#1C274C" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M1.25 12C1.25 6.06294 6.06294 1.25 12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12ZM12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 17.1086 6.89137 21.25 12 21.25C17.1086 21.25 21.25 17.1086 21.25 12C21.25 6.89137 17.1086 2.75 12 2.75Z"
+                                                fill="#1C274C" />
+                                        </svg>Reject Tool Request</div>
+                                </ng-template>
+                                <ng-template #modalBody>
+                                    <p>Comments from admin if any</p>
+                                <textarea class="form-textarea min-h-[130px]"  [(ngModel)]="rejectreason" required ></textarea>
+                                </ng-template>
+                                <ng-template #modalFooter>
+                                    <button type="button" (click)="deletemodal.close()"
+                                        class="btn btn-outline-danger">Cancel</button>
+                                        
+                                    <button type="button" (click)="deletereq(data)" *ngIf="rejectreason"
+                                        class="btn btn-primary ltr:ml-4 rtl:mr-4">Reject Request</button>
+                                        <button type="button" (click)="deletereq(data)" *ngIf="rejectreason==null" disabled
+                                        class="btn btn-primary ltr:ml-4 rtl:mr-4">Reject Request</button>
+                                </ng-template>
+                            </modal> 
+                    </div>
+                </div>
+            </div>
+            
+            </ng-container>
+        </div>
+        <div *ngIf="!request_list">
+            <div>
+                <h5>No Pending Tool Request</h5>
+                <a (click)="serv_page()"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.07868 5.06891C8.87402 1.27893 15.0437 1.31923 18.8622 5.13778C22.6824 8.95797 22.7211 15.1313 18.9262 18.9262C15.1312 22.7211 8.95793 22.6824 5.13774 18.8622C2.87389 16.5984 1.93904 13.5099 2.34047 10.5812C2.39672 10.1708 2.775 9.88377 3.18537 9.94002C3.59575 9.99627 3.88282 10.3745 3.82658 10.7849C3.4866 13.2652 4.27782 15.881 6.1984 17.8016C9.44288 21.0461 14.6664 21.0646 17.8655 17.8655C21.0646 14.6664 21.046 9.44292 17.8015 6.19844C14.5587 2.95561 9.33889 2.93539 6.13935 6.12957L6.88705 6.13333C7.30126 6.13541 7.63535 6.47288 7.63327 6.88709C7.63119 7.3013 7.29372 7.63539 6.87951 7.63331L4.33396 7.62052C3.92269 7.61845 3.58981 7.28556 3.58774 6.8743L3.57495 4.32874C3.57286 3.91454 3.90696 3.57707 4.32117 3.57498C4.73538 3.5729 5.07285 3.907 5.07493 4.32121L5.07868 5.06891Z" fill="#1C274C"/>
+                    <path opacity="0.5" d="M12 7.25C12.4142 7.25 12.75 7.58579 12.75 8V11.6893L15.0303 13.9697C15.3232 14.2626 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2626 15.3232 13.9697 15.0303L11.5429 12.6036C11.3554 12.416 11.25 12.1617 11.25 11.8964V8C11.25 7.58579 11.5858 7.25 12 7.25Z" fill="#1C274C"/>
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+    </ng-container>
+
+
+</div>
+
+
+
+

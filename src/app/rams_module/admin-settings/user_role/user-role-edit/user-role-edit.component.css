@@ -1,0 +1,14 @@
+/* Apply flexbox to the split-screen container */
+.split-screen {
+    display: flex;
+  }
+  
+  /* Style for both sides */
+  /* .left-side, .right-side {
+    flex: 1; 
+    padding: 20px;
+    box-sizing: border-box; 
+    overflow-y: auto; 
+    border-bottom: 1px solid #eee;
+  }
+   */

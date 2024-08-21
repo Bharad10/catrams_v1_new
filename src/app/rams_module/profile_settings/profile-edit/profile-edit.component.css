@@ -1,0 +1,98 @@
+.loader {
+    margin-left: 45%;
+    margin-top: 45%;
+    width: 5px;
+    color: #04b7f9;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    box-shadow: 
+      19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px,
+      19px 0     0 5px, 38px 0     0 5px, 57px 0     0 5px,
+      19px 19px  0 0px, 38px 19px  0 0px, 57px 19px  0 0px;
+    transform: translateX(-38px);
+    animation: l26 2s infinite linear;
+  }
+  @keyframes l26 {
+    12.5% {box-shadow: 
+      19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 5px,
+      19px 0     0 5px, 38px 0     0 0px, 57px 0     0 5px,
+      19px 19px  0 0px, 38px 19px  0 0px, 57px 19px  0 0px}
+    25%   {box-shadow: 
+      19px -19px 0 5px, 38px -19px 0 0px, 57px -19px 0 5px,
+      19px 0     0 0px, 38px 0     0 0px, 57px 0     0 0px,
+      19px 19px  0 0px, 38px 19px  0 5px, 57px 19px  0 0px}
+    50%   {box-shadow: 
+      19px -19px 0 5px, 38px -19px 0 5px, 57px -19px 0 0px,
+      19px 0     0 0px, 38px 0     0 0px, 57px 0     0 0px,
+      19px 19px  0 0px, 38px 19px  0 0px, 57px 19px  0 5px}
+    62.5% {box-shadow: 
+      19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px,
+      19px 0     0 5px, 38px 0     0 0px, 57px 0     0 0px,
+      19px 19px  0 0px, 38px 19px  0 5px, 57px 19px  0 5px}
+    75%   {box-shadow: 
+      19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px,
+      19px 0     0 0px, 38px 0     0 0px, 57px 0     0 5px,
+      19px 19px  0 0px, 38px 19px  0 0px, 57px 19px  0 5px}
+    87.5% {box-shadow: 
+      19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px,
+      19px 0     0 0px, 38px 0     0 5px, 57px 0     0 0px,
+      19px 19px  0 5px, 38px 19px  0 0px, 57px 19px  0 0px}
+  }
+
+  .role-container {
+    position: relative;
+    display: inline-block;
+}
+
+.input-dropdown-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.form-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 30px; /* Add some padding to make space for the arrow */
+}
+
+.select-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Make the select invisible but still functional */
+    cursor: pointer;
+}
+
+.dropdown-arrow {
+    position: absolute;
+    right: 10px;
+    pointer-events: none; /* Make sure the arrow doesn't interfere with the input functionality */
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.dropdown-arrow svg {
+    fill: #000; /* Change this to the desired color */
+}
+
+
+/* HTML: <div class="loader"></div> */
+.pass_loader {
+  color: #04b7f9;
+  width: 4px;
+  margin-left: 45%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: 19px 0 0 7px, 38px 0 0 3px, 57px 0 0 0;
+  transform: translateX(-38px);
+  animation: l21 .5s infinite alternate linear;
+}
+
+@keyframes l21 {
+  50%  {box-shadow: 19px 0 0 3px, 38px 0 0 7px, 57px 0 0 3px}
+  100% {box-shadow: 19px 0 0 0  , 38px 0 0 3px, 57px 0 0 7px}
+}

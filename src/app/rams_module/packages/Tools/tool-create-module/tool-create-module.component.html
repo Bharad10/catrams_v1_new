@@ -1,0 +1,343 @@
+<div class="mb-5">
+    <ol class="flex font-semibold text-primary dark:text-white-dark">
+        <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+            <a href="javascript:;" (click)="adminsettings()"
+                class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+                Admin Settings</a>
+        </li>
+      <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+        <a href="javascript:;" (click)="toollist()"
+          class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+          Tool List</a></li>
+      <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
+        <a
+          class="relative flex h-full items-center bg-primary p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-primary ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-6 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180">
+          Tool Create</a></li>
+
+    </ol>
+  </div>
+
+<div>
+
+   
+    <div class="flex flex-col gap-2.5 xl:flex-row">
+        <div class="panel flex flex-row w-full ltr:xl:mr-6 rtl:xl:ml-6">
+            <form [formGroup]="ToolForm" class="flex-1 space-y-5 dark:text-white" (ngSubmit)="toolcreate()" novalidate>
+                <div class="flex flex-row space-x-4">
+                    <div class="flex-1">
+                        <div [ngClass]="isSubmitForm1 ? ToolForm.controls['toolname'].errors ? 'has-error' : 'has-success' : ''">
+                            <label for="Tool Name">Tool Name</label>
+                            <div class="relative text-white-dark">
+                                <input id="toolname" type="text" placeholder="Enter Tool Name"
+                                oninput="this.value = this.value.toUpperCase()"
+                                    class="form-input placeholder:text-white-dark" formControlName="toolname" required />
+                            </div>
+                            <ng-container *ngIf="isSubmitForm1 && !ToolForm.controls['toolname'].errors">
+                               
+                            </ng-container>
+                            <ng-container *ngIf="isSubmitForm1 && ToolForm.controls['toolname'].errors">
+                                <p class="mt-1 text-danger">Please Provide Tool Name</p>
+                            </ng-container>
+                        </div>
+                        
+                    </div>
+                    <div class="flex-1">
+                        <div [ngClass]="isSubmitForm1 ? ToolForm.controls['availablequantity'].errors ? 'has-error' : 'has-success' : ''">
+                            <label for="availableQuantity">Total Stock</label>
+                            <div class="relative text-white-dark">
+                                <input id="availablequantity" type="number" placeholder="Enter Available Quantity"
+                                onKeyPress="if(this.value.length==3) return false;"
+                                oninput="validity.valid||(value='');"
+                                min="0"
+                                    class="form-input placeholder:text-white-dark" formControlName="availablequantity"
+                                     required (change)="stock_div()"/>
+                            </div>
+                            <ng-container *ngIf="isSubmitForm1 && !ToolForm.controls['availablequantity'].errors">
+                               
+                            </ng-container>
+                            <ng-container *ngIf="isSubmitForm1 && ToolForm.controls['availablequantity'].errors">
+                                <p class="mt-1 text-danger">Please Provide Available Quantity</p>
+                            </ng-container>
+                        </div>
+                        
+                    </div>
+                    <div class="flex-1">
+                        <div [ngClass]="isSubmitForm1 ? ToolForm.controls['price'].errors ? 'has-error' : 'has-success' : ''">
+                            <label for="Price">Enter Tool Sale Price </label>
+                            <div class="relative text-white-dark">
+                                <input id="price" type="number" placeholder="Enter Tool Price"
+                                onKeyPress="if(this.value.length==10) return false;"
+                                oninput="validity.valid||(value='');"
+                                min="0"
+                                    class="form-input placeholder:text-white-dark" formControlName="price"
+                                    (change)=rentprice_cal() min="0" required />
+                            </div>
+                            <ng-container *ngIf="isSubmitForm1 && !ToolForm.controls['price'].errors">
+                               
+                            </ng-container>
+                            <ng-container *ngIf="isSubmitForm1 && ToolForm.controls['price'].errors">
+                                <p class="mt-1 text-danger">Please Provide Sale Price</p>
+                            </ng-container>
+                        </div>
+                        
+                    </div>
+
+
+                </div>
+                <div class="flex flex-row space-x-4">
+
+                    <div class="flex-1">
+                        <div [ngClass]="isSubmitForm1 ? ToolForm.controls['tooldescription'].errors ? 'has-error' : 'has-success' : ''">
+                            <label for="tooldescription">Tool Description</label>
+                            <div class="relative text-white-dark">
+                                <textarea id="tooldescription" class="form-textarea mt-4"
+                                    placeholder="Enter Tool Description" name="tooldescription"
+                                  
+                                    formControlName="tooldescription"></textarea>
+                            </div>
+                            <ng-container *ngIf="isSubmitForm1 && !ToolForm.controls['tooldescription'].errors">
+                               
+                            </ng-container>
+                            <ng-container *ngIf="isSubmitForm1 && ToolForm.controls['tooldescription'].errors">
+                                <p class="mt-1 text-danger">Please Provide Tool Description</p>
+                            </ng-container>
+                        </div>
+                        
+                    </div>
+
+                </div>
+              
+                <br>
+                <div class="flex flex-row space-x-4">
+                    <div class="flex-1">
+                        <br>
+                        <label class="inline-flex">
+                            <input id="renttool_id" type="checkbox" class="form-checkbox peer" 
+                                formControlName="renttool_id" name="renttool_id" />
+                            <span>Include in Rent Tool Category</span>
+                        </label>
+                    </div>
+
+                    
+                </div>
+                <div >
+                    <div class="flex-1" *ngIf="ToolForm.value.renttool_id === true">
+                        <br>
+
+                        <div class="flex flex-row space-x-4">
+                            <div class="flex-1">
+                                <label for="rentstock">Rent Stock</label>
+                                <div class=" relative text-white-dark">
+                                    <input id="rentstock" type="number" placeholder="Enter Rent Stock"
+                                    onKeyPress="if(this.value.length==10) return false;"
+                                    oninput="validity.valid||(value='');"
+                                    min="0"
+                                        class="form-input placeholder:text-white-dark" formControlName="rentstock" required
+                                        min="0" max={{this.s_stock}}  (ngModelChange)="stock_cal()" />
+                                    <br><br>
+                                    <span>
+                                        <p style="font-style:italic bold;">Available Saleble
+                                            Stock:<span style="color: red;">{{this.s_stock}}</span></p>
+                                    </span>
+                                    <br>
+                                    <span>
+                                        <p style="font-style:italic bold;">Available Rent
+                                            Stock:<span style="color: red;">{{this.ToolForm.value.rentstock}}</span></p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <label for="rentprice">Rent Price</label>
+                            <div class="relative text-white-dark">
+                                <input id="rentprice" type="number" placeholder="Enter Rent Price per day"
+                                    class="form-input placeholder:text-white-dark" formControlName="rentprice" required
+                                    onKeyPress="if(this.value.length==10) return false;"
+                                    oninput="validity.valid||(value='');"
+                                    
+                                    min="0" />
+                                <br><br>
+                                <span>
+                                    <p style="font-style:italic bold;">Tool Sale Price:₹<span style="color: red;">{{this.ToolForm.value.price}}</span></p>
+                                </span>
+                            </div>
+                            </div>
+                            <div class="flex-1">
+                                <label for="rentdelay">Tool Delay Due(%)</label>
+                                <div class="relative text-white-dark">
+                                    <input id="rentdelay" type="number" placeholder="Enter Percentage for delayed return "
+                                        class="form-input placeholder:text-white-dark" formControlName="rentdelay" required
+                                        onKeyPress="if(this.value.length==2) return false;"
+                                    oninput="validity.valid||(value='');"
+                                    min="0"(ngModelChange)="delay_cal()"/>
+                                    <br><br>
+                                    <span>
+                                        <p style="font-style:italic bold;">Due Amount Per Day:₹<span style="color: red;">{{delay_price}}</span></p>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        
+
+                      
+                       
+
+                        
+            <br>
+                        <div class="flex flex-row space-x-4">
+
+                            <div class="flex-2">
+                                <label class="inline-flex">
+                                    <input id="advanceflag" type="checkbox" class="form-checkbox text-success"
+                                        formControlName="advanceflag" name="advanceflag" [disabled]="ToolForm.value.depositflag === true"/>
+                                    <span>{{'Need Advance Payment'|translate}}</span>
+                                </label>
+                            </div>
+                            <div class="flex-2">
+                                <label class="inline-flex">
+                                    <input id="depositflag" type="checkbox" class="form-checkbox text-success"
+                                        formControlName="depositflag" name="depositflag" [disabled]="ToolForm.value.advanceflag === true" />
+                                    <span>{{'Need Deposit'|translate}}</span>
+                                </label>
+                            </div>
+                            
+                        </div>
+                        
+
+                        <br>
+                        <ng-container *ngIf="ToolForm.value.advanceflag === true">
+                        <div class="flex-1">
+                           
+                                <label for="advancePayment">{{'Advance Payment Amount'|translate}}:<span style="color: red;">{{'₹'|translate}}{{adv_price}}</span></label>
+                                <input type="number" id="advancePayment" class="form-input placeholder:text-white-dark"
+                                    name="advancePayment" placeholder="Enter Percentage %"
+                                    onKeyPress="if(this.value.length==2) return false;"
+                                    oninput="validity.valid||(value='');"
+                                    min="0" 
+                                    formControlName="advancePayment" [ngModel]="ToolForm.value.advancePayment"
+                                    (change)="advpercent_cal()" style=" width: 60%;" min="0">
+                                <span>
+                                    <p style="font-style:italic;color: red;">{{'Enter Maximum Percentage with respect to Price'|translate}}</p>
+                                </span>
+                                <span>{{'Advance Price Per Day'|translate}}:{{'₹'|translate}}<span style="color: red;" >{{adv_price}}</span></span>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="ToolForm.value.depositflag === true">
+                        <div class="flex-1">
+                            
+                                <label for="depositflag"> {{'Deposit Amount'|translate}}:<span style="color: red;">{{'₹'|translate}}{{dep_price}}</span></label>
+                                <input type="number" id="depositamount" class="form-input placeholder:text-white-dark"
+                                    name="depositamount" placeholder="Enter Percentage %"
+                                    onKeyPress="if(this.value.length==2) return false;"
+                                    oninput="validity.valid||(value='');"
+                                    
+                                    min="0" 
+                                    formControlName="depositamount" [(ngModel)]="ToolForm.value.depositamount"
+                                    (change)="depost_cal()" style=" width: 60%;" min="0">
+                                <span>
+                                    <p style="font-style:italic;color: red;">{{'Enter Maximum Percentage with respect to Price'|translate}}</p>
+                                </span>
+                                <span>{{'Deposit Price Per Day'|translate}}:{{'₹'|translate}}<span style="color: red;">{{dep_price}}</span></span>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="flex flex-row space-x-4">
+                    <br><br>
+                    <div class="flex-2">
+                        <div class="col-md-12 image-upload" align="center" style="height: 150px">
+                            <label for="file-input" class="label col-form-label">{{'Tool Image'|translate}} *</label><br />
+                            <img [src]="imageurl" class="user-img" accept="image/*" alt="" width="120px"
+                                height="120px" />
+                            <input id="file-input" #file type="file" (change)="onFileChanged($event)"  />
+                        </div>
+                        <div align="center" style="margin-top: 2%">
+                            <button type="button" class="btn btn-info gap-2" *ngIf="image_load_state==0" (click)="file.click()">
+                                {{"CHOOSE"|translate}}
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.8" d="M21.9998 12.6978C21.9983 14.1674 21.9871 15.4165 21.9036 16.4414C21.8067 17.6308 21.6081 18.6246 21.1636 19.45C20.9676 19.814 20.7267 20.1401 20.4334 20.4334C19.601 21.2657 18.5405 21.6428 17.1966 21.8235C15.8835 22 14.2007 22 12.0534 22H11.9466C9.79929 22 8.11646 22 6.80345 21.8235C5.45951 21.6428 4.39902 21.2657 3.56664 20.4334C2.82871 19.6954 2.44763 18.777 2.24498 17.6376C2.04591 16.5184 2.00949 15.1259 2.00192 13.3967C2 12.9569 2 12.4917 2 12.0009V11.9466C1.99999 9.79929 1.99998 8.11646 2.17651 6.80345C2.3572 5.45951 2.73426 4.39902 3.56664 3.56664C4.39902 2.73426 5.45951 2.3572 6.80345 2.17651C7.97111 2.01952 9.47346 2.00215 11.302 2.00024C11.6873 1.99983 12 2.31236 12 2.69767C12 3.08299 11.6872 3.3952 11.3019 3.39561C9.44749 3.39757 8.06751 3.41446 6.98937 3.55941C5.80016 3.7193 5.08321 4.02339 4.5533 4.5533C4.02339 5.08321 3.7193 5.80016 3.55941 6.98937C3.39683 8.19866 3.39535 9.7877 3.39535 12C3.39535 12.2702 3.39535 12.5314 3.39567 12.7844L4.32696 11.9696C5.17465 11.2278 6.45225 11.2704 7.24872 12.0668L11.2392 16.0573C11.8785 16.6966 12.8848 16.7837 13.6245 16.2639L13.9019 16.0689C14.9663 15.3209 16.4064 15.4076 17.3734 16.2779L20.0064 18.6476C20.2714 18.091 20.4288 17.3597 20.5128 16.3281C20.592 15.3561 20.6029 14.1755 20.6044 12.6979C20.6048 12.3126 20.917 12 21.3023 12C21.6876 12 22.0002 12.3125 21.9998 12.6978Z" fill="#fff"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11ZM19.5303 5.46967L18.0303 3.96967C17.7374 3.67678 17.2626 3.67678 16.9697 3.96967L15.4697 5.46967C15.1768 5.76256 15.1768 6.23744 15.4697 6.53033C15.7626 6.82322 16.2374 6.82322 16.5303 6.53033L16.75 6.31066V8.5C16.75 8.91421 17.0858 9.25 17.5 9.25C17.9142 9.25 18.25 8.91421 18.25 8.5V6.31066L18.4697 6.53033C18.7626 6.82322 19.2374 6.82322 19.5303 6.53033C19.8232 6.23744 19.8232 5.76256 19.5303 5.46967Z" fill="#fff"/>
+                                    </svg>
+                                    
+                                    
+                            </button>
+                            <button type="submit" class="btn btn-gradient
+                         !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"  *ngIf="image_load_state==1"
+                         disabled style="background-color: #b82a27;color: #f1ffd7f5;">
+                         {{'Loading'|translate}}  <svg
+                            viewBox="0 0 24 24"
+                            width="24"
+                            height="24"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="inline-block h-5 w-5 shrink-0 animate-[spin_2s_linear_infinite] align-middle ltr:mr-2 rtl:ml-2" >
+                            <line x1="12" y1="2" x2="12" y2="6"></line>
+                            <line x1="12" y1="18" x2="12" y2="22"></line>
+                            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                            <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                            <line x1="2" y1="12" x2="6" y2="12"></line>
+                            <line x1="18" y1="12" x2="22" y2="12"></line>
+                            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                            <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                        </svg>
+                          
+                            
+                          </button>
+                        </div>
+                    </div>
+                    <!-- &nbsp;
+                    <div class="flex-2">
+                        <div class="col-md-12 image-upload" align="center" style="height: 150px">
+                            <label for="file-input" class="label col-form-label" style="color: white;">{{'Tool Image'|translate}} *</label><br />
+                            <img [src]="imageurl" class="user-img" accept="image/*" alt="" width="120px"
+                                height="120px" />
+                            <input id="file-input" #file type="file" (change)="onFileChanged($event)"  />
+                        </div>
+
+                    </div> -->
+                </div>
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-1">
+                    <div class="flex justify-end">
+                        <a routerLink="/tool-package-list">
+                            <button type="button" class="btn btn-dark gap-2" style="margin-right: 1%;">
+                                {{"Cancel"|translate}}
+                            </button>
+                        </a>
+                        &nbsp;&nbsp;
+                        <button type="submit" class="btn btn-success gap-2" *ngIf="button_act_state==0">
+                            {{"Create"|translate}}
+                        </button>
+                        <button type="submit" class="btn btn-gradient
+                         !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"  *ngIf="button_act_state==1"
+                         disabled style="background-color: #00ab55;color: #f1ffd7f5;">
+                            <svg
+                            viewBox="0 0 24 24"
+                            width="24"
+                            height="24"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="inline-block h-5 w-5 shrink-0 animate-[spin_2s_linear_infinite] align-middle ltr:mr-2 rtl:ml-2" >
+                            <line x1="12" y1="2" x2="12" y2="6"></line>
+                            <line x1="12" y1="18" x2="12" y2="22"></line>
+                            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                            <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                            <line x1="2" y1="12" x2="6" y2="12"></line>
+                            <line x1="18" y1="12" x2="22" y2="12"></line>
+                            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                            <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                        </svg>
+                          
+                            
+                          </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

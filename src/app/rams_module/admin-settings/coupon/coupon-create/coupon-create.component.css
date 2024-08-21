@@ -1,0 +1,14 @@
+/* @import 'swiper/swiper-bundle.min.css';
+@import 'swipe/css'; */
+
+
+.ng-autocomplete{
+    position: absolute !important;
+    width:25%;
+}
+
+
+.customer-badge {
+    display: inline-block; /* Display as inline elements */
+    margin-right: 5px;     /* Space between badges */
+}

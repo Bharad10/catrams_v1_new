@@ -1,0 +1,48 @@
+<div>
+    <h5 class="text-xl font-semibold dark:text-white-light">Expense Create</h5>
+    <div class="flex flex-col gap-2.5 xl:flex-row">
+        <div class="panel flex flex-row w-full ltr:xl:mr-6 rtl:xl:ml-6">
+            <form [formGroup]="ExpenseForm" class="flex-1 space-y-5 dark:text-white" (ngSubmit)="createexpense()">
+                <div class="flex flex-row space-x-4">
+                    <div class="flex-3">
+                        <label for="Tool Name">Expense Name</label>
+                        <div class="relative text-white-dark">
+                            <input id="expensename" type="text" placeholder="Enter Expense Name"
+                                class="form-input placeholder:text-white-dark" maxlength="50" formControlName="expensename" style="width:95%;"/>
+                        </div>
+                    </div>
+                    <div class="flex-4">
+                        <label for="expenseamount">Expense Amount</label>
+                        <div class="relative text-white-dark">
+                            <input id="expenseamount" type="number" maxlength="15" placeholder="Enter Amount" min="0"
+                                class="form-input placeholder:text-white-dark" formControlName="expenseamount" style="width:93%;"/>
+                        </div>
+                    </div>   
+                </div>
+                <div class="flex flex-row space-x-4">
+                    <div class="flex-1">
+                        <label for="expensedescription">Expense Description</label>
+                        <div class="relative text-white-dark">
+                            <textarea class="form-textarea mt-4" placeholder="Enter Description"  formControlName="expensedescription"
+                                name="expensedescription" style="width: 30%;"></textarea>
+                        </div>
+                    </div> 
+                </div>
+                
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-1">
+                    <div class="flex justify-end">
+                        <a routerLink="/expense-settings">
+                            <button type="button" class="btn btn-dark gap-2" style="margin-left: -35%;">
+                                Cancel
+                            </button>
+                        </a>
+                        
+                        <button type="submit" class="btn btn-success gap-2" [disabled]="!ExpenseForm.valid">
+                            Create
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

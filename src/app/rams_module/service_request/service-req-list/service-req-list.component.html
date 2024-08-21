@@ -1,0 +1,361 @@
+<div class="mb-5" style="margin-left: -40px;">
+    <ol class="flex font-semibold text-primary dark:text-white-dark">
+
+        <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
+            <a
+                class="relative flex h-full items-center bg-success p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-success ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-6 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180">
+                {{'Service Request'|translate}} </a>
+        </li>
+
+    </ol>
+</div>
+
+<div *ngIf="permission_Denied==0">
+    <div class="panel mt-6 pb-0 pb-0">
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <div class="mb-5 flex flex-col gap-5 md:flex-row md:items-center">
+                <div class=" flex flex-col gap-5 md:flex-row md:items-center">
+                    
+                    <div class="ltr:ml-auto rtl:mr-auto">
+                        <input [(ngModel)]="search" type="text" class="form-input" placeholder="Search..." />
+                    </div>
+                </div>
+                <div class="flex-2">
+                    <button type="button" class="btn btn-info h-9 btn-sm" (click)="reqcreate()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.5"
+                                d="M12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22Z"
+                                fill="#eeeeee36" />
+                            <path
+                                d="M12 8.25C12.4142 8.25 12.75 8.58579 12.75 9V11.25H15C15.4142 11.25 15.75 11.5858 15.75 12C15.75 12.4142 15.4142 12.75 15 12.75H12.75L12.75 15C12.75 15.4142 12.4142 15.75 12 15.75C11.5858 15.75 11.25 15.4142 11.25 15V12.75H9C8.58579 12.75 8.25 12.4142 8.25 12C8.25 11.5858 8.58579 11.25 9 11.25H11.25L11.25 9C11.25 8.58579 11.5858 8.25 12 8.25Z"
+                                fill="#FFFFFF" />
+                        </svg>
+                        &nbsp;
+                        {{'Create Request'|translate}}
+                        &nbsp;</button>
+                </div>
+                <div hlMenu class="dropdown">
+                    <button type="button" hlMenuButton class="btn btn-outline-dark h-9 btn-sm dropdown-toggle">
+                        {{'View other Pages'|translate}}
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            class="inline-block h-4 w-4 ltr:ml-1 rtl:mr-1">
+                            <path d="M19 9L12 15L5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <ul *hlMenuItems @toggleAnimation class="whitespace-nowrap ltr:right-0 rtl:left-0">
+                        <li><a class="curs" *hlMenuItem="let menuItem" (click)="viewquote()"> {{'View  Quotes'|translate}}</a></li>
+                        <li><a class="curs" *hlMenuItem="let menuItem" (click)="viewworkcard()"> {{'Work card'|translate}}</a></li>
+                        <li><a class="curs" *hlMenuItem="let menuItem" (click)="viewhistory()"> {{'Service History'|translate}}</a></li>
+                        <li *ngIf="role_id==1"><a *hlMenuItem="let menuItem" (click)="viewadmin_approval()">{{'Approve Tickets'|translate}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mb-5 flex flex-col gap-5 md:flex-row md:items-center">
+                <div class=" flex flex-col gap-5 md:flex-row md:items-center">
+                    <!-- <h5 class="text-lg font-semibold dark:text-white-light">Tool Request List </h5> -->
+                </div>
+                <div class="flex-1" *ngIf="nrq_flag==true">
+                    <div
+                        class="flex items-center rounded bg-warning-light p-3.5 text-warning dark:bg-warning-dark-light">
+                        <span class="ltr:pr-2 rtl:pl-2"><strong class="ltr:mr-1 rtl:ml-1">{{'New Request'|translate}}!
+                                {{open_request}}</strong>{{'new service request created'|translate}}!!.</span>
+                        <button type="button" class="hover:opacity-80 ltr:ml-auto rtl:mr-auto" (click)="nrq_flag=false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-5 w-5">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="datatable">
+            <ng-datatable [rows]="lists" [columns]="cols" [sortable]="true" [search]="search"
+                skin="whitespace-nowrap table-hover"
+                [loading]="loading"
+                firstArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M13 19L7 12L13 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M16.9998 19L10.9998 12L16.9998 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                lastArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M11 19L17 12L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M6.99976 19L12.9998 12L6.99976 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg> '
+                previousArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M15 5L9 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                nextArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'>
+                <ng-template slot="sm_name" let-value="data">
+                    <span class="badge badge-outline-success rounded-none badge-sm" *ngIf="value.serm_status==23"
+                        (click)="sendquote(value.serm_id,value.qtm_id)" style="cursor: pointer"> {{'Quotation Accepted'|translate}}</span>
+                    <span class="badge badge-outline-success rounded-none badge-sm" *ngIf=" value.serm_status==24 "
+                        style="cursor: pointer"> {{ 'Service Request Accepted'|translate }}</span>
+                    <span class="badge badge-outline-success rounded-none badge-sm" *ngIf=" value.serm_status==29 "
+                        style="cursor: pointer" (click)="workcard_list(value.serm_id)"> {{ 'Work Completed'|translate
+                        }}</span>
+                    <span class="badge badge-outline-success rounded-none badge-sm" *ngIf=" value.serm_status==31 "
+                        style="cursor: pointer" (click)="histdetails(value.serm_id)"> {{ 'Payment Completed'|translate
+                        }}</span>
+                    <span class="badge badge-outline-success rounded-none badge-sm" *ngIf=" value.serm_status==32 "
+                        style="cursor: pointer" (click)="invm_list(value.serm_id)"> {{ 'Service Request  Completed'|translate }}</span>
+                    <span class="badge badge-outline-success rounded-none badge-sm" *ngIf="  value.serm_status==33"> {{'Service Request Completed'|translate }}</span>
+
+                    <span class="badge badge-outline-warning rounded-none badge-sm" *ngIf=" value.serm_status==28  "
+                        style="cursor: pointer" (click)="workcard_list(value.serm_id)"> {{'Work In Progress'|translate}}</span>
+                    <span class="badge badge-outline-warning rounded-none badge-sm" *ngIf=" value.serm_status==30  "
+                        style="cursor: pointer" (click)="histdetails(value.serm_id)"> {{'Payment
+                        Pending'|translate}}</span>
+                    <span class="badge badge-outline-warning rounded-none badge-sm" *ngIf="  value.serm_status==50 "
+                        style="cursor: pointer" (click)="workcard_list(value.serm_id)"> {{'Work Card Hold'|translate
+                        }}</span>
+                    <span class="badge badge-outline-warning rounded-none badge-sm" *ngIf="  value.serm_status==35 "
+                        style="cursor: pointer" (click)="workcard_list(value.serm_id)"> {{ 'Work Pending'|translate
+                        }}</span>
+                    <span class="badge badge-outline-warning rounded-none badge-sm" *ngIf="  value.serm_status==58 "
+                        style="cursor: pointer" (click)="sendquote_exp(value.serm_id,value.qtm_id)"> {{'Awaiting
+                        Approval'|translate }}</span>
+
+
+                    <span class="badge badge-outline-danger rounded-none badge-sm" *ngIf="value.serm_status==22"
+                        style="cursor: pointer" (click)="sendquote(value.serm_id,value.qtm_id)">{{'Quotation
+                        Rejected'|translate}}</span>
+                    <span class="badge badge-outline-danger rounded-none badge-sm" *ngIf=" value.serm_status==34 "
+                        style="cursor: pointer" (click)="histdetails(value.serm_id)">{{'Service Request
+                        Rejected'|translate }}</span>
+
+                    <span class="badge badge-outline-primary rounded-none badge-sm" *ngIf="value.serm_status==21 "
+                        style="cursor: pointer" (click)="sendquote(value.serm_id,value.qtm_id)">{{'Quotation
+                        Created'|translate}}</span>
+                    <span class="badge badge-outline-primary rounded-none badge-sm" *ngIf=" value.serm_status==19 "
+                        style="cursor: pointer">{{'Service Request Created'|translate }}</span>
+                    <span class="badge badge-outline-primary rounded-none badge-sm" *ngIf=" value.serm_status==25"
+                        style="cursor: pointer" (click)="workcard_list(value.serm_id)">{{'Work Card Created'|translate
+                        }}</span>
+
+                    <span class="badge badge-outline-info rounded-none badge-sm" *ngIf="value.serm_status==26  "
+                        style="cursor: pointer" (click)="workcard_list(value.serm_id)">{{'Work Assigned'|translate
+                        }}</span>
+                    <span class="badge badge-outline-info rounded-none badge-sm" *ngIf=" value.serm_status==27 "
+                        style="cursor: pointer" (click)="workcard_list(value.serm_id)">{{'Work Started'|translate
+                        }}</span>
+                    <span class="badge badge-outline-danger rounded-none badge-sm" *ngIf=" value.serm_status==56 "
+                        style="cursor: pointer" (click)="workcard_list(value.serm_id)">{{'Work Card
+                        Re-Opened'|translate}}</span>
+
+                    <span class="badge badge-outline-warning rounded-none badge-sm"
+                        *ngIf="value.serm_status==20 &&value.serm_vendor_flag==1&&value.vm_status==0"
+                        style="cursor: pointer" (click)="quote_list(value.serm_id)">{{'Quote Pending By
+                        Expert'|translate}} </span>
+                    <span class="badge badge-outline-danger rounded-none badge-sm"
+                        *ngIf="value.serm_status==20 &&value.serm_vendor_flag==1&&value.vm_status==2"
+                        style="cursor: pointer" (click)="quote_list(value.serm_id)">{{'Request Rejected By
+                        Expert'|translate}} </span>
+                    <span class="badge badge-outline-warning rounded-none badge-sm"
+                        *ngIf="value.serm_status==20&& value.serm_vendor_flag==0" style="cursor: pointer"
+                        (click)="quote_list(value.serm_id)"> {{'Quote Pending'|translate}} </span>
+                    <span class="badge badge-outline-warning rounded-none badge-sm" *ngIf="value.serm_status==57"
+                        style="cursor: pointer" (click)="quote_list(value.serm_id)">{{'Service Request
+                        Accepted'|translate }} </span>
+                    <!-- <span class="badge rounded-full bg-warning/20 text-warning hover:top-0">Pending</span> -->
+                </ng-template>
+
+                <ng-template slot="serm_updatedon" let-value="data">
+                    <div class="flex flex-col gap-2 md:flex-row ">
+                        <div class="flex-2">
+
+                            <svg _ngcontent-lqu-c71="" width="16" height="18" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path _ngcontent-lqu-c71=""
+                                    d="M2 12C2 8.22876 2 6.34315 3.17157 5.17157C4.34315 4 6.22876 4 10 4H14C17.7712 4 19.6569 4 20.8284 5.17157C22 6.34315 22 8.22876 22 12V14C22 17.7712 22 19.6569 20.8284 20.8284C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14V12Z"
+                                    stroke="#1C274C" stroke-width="1.5"></path>
+                                <path _ngcontent-lqu-c71="" d="M7 4V2.5" stroke="#1C274C" stroke-width="1.5"
+                                    stroke-linecap="round"></path>
+                                <path _ngcontent-lqu-c71="" d="M17 4V2.5" stroke="#1C274C" stroke-width="1.5"
+                                    stroke-linecap="round"></path>
+                                <path _ngcontent-lqu-c71="" d="M2.5 9H21.5" stroke="#1C274C" stroke-width="1.5"
+                                    stroke-linecap="round"></path>
+                                <path _ngcontent-lqu-c71=""
+                                    d="M18 17C18 17.5523 17.5523 18 17 18C16.4477 18 16 17.5523 16 17C16 16.4477 16.4477 16 17 16C17.5523 16 18 16.4477 18 17Z"
+                                    fill="#1C274C"></path>
+                                <path _ngcontent-lqu-c71=""
+                                    d="M18 13C18 13.5523 17.5523 14 17 14C16.4477 14 16 13.5523 16 13C16 12.4477 16.4477 12 17 12C17.5523 12 18 12.4477 18 13Z"
+                                    fill="#1C274C"></path>
+                                <path _ngcontent-lqu-c71=""
+                                    d="M13 17C13 17.5523 12.5523 18 12 18C11.4477 18 11 17.5523 11 17C11 16.4477 11.4477 16 12 16C12.5523 16 13 16.4477 13 17Z"
+                                    fill="#1C274C"></path>
+                                <path _ngcontent-lqu-c71=""
+                                    d="M13 13C13 13.5523 12.5523 14 12 14C11.4477 14 11 13.5523 11 13C11 12.4477 11.4477 12 12 12C12.5523 12 13 12.4477 13 13Z"
+                                    fill="#1C274C"></path>
+                                <path _ngcontent-lqu-c71=""
+                                    d="M8 17C8 17.5523 7.55228 18 7 18C6.44772 18 6 17.5523 6 17C6 16.4477 6.44772 16 7 16C7.55228 16 8 16.4477 8 17Z"
+                                    fill="#1C274C"></path>
+                                <path _ngcontent-lqu-c71="" d="M8 13C8 13.5523 7.55228 14 7
+                                    14C6.44772 14 6 13.5523 6 13C6 12.4477 
+                                    6.44772 12 7 12C7.55228 12 8 12.4477 8 13Z" fill="#1C274C"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-2" style="font-size: small;">
+                            {{ value.serm_updatedon | date:'dd-MMM-yyyy' }}
+                        </div>
+                    </div>
+
+
+                </ng-template>
+
+                <ng-template slot="time" let-value="data">
+                    <div class="flex flex-col gap-2 md:flex-row ">
+                        <div class="flex-2">
+
+                            <svg _ngcontent-lqu-c71="" width="16" height="18" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle _ngcontent-lqu-c71="" cx="12" cy="12" r="10" stroke="#1C274C"
+                                    stroke-width="1.5"></circle>
+                                <path _ngcontent-lqu-c71="" d="M12 8V12L14.5 14.5" stroke="#1C274C" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-2" style="font-size: small;">
+                            {{ value.serm_updatedon | date:' hh:mm a' }}
+                        </div>
+                    </div>
+
+                </ng-template>
+
+                <ng-template slot="Action" let-value="data">
+                    <button type="button" ngxTippy data-tippy-content="Edit"
+                        *ngIf="value.serm_status==30||value.serm_status==31||value.serm_status==34"
+                        (click)="histdetails(value.serm_id)">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                fill="#1C274C" />
+                            <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                fill="#1C274C" />
+                            <path
+                                d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                fill="#1C274C" />
+                            <path opacity="0.5"
+                                d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                fill="#1C274C" />
+                        </svg>
+
+                    </button>
+                    <button type="button" ngxTippy data-tippy-content="Edit"
+                        *ngIf="value.serm_status==25||value.serm_status==26||value.serm_status==27||value.serm_status==28||value.serm_status==29||value.serm_status==35||value.serm_status==50||value.serm_status==56"
+                        (click)="workcard_list(value.serm_id)">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                fill="#1C274C" />
+                            <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                fill="#1C274C" />
+                            <path
+                                d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                fill="#1C274C" />
+                            <path opacity="0.5"
+                                d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                fill="#1C274C" />
+                        </svg>
+
+                    </button>
+                    <button type="button" ngxTippy data-tippy-content="Edit"
+                        *ngIf="value.serm_status==20||value.serm_status==57" (click)="quote_list(value.serm_id)">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                fill="#1C274C" />
+                            <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                fill="#1C274C" />
+                            <path
+                                d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                fill="#1C274C" />
+                            <path opacity="0.5"
+                                d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                fill="#1C274C" />
+                        </svg>
+
+                    </button>
+                    <button type="button" ngxTippy data-tippy-content="Edit"
+                        *ngIf="value.serm_status==21||value.serm_status==22||value.serm_status==23"
+                        (click)="sendquote(value.serm_id,value.qtm_id)">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                fill="#1C274C" />
+                            <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                fill="#1C274C" />
+                            <path
+                                d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                fill="#1C274C" />
+                            <path opacity="0.5"
+                                d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                fill="#1C274C" />
+                        </svg>
+
+                    </button>
+                    <button type="button" ngxTippy data-tippy-content="Edit" *ngIf="value.serm_status==58"
+                        (click)="sendquote_exp(value.serm_id,value.qtm_id)">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                fill="#1C274C" />
+                            <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                fill="#1C274C" />
+                            <path
+                                d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                fill="#1C274C" />
+                            <path opacity="0.5"
+                                d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                fill="#1C274C" />
+                        </svg>
+
+                    </button>
+
+                    <button type="button" ngxTippy data-tippy-content="Edit" *ngIf="value.serm_status==32"
+                        (click)="invm_list(value.serm_id)">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                fill="#1C274C" />
+                            <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                fill="#1C274C" />
+                            <path
+                                d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                fill="#1C274C" />
+                            <path opacity="0.5"
+                                d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                fill="#1C274C" />
+                        </svg>
+
+                    </button>
+
+
+                </ng-template>
+
+            </ng-datatable>
+        </div>
+
+    </div>
+
+
+</div>
+
+<div class="panel" *ngIf="permission_Denied==1">
+    <div class="relative flex min-h-screen items-center justify-center overflow-hidden">
+        <div
+            class="px-6 py-16 text-center font-semibold before:container before:absolute before:left-1/2 before:aspect-square before:-translate-x-1/2 before:rounded-full before:bg-[linear-gradient(180deg,#4361EE_0%,rgba(67,97,238,0)_50.73%)] before:opacity-10 md:py-20">
+            <div class="relative">
+                <img [src]="'/assets/images/error/403forbiddenerror.jpg'" alt="503"
+                    class="mx-auto w-full max-w-xs object-cover md:max-w-xl" />
+                <p class="mt-5 text-base dark:text-white">{{'Service Unavailable'|translate}}! </p>
+                <button class="btn btn-danger mx-auto !mt-7 w-max border-0 uppercase shadow-none" type="button"
+                    (click)="logout()">
+                    {{'Home'|translate}}
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>

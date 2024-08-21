@@ -1,0 +1,540 @@
+<div class="mb-5">
+    <ol class="flex font-semibold text-primary dark:text-white-dark">
+        <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+            <a href="javascript:;" (click)="servlist()"
+                class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+                {{'Service Request'|translate}}</a>
+        </li>
+        <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+            <a href="javascript:;" (click)="servq_details()"
+                class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+                {{'Service Request Details'|translate}}</a>
+        </li>
+        <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
+            <a
+                class="relative flex h-full items-center bg-primary p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-primary ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-6 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180">
+                {{'Quote'|translate}}</a>
+        </li>
+
+    </ol>
+</div>
+
+<ng-container *ngIf="this.loading==0">
+    <div *ngIf="request_details">
+        <div class="flex flex-col gap-2.5 xl:flex-row">
+            <div class="panel flex-1 px-0 py-6 ltr:xl:mr-6 rtl:xl:ml-6">
+                <div class="flex flex-wrap justify-between px-4">
+                    <div class="mb-6 w-full lg:w-1/2">
+                        <div class="flex shrink-0 items-center text-black dark:text-white">
+                            <img src="/rams_test/admin/assets/images/catramsshortlogo.png" alt="" class="w-14" />
+                        </div>
+                        <div class="mt-6 space-y-1 text-gray-500 dark:text-gray-400">
+                            <div>1VP II/1148, Nettayam Road,
+                                Thiruvananthapuram, Kerala 695005</div>
+                            <div><span>
+                                    <p>supportcatrams.com</p>
+                                </span></div>
+                            <div>+91 954 441 6800</div>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-1/2 lg:max-w-fit">
+                        <div class="mt-4 flex items-center">
+
+                            <span class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 ng-tns-c35-2 rtl:ml-2 f_color">{{'Service Request ID'|translate}}</span>
+                            <input id="invoiceLabel" type="text" name="inv-label" class="form-input w-2/3 lg:w-[250px]"
+                                placeholder="{{'Service Request ID'|translate}}" [(ngModel)]="request_details.serm_number" name="title"
+                                disabled />
+                        </div>
+
+                    </div>
+                </div>
+                <hr class="mt-6 border-[#e0e6ed] dark:border-[#1b2e4b]" />
+                <div class="mt-8 px-4">
+                    <div class="flex flex-col justify-between lg:flex-row">
+                        <div class="mb-6 w-full lg:w-1/2 ltr:lg:mr-6 rtl:lg:ml-6">
+                            <div class="text-lg font-semibold f_color">{{'Bill To'|translate}}:-</div>
+                            <div class="mt-4 flex items-center">
+                                <span class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 ng-tns-c35-2 rtl:ml-2 f_color"> {{'Customer Name'|translate}}</span>
+                                <input id="reciever-name" type="text" name="reciever-name" class="form-input flex-1"
+                                    [(ngModel)]="request_details.cstm_name" name="cstm_name" placeholder="{{'Customer Name'|translate}}"
+                                    readonly />
+                            </div>
+                            <div class="mt-4 flex items-center">
+                                <span class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 ng-tns-c35-2 rtl:ml-2 f_color">{{'Customer Phone'|translate}}</span>
+
+                                <input id="reciever-number" type="text" name="reciever-number" class="form-input flex-1"
+                                    [(ngModel)]="request_details.cstm_phone" name="phone"
+                                    placeholder="{{'Customer Phone'|translate}}" readonly />
+                            </div>
+                            <div class="mt-4 flex items-center">
+                                <span class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 ng-tns-c35-2 rtl:ml-2 f_color">{{'Email'|translate}} </span>
+
+                                <input id="reciever-email" type="email" name="reciever-email" class="form-input flex-1"
+                                    [(ngModel)]="request_details.cstm_email" name="email"
+                                    placeholder="{{'Email'|translate}}" readonly />
+                            </div>
+
+                        </div>
+                        <div class="w-full lg:w-1/2">
+                            <div class="text-lg font-semibold f_color">{{'Vehicle Details'|translate}}:-</div>
+                            <div class="mt-4 flex items-center">
+
+                                <span class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 ng-tns-c35-2 rtl:ml-2 f_color"> {{'Registration Number'|translate}}
+                                    </span>
+
+                                <input id="acno" type="text" name="acno" class="form-input " name="no"
+                                    [(ngModel)]="request_details.custveh_regnumber" placeholder="{{'Registration Number'|translate}}"
+                                    readonly />
+                            </div>
+                            <div class="mt-4 flex items-center">
+
+                                <span class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 ng-tns-c35-2 rtl:ml-2 f_color"> {{'Make'|translate}} </span>
+                                <input id="vehmake" type="text" class="form-input "
+                                    [(ngModel)]="request_details.make_name" readonly />
+                            </div>
+                            <div class="mt-4 flex items-center">
+                                <span class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 ng-tns-c35-2 rtl:ml-2 f_color"> {{'Model'|translate}} </span>
+
+                                <input id="vehmodel" type="text" class="form-input"
+                                    [(ngModel)]="request_details.model_name" readonly />
+                            </div>
+                            <div class="mt-4 flex items-center">
+                                <span class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 ng-tns-c35-2 rtl:ml-2 f_color">  {{'Variant'|translate}}
+                                </span>
+
+                                <input id="vinnum" type="text" class="form-input"
+                                    [(ngModel)]="request_details.variant_name" readonly />
+                            </div>
+                            <br>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-between lg:flex-row" style="margin-left: 1%;">
+                    <div class="mb-6 w-full lg:w-1/2 ltr:lg:mr-6 rtl:lg:ml-6">
+
+                        <div class="text-lg font-semibold mb-2 f_color" style="    margin-left: 0%;"> {{'Complaint Details'|translate}}:-
+                        </div>
+                        <textarea id="complaint" name="complaint" class="form-textarea min-h-[130px] min-w-[50px]"
+                            placeholder="{{'Complaint Details'|translate}}" [(ngModel)]="request_details.serm_complaint"
+                            name="complaint" readonly></textarea>
+                    </div>
+                    <div class="w-full lg:w-1/2" *ngIf="request_details.qtm_rejected_reason">
+
+                        <div class="text-lg font-semibold"> {{'Rejected Reason'|translate}}:-</div>
+                        <textarea id="complaint" name="complaint" class="form-textarea min-h-[130px]"
+                            placeholder="{{'Rejected Reason'|translate}}" [(ngModel)]="request_details.qtm_rejected_reason"
+                            name="complaint" readonly></textarea>
+                    </div>
+                </div>
+
+
+
+                <div class="mb-12 w-full lg:w-1/2 ltr:lg:mr-6 rtl:lg:ml-6" *ngIf="r_quotes">
+                    <button type="button" class="btn btn-outline-primary" (click)="recentmodal.open()"
+                        style=" margin-left: 1%;"> {{'View Prevoius Quotes'|translate}}</button>
+                </div>
+
+
+
+
+
+                <ng-container *ngIf="request_details.cstm_type==1">
+                    <ng-container
+                        *ngIf="request_details.customer_dicounts.cd_request_type==0||request_details.customer_dicounts.cd_request_type==3">
+                        <div class="relative inline-flex align-middle" style="    margin-left: 2%;">
+                            <div
+                                class="relative flex items-center rounded border !border-primary bg-primary-light p-3.5 text-primary before:absolute before:top-1/2 before:-mt-2 before:border-l-8 before:border-t-8 before:border-b-8 before:border-t-transparent before:border-b-transparent before:border-l-inherit ltr:border-l-[64px] ltr:before:left-0 rtl:border-r-[64px] rtl:before:right-0 rtl:before:rotate-180 dark:bg-primary-dark-light">
+                                <span class="absolute inset-y-0 m-auto h-6 w-6 text-white ltr:-left-11 rtl:-right-11">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" class="h-6 w-6">
+                                        <path
+                                            d="M19.0001 9.7041V9C19.0001 5.13401 15.8661 2 12.0001 2C8.13407 2 5.00006 5.13401 5.00006 9V9.7041C5.00006 10.5491 4.74995 11.3752 4.28123 12.0783L3.13263 13.8012C2.08349 15.3749 2.88442 17.5139 4.70913 18.0116C9.48258 19.3134 14.5175 19.3134 19.291 18.0116C21.1157 17.5139 21.9166 15.3749 20.8675 13.8012L19.7189 12.0783C19.2502 11.3752 19.0001 10.5491 19.0001 9.7041Z"
+                                            stroke="currentColor" stroke-width="1.5"></path>
+                                        <path
+                                            d="M7.5 19C8.15503 20.7478 9.92246 22 12 22C14.0775 22 15.845 20.7478 16.5 19"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                                        <path d="M12 6V10" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                                <span class="ltr:pr-2 rtl:pl-2"><strong class="ltr:mr-1 rtl:ml-1">{{'Premium Customer'|translate}} !</strong>{{'Discount'|translate}} {{'of'|translate}} <ng-container
+                                        *ngIf="request_details.customer_dicounts.cd_type==0">
+                                        ₹
+                                    </ng-container> {{request_details.customer_dicounts.cd_rate}}
+                                    <ng-container *ngIf="request_details.customer_dicounts.cd_type==1">
+                                        %
+                                    </ng-container>
+                                    {{"Included at the time of payment"|translate}}
+
+                                </span>
+
+                            </div>
+                        </div>
+                    </ng-container>
+
+                </ng-container>
+
+                <ng-container >
+
+
+                    <div class="">
+                        <br>
+
+                        <div class="table-responsive mt-0">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="f_color">{{'Item'|translate}}</th>
+                                        <th class="w-1 f_color">{{'Price'|translate}}</th>
+                                        <th class="w-1"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <ng-container *ngIf="quote_items.length <= 0">
+                                        <tr>
+                                            <td colspan="5" class="!text-center font-semibold" style="color: red;">
+                                                {{'No Item Selected'|translate}}
+                                            
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                    <ng-container *ngFor="let item of services; index as i">
+                                        <tr class="align-top">
+                                            <td>
+                                                <input type="text" class="form-input w-32" placeholder="Price"
+                                                    [(ngModel)]="item.qti_items_vendor" readonly
+                                                    
+                                                     />
+                                            </td>
+
+                                            <td>
+                                                <input type="number" class="form-input w-32" placeholder="Price"
+                                                    [(ngModel)]="item.qti_cost" name="servpack_cost_{{i}}" min="0" readonly
+                                                    
+                                                     />
+                                            </td>
+                                            
+                                            
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-6 flex flex-col justify-between px-4 sm:flex-row">
+                            <div class="mb-6 sm:mb-0">
+                                <!-- <button type="button" class="btn btn-outline-primary" (click)="addItem()">{{'Add Item'|translate}}</button> -->
+                                <br>
+
+                                <!-- <button type="button" class="btn btn-outline-info" (click)="customserv.open()">{{'Add a Custom Service'|translate}}</button> -->
+                                <br>
+                                <!-- <button type="button" class="btn btn-outline-warning" (click)="additionalcharges.open()"
+                                    [disabled]="this.services==0">{{'Add Additional Charges'|translate}}</button> -->
+                            </div>
+
+                            <div class="sm:w-2/5">
+                                <div class="flex items-center justify-between">
+                                    <div>{{'Subtotal'|translate}}</div>
+                                    <div><input type="number" name="subservpack_cost" class="form-input w-32"
+                                            placeholder="{{'Subtotal'|translate}}" onKeyPress="if(this.value.length==6) return false;"
+                                            oninput="validity.valid||(value='');" min="0" [(ngModel)]="subtotal"
+                                            [ngModelOptions]="{ standalone: true }"  autocomplete="off" readonly /></div>
+                                </div>
+                                <br>
+                                <div class="flex items-center justify-between">
+                                    <div>{{'Expert Cash Percent'|translate}}
+                                        <input type="number" name="subservpack_cost" class="form-input w-32"
+                                         onKeyPress="if(this.value.length==2) return false;"
+                                        oninput="validity.valid||(value='');" min="0" [(ngModel)]="exp_percnt" (change)="calculateTotal(services)"
+                                        [ngModelOptions]="{ standalone: true }"  autocomplete="off" />
+                                    </div>
+                                    <div>
+                                        <input type="number" name="subservpack_cost" class="form-input w-32"
+                                            placeholder="{{'Expert Cash Percent'|translate}}" onKeyPress="if(this.value.length==6) return false;"
+                                            oninput="validity.valid||(value='');" min="0" [(ngModel)]="wk_price"
+                                            [ngModelOptions]="{ standalone: true }" disabled autocomplete="off" />
+                                        
+                                        </div>
+                                </div>
+                                <br>
+                                <!-- <div class="flex items-center justify-between">
+                                    <div>{{'Additional Charges'|translate}}
+                                        <div *ngIf="charges>0"><input type="text" [(ngModel)]="charges_text"
+                                                name="charges_text" class="form-input "
+                                                placeholder="{{'Please Enter charge Description'|translate}}" (change)="expense_header()" />
+                                            <span style="color: red;font-style: italic;">*{{'Please Enter charge Description'|translate}}</span>
+                                        </div>
+
+                                    </div>
+                                    <span *ngIf="!charges" style="color: red;font-style: italic;">{{'Enter the value to include a custom charge'|translate}}</span>
+                                    <div><input name="charges" class="form-input w-32" placeholder="{{'Enter the value to include a custom charge'|translate}}" type="number"
+                                            onKeyPress="if(this.value.length==6) return false;"
+                                            oninput="validity.valid||(value='');" min="0" [(ngModel)]="charges"
+                                            [ngModelOptions]="{ standalone: true }" (change)="calculate_tax();expense_header()"
+                                            autocomplete="off" /></div>
+                                </div> -->
+
+                                <br>
+
+                                <div class="mt-4 flex items-center justify-between font-semibold">
+                                    <div>{{'Grand Total'|translate}}</div>
+                                    <div><input type="number" name="grand_total" class="form-input w-32"
+                                            placeholder="{{'Grand Total'|translate}}" [(ngModel)]="grandtotal"
+                                            [ngModelOptions]="{ standalone: true }" disabled  /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br><br><br>
+
+                  
+                    <ng-container *ngIf="quote_id">
+                        <button type="button" class="btn btn-info w-full gap-2" (click)="sendquotes.open()"
+                            [disabled]="grandtotal==0" style="width: 15%;margin-left: 82%;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 ltr:mr-2 rtl:ml-2">
+                                <path
+                                    d="M17.4975 18.4851L20.6281 9.09373C21.8764 5.34874 22.5006 3.47624 21.5122 2.48782C20.5237 1.49939 18.6511 2.12356 14.906 3.37189L5.57477 6.48218C3.49295 7.1761 2.45203 7.52305 2.13608 8.28637C2.06182 8.46577 2.01692 8.65596 2.00311 8.84963C1.94433 9.67365 2.72018 10.4495 4.27188 12.0011L4.55451 12.2837C4.80921 12.5384 4.93655 12.6658 5.03282 12.8075C5.22269 13.0871 5.33046 13.4143 5.34393 13.7519C5.35076 13.9232 5.32403 14.1013 5.27057 14.4574C5.07488 15.7612 4.97703 16.4131 5.0923 16.9147C5.32205 17.9146 6.09599 18.6995 7.09257 18.9433C7.59255 19.0656 8.24576 18.977 9.5522 18.7997L9.62363 18.79C9.99191 18.74 10.1761 18.715 10.3529 18.7257C10.6738 18.745 10.9838 18.8496 11.251 19.0285C11.3981 19.1271 11.5295 19.2585 11.7923 19.5213L12.0436 19.7725C13.5539 21.2828 14.309 22.0379 15.1101 21.9985C15.3309 21.9877 15.5479 21.9365 15.7503 21.8474C16.4844 21.5244 16.8221 20.5113 17.4975 18.4851Z"
+                                    stroke="currentColor" stroke-width="1.5" />
+                                <path opacity="0.5" d="M6 18L21 3" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" />
+                            </svg>
+                            Proceed Quote
+                        </button>
+                    </ng-container>
+
+
+
+         <br>
+                    
+
+                </ng-container>
+            </div>
+
+        </div>
+    </div>
+</ng-container>
+
+
+<ng-container *ngIf="this.loading==1">
+    <div class="loader">
+
+    </div>
+</ng-container>
+
+
+
+<modal #customserv [closeOnOutsideClick]="false">
+    <ng-template #modalHeader>
+    </ng-template>
+    <ng-template #modalBody>
+        <div class="panel h-full xl:col-span-2" style="height: 300px;">
+            <form [formGroup]="servForm" class="flex-1 space-y-5 dark:text-white" (ngSubmit)="servcreate()">
+                <div class="flex-1">
+                    <label for="servpack_name">{{'Service Name'|translate}}</label>
+                    <div class="relative text-white-dark">
+                        <input id="servpack_name" type="text" placeholder=" {{'Enter Service Name'|translate}}"
+                            class="form-input placeholder:text-white-dark" formControlName="servpack_name" required />
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <label for="servpack_cost">{{'Service Cost'|translate}}</label>
+                    <div class="relative text-white-dark">
+                        <input id="servpack_cost" type="number" placeholder="{{'Service Cost'|translate}}"
+                            class="form-input placeholder:text-white-dark" formControlName="servpack_cost"
+                            onKeyPress="if(this.value.length==6) return false;" oninput="validity.valid||(value='');"
+                            min="0" (change)="calculate_tax()" autocomplete="off" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </ng-template>
+    <ng-template #modalFooter>
+        <button type="button" (click)="customserv.close()" class="btn btn-outline-danger">{{'close'|translate}}</button>
+        &nbsp;&nbsp;
+        <button type="button" [disabled]="!servForm.valid" (click)="servcreate();customserv.close()"
+            class="btn btn-outline-success">{{'Create'|translate}}</button>
+    </ng-template>
+</modal>
+
+<modal #recentmodal class="modal-top extra-large-modal" [closeOnOutsideClick]="false">
+    <ng-template #modalHeader>
+        <b style="text-align: center; margin-left: 32%;"> {{'Quotes For this Service Id'|translate}} :<span
+                style="color: red;">{{request_details.serm_number}}</span></b>
+    </ng-template>
+    <ng-template #modalBody>
+        <div class="panel h-full xl:col-span-2" style="height: 300px;">
+            <ng-scrollbar>
+                <div class="mb-5 flex flex-col gap-5 md:flex-row md:items-center">
+                    <div class="ltr:ml-auto rtl:mr-auto">
+                        <input [(ngModel)]="search" type="text" class="form-input w-auto" placeholder="{{'Search...'|translate}}" />
+                    </div>
+                </div>
+                <ng-datatable style="height: fit-content;" [rows]="rows" [columns]="cols" [search]="search"
+                    [stickyHeader]="true" sortColumn="qtm_number" skin="whitespace-nowrap table-hover"
+                    firstArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M13 19L7 12L13 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M16.9998 19L10.9998 12L16.9998 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                    lastArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M11 19L17 12L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M6.99976 19L12.9998 12L6.99976 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg> '
+                    previousArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M15 5L9 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                    nextArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'>
+                    <ng-template slot="action" let-value="data">
+                        <table>
+                            <thead>
+                                <th>
+                                   {{' Pack Name'|translate}}
+                                </th>
+                                <th>
+                                     
+                                    {{'Pack Cost'|translate}}
+                                </th>
+                            </thead>
+                        </table>
+                        <tbody>
+                            <ng-container *ngFor="let qdata of value.items_data">
+                                <tr>
+                                    <td>
+                                        {{qdata.servpack_name}}
+                                    </td>
+                                    <td>
+                                        {{qdata.servpack_cost}}
+                                    </td>
+
+                                </tr>
+                                <br><br>
+                            </ng-container>
+                        </tbody>
+
+                    </ng-template>
+
+                </ng-datatable>
+            </ng-scrollbar>
+        </div>
+    </ng-template>
+    <ng-template #modalFooter>
+        <button type="button" (click)="recentmodal.close()" class="btn btn-outline-danger">{{'close'|translate}}</button>
+    </ng-template>
+</modal>
+
+<modal #additionalcharges [closeOnOutsideClick]="false">
+    <ng-template #modalHeader>
+        <b style="text-align: center; margin-left: 32%;"> {{'Additional Charges'|translate}} </b>
+    </ng-template>
+    <ng-template #modalHeader>
+    </ng-template>
+    <ng-template #modalBody>
+        <select id="ctnSelect1" class="form-select text-white-dark" required (change)="selected_expense($event)">
+            <option disabled selected value="">{{'Select Charges'|translate}}</option>
+            <option value="-1">{{'Add Custom Charge'|translate}}</option>
+            <option *ngFor="let option of expense_list" [value]="option.exp_id">
+                {{option.exp_name }}&nbsp;&nbsp;₹{{option.exp_cost}}</option>
+        </select>
+
+        <br><br>
+
+
+        <ng-container class="flex" *ngIf="this.expense_id!=0">
+            <div class="w-ful">
+                <div class="flex-1">
+                    <label>Custom Charges</label>
+                    <input type="text" [(ngModel)]="charges_text" name="charges_text" class="form-input "
+                        placeholder="Enter Charge Description" />
+                    <span style="color: red;font-style: italic;">*Please Enter charge Description</span>
+                </div>
+                <br><br>
+                <div class="flex-1"><label>Expense Price</label>
+                    <input name="charges" class="form-input w-32" placeholder="Price" type="number"
+                        onKeyPress="if(this.value.length==6) return false;" oninput="validity.valid||(value='');"
+                        min="0" [(ngModel)]="charges" [ngModelOptions]="{ standalone: true }" (change)="calculate_tax()"
+                        autocomplete="off" />
+
+                </div>
+            </div>
+
+        </ng-container>
+
+
+
+    </ng-template>
+    <ng-template #modalFooter>
+        <button type="button" (click)="additionalcharges.close()" class="btn btn-outline-danger">{{'close'|translate}}</button>
+        &nbsp;&nbsp;
+        <button type="button" [disabled]="!expense_id" (click)="created_expense();additionalcharges.close()"
+            class="btn btn-outline-success">{{'Create'|translate}}</button>
+    </ng-template>
+</modal>
+
+<modal #sendquotes 
+
+[closeOnOutsideClick]="false">
+    <ng-template #modalHeader>
+        <b style="padding: 2%;"> {{'Send Quote For'|translate}} {{request_details.serm_number}} </b>
+    </ng-template>
+
+    <ng-template #modalBody>
+        <div class="w-full lg:w-1/2">
+            <!-- <div class="flex flex-2">
+                <div
+                    class="flex items-center justify-center border border-[#e0e6ed] bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                    {{'Grand Total'|translate}}
+                </div>
+                <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
+                    placeholder="{{'Grand Total'|translate}}" [(ngModel)]="grandtotal"
+                    [ngModelOptions]="{standalone: true}" readonly />
+            </div> -->
+            <br> <br>
+            <label for="checkLeft">{{'Proceed Quote'|translate}}</label>
+            <br>
+            <!-- <div class="flex flex-2">
+
+
+                <div class="mb-5">
+
+                    <div class="flex">
+                        <div
+                            class="flex items-center justify-center border border-[#e0e6ed] bg-[#f1f2f3] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                            <input type="checkbox"
+                                class="form-checkbox border-[#e0e6ed] ltr:mr-0 rtl:ml-0 dark:border-white-dark"
+                                [checked]="checkflag==1" disabled />
+                        </div>
+                        <input id="checkLeft" type="text" placeholder="Enter Cost For Payment"
+                            class="form-input ltr:rounded-l-none rtl:rounded-r-none" (change)="adv()"
+                            [(ngModel)]="advancecost" [ngModelOptions]="{standalone: true}" />
+                    </div>
+                </div>
+            </div> -->
+            <br>
+            <!-- <ng-container *ngIf="checkflag==1">
+                <div class="flex flex-2">
+                    <div
+                        class="flex items-center justify-center border border-[#e0e6ed] bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                        {{'Advance Amount'|translate}}
+                    </div>
+                    <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
+                        placeholder=" {{'Advance Amount'|translate}}" [(ngModel)]="advancecost"
+                        [ngModelOptions]="{standalone: true}" readonly />
+                </div>
+                <br>
+                <div class="flex flex-2">
+                    <div
+                        class="flex items-center justify-center border border-[#e0e6ed] bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                        {{'Balance Amount To Pay'|translate}}
+                    </div>
+                    <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
+                        placeholder=" {{'Balance Amount To Pay'|translate}}" [(ngModel)]="grandtotal-advancecost"
+                        [ngModelOptions]="{standalone: true}" readonly />
+                </div>
+            </ng-container> -->
+
+
+        </div>
+
+
+    </ng-template>
+    <ng-template #modalFooter>
+        <button type="button" (click)="sendquotes.close()" class="btn btn-outline-danger">{{'close'|translate}}</button>
+        &nbsp;&nbsp;
+        <button type="button" [disabled]="grandtotal==0" (click)="sendquote();sendquotes.close()"
+            class="btn btn-outline-success">{{'Create'|translate}}</button>
+    </ng-template>
+</modal>

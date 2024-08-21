@@ -1,0 +1,148 @@
+<div class="mb-5">
+    <ol class="flex font-semibold text-primary dark:text-white-dark">
+      <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+        <a href="javascript:;" (click)="Inspectionlist()"
+          class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+          Inventory</a></li>
+          
+      <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
+        <a
+          class="relative flex h-full items-center bg-primary p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-primary ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-6 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180">
+          Inventory Details</a></li>
+
+    </ol>
+  </div>
+
+ <div class="panel">
+<div *ngIf="list">
+    <div class=" mt-6 pb-0">
+        <div class="mb-5 flex flex-col gap-5 md:flex-row md:items-center">
+            <h5 class="text-lg font-semibold dark:text-white-light">Tool Inspection List </h5>
+            <div class="ltr:ml-auto rtl:mr-auto">
+                <!-- <input [(ngModel)]=" search" type="text" class="form-input w-auto" placeholder="Search..." /> -->
+            </div>
+        </div>
+
+        <div class="datatable">
+            <ng-datatable [rows]="rows" [columns]="cols" skin="whitespace-nowrap bh-table-hover"
+                firstArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M13 19L7 12L13 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M16.9998 19L10.9998 12L16.9998 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                lastArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M11 19L17 12L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M6.99976 19L12.9998 12L6.99976 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg> '
+                previousArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M15 5L9 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                nextArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'>
+               
+            
+                <ng-template slot="trk_type" let-value="data">
+                    <span class="badge badge-outline-success" *ngIf="value.trk_type==2 ">SALE 
+                    </span>
+                    <span class="badge badge-outline-secondary" *ngIf="value.trk_type==1 ">RENT 
+                    </span>
+                </ng-template>
+                
+            </ng-datatable>
+        </div>
+    </div>
+
+   
+</div>
+
+<div class="panel flex flex-row w-full ltr:xl:mr-6 rtl:xl:ml-6">
+    <form [formGroup]="ToolForm" class="flex-1 space-y-5 dark:text-white" (ngSubmit)="updatestock()">
+        <div class="flex flex-row space-x-6">
+            <div class="flex-4">
+                <label for="tool_name">Tool Name</label>
+                <div class="relative text-white-dark">
+                    <input id="tool_name" type="text" placeholder="Enter Tool Name"
+                        class="form-input placeholder:text-white-dark" formControlName="tool_name" required />
+                </div>
+            </div>
+            <div class="flex-2"></div>
+            
+        </div>
+        <div class="flex flex-row space-x-6">
+            <div class="flex-4">
+                <label for="tool_total_quantity">Total Stock</label>
+                <div class="relative text-white-dark">
+                    <input id="tool_total_quantity" type="number" placeholder="Enter Available Quantity"
+                        class="form-input placeholder:text-white-dark" formControlName="tool_total_quantity"
+                         required />
+                </div>
+            </div>
+            <div class="flex-2"></div>
+        </div>
+        <div class="flex flex-row space-x-4">
+
+            <div class="flex-4">
+                <label for="tool_sale_quantity">Sale Stock</label>
+                <div class="relative text-white-dark">
+                    <input id="tool_sale_quantity" class="form-textarea mt-4"
+                        placeholder="Enter Tool Description" name="tool_sale_quantity"
+                        formControlName="tool_sale_quantity" [(ngModel)]="this.s_stock" (change)="cal_stock()"/>
+                </div>
+            </div>
+            <div class="flex-2"></div>
+
+        </div>
+        <br>
+        <hr style="color: black;font-weight: 600;">
+        <br>
+        <div class="flex flex-row space-x-4">
+            <div class="flex-4" *ngIf="ToolForm.value.tool_rent_id ==1">
+                <br>
+
+                <label for="tool_rent_quantity">Rent Stock</label>
+                <div class="relative text-white-dark">
+                    <input id="tool_rent_quantity" type="number" placeholder="Enter Rent Stock"
+                        class="form-input placeholder:text-white-dark" formControlName="tool_rent_quantity" required [(ngModel)]="this.r_stock"
+                        min="0" (change)="stock_cal()" />
+                    <br><br>
+                    <span>
+                        <p style="font-style:italic bold;">Available Saleble
+                            Stock:<span style="color: red;">{{this.s_stock}}</span></p>
+                    </span>
+                    <br>
+                    <span>
+                        <p style="font-style:italic bold;">Available Rent
+                            Stock:<span style="color: red;">{{this.ToolForm.value.tool_rent_quantity}}</span></p>
+                    </span>
+                </div>
+                
+                
+
+                
+            </div>
+            <div class="flex-2"></div>
+        </div>
+        
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-1">
+            <div class="flex justify-end">
+                <button type="button" class="btn btn-dark gap-2" style="margin-right: 1%;">
+                    Cancel
+                </button>
+                <button type="submit" class="btn btn-success gap-2">
+                    Update
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</div> 
+<div *ngIf="!list" style="margin-top: 20%;">
+    <span class="animate-spin border-4 border-primary border-l-transparent rounded-full w-10 h-10 inline-block align-middle m-auto mb-10" style="margin-left: 46%;"></span>
+
+</div>
+
+<div *ngIf="list==6" style="margin-top: 20%;">
+    No Active Request
+</div>
+

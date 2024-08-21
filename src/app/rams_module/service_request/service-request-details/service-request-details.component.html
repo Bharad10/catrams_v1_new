@@ -1,0 +1,742 @@
+<div class="mb-2">
+    <ol class="flex font-semibold text-primary dark:text-white-dark">
+        <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+            <a href="javascript:;" (click)="servlist()"
+                class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+                {{'Service Request'|translate}}</a>
+        </li>
+        <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
+            <a
+                class="relative flex h-full items-center bg-primary p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-primary ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-6 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180">
+                  {{'Request Details'|translate}}</a>
+        </li>
+
+    </ol>
+</div>
+
+
+
+        <div class="loader" *ngIf="!serv_pack_list||loader==true"></div>
+    
+        <div class="flex flex-col gap-2.5 xl:flex-row" *ngIf="serv_pack_list&&loader==false">
+            <div class="panel flex-1 px-0 py-6 ltr:xl:mr-6 rtl:xl:ml-6">
+                
+                <div class="mb-5" style="padding: 1%;">
+                    <div class="mt-2 px-4">
+                        <div class="flex flex-col justify-between lg:flex-row">
+                            <div class="mb-2 w-full lg:w-1/2 ltr:lg:mr-6 rtl:lg:ml-6">
+                    <h5 class="text-lg font-semibold dark:text-white-light f_color"> <span class="badge bg-primary rounded-none">{{'Service Request'|translate}} {{'For'|translate}} {{serv_pack_list.serm_number}}</span></h5>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-2 font-semibold">
+                        <div class="rounded border border-[#d3d3d3] dark:border-[#1b2e4b]">
+                            <button
+                                type="button"
+                                class="flex w-full items-center p-4 text-white-dark dark:bg-[#1b2e4b]"
+                                [ngClass]="{ '!text-primary': accordians3 === 1 }"
+                                (click)="accordians3 === 1 ? (accordians3 = null) : (accordians3 = 1)"
+                            >
+                                <svg
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5 shrink-0 text-primary ltr:mr-2 rtl:ml-2"
+                                >
+                                    <path
+                                        opacity="0.5"
+                                        d="M7.142 18.9706C5.18539 18.8995 3.99998 18.6568 3.17157 17.8284C2 16.6569 2 14.7712 2 11C2 7.22876 2 5.34315 3.17157 4.17157C4.34315 3 6.22876 3 10 3H14C17.7712 3 19.6569 3 20.8284 4.17157C22 5.34315 22 7.22876 22 11C22 14.7712 22 16.6569 20.8284 17.8284C20.0203 18.6366 18.8723 18.8873 17 18.965"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                    />
+                                    <path
+                                        d="M9.94955 16.0503C10.8806 15.1192 11.3461 14.6537 11.9209 14.6234C11.9735 14.6206 12.0261 14.6206 12.0787 14.6234C12.6535 14.6537 13.119 15.1192 14.0501 16.0503C16.0759 18.0761 17.0888 19.089 16.8053 19.963C16.7809 20.0381 16.7506 20.1112 16.7147 20.1815C16.2973 21 14.8648 21 11.9998 21C9.13482 21 7.70233 21 7.28489 20.1815C7.249 20.1112 7.21873 20.0381 7.19436 19.963C6.91078 19.089 7.92371 18.0761 9.94955 16.0503Z"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                    />
+                                </svg>
+                
+                                Service Request Details
+                                <div class="ltr:ml-auto rtl:mr-auto" [ngClass]="{ 'rotate-180': accordians3 === 1 }">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+                                        <path d="M19 9L12 15L5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </button>
+                            <div [@slideDownUp]="accordians3 !== 1" class="accordion-content">
+                                <div class="space-y-2 border-t border-[#d3d3d3] p-4 text-[13px] text-white-dark dark:border-[#1b2e4b]">
+                                    <div class="flex flex-wrap justify-between px-4">
+                                        <div class="mb-0 w-full lg:w-1/2">
+                                            <div class="text-lg mb-0 font-semibold f_color" ><u>  {{'Service Request Details'|translate}}</u>:-</div>
+                                      
+                                      
+                    
+                                            <div class="mt-4 flex items-center">
+                                                <span  class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 ng-tns-c35-2 rtl:ml-2 f_color"> {{'Service Request ID'|translate}}</span>
+                                              
+                                                <input id="invoiceLabel" type="text" name="inv-label" class="form-input w-2/3 lg:w-[250px]"
+                                                    placeholder=" {{'Enter Invoice Label'|translate}}" name="title" [(ngModel)]="serv_pack_list.serm_number"
+                                                    disabled />
+                                            </div>
+                                            <div class="mt-4 flex items-center">
+                                                <span   class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 ng-tns-c35-2 rtl:ml-2 f_color">Date</span>
+                                            
+                                                <input id="startDate" type="text" name="inv-date" class="form-input w-2/3 lg:w-[250px]"
+                                                    name="invoiceDate" [(ngModel)]="date" disabled />
+                                            </div> 
+                                            <div class="mt-2 flex items-center">
+                                                <br>
+                    
+                    
+                                            </div>
+                                        </div>
+                                        <div class=" w-full  lg:w-1/2">
+                                            <div class="mt-11 ms-3 flex items-center">
+                                            
+                                                <span   class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 ng-tns-c35-2 rtl:ml-2 f_color"> {{'Customer Name'|translate}}</span>
+                                                <input type="text" name="reciever-name" class="form-input flex-1" placeholder=" {{'Enter Customer Name'|translate}}"
+                                                    [(ngModel)]="serv_pack_list.cstm_name" disabled />
+                                            </div>
+                                            <div class="mt-4 ms-3 flex items-center">
+                                      
+                                                <span   class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 ng-tns-c35-2 rtl:ml-2 f_color">  {{'Customer Phone'|translate}}
+                                                    </span>
+                    
+                                                <input id="reciever-number" type="text" name="reciever-number" class="form-input flex-1"
+                                                    name="phone" placeholder="  {{'Enter Phone Number'|translate}}" [(ngModel)]="serv_pack_list.cstm_phone"
+                                                    disabled />
+                                            </div>
+                                        </div>
+                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="rounded border border-[#d3d3d3] dark:border-[#1b2e4b]">
+                            <button
+                                type="button"
+                                class="flex w-full items-center p-4 text-white-dark dark:bg-[#1b2e4b]"
+                                [ngClass]="{ '!text-primary': accordians3 === 2 }"
+                                (click)="accordians3 === 2 ? (accordians3 = null) : (accordians3 = 2)"
+                            >
+                                <svg
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5 shrink-0 text-primary ltr:mr-2 rtl:ml-2"
+                                >
+                                    <path
+                                        d="M15.5777 3.38197L17.5777 4.43152C19.7294 5.56066 20.8052 6.12523 21.4026 7.13974C22 8.15425 22 9.41667 22 11.9415V12.0585C22 14.5833 22 15.8458 21.4026 16.8603C20.8052 17.8748 19.7294 18.4393 17.5777 19.5685L15.5777 20.618C13.8221 21.5393 12.9443 22 12 22C11.0557 22 10.1779 21.5393 8.42229 20.618L6.42229 19.5685C4.27063 18.4393 3.19479 17.8748 2.5974 16.8603C2 15.8458 2 14.5833 2 12.0585V11.9415C2 9.41667 2 8.15425 2.5974 7.13974C3.19479 6.12523 4.27063 5.56066 6.42229 4.43152L8.42229 3.38197C10.1779 2.46066 11.0557 2 12 2C12.9443 2 13.8221 2.46066 15.5777 3.38197Z"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                    />
+                                    <path
+                                        opacity="0.5"
+                                        d="M21 7.5L12 12M12 12L3 7.5M12 12V21.5"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                    />
+                                </svg>
+                
+                                Vehicle Details
+                                <div class="ltr:ml-auto rtl:mr-auto" [ngClass]="{ 'rotate-180': accordians3 === 2 }">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+                                        <path d="M19 9L12 15L5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </button>
+                            <div [@slideDownUp]="accordians3 !== 2" class="accordion-content">
+                                <div class="border-t border-[#d3d3d3] p-4 text-[13px] dark:border-[#1b2e4b]">
+                                    <div class="mt-2 px-4">
+                                        <div class="flex flex-col justify-between lg:flex-row">
+                                            <div class="mb-2 w-full lg:w-1/2 ltr:lg:mr-6 rtl:lg:ml-6">
+                    
+                                                <div class="text-lg font-semibold f_color"><u> {{'Vehicle Details'|translate}}</u>:-</div>
+                                                <div class="mt-4 flex items-center">
+                                                  
+                                                    <span   class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 ng-tns-c35-2 rtl:ml-2 f_color"> {{'Registration Number'|translate}}</span>
+                                                    <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
+                                                        placeholder="  {{'Registration number not mentioned'|translate}}" [(ngModel)]="serv_pack_list.custveh_regnumber"
+                                                        disabled />
+                                                </div>
+                                                <div class="mt-4 flex items-center">
+                                                    <span   class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 ng-tns-c35-2 rtl:ml-2 f_color">  {{'Vin Number'|translate}}</span>
+                                                    <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
+                                                        placeholder=" {{'Vin number not mentioned'|translate}}" [(ngModel)]="serv_pack_list.custveh_vinnumber"
+                                                        disabled />
+                                                        <a (click)="copytext(serv_pack_list.custveh_vinnumber)" style=" cursor: pointer;">
+                                                            <svg width="18" height="18" ngxTippy="copy" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M6 11C6 8.17157 6 6.75736 6.87868 5.87868C7.75736 5 9.17157 5 12 5H15C17.8284 5 19.2426 5 20.1213 5.87868C21 6.75736 21 8.17157 21 11V16C21 18.8284 21 20.2426 20.1213 21.1213C19.2426 22 17.8284 22 15 22H12C9.17157 22 7.75736 22 6.87868 21.1213C6 20.2426 6 18.8284 6 16V11Z" stroke="#09a4f0" stroke-width="1.5"/>
+                                                                <path d="M6 19C4.34315 19 3 17.6569 3 16V10C3 6.22876 3 4.34315 4.17157 3.17157C5.34315 2 7.22876 2 11 2H15C16.6569 2 18 3.34315 18 5" stroke="#09a4f0" stroke-width="1.5"/>
+                                                                </svg>
+                                                         </a>
+                                                </div>
+                                            </div>
+                                            <div class="w-full lg:w-1/2">
+                    
+                    
+                                                <div class="mt-11 flex items-center">
+                                                    
+                                                    <span   class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 f_color"> {{'Make'|translate}} </span>
+                    
+                                                    <input id="vehmake" type="text" class="form-input w-80"
+                                                        [(ngModel)]="serv_pack_list.make_name" disabled />
+                                                </div>
+                                                <div class="mt-4 flex items-center">
+                                                    <span   class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 f_color">  {{'Model'|translate}}</span>
+                    
+                                                    <input id="vehmodel" type="text" class="form-input w-80"
+                                                        [(ngModel)]="serv_pack_list.model_name" disabled />
+                                                </div>
+                                                <div class="mt-4 flex items-center">
+                                                    <span   class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 f_color">  {{'Variant'|translate}}</span>
+                    
+                                                    <input id="vinnum" type="text" class="form-input w-80"
+                                                        [(ngModel)]="serv_pack_list.variant_name" disabled />
+                                                </div>
+                    
+                                                <br>
+                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="rounded border border-[#d3d3d3] dark:border-[#1b2e4b]">
+                            <button
+                                type="button"
+                                class="flex w-full items-center p-4 text-white-dark dark:bg-[#1b2e4b]"
+                                [ngClass]="{ '!text-primary': accordians3 === 3 }"
+                                (click)="accordians3 === 3 ? (accordians3 = null) : (accordians3 = 3)"
+                            >
+                                <svg
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5 shrink-0 text-primary ltr:mr-2 rtl:ml-2"
+                                >
+                                    <path
+                                        d="M2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12Z"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                    />
+                                    <path
+                                        opacity="0.5"
+                                        d="M2 8.75C1.58579 8.75 1.25 9.08579 1.25 9.5C1.25 9.91421 1.58579 10.25 2 10.25V8.75ZM22 10.25C22.4142 10.25 22.75 9.91421 22.75 9.5C22.75 9.08579 22.4142 8.75 22 8.75V10.25ZM8.25 21C8.25 21.4142 8.58579 21.75 9 21.75C9.41421 21.75 9.75 21.4142 9.75 21H8.25ZM9.75 10C9.75 9.58579 9.41421 9.25 9 9.25C8.58579 9.25 8.25 9.58579 8.25 10L9.75 10ZM2 10.25H22V8.75H2V10.25ZM9.75 21L9.75 10L8.25 10L8.25 21H9.75Z"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                
+                                Complaint Details
+                                <div class="ltr:ml-auto rtl:mr-auto" [ngClass]="{ 'rotate-180': accordians3 === 3 }">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+                                        <path d="M19 9L12 15L5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </button>
+                            <div [@slideDownUp]="accordians3 !== 3" class="accordion-content">
+                                <div class="border-t border-[#d3d3d3] p-4 text-[13px] dark:border-[#1b2e4b]">
+                                    <div class="mt-2 px-4">
+                                        <div class="flex flex-col justify-between lg:flex-row">
+                                            <div class="mb-6 w-full lg:w-1/2 ltr:lg:mr-6 rtl:lg:ml-6">
+                    
+                    
+                                                <div>
+                    
+                                                    <div class="text-lg font-semibold f_color"><u> {{'Complaint Details'|translate}} </u>:-</div>
+                                                    <br>
+                                                    <textarea id="notes" name="notes" class="form-textarea min-h-[130px]"
+                                                        placeholder=" {{'Complaint Details'|translate}}" name="notes" [(ngModel)]="serv_pack_list.serm_complaint
+                                                            " disabled></textarea>
+                                                </div>
+                                                <br>
+                                                <div class="mt-8 px-4" *ngIf="serv_pack_list.qtm_rejected_reason">
+                                                    <div>
+                    
+                                                        <div class="text-lg font-semibold">{{'Quote Rejected Details'|translate}} :-</div>
+                                                        <br>
+                                                        <textarea id="notes" name="notes" class="form-textarea min-h-[130px]"
+                                                            placeholder="{{'Quote Rejected Details'|translate}}" name="notes" [(ngModel)]="serv_pack_list.qtm_rejected_reason
+                                                                " disabled></textarea>
+                                                    </div>
+                                                </div>
+                                                
+                                               
+                                                
+                    
+                                            </div>
+                                            <div class="w-full lg:w-1/2">
+                                                <div class="mt-4 flex items-center">
+                    
+                                                </div>
+                                                <br>
+                                                <div class="mt-4 flex items-center" >
+                                                  
+                                                    <button type="button" (click)="imagemodal.open()" class="btn btn-info" [disabled]="(this.medias.length==0)">
+                                                        <ng-container *ngIf="this.medias.length==0">
+                                                            {{'No media for this request'|translate}}
+                                                        </ng-container>
+                                                        <ng-container *ngIf="this.medias.length>0">
+                                                            {{'View Media'|translate}}
+                                                        </ng-container>
+                                                         </button>
+                                                </div>
+                                                <div class="mt-4 flex items-center">
+                                                    <button type="button" (click)="datacardmodal.open()" class="btn btn-info" [disabled]="(this.serv_pack_list.data_cards.length==0)">
+                                                        <ng-container *ngIf="this.serv_pack_list.data_cards.length==0">
+                                                            {{'Data Card Not yet Provided'|translate}}
+                                                        </ng-container>
+                                                        <ng-container *ngIf="this.serv_pack_list.data_cards.length>0">
+                                                            {{'View Data Card'|translate}}
+                                                        </ng-container>
+                                                    </button>
+                                                       
+                                                </div>
+                                                <div class="mt-4 flex items-center" *ngIf="(this.documents.length)>0">
+                                                    <button type="button" (click)="document_download()" class="btn btn-warning"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12 8L12 16M12 16L15 13M12 16L9 13" stroke="#ffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12Z" stroke="#ffff" stroke-width="1.5"/>
+                                                        </svg>
+                                                        &nbsp;   {{'Document'|translate}}
+                                                        </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+
+
+
+
+                <div class="mt-2 px-4">
+                    <div class="flex flex-col justify-between lg:flex-row">
+                        <div class="mb-2 w-full lg:w-1/2 ltr:lg:mr-6 rtl:lg:ml-6">
+                            <ng-container *ngIf="(serv_pack_list.serm_status==57||serv_pack_list.serm_status==22)">
+                                <div class="mt-4 flex items-center" *ngIf="serv_pack_list.assignee_name">
+                                    <ng-container *ngIf="serv_pack_list.serm_vendor_flag==1">
+                                        <div class="mt-4 flex items-center" >
+                                            <label for="acno" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2 f_color"> {{'Assignee(Vendor)'|translate}} </label>
+                                            <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
+                                                placeholder="{{'Assignee(Vendor)'|translate}}" [(ngModel)]="serv_pack_list.expert_details['cstm_name']" style="border-color: #805dca;"
+                                                readonly />
+                                                &nbsp;&nbsp;
+    
+                                                <button class="btn btn-warning btn-sm" (click)="vendrequest.open()">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M3.67981 11.3333H2.92981H3.67981ZM3.67981 13L3.15157 13.5324C3.44398 13.8225 3.91565
+                                                         13.8225 4.20805 13.5324L3.67981 13ZM5.88787 11.8657C6.18191 11.574 6.18377 11.0991 5.89203 
+                                                         10.8051C5.60029 10.511 5.12542 10.5092 4.83138 10.8009L5.88787 11.8657ZM2.52824
+                                                          10.8009C2.2342 10.5092 1.75933 10.511 1.46759 10.8051C1.17585 11.0991 1.17772 
+                                                          11.574 1.47176 11.8657L2.52824 10.8009ZM18.6156 7.39279C18.8325 7.74565 19.2944 
+                                                          7.85585 19.6473 7.63892C20.0001 7.42199 20.1103 6.96007 19.8934 6.60721L18.6156 7.39279ZM12.0789 2.25C7.03155 2.25 2.92981
+                                                           6.3112 2.92981 11.3333H4.42981C4.42981 7.15072 7.84884 3.75 12.0789 3.75V2.25ZM2.92981 11.3333L2.92981 13H4.42981L4.42981
+                                                            11.3333H2.92981ZM4.20805 13.5324L5.88787 11.8657L4.83138 10.8009L3.15157 12.4676L4.20805 13.5324ZM4.20805 12.4676L2.52824 
+                                                            10.8009L1.47176 11.8657L3.15157 13.5324L4.20805 12.4676ZM19.8934 6.60721C18.287 3.99427 15.3873 2.25 12.0789 2.25V3.75C14.8484 
+                                                            3.75 17.2727 5.20845 18.6156 7.39279L19.8934 6.60721Z" fill="#fff"/>
+                                                        <path d="M20.3139 11L20.8411 10.4666C20.549 10.1778 20.0788 10.1778 19.7867 10.4666L20.3139 11ZM18.1004 12.1333C17.8058 12.4244
+                                                         17.8031 12.8993 18.0942 13.1939C18.3854 13.4885 18.8603 13.4913 19.1549 13.2001L18.1004 12.1333ZM21.4729 13.2001C21.7675 13.4913
+                                                          22.2424 13.4885 22.5335 13.1939C22.8247 12.8993 22.822 12.4244 22.5274 12.1332L21.4729 13.2001ZM5.31794 16.6061C5.1004 16.2536
+                                                           4.6383 16.1442 4.28581 16.3618C3.93331 16.5793 3.82391 17.0414 4.04144 17.3939L5.31794 16.6061ZM11.8827 21.75C16.9451 21.75 21.0639
+                                                            17.6915 21.0639 12.6667H19.5639C19.5639 16.8466 16.1332 20.25 11.8827 20.25V21.75ZM21.0639 12.6667V11H19.5639V12.6667H21.0639ZM19.7867
+                                                             10.4666L18.1004 12.1333L19.1549 13.2001L20.8411 11.5334L19.7867 10.4666ZM19.7867 11.5334L21.4729 13.2001L22.5274 12.1332L20.8411
+                                                              10.4666L19.7867 11.5334ZM4.04144 17.3939C5.65405 20.007 8.56403 21.75 11.8827 21.75V20.25C9.10023 20.25 6.66584 18.7903 5.31794
+                                                               16.6061L4.04144 17.3939Z" fill="#fff"/>
+                                                        </svg>
+                                                        Change Assignee
+                                                </button>
+    
+    
+                                        </div>
+                                        <ng-container  *ngIf="serv_pack_list.expert_details['status_Details']['vm_status']==2">
+                                            &nbsp;&nbsp;
+                                            <div class="flex items-center rounded bg-danger-light p-3.5 text-danger dark:bg-danger-dark-light">
+                                                <span class="ltr:pr-2 rtl:pl-2"><strong class="ltr:mr-1 rtl:ml-1">Request Rejected!</strong>Expert Rejected Request!!!.</span>
+                                                <button type="button" class="hover:opacity-80 ltr:ml-auto rtl:mr-auto" (click)="exprej_modal?.open()">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <circle opacity="0.5" cx="12" cy="12" r="10" stroke="#e7515a" stroke-width="1.5"/>
+                                                        <path d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15" stroke="#e7515a" stroke-width="1.5" stroke-linecap="round"/>
+                                                        </svg>
+                                                                                                        </button>
+
+                                            </div>
+                                        </ng-container>
+                                       
+                                    </ng-container>
+                                   <ng-container *ngIf="serv_pack_list.serm_vendor_flag==0">
+                                    <div class="mt-4 flex items-center" >
+                                        <label for="acno" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2  f_color">{{'Assignee'|translate}}</label>
+                                        <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
+                                            placeholder="{{'Assignee'|translate}}" [(ngModel)]="serv_pack_list.assignee_name" 
+                                            readonly />
+
+                                    </div>
+                                    <div class="mt-4 flex items-center" >
+                                        
+                                        <button class="btn btn-warning btn-sm" (click)="select_assigne.open()">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M3.67981 11.3333H2.92981H3.67981ZM3.67981 13L3.15157 13.5324C3.44398 13.8225 3.91565
+                                                 13.8225 4.20805 13.5324L3.67981 13ZM5.88787 11.8657C6.18191 11.574 6.18377 11.0991 5.89203 
+                                                 10.8051C5.60029 10.511 5.12542 10.5092 4.83138 10.8009L5.88787 11.8657ZM2.52824
+                                                  10.8009C2.2342 10.5092 1.75933 10.511 1.46759 10.8051C1.17585 11.0991 1.17772 
+                                                  11.574 1.47176 11.8657L2.52824 10.8009ZM18.6156 7.39279C18.8325 7.74565 19.2944 
+                                                  7.85585 19.6473 7.63892C20.0001 7.42199 20.1103 6.96007 19.8934 6.60721L18.6156 7.39279ZM12.0789 2.25C7.03155 2.25 2.92981
+                                                   6.3112 2.92981 11.3333H4.42981C4.42981 7.15072 7.84884 3.75 12.0789 3.75V2.25ZM2.92981 11.3333L2.92981 13H4.42981L4.42981
+                                                    11.3333H2.92981ZM4.20805 13.5324L5.88787 11.8657L4.83138 10.8009L3.15157 12.4676L4.20805 13.5324ZM4.20805 12.4676L2.52824 
+                                                    10.8009L1.47176 11.8657L3.15157 13.5324L4.20805 12.4676ZM19.8934 6.60721C18.287 3.99427 15.3873 2.25 12.0789 2.25V3.75C14.8484 
+                                                    3.75 17.2727 5.20845 18.6156 7.39279L19.8934 6.60721Z" fill="#fff"/>
+                                                <path d="M20.3139 11L20.8411 10.4666C20.549 10.1778 20.0788 10.1778 19.7867 10.4666L20.3139 11ZM18.1004 12.1333C17.8058 12.4244
+                                                 17.8031 12.8993 18.0942 13.1939C18.3854 13.4885 18.8603 13.4913 19.1549 13.2001L18.1004 12.1333ZM21.4729 13.2001C21.7675 13.4913
+                                                  22.2424 13.4885 22.5335 13.1939C22.8247 12.8993 22.822 12.4244 22.5274 12.1332L21.4729 13.2001ZM5.31794 16.6061C5.1004 16.2536
+                                                   4.6383 16.1442 4.28581 16.3618C3.93331 16.5793 3.82391 17.0414 4.04144 17.3939L5.31794 16.6061ZM11.8827 21.75C16.9451 21.75 21.0639
+                                                    17.6915 21.0639 12.6667H19.5639C19.5639 16.8466 16.1332 20.25 11.8827 20.25V21.75ZM21.0639 12.6667V11H19.5639V12.6667H21.0639ZM19.7867
+                                                     10.4666L18.1004 12.1333L19.1549 13.2001L20.8411 11.5334L19.7867 10.4666ZM19.7867 11.5334L21.4729 13.2001L22.5274 12.1332L20.8411
+                                                      10.4666L19.7867 11.5334ZM4.04144 17.3939C5.65405 20.007 8.56403 21.75 11.8827 21.75V20.25C9.10023 20.25 6.66584 18.7903 5.31794
+                                                       16.6061L4.04144 17.3939Z" fill="#fff"/>
+                                                </svg>
+                                                 {{'Change Assignee'|translate}}
+                                        </button>
+
+                                    </div>
+                                   </ng-container>
+                                </div>
+    
+                                <div class="mt-4 flex items-center" *ngIf="!serv_pack_list.assignee_name&&this.role_id==1">
+                                 <div class="flex-2">  <label class="me-3 mt-2 f_color">   {{'Select Assignee'|translate}}:</label></div> 
+                                 <div class="flex-1">
+                                    <ng-select  name="ctnSelect1"
+                                                (change)="selectEvent($event,0)"
+                                                placeholder="Select Assignee"
+                                                [searchable]="true" [clearable]="false" class="custom-multiselect" appendTo="body">
+                                                <ng-option *ngFor="let user of user_list" [value]="user.us_id">{{user.us_firstname}}</ng-option>
+                                    </ng-select>
+                                 </div>
+                                    
+                                </div>
+    
+                                <div class="mt-4 flex items-center" *ngIf="!serv_pack_list.assignee_name&&this.role_id!=1">
+                                    <button type="button" class="btn btn-outline-success  " (click)="selectEvent(1,1)" >
+                                        {{'Accept This Request '|translate}}
+                                    </button>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <div class="w-full lg:w-1/2">
+                            <div class="flex-2" *ngIf="serv_pack_list.serm_vendor_flag==0&&serv_pack_list.serm_status!=20">
+                                <button type="button" class="btn btn-outline-danger " (click)="rejectrequest.open()">
+                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="24"
+                                        width="24">
+                                        <path stroke-width="1.5" stroke="currentColor"
+                                            d="M5.31171 10.7615C8.23007 5.58716 9.68925 3 12 3C14.3107 3 15.7699 5.58716 18.6883 10.7615L19.0519 11.4063C21.4771 15.7061 22.6897 17.856 21.5937 19.428C20.4978 21 17.7864 21 12.3637 21H11.6363C6.21356 21 3.50217 21 2.40626 19.428C1.31034 17.856 2.52291 15.7061 4.94805 11.4063L5.31171 10.7615Z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-width="1.5" stroke="currentColor" d="M12 8V13">
+                                        </path>
+                                        <circle fill="currentColor" r="1" cy="16" cx="12"></circle>
+                                    </svg>
+                                     {{'Reject Request'|translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <ng-container *ngIf="serv_pack_list.serm_vendor_flag==0&&serv_pack_list.serm_status==20" >
+                    <div class="flex flex-row space-x-6 flex justify-center" style="margin-left: 1%;">
+                        <div class="flex-2">
+                            <button type="button" class="btn btn-outline-danger " (click)="rejectrequest.open()">
+                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="24"
+                                    width="24">
+                                    <path stroke-width="1.5" stroke="currentColor"
+                                        d="M5.31171 10.7615C8.23007 5.58716 9.68925 3 12 3C14.3107 3 15.7699 5.58716 18.6883 10.7615L19.0519 11.4063C21.4771 15.7061 22.6897 17.856 21.5937 19.428C20.4978 21 17.7864 21 12.3637 21H11.6363C6.21356 21 3.50217 21 2.40626 19.428C1.31034 17.856 2.52291 15.7061 4.94805 11.4063L5.31171 10.7615Z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-width="1.5" stroke="currentColor" d="M12 8V13">
+                                    </path>
+                                    <circle fill="currentColor" r="1" cy="16" cx="12"></circle>
+                                </svg>
+                                 {{'Reject Request'|translate}}
+                            </button>
+                        </div>
+                        <div class="flex-2" >
+                            <button type="button" class="btn btn-outline-success " (click)="requestConfirmModal()">
+                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="24"
+                                    width="24">
+                                    <path stroke-width="1.5" stroke="currentColor"
+                                        d="M5.31171 10.7615C8.23007 5.58716 9.68925 3 12 3C14.3107 3 15.7699 5.58716 18.6883 10.7615L19.0519 11.4063C21.4771 15.7061 22.6897 17.856 21.5937 19.428C20.4978 21 17.7864 21 12.3637 21H11.6363C6.21356 21 3.50217 21 2.40626 19.428C1.31034 17.856 2.52291 15.7061 4.94805 11.4063L5.31171 10.7615Z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-width="1.5" stroke="currentColor" d="M12 8V13">
+                                    </path>
+                                    <circle fill="currentColor" r="1" cy="16" cx="12"></circle>
+                                </svg>
+                                     {{'Accept Request'|translate}}
+                            </button>
+                        </div>
+                    </div>
+                    
+                </ng-container>
+
+
+
+
+
+
+                <br>
+                <hr class="my-6 border-[#e0e6ed] dark:border-[#1b2e4b]" />
+
+                <div class="row" >
+                    <div class="flex flex-row space-x-6" style="margin-left: 1%;">
+
+                        <ng-container *ngIf="serv_pack_list.serm_vendor_flag!=1&&(serv_pack_list.serm_status==57||serv_pack_list.serm_status==22)"> 
+                            
+                            <div class="flex-2" *ngIf="this.role_id==1">
+                                <button type="button" class="btn btn-outline-secondary  " (click)="vendrequest.open()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="24"
+                                        width="24">
+                                        <circle stroke-width="1.5" stroke="currentColor" r="4" cy="6" cx="12"></circle>
+                                        <path stroke-linecap="round" stroke-width="1.5" stroke="currentColor"
+                                            d="M15.5841 20.4366C14.5358 20.7944 13.3099 21 12 21C8.13401 21 5 19.2091 5 17C5 14.7909 8.13401 13 12 13C14.6083 13 16.8834 13.8152 18.0877 15.024">
+                                        </path>
+                                        <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5"
+                                            stroke="currentColor"
+                                            d="M18 18.5C18.3905 18.8905 18.6095 19.1095 19 19.5L21 17"></path>
+                                    </svg>
+    
+                                      {{'Assign To Expert'|translate}}
+                                </button>
+                            </div>
+                            <div class="flex-2">
+                                <button type="button" class="btn btn-outline-info  " (click)="sendquote()" [disabled]="serv_pack_list.serm_assigne==0">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 ltr:mr-2 rtl:ml-2">
+                                        <path
+                                            d="M17.4975 18.4851L20.6281 9.09373C21.8764 5.34874 22.5006 3.47624 21.5122 2.48782C20.5237 1.49939 18.6511 2.12356 14.906 3.37189L5.57477 6.48218C3.49295 7.1761 2.45203 7.52305 2.13608 8.28637C2.06182 8.46577 2.01692 8.65596 2.00311 8.84963C1.94433 9.67365 2.72018 10.4495 4.27188 12.0011L4.55451 12.2837C4.80921 12.5384 4.93655 12.6658 5.03282 12.8075C5.22269 13.0871 5.33046 13.4143 5.34393 13.7519C5.35076 13.9232 5.32403 14.1013 5.27057 14.4574C5.07488 15.7612 4.97703 16.4131 5.0923 16.9147C5.32205 17.9146 6.09599 18.6995 7.09257 18.9433C7.59255 19.0656 8.24576 18.977 9.5522 18.7997L9.62363 18.79C9.99191 18.74 10.1761 18.715 10.3529 18.7257C10.6738 18.745 10.9838 18.8496 11.251 19.0285C11.3981 19.1271 11.5295 19.2585 11.7923 19.5213L12.0436 19.7725C13.5539 21.2828 14.309 22.0379 15.1101 21.9985C15.3309 21.9877 15.5479 21.9365 15.7503 21.8474C16.4844 21.5244 16.8221 20.5113 17.4975 18.4851Z"
+                                            stroke="currentColor" stroke-width="1.5" />
+                                        <path opacity="0.5" d="M6 18L21 3" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                    <ng-container *ngIf="this.serv_pack_list.qtm_id==null">{{'Proceed To Make Quote'|translate}}</ng-container>
+                                    <ng-container *ngIf="this.serv_pack_list.qtm_id!=null"> {{'Proceed To Make Quote'|translate}}</ng-container>
+                                </button>
+                                <span *ngIf="serv_pack_list.serm_assigne==0" style="color: red;font-style: italic;font-size: small;padding: 1%;">* Please select assignee</span>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="serv_pack_list.serm_vendor_flag==1&&(serv_pack_list.serm_status==57||serv_pack_list.serm_status==22)"> 
+                            
+                            <div class="flex-2" *ngIf="this.role_id==1">
+                                <button type="button" class="btn btn-outline-secondary  " (click)="vendrequest.open()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="24"
+                                        width="24">
+                                        <circle stroke-width="1.5" stroke="currentColor" r="4" cy="6" cx="12"></circle>
+                                        <path stroke-linecap="round" stroke-width="1.5" stroke="currentColor"
+                                            d="M15.5841 20.4366C14.5358 20.7944 13.3099 21 12 21C8.13401 21 5 19.2091 5 17C5 14.7909 8.13401 13 12 13C14.6083 13 16.8834 13.8152 18.0877 15.024">
+                                        </path>
+                                        <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5"
+                                            stroke="currentColor"
+                                            d="M18 18.5C18.3905 18.8905 18.6095 19.1095 19 19.5L21 17"></path>
+                                    </svg>
+    
+                                    {{'Assign To Expert'|translate}}
+
+                                </button>
+                            </div>
+                            <div class="flex-2" *ngIf="(serv_pack_list.serm_status==57||serv_pack_list.serm_status==22)">
+                                <button type="button" class="btn btn-outline-info  " (click)="sendquote()" [disabled]="serv_pack_list.serm_assigne==0">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 ltr:mr-2 rtl:ml-2">
+                                        <path
+                                            d="M17.4975 18.4851L20.6281 9.09373C21.8764 5.34874 22.5006 3.47624 21.5122 2.48782C20.5237 1.49939 18.6511 2.12356 14.906 3.37189L5.57477 6.48218C3.49295 7.1761 2.45203 7.52305 2.13608 8.28637C2.06182 8.46577 2.01692 8.65596 2.00311 8.84963C1.94433 9.67365 2.72018 10.4495 4.27188 12.0011L4.55451 12.2837C4.80921 12.5384 4.93655 12.6658 5.03282 12.8075C5.22269 13.0871 5.33046 13.4143 5.34393 13.7519C5.35076 13.9232 5.32403 14.1013 5.27057 14.4574C5.07488 15.7612 4.97703 16.4131 5.0923 16.9147C5.32205 17.9146 6.09599 18.6995 7.09257 18.9433C7.59255 19.0656 8.24576 18.977 9.5522 18.7997L9.62363 18.79C9.99191 18.74 10.1761 18.715 10.3529 18.7257C10.6738 18.745 10.9838 18.8496 11.251 19.0285C11.3981 19.1271 11.5295 19.2585 11.7923 19.5213L12.0436 19.7725C13.5539 21.2828 14.309 22.0379 15.1101 21.9985C15.3309 21.9877 15.5479 21.9365 15.7503 21.8474C16.4844 21.5244 16.8221 20.5113 17.4975 18.4851Z"
+                                            stroke="currentColor" stroke-width="1.5" />
+                                        <path opacity="0.5" d="M6 18L21 3" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                    <ng-container *ngIf="this.serv_pack_list.qtm_id==null"> {{'Proceed To Make Quote'|translate}}</ng-container>
+                                    <ng-container *ngIf="this.serv_pack_list.qtm_id!=null">  {{'Proceed To Make Quote'|translate}}</ng-container>
+                                </button>
+                            </div>
+                        </ng-container>
+
+
+                        <modal #rejectrequest>
+                            <ng-template #modalHeader>
+                            </ng-template>
+                            <ng-template #modalBody>
+                                <div class="mt-4 flex items-center">
+                                    <label for="reciever-name" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2">
+                                         
+                                      {{'Reason for Rejection'|translate}}
+                                       </label>
+                                    <textarea class="form-textarea mt-4" placeholder="  {{'Reason for Rejection'|translate}}" [(ngModel)]="reason"
+                                        name="reason" ng></textarea>
+                                </div>
+                            </ng-template>
+                            <ng-template #modalFooter>
+                                
+                                <button type="button" (click)="rejectrequest.close()"[disabled]="buttonloader==1"
+                                    class="btn btn-outline-dark">   {{'Cancel'|translate}}</button>
+                                <button type="button" (click)="request_reject()" [disabled]="buttonloader==1"
+                                    class="btn btn-outline-danger ltr:ml-4 rtl:mr-4">  {{'Reject Request'|translate}}</button>
+                            </ng-template>
+                        </modal>
+
+                        
+                        
+
+                        <modal #vendrequest>
+                            <ng-template #modalHeader>
+                                <div> {{'Vendor List'|translate}}</div>
+                            </ng-template>
+                            <ng-template #modalBody>
+                                <div [ngClass]="isubmitvendorFlag ? isubmitvendorValid? 'has-error' : 'has-success' : ''">
+
+                                    <div class="flex-1">
+                                        <ng-select  name="ctnSelect1" (change)="this.vendor_id = $event"
+                                                    placeholder="Select vendor"
+                                                    appendTo="body"
+                                                    [searchable]="true" [clearable]="false" class="custom-multiselect">
+                                                    <ng-option *ngFor="let option of vendor_list" [value]="option.cstm_id">{{option.cstm_name}}</ng-option>
+                                        </ng-select>
+                                    </div>
+                                        <ng-container *ngIf="isubmitvendorFlag && !isubmitvendorValid">
+                                           
+                                        </ng-container>
+                                        <ng-container *ngIf="isubmitvendorFlag && isubmitvendorValid">
+                                            <p class="mt-1 text-danger" style=" text-align: end;">Please select expert</p>
+                                        </ng-container>
+                                    </div>
+                            </ng-template>
+                            <ng-template #modalFooter>
+                                <button type="button" (click)="vendrequest.close()"
+                                    class="btn btn-outline-dark"> {{'Cancel'|translate}}</button>
+                                <button type="button" (click)="vendor_request()"
+                                    class="btn btn-outline-danger ltr:ml-4 rtl:mr-4"> {{'Assign Request'|translate}}</button>
+                            </ng-template>
+                        </modal>
+                        <modal #imagemodal>
+                            <ng-template #modalHeader>
+                                <div>
+                                    <p style="color:#267fac;font-family: calibiri;">
+                                         {{'Media'|translate}}
+                                    </p>
+
+                                </div>
+                            </ng-template>
+                            <ng-template #modalBody>
+                                <div class="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+                                    <ng-container *ngFor="let item of items; index as i">
+                                        <a href="javascript:;" [ngClass]="{ 'md:row-span-2 md:col-span-2': i == 4 }"
+                                            (click)="open(i)">
+                                            <img [src]="item.src" alt="image-gallery"
+                                                class="h-full w-full rounded-md object-cover" />
+                                        </a>
+                                    </ng-container>
+                                </div>
+                                <br>
+                                <div>
+                                    <div class="mt-8 px-4" >
+                                        <div>
+                                            <label for="notes">
+                                                 {{'Audio From Customer'|translate}}
+                                            </label>
+                                       
+                                            <audio controls>
+                                                <source src="{{this.audiofiles}}" >
+                                                
+                                              </audio>
+                                            <br><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                            <ng-template #modalFooter>
+                                <button type="button" (click)="imagemodal.close()"
+                                    class="btn btn-outline-danger">  {{'Cancel'|translate}}</button>
+
+                            </ng-template>
+                        </modal>
+                        <modal #datacardmodal>
+                            <ng-template #modalHeader>
+                                <div>
+                                    <p style="color:#267fac;font-family: calibiri;">
+                                         {{'Media'|translate}}
+                                    </p>
+
+                                </div>
+                            </ng-template>
+                            <ng-template #modalBody>
+                                <div class="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+                                    <ng-container *ngFor="let item of usritems; index as i">
+                                        <a href="javascript:;" [ngClass]="{ 'md:row-span-2 md:col-span-2': i == 4 }"
+                                            (click)="opendatacard(i)">
+                                            <img [src]="item.src" alt="image-gallery"
+                                                class="h-full w-full rounded-md object-cover" />
+                                        </a>
+                                    </ng-container>
+                                </div>
+                            </ng-template>
+                            <ng-template #modalFooter>
+                                <button type="button" (click)="datacardmodal.close()"
+                                    class="btn btn-outline-danger">  {{'Cancel'|translate}}</button>
+
+                            </ng-template>
+                        </modal>
+                        <modal #select_assigne>
+                            <ng-template #modalHeader>
+                                <div> {{'Select Assignee'|translate}}</div>
+                            </ng-template>
+                            <ng-template #modalBody>
+                                <div class="mt-4 flex items-center" *ngIf="this.role_id==1">
+                                 <div class="flex-2">
+                                    <label class="me-3 mt-2 f_color">  {{'Select Assignee'|translate}}:</label>
+                                 </div>   
+                                 <div class="flex-1">
+                                    <ng-select  name="ctnSelect1"
+                                                
+                                                (change)="selectEvent($event,0)"
+                                                placeholder="Select Assignee"
+                                                [searchable]="true" [clearable]="false" class="custom-multiselect" appendTo="body">
+                                                <ng-option *ngFor="let user of user_list" [value]="user.us_id">{{user.us_firstname}}</ng-option>
+                                    </ng-select>
+                                 </div>
+                                    
+                                </div>
+                            </ng-template>
+                            <ng-template #modalFooter>
+                                <button type="button" (click)="select_assigne.close()"
+                                    class="btn btn-outline-dark"> {{'Cancel'|translate}}</button>
+                            </ng-template>
+                        </modal>
+                        <modal #exprej_modal class="modal-top animate animate-slide-in-down">
+                            <ng-template #modalHeader> <div>Reject Reason</div> </ng-template>
+                            <ng-template #modalBody>
+                                <p>
+                                    {{serv_pack_list.expert_details['status_Details']['vm_reject_reason']}}
+                                </p>
+                            </ng-template>
+                            <ng-template #modalFooter>
+                                <button type="button" (click)="exprej_modal.close()" class="btn btn-outline-danger">Discard</button>
+                            </ng-template>
+                        </modal>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+  
+
+   

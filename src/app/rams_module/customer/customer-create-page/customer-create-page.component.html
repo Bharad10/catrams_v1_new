@@ -1,0 +1,85 @@
+<div>
+    <h5 class="text-xl font-semibold dark:text-white-light">Customer Create</h5>
+    <div class="flex flex-col gap-2.5 xl:flex-row">
+        <div class="panel flex flex-row w-full ltr:xl:mr-6 rtl:xl:ml-6">
+            <form [formGroup]="CustomerForm" class="flex-1 space-y-5 dark:text-white" (ngSubmit)="customercreate()">
+                <div class="flex flex-row space-x-4">
+                    <div class="flex-1">
+                        <label for="Tool Name">Customer Name</label>
+                        <div class="relative text-white-dark">
+                            <input id="customername" type="text" placeholder="Enter Customer Name"
+                                class="form-input placeholder:text-white-dark" maxlength="50" formControlName="customername" />
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <label for="customerphone">Customer Phone</label>
+                        <div class="relative text-white-dark">
+                            <input id="customerphone" type="number" placeholder="Enter Customer Phone"
+                                class="form-input placeholder:text-white-dark" maxlength="100" formControlName="customerphone" />
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <label for="alternatenumber">Customer Alternate Number</label>
+                        <div class="relative text-white-dark">
+                            <input id="alternatenumber" type="number" maxlength="15" placeholder="Enter Alternate Number"
+                                class="form-input placeholder:text-white-dark" formControlName="alternatenumber" />
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <label for="rentdays">Customer Email</label>
+                        <div class="relative text-white-dark">
+                            <input id="email" type="email" placeholder="Enter Email"
+                                class="form-input placeholder:text-white-dark" maxlength="100" formControlName="email" />
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <label for="rentdays">GSTIN Number</label>
+                        <div class="relative text-white-dark">
+                            <input id="gstin" type="text" placeholder="Enter GSTIN"
+                                class="form-input placeholder:text-white-dark" formControlName="gstin" />
+                        </div>
+                    </div>    
+                </div>
+                <div class="flex flex-row space-x-4">
+                    
+                    <div class="flex-1">
+                        <label for="email">Customer Address</label>
+                        <div class="relative text-white-dark">
+                            <textarea class="form-textarea mt-4" placeholder="Enter Customer Address"  formControlName="customeraddress"
+                                name="customeraddress"></textarea>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <label for="custtype">Customer Type</label>
+                        <select id="custtype" class="form-select text-white-dark" required  formControlName="custtype">
+                            <option value="1" selected>Individual</option>
+                            <option value="2">Dealer</option>
+                        </select>
+                    </div>
+                    <!-- <div class="flex-1">
+                        <div class="image-upload" align="center" style="height: 150px">
+                            <label for="file-input">Profile Image</label><br/>
+                            <img [src]="imageurl" class="user-img" accept="image/*" alt="" width="120px" height="120px" />
+                            <input id="file-input" #file type="file" (change)="onFileChanged()" />
+                        </div>
+                        <div align="center" style="margin-top: 2%">
+                            <button type="button" class="btn btn-info gap-2" (click)="file.click()">
+                                CHOOSE
+                            </button>
+                        </div>
+                    </div> -->
+                </div> 
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-1">
+                    <div class="flex justify-end">
+                        <button type="button" class="btn btn-dark gap-2" style="margin-right: 1%;">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-success gap-2">
+                            Create
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

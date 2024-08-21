@@ -1,0 +1,111 @@
+.ng-autocomplete{
+    position: absolute !important;
+    width:25%;
+}
+.f_color{
+    color: #0d98ee;
+}
+
+.pend_status{
+    color: #AA0E0E !important;
+    background-color: #F9B4B4;
+}
+.inprog_status{
+    color: #93710A !important;
+    background-color: #F7DC8D;
+}
+.comp_status{
+    color: #3A6A23 !important;
+    background-color: #CFEBC2;
+}
+.loader {
+    margin-left: 45%;
+    margin-top: 25%;
+    width: 5px;
+    color: #04b7f9;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    box-shadow: 
+      19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px,
+      19px 0     0 5px, 38px 0     0 5px, 57px 0     0 5px,
+      19px 19px  0 0px, 38px 19px  0 0px, 57px 19px  0 0px;
+    transform: translateX(-38px);
+    animation: l26 2s infinite linear;
+  }
+  @keyframes l26 {
+    12.5% {box-shadow: 
+      19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 5px,
+      19px 0     0 5px, 38px 0     0 0px, 57px 0     0 5px,
+      19px 19px  0 0px, 38px 19px  0 0px, 57px 19px  0 0px}
+    25%   {box-shadow: 
+      19px -19px 0 5px, 38px -19px 0 0px, 57px -19px 0 5px,
+      19px 0     0 0px, 38px 0     0 0px, 57px 0     0 0px,
+      19px 19px  0 0px, 38px 19px  0 5px, 57px 19px  0 0px}
+    50%   {box-shadow: 
+      19px -19px 0 5px, 38px -19px 0 5px, 57px -19px 0 0px,
+      19px 0     0 0px, 38px 0     0 0px, 57px 0     0 0px,
+      19px 19px  0 0px, 38px 19px  0 0px, 57px 19px  0 5px}
+    62.5% {box-shadow: 
+      19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px,
+      19px 0     0 5px, 38px 0     0 0px, 57px 0     0 0px,
+      19px 19px  0 0px, 38px 19px  0 5px, 57px 19px  0 5px}
+    75%   {box-shadow: 
+      19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px,
+      19px 0     0 0px, 38px 0     0 0px, 57px 0     0 5px,
+      19px 19px  0 0px, 38px 19px  0 0px, 57px 19px  0 5px}
+    87.5% {box-shadow: 
+      19px -19px 0 0px, 38px -19px 0 5px, 57px -19px 0 0px,
+      19px 0     0 0px, 38px 0     0 5px, 57px 0     0 0px,
+      19px 19px  0 5px, 38px 19px  0 0px, 57px 19px  0 0px}
+  }
+
+
+.fixed-size {
+    width: 200px; /* Set the desired width */
+    height: 200px; /* Set the desired height */
+    cursor: pointer;
+    object-fit: cover; /* Ensures the image covers the specified dimensions */
+  }
+  
+
+
+/* HTML: <div class="loader"></div> */
+.c_loader {
+    margin-left: 45%;
+    margin-top: 25%;
+    width: 4px;
+    color: #04b7f9;
+    width: 15px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    clip-path: inset(-45px);
+    box-shadow: -60px 15px,-60px 15px,-60px 15px;
+    transform: translateY(-15px);
+    animation: l19 1s infinite linear;
+  }
+  @keyframes l19{ 
+    16.67% {box-shadow:-60px 15px,-60px 15px,19px 15px}
+    33.33% {box-shadow:-60px 15px,  0px 15px,19px 15px}
+    40%,60%{box-shadow:-19px 15px,  0px 15px,19px 15px}
+    66.67% {box-shadow:-19px 15px,  0px 15px,60px 15px}
+    83.33% {box-shadow:-19px 15px, 60px 15px,60px 15px}
+    100%   {box-shadow: 60px 15px, 60px 15px,60px 15px}
+  }
+
+  /* HTML: <div class="loader"></div> */
+
+
+/* HTML: <div class="loader"></div> */
+.img_loader {
+  width: 50px;
+  aspect-ratio: 1;
+  --_c:no-repeat radial-gradient(farthest-side,#25b09b 92%,#0000);
+  background: 
+    var(--_c) top,
+    var(--_c) left,
+    var(--_c) right,
+    var(--_c) bottom;
+  background-size: 12px 12px;
+  animation: l7 1s infinite;
+}
+@keyframes l7 {to{transform: rotate(.5turn)}}
