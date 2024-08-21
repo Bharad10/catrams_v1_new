@@ -648,16 +648,17 @@
                                 </div>
                                 <br>
                                 <div>
-                                    <div class="mt-8 px-4" >
+                                    <div class="mt-8 px-4" *ngIf="audiofiles">
                                         <div>
                                             <label for="notes">
                                                  {{'Audio From Customer'|translate}}
                                             </label>
-                                       
                                             <audio controls>
-                                                <source src="{{this.audiofiles}}" >
-                                                
+                                                <source [src]='audiofiles' type="audio/mpeg">
+                                                <source [src]='audiofiles' type="audio/ogg">
+                                                Your browser does not support the audio element.
                                               </audio>
+                                            {{this.audiofiles}}
                                             <br><br>
                                         </div>
                                     </div>

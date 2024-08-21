@@ -4,7 +4,7 @@ export const environment = {
     // defaultLanguage: 'ae', //en //ae
     production: false,
     // base_url: "http://192.168.1.6:8081/",
-    base_url:"https://catrams.com/catrams-api-test/",
+    base_url: "https://catrams.com/catrams-api-test/",
     //    base_url: "https://catrams.com/catrams-api/",
 
     SOCKET_ENDPOINT: "https://mychatserver-production.up.railway.app/",
