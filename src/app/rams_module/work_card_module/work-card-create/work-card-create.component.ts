@@ -41,6 +41,7 @@ export class WorkCardCreateComponent {
     tab10 = 'home'
     tab11 = 'home'
     payloading=true;
+    reOpenFlag= false;
     toggleCode = (name: string) => {
         if (this.codeArr.includes(name)) {
             this.codeArr = this.codeArr.filter((d: string) => d != name);
@@ -295,6 +296,7 @@ servhist(){
   }
 
   reopen_workcard(data:any){
+    this.reOpenFlag=true;
     let sdata={
         serm_id:data.serm_id
     }
