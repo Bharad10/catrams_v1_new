@@ -24,15 +24,6 @@
                 [ngClass]="{ 'before:!w-full text-secondary': tab17.toLowerCase() === 'request' }"
                 (click)="tab17 = 'request'"
             >
-                <!-- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ltr:mr-2 rtl:ml-2">
-                    <path
-                        opacity="0.5"
-                        d="M2 12.2039C2 9.91549 2 8.77128 2.5192 7.82274C3.0384 6.87421 3.98695 6.28551 5.88403 5.10813L7.88403 3.86687C9.88939 2.62229 10.8921 2 12 2C13.1079 2 14.1106 2.62229 16.116 3.86687L18.116 5.10812C20.0131 6.28551 20.9616 6.87421 21.4808 7.82274C22 8.77128 22 9.91549 22 12.2039V13.725C22 17.6258 22 19.5763 20.8284 20.7881C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.7881C2 19.5763 2 17.6258 2 13.725V12.2039Z"
-                        stroke="currentColor"
-                        stroke-width="1.5"
-                    />
-                    <path d="M12 15L12 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                </svg> -->
                 {{'Approvals'|translate}}
             </a>
 
@@ -1367,148 +1358,7 @@
                                 </ng-template>
                             </modal>
                             
-                            <!-- <modal #inspectfail class="extra-large-modal">
-                                <ng-template #modalHeader>
-                                    <div>Request Details</div>
-                                </ng-template>
-                                <ng-template #modalBody>
-                                    <div class="panel">
-                                        <div class="mb-5">
-                                            <div
-                                                class="mt-3 mb-5 flex flex-wrap justify-center space-x-3 rtl:space-x-reverse">
-                                                <a href="javascript:;"
-                                                    class="flex h-16 w-16 flex-col items-center justify-center rounded-full bg-[#f1f2f3] !outline-none transition-all duration-300 hover:!bg-info hover:text-white hover:shadow-[0_5px_15px_0_rgba(0,0,0,0.30)] dark:bg-[#191e3a]"
-                                                    [ngClass]="{ '!bg-info text-white': tab18.toLowerCase() == 'home' }"
-                                                    (click)="tab18 = 'home'">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M15.5 7.5C15.5 9.433 13.933 11 12 11C10.067 11 8.5 9.433 8.5 7.5C8.5 5.567 10.067 4 12 4C13.933 4 15.5 5.567 15.5 7.5Z"
-                                                            fill="#1C274C" />
-                                                        <path opacity="0.5"
-                                                            d="M19.5 7.5C19.5 8.88071 18.3807 10 17 10C15.6193 10 14.5 8.88071 14.5 7.5C14.5 6.11929 15.6193 5 17 5C18.3807 5 19.5 6.11929 19.5 7.5Z"
-                                                            fill="#1C274C" />
-                                                        <path opacity="0.5"
-                                                            d="M4.5 7.5C4.5 8.88071 5.61929 10 7 10C8.38071 10 9.5 8.88071 9.5 7.5C9.5 6.11929 8.38071 5 7 5C5.61929 5 4.5 6.11929 4.5 7.5Z"
-                                                            fill="#1C274C" />
-                                                        <path
-                                                            d="M18 16.5C18 18.433 15.3137 20 12 20C8.68629 20 6 18.433 6 16.5C6 14.567 8.68629 13 12 13C15.3137 13 18 14.567 18 16.5Z"
-                                                            fill="#1C274C" />
-                                                        <path opacity="0.5"
-                                                            d="M22 16.5C22 17.8807 20.2091 19 18 19C15.7909 19 14 17.8807 14 16.5C14 15.1193 15.7909 14 18 14C20.2091 14 22 15.1193 22 16.5Z"
-                                                            fill="#1C274C" />
-                                                        <path opacity="0.5"
-                                                            d="M2 16.5C2 17.8807 3.79086 19 6 19C8.20914 19 10 17.8807 10 16.5C10 15.1193 8.20914 14 6 14C3.79086 14 2 15.1193 2 16.5Z"
-                                                            fill="#1C274C" />
-                                                    </svg>
-
-                                                </a>
-                                                <a href="javascript:;"
-                                                    class="flex h-16 w-16 flex-col items-center justify-center rounded-full bg-[#f1f2f3] !outline-none transition-all duration-300 hover:!bg-info hover:text-white hover:shadow-[0_5px_15px_0_rgba(0,0,0,0.30)] dark:bg-[#191e3a]"
-                                                    [ngClass]="{ '!bg-info text-white': tab18.toLowerCase() == 'Inspection_details' }"
-                                                    (click)="tab18 = 'Inspection_details'">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M15.7281 3.88396C17.1624 2.44407 19.2604 2.41383 20.4219 3.57981C21.5856 4.74798 21.5542 6.85922 20.1189 8.30009L17.6951 10.7333C17.4028 11.0268 17.4037 11.5017 17.6971 11.794C17.9906 12.0863 18.4655 12.0854 18.7578 11.7919L21.1816 9.35869C23.0929 7.43998 23.3329 4.37665 21.4846 2.5212C19.6342 0.663551 16.5776 0.905664 14.6653 2.82536L9.81768 7.69182C7.90639 9.61053 7.66643 12.6739 9.5147 14.5293C9.80702 14.8228 10.2819 14.8237 10.5754 14.5314C10.8688 14.2391 10.8697 13.7642 10.5774 13.4707C9.41376 12.3026 9.4451 10.1913 10.8804 8.75042L15.7281 3.88396Z"
-                                                            fill="#1C274C" />
-                                                        <path opacity="0.5"
-                                                            d="M14.4846 9.4707C14.1923 9.17724 13.7174 9.17632 13.4239 9.46864C13.1305 9.76097 13.1296 10.2358 13.4219 10.5293C14.5856 11.6975 14.5542 13.8087 13.1189 15.2496L8.27129 20.1161C6.83696 21.556 4.73889 21.5862 3.57742 20.4202C2.41376 19.2521 2.4451 17.1408 3.8804 15.6999L6.30424 13.2666C6.59657 12.9732 6.59565 12.4983 6.30219 12.206C6.00873 11.9137 5.53386 11.9146 5.24153 12.208L2.81769 14.6413C0.906387 16.56 0.666428 19.6234 2.5147 21.4788C4.36518 23.3365 7.42173 23.0944 9.334 21.1747L14.1816 16.3082C16.0929 14.3895 16.3329 11.3262 14.4846 9.4707Z"
-                                                            fill="#1C274C" />
-                                                    </svg>
-                                                </a>
-                                            </div>
-                                            <div class="flex-1 text-sm">
-                                                <div *ngIf="tab18.toLowerCase() === 'home'">
-                                                    <span class="badge badge-outline-info">Customer Details</span>
-
-                                                    <br><br><br>
-                                                    <div class="flex flex-row space-x-4">
-
-                                                        <div class="flex-1">
-                                                            <label for="Tool Name"><b> Customer Name</b></label>
-                                                            <div class="relative text-white-dark">
-                                                                <input id="customername" type="text"
-                                                                    placeholder="{{value.cstm_name}}"
-                                                                    class="form-input placeholder:text-white-dark"
-                                                                    readonly />
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex-1">
-                                                            <label for="customerphone"><b> Customer Phone</b></label>
-                                                            <div class="relative text-white-dark">
-                                                                <input id="customerphone" type="number"
-                                                                    placeholder="{{value.cstm_phone}}"
-                                                                    class="form-input placeholder:text-white-dark"
-                                                                    readonly />
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex-1">
-                                                            <label for="alternatenumber"><b> Address</b></label>
-                                                            <div class="relative text-white-dark">
-                                                                <input id="alternatenumber" type="number"
-                                                                    placeholder="{{value.tldt_tool_quant}}"
-                                                                    class="form-input placeholder:text-white-dark"
-                                                                    readonly />
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <br><br><br><br>
-                                                    <div class="flex flex-row space-x-4">
-                                                        <div class="flex-1">
-                                                            <label for="Tool Name"><b>Tool Quantity</b></label>
-                                                            <div class="relative text-white-dark">
-                                                                <input id="customername" type="text"
-                                                                    placeholder="{{value.tldt_tool_quant}}"
-                                                                    class="form-input placeholder:text-white-dark"
-                                                                    readonly />
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex-1">
-                                                            <label for="customerphone"><b> Total Price</b></label>
-                                                            <div class="relative text-white-dark">
-                                                                <input id="customerphone" type="number"
-                                                                    placeholder="{{value.tldt_cost}}"
-                                                                    class="form-input placeholder:text-white-dark"
-                                                                    readonly />
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex-1">
-                                                            <label for="Tool Name"><b>Rent Duration</b></label>
-                                                            <div class="relative text-white-dark">
-                                                                <input id="customername" type="text"
-                                                                    placeholder="{{value.tldt_tool_duration}}"
-                                                                    class="form-input placeholder:text-white-dark"
-                                                                    readonly />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <br><br><br><br>
-                                                    <div *ngIf="value.tracker_data">
-                                                        <b>Damaged Tool Images</b>
-                                                        <br><br>
-                                                        <div *ngFor="let image of value.tracker_data">
-
-                                                            <img src="{{baseurl+image.trt_url}}"
-                                                                style="width: 30%;    margin-left: 38%;max-height:fit-content;" >
-                                                            <br><br>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </ng-template>
-                                <ng-template #modalFooter>
-                                    <button type="button" class="btn btn-outline-danger"
-                                        (click)="request_update(value.am_id,2,value.tldet_id)">Reject</button>
-                                    <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4"
-                                        (click)="request_update(value.am_id,1,value.tldet_id)">Approve</button>
-                                </ng-template>
-                            </modal> -->
-
+                         
 
                         </ng-template>
                     </ng-datatable>
@@ -1606,10 +1456,12 @@
                                     <button type="button" class="btn btn-outline-info"
                                     (click)="workcard_module(value.serm_id)">{{'View WorkCard Details'|translate}}</button>
                                     
-                                    <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4" *ngIf="value.am_type==4"
-                                        (click)="workcardhold(value.serm_id,value.am_id,value.am_reason)">{{'Hold Work Card'|translate}}</button>
-                                        <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4" *ngIf="value.am_type==6"
-                                        (click)="workcard_unhold(value.serm_id,value.am_id)">{{'Unhold Work Card'|translate}}</button>
+                                    
+                                    <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4" 
+                                        [disabled]="value.am_status==1||value.am_status==2"(click)="loading2=true; value.am_type==4?workcardhold(value.serm_id,value.am_id,value.am_reason):workcard_unhold(value.serm_id,value.am_id)">
+                                       <ng-container *ngIf="value.am_type==4">{{'Hold Work Card'|translate}}</ng-container>
+                                       <ng-container *ngIf="value.am_type==6">{{'Unhold Work Card'|translate}}</ng-container>
+                                    </button>
                                 </ng-template>
                             </modal>
 
@@ -1655,10 +1507,13 @@
                                     <button type="button" class="btn btn-outline-info"
                                     (click)="workcard_module(value.serm_id)">{{'View WorkCard Details'|translate}}</button>
                                     
-                                    <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4" *ngIf="value.am_type==5"
-                                        (click)="jobhold(value.sitem_id,value.serm_id,value.am_id,value.am_reason)">Hold job</button>
-                                        <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4" *ngIf="value.am_type==7"
-                                        (click)="job_unhold(value.serm_id,value.am_id,value.sitem_id)">Unhold Job</button>
+                                    <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4"  
+                                         [disabled]="value.am_status==1||value.am_status==2"
+                                        (click)="loading2=true;value.am_type==5?
+                                        jobhold(value.sitem_id,value.serm_id,value.am_id,value.am_reason):
+                                        job_unhold(value.serm_id,value.am_id,value.sitem_id)">
+                                        <ng-container *ngIf="value.am_type==5"> Hold job</ng-container>
+                                       </button>
                                 </ng-template>
                             </modal>
                         
