@@ -123,6 +123,7 @@ export class WorkCardEditModuleComponent implements OnInit {
     is_expert_service:boolean=false;
     exp_contactList:any=[]
     assigne_details:any=[]
+
     public message$ : BehaviorSubject < string > = new BehaviorSubject('');
     constructor(private router : Router, 
         private activerouter : ActivatedRoute,
