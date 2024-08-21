@@ -1498,35 +1498,44 @@
                                                                             <div [innerHTML]="notFound"></div>
                                                                         </ng-template>
                                                                     </td>
-                                                                    <td >
+                                                                    <td>
                                                                         <ng-container
                                                                             *ngIf="request_details.serm_status==28&&(item.sitem_active_flag==0||item.sitem_active_flag==1)">
                                                                             <span>
-                                                                                <select name="cars" id="cars_{{i}}" [(ngModel)]="item.sitem_status_flag" style="    width: 80%;"
-                                                                                [selectedIndex]="item.sitem_status_flag"
-                                                                                (change)="selectedChange(item);"
-                                                                                [disabled]="app_workcard.am_status==0||item.sitem_hold_flag==1||item.sitem_active_flag==2||item.sitem_active_flag==3||item.sitem_assignee_type==1">
-                                                                                <option value="-1">{{'Not Yet Accepted'|translate}}</option>
-                                                                                <option value="0" class="pend_status">{{'Pending'|translate}}</option>
-                                                                                <option value="1" class="inprog_status">{{'In Progress'|translate}}</option>
-                                                                                <option value="2" class="comp_status">{{'Completed'|translate}}</option>
-                                                                            </select>
+                                                                                <div class="flex-1">
+                                                                                    <ng-select  name="ctnSelect1" (change)="this.vendor_id = $event"
+                                                                                    placeholder="Select vendor"
+                                                                                    [(ngModel)]="item.sitem_status_flag"
+                                                                                    appendTo="body"
+                                                                                    [disabled]="app_workcard.am_status==0||item.sitem_hold_flag==1||item.sitem_active_flag==2||item.sitem_active_flag==3||item.sitem_assignee_type==1"
+                                                                                    [searchable]="true" [clearable]="false" class="custom-multiselect">
+                                                                                    <ng-option [value]="-1">{{'Not Yet Accepted'|translate}}</ng-option>
+                                                                                    <ng-option [value]="0" class="pend_status">{{'Pending'|translate}}</ng-option>
+                                                                                    <ng-option [value]="1" class="inprog_status">{{'In Progress'|translate}}</ng-option>
+                                                                                    <ng-option [value]="2" class="comp_status">{{'Completed'|translate}}</ng-option>
+                                                                                   </ng-select>
+                                                                                   </div>
                                                                             </span>
-                                                                         
                                                                         </ng-container>
                                                                         <ng-container
-                                                                        *ngIf="request_details.serm_status==28&&item.sitem_active_flag==2">
+                                                                        *ngIf="request_details.serm_status!=27&&item.sitem_active_flag==2">
                                                                         <span>
                                                                             <select name="cars" id="cars_{{i}}" style="width: 80%;"
                                                                             [disabled]="item.sitem_active_flag==2">
-                                                                            <option value="0" class="pend_status">{{'New Service Pending'|translate}}</option>
+                                                                            <option value="0" class="pend_status">{{'Service Pending'|translate}}</option>
                                                                         </select>
                                                                         </span>
-                                                                     
+                                                                    </ng-container>
+                                                                    <ng-container
+                                                                        *ngIf="request_details.serm_status!=27&&item.sitem_active_flag==3">
+                                                                        <span>
+                                                                            <select name="cars" id="cars_{{i}}" style="width: 80%;"
+                                                                            [disabled]="item.sitem_active_flag==3">
+                                                                            <option value="0" class="pend_status">{{'Service Rejected'|translate}}</option>
+                                                                        </select>
+                                                                        </span>
                                                                     </ng-container>
                                                                     </td>
-                            
-                            
                                                                     <td
                                                                         *ngIf="request_details.serm_status==28&&(item.sitem_active_flag==0||item.sitem_active_flag==1)">
                                                                         <div *ngIf="item.sitem_hold_flag==0">
