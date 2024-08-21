@@ -1228,6 +1228,10 @@
                                             </div>
                                       
                                             <br>
+                                            <div class="w-full lg:w-1/2" *ngIf="request_details.serm_status == 56 && request_details.serm_reopen_by==1">
+                                                <label name="purpose">Reopen Reason</label>
+                                                <input type="text" class="form-input min-w-[200px]" [(ngModel)]="request_details.serm_reopen_desc" [disabled]="true" />
+                                            </div>
                                             <div class="w-full lg:w-1/2" *ngIf="request_details.serm_hold_flag==0">
                                                 <div class="mt-4 flex items-center">
                                                     <div class="flex items-center justify-center">
