@@ -1,93 +1,106 @@
 <div>
-    <button (click)="servlist()">
-        <svg _ngcontent-oci-c34="" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path _ngcontent-oci-c34="" d="M17 12L10 12M10 12L13 15M10 12L13 9" stroke="#1C274C" stroke-width="1.5"
-                stroke-linecap="round" stroke-linejoin="round"></path>
-            <path _ngcontent-oci-c34="" d="M7 16L7 12L7 8" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round">
-            </path>
-            <path _ngcontent-oci-c34="" opacity="0.5"
-                d="M2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 
-                2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 
-                22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 
-                12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12Z"
-                stroke="#1C274C" stroke-width="1.5"></path>
-        </svg>
-    </button>
-    <h5 class="text-xl font-semibold dark:text-white-light">Service Package Edit</h5>
+    <div class="mb-5">
+        <ol class="flex font-semibold text-primary dark:text-white-dark">
+            <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+                <a href="javascript:;" (click)="adminsettings()"
+                    class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+                    Admin Settings</a>
+            </li>
+            <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+                <a href="javascript:;" (click)="servlist()"
+                    class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+                    Services</a>
+            </li>
+            <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
+                <a
+                    class="relative flex h-full items-center bg-primary p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-primary ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-6 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180">
+                    Edit Service</a>
+            </li>
+        </ol>
+    </div>
     <div class="flex flex-col gap-2.5 xl:flex-row">
         <div class="panel flex flex-row w-full ltr:xl:mr-6 rtl:xl:ml-6">
-            <form [formGroup]="servform" class="flex-1 space-y-5 dark:text-white" >
-                <div class="flex flex-row space-x-4">
-                    <div class="flex-2">
-                        <label for="servpack_name">Service Name</label>
-                        <div class="relative text-white-dark">
-                            <input id="servpack_name" type="text" placeholder="Enter Service Name"
-                                class="form-input placeholder:text-white-dark" formControlName="servpack_name" />
+            <form [formGroup]="servform" class="flex-1 space-y-5 dark:text-white">
+                <div class="xs:grid-cols-1 grid grid-cols-1 gap-1 sm:grid-cols-1 md:grid-cols-5 xl:grid-cols-5">
+                    <div class="mb-1 md:col-span-2 xl:col-span-2">
+                        <div class="flex-2">
+                            <div>
+                                <label for="Tool Name">Service Name</label>
+                                <div class="relative text-white-dark">
+                                    <input id="servpack_name" type="text" placeholder="Enter Service Name"
+                                        class="form-input placeholder:text-white-dark"
+                                        formControlName="servpack_name" />
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex-2">
-                        <label for="servpack_cost">Service Cost</label>
-                        <div class="relative text-white-dark">
-                            <input id="servpack_cost" type="number" placeholder="Service Cost"
-                                class="form-input placeholder:text-white-dark" formControlName="servpack_cost" />
+                        <div class="flex-2 mt-2">
+                            <div>
+                                <label for="servpack_cost">Service Cost</label>
+                                <div class="relative text-white-dark">
+                                    <input id="servpack_cost" type="number" placeholder="Service Cost"
+                                        class="form-input placeholder:text-white-dark"
+                                        formControlName="servpack_cost" />
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex-1">
-                        <label for="servpack_desc">Service Description</label>
-                        <div class="relative text-white-dark">
-                            <textarea class="form-textarea mt-4" placeholder="Enter Service Description"
-                                name="servpack_desc" formControlName="servpack_desc" style="width:80%;margin-top: 0rem;"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-row space-x-4">
-                    
-                    <div class="flex-2" *ngIf="serv_details">
-                        <label class="inline-flex">
-                            <input type="checkbox" class="form-checkbox" [checked]="toolcheckflag==1"  (change)="readytoollist(toolcheckflag)" />
-                            <span>Tool Recommendation</span>
-                        </label>
-                    </div>
-                    
-                </div>
-                <div class="flex flex-row space-x-4"  *ngIf="toolcheckflag==1">
-                    <div class="flex-2">
-                        <div class="dropdown">
-                            <label for="btnRight">Select Tool</label>
-                            <div class="flex">
-                               
-                                    <select name="cars" id="cars" style="border-radius: 0.375rem;border-width: 1px;padding: 3%;" [(ngModel)]="toolid" [ngModelOptions]="{standalone: true}"  (change)="tool_name(toolid)" >
-                                        <option value="-1" disabled>Select a tool to recommend </option>
-                                        <ng-container *ngFor="let tool of toollist">
-                                        <option value="{{tool.tool_id}}">{{tool.tool_name}}</option>
-                                        </ng-container>
-                                    </select>
-                                   
-                                
+                        <div class="flex-2 mt-2">
+                            <div>
+                                <label for="servpack_desc">Service Description</label>
+                                <div class="relative text-white-dark">
+                                    <textarea class="form-textarea mt-2 w-full" placeholder="Enter Service Description"
+                                        name="servpack_desc" formControlName="servpack_desc"></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    &nbsp;&nbsp;
-                    <ng-container *ngIf="toolarray.length>0">
-                        <span style=" border-radius: 0.375rem;border-width: 1px;padding: 1%;border-color: #04b5f8;">
-                          
-                            <b *ngFor="let toolname of toolarray,let i=index">
-                                
-                                <span class="badge badge-outline-primary rounded-full">
-                                   <a (click)="delete_tool(i)" style="cursor:pointer">{{toolname.tool_name}}</a> 
-                                </span>&nbsp;
-                            </b>
-                        </span>
-                    </ng-container>
-                   
+                </div>
+                <ng-container *ngIf="toollist&&(toollist.length)>0">
+                    <div class="flex flex-row space-x-1">
+                        <div class="flex-2">
+                            <label class="inline-flex">
+                                <input type="checkbox" class="form-checkbox" [checked]="toolcheckflag==1"
+                                    (change)="readytoollist(toolcheckflag)" />
+                                <span>Tool Recomendation</span>
+                            </label>
+                        </div>
+                    </div>
+                </ng-container>
+                <div *ngIf="toolcheckflag==1">
+                    <div class="xs:grid-cols-1 grid grid-cols-1 gap-1 sm:grid-cols-1 md:grid-cols-5 xl:grid-cols-5">
+                        <div class="mb-1 md:col-span-2 xl:col-span-2">
+                            <div class="flex-2 mt-1">
+                                <label for="btnRight">Select Tool</label>
+                                <ng-select [ngModel]="toolid" (change)="tool_name($event)" class="custom-multiselect"
+                                    style="width: 100%" [ngModelOptions]="{standalone: true}" [searchable]="true"
+                                    [clearable]="false">
+                                    <ng-option [value]="-1" disabled>Select a tool to recommend</ng-option>
+                                    <ng-option *ngFor="let tool of toollist" [value]="tool.tool_id">
+                                        {{ tool.tool_name }}
+                                    </ng-option>
+                                </ng-select>
+                            </div>
+                            <br>
+                            <ng-container *ngIf="toolarray.length > 0">
+                                <div
+                                    style="border-radius: 0.375rem; border-width: 1px; padding: 1%; border-color: #04b5f8;">
+                                    <div *ngFor="let toolname of toolarray; let i = index"
+                                        class="badge badge-outline-dark rounded-full mb-2 flex justify-between items-center">
+                                        <span style=" color: black; ">{{ toolname.tool_name }}</span>
+                                        <span class="cursor-pointer hover:opacity-90" (click)="delete_tool(i)"
+                                            style="cursor:pointer; color:#e7515a;">x</span>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
                 </div>
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-1">
                     <div class="flex justify-end">
                         <button type="button" class="btn btn-dark gap-2" style="margin-right: 1%;" (click)="servlist()">
                             Cancel
                         </button>
-                        <button type="button" class="btn btn-success gap-2" (click)="servupdate()" [disabled]="servform.value.servpack_name&& servform.value.servpack_cost==0">
+                        <button type="button" class="btn btn-success gap-2" (click)="servupdate()"
+                            [disabled]="servform.value.servpack_name&& servform.value.servpack_cost==0">
                             Update
                         </button>
                     </div>

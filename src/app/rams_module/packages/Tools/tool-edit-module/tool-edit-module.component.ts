@@ -16,229 +16,229 @@ export class ToolEditModuleComponent {
   toolid: any;
   t_id: any;
   tool_details: any;
-  baseurl=environment.base_img_url;
+  baseurl = environment.base_img_url;
   s_stock: any;
   adv_price: any;
   delay_price: any;
   dep_price: any;
-  isSubmitForm1=false;
-  button_act_state=0
-  image_load_state=0
-  renttool_id=false;
-  advanceflag=false;
-  depositflag=false;
+  isSubmitForm1 = false;
+  button_act_state = 0
+  image_load_state = 0
+  renttool_id = false;
+  advanceflag = false;
+  depositflag = false;
   constructor(
     private fb: FormBuilder,
-    private usr_ser:UserService,
-    private router:Router,
+    private usr_ser: UserService,
+    private router: Router,
     private activerouter: ActivatedRoute,
   ) {
     const encodedRoleId = this.activerouter.snapshot.paramMap.get('id')!;
-    this.t_id=encodedRoleId
+    this.t_id = encodedRoleId
     this.toolid = atob(encodedRoleId);
-    //console.log('tool id---->', this.toolid );
     this.ToolForm = this.fb.group({
       toolid: '',
       toolname: '',
       imageurl: '',
       tool_total_quantity: '',
-      tool_sale_quantity:"",
-      tool_cost: '',  // You can use '0' as a string or 0 as a number
+      tool_sale_quantity: "",
+      tool_cost: '',
       tooldescription: '',
-      tool_rent_id:'',                                                                                                                                                                                                                                                                                                                                                                                                 
-      tool_rent_quantity:'',
-      tool_rent_cost:'',
-      tool_delay_percentage:'',
-      tool_deposit_id:'',
-      tool_deposit_price:'',
-      tool_adv_payment:'',
-      tool_adv_price:'',
+      tool_rent_id: '',
+      tool_rent_quantity: '',
+      tool_rent_cost: '',
+      tool_delay_percentage: '',
+      tool_deposit_id: '',
+      tool_deposit_price: '',
+      tool_adv_payment: '',
+      tool_adv_price: '',
+      advanceflag: [false],
+      depositflag: [false],
     });
   }
-  adminsettings(){
+
+  adminsettings() {
     this.router.navigateByUrl('admin-approval');
   }
+
+  onAdvanceFlagChange(event: any) {
+    const checked = event.target.checked;
+    if (checked) {
+      this.ToolForm.patchValue({ depositflag: false });
+    }
+  }
+
+  onDepositFlagChange(event: any) {
+    const checked = event.target.checked;
+    if (checked) {
+      this.ToolForm.patchValue({ advanceflag: false });
+    }
+  }
+
   ngOnInit() {
     this.usr_ser.fetch_tool_details(this.t_id).subscribe((rdata: any) => {
       if (rdata.ret_data == 'success') {
-     this.ToolForm.setValue({
-      toolid:rdata.tool_details.tool_id,
-      toolname: rdata.tool_details.tool_name,
-      imageurl: rdata.tool_details.tool_images,
-      tool_total_quantity: rdata.tool_details.tool_total_quantity,
-      tool_sale_quantity: rdata.tool_details.tool_sale_quantity,
-      tool_cost: rdata.tool_details.tool_cost,
-      tooldescription: rdata.tool_details.tool_description,
-      tool_rent_id: rdata.tool_details.tool_rent_id,
-      tool_rent_quantity: rdata.tool_details.tool_rent_quantity,
-      tool_rent_cost: rdata.tool_details.tool_rent_cost,
-      tool_delay_percentage: rdata.tool_details.tool_delay_percentage,
-      tool_deposit_id: rdata.tool_details.tool_deposit_id,
-      tool_deposit_price: rdata.tool_details.tool_deposit_price,
-      tool_adv_payment: rdata.tool_details.tool_adv_payment,
-      tool_adv_price: rdata.tool_details.tool_adv_price,
-    });
-    this.imageurl=this.baseurl+rdata.tool_details.tool_images;
-    this.delay_cal();
-    if( rdata.tool_details.tool_rent_id==1){
-      this.renttool_id=true;
-      this.rent_methoed(rdata);
-      
-      this.stock_cal();
-      this.delay_cal();
-    }
-    //console.log("toolform:",this.ToolForm.value);
-
-    
-  
-    const checkboxrent = document.getElementById('renttool_id') as HTMLInputElement;
-    checkboxrent.addEventListener('change', () => {
-      this.ToolForm.setValue({
-        tool_rent_id:checkboxrent.checked?1:0
-      });
-     
-    });
-    const checkbox = document.getElementById('advanceflag') as HTMLInputElement;
-  checkbox.addEventListener('change', () => {
-    this.ToolForm.setValue({
-      tool_adv_payment:checkbox.checked?1:0,
-      tool_deposit_id:0
-    });
-    this.advanceflag=true;
-    this.depositflag=false;
-    
-  });
- 
-  const checkboxdeposit = document.getElementById('depositflag') as HTMLInputElement;
-  checkboxdeposit.addEventListener('change', () => {
-    this.ToolForm.setValue({
-      tool_deposit_id:checkbox.checked?1:0,
-      tool_adv_payment:0
-    });
-    this.depositflag=true;
-    this.advanceflag=false;
-   
-  });
+        this.ToolForm.setValue({
+          toolid: rdata.tool_details.tool_id,
+          toolname: rdata.tool_details.tool_name,
+          imageurl: rdata.tool_details.tool_images,
+          tool_total_quantity: rdata.tool_details.tool_total_quantity,
+          tool_sale_quantity: rdata.tool_details.tool_sale_quantity,
+          tool_cost: rdata.tool_details.tool_cost,
+          tooldescription: rdata.tool_details.tool_description,
+          tool_rent_id: rdata.tool_details.tool_rent_id,
+          tool_rent_quantity: rdata.tool_details.tool_rent_quantity,
+          tool_rent_cost: rdata.tool_details.tool_rent_cost,
+          tool_delay_percentage: rdata.tool_details.tool_delay_percentage,
+          tool_deposit_id: rdata.tool_details.tool_deposit_id,
+          tool_deposit_price: rdata.tool_details.tool_deposit_price,
+          tool_adv_payment: rdata.tool_details.tool_adv_payment,
+          tool_adv_price: rdata.tool_details.tool_adv_price,
+          advanceflag: [false],
+          depositflag: [false],
+        });
+        this.imageurl = this.baseurl + rdata.tool_details.tool_images;
+        this.delay_cal();
+        if (rdata.tool_details.tool_rent_id == 1) {
+          this.renttool_id = true;
+          this.rent_methoed(rdata);
+          this.stock_cal();
+          this.delay_cal();
+        }
+        const checkboxrent = document.getElementById('renttool_id') as HTMLInputElement;
+        checkboxrent.addEventListener('change', () => {
+          this.ToolForm.setValue({
+            tool_rent_id: checkboxrent.checked ? 1 : 0
+          });
+        });
+        const checkbox = document.getElementById('advanceflag') as HTMLInputElement;
+        checkbox.addEventListener('change', () => {
+          this.ToolForm.setValue({
+            tool_adv_payment: checkbox.checked ? 1 : 0,
+            tool_deposit_id: 0
+          });
+          this.advanceflag = true;
+          this.depositflag = false;
+        });
+        const checkboxdeposit = document.getElementById('depositflag') as HTMLInputElement;
+        checkboxdeposit.addEventListener('change', () => {
+          this.ToolForm.setValue({
+            tool_deposit_id: checkbox.checked ? 1 : 0,
+            tool_adv_payment: 0
+          });
+          this.depositflag = true;
+          this.advanceflag = false;
+        });
       }
-  });
+    });
   }
 
-  rent_methoed(rdata:any){
-    if(rdata.tool_details.tool_adv_payment==1){
-      this.advanceflag=true;
+  rent_methoed(rdata: any) {
+    if (rdata.tool_details.tool_adv_payment == 1) {
+      this.advanceflag = true;
       this.advpercent_cal();
-    }else if(rdata.tool_details.tool_deposit_id==1){
-      this.depositflag=true;
+    } else if (rdata.tool_details.tool_deposit_id == 1) {
+      this.depositflag = true;
       this.depost_cal()
     }
   }
-  toollist(){
+
+  toollist() {
     this.router.navigateByUrl('/tool-package-list');
   }
 
   toolupdate() {
     let tooldata =
-    {'tool_data':this.ToolForm.value}
+      { 'tool_data': this.ToolForm.value }
     this.usr_ser.update_tool_details(tooldata).subscribe((rdata: any) => {
       if (rdata.ret_data === "success") {
         this.showMessage('Tool Updated.', 'success');
-          setTimeout(() => this.router.navigate(['/tool-package-list']), 500);
-      } 
-      else{
+        setTimeout(() => this.router.navigate(['/tool-package-list']), 500);
+      }
+      else {
         this.showMessage(rdata.Message, 'error');
       }
     });
-
   }
-  showMessage(msg = '', type='' ) {
+
+  showMessage(msg = '', type = '') {
     const toast: any = Swal.mixin({
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 3000,
-        customClass: { container: 'toast' },
+      toast: true,
+      position: 'top',
+      showConfirmButton: false,
+      timer: 3000,
+      customClass: { container: 'toast' },
     });
     toast.fire({
-        icon: type,
-        title: msg,
-        padding: '10px 20px',
+      icon: type,
+      title: msg,
+      padding: '10px 20px',
     });
-}
+  }
+
   selectedFile = null;
-
   onFileChanged(event: any) {
-    
     const file = event.target.files[0];
-    // //console.log("from here--->",file);
-
     let _that = this;
     const reader = new FileReader();
     const inData = new FormData();
     inData.append('toolimage', file);
     reader.readAsDataURL(file);
     reader.onload = e => this.imageurl = reader.result;
-    //console.log("-------------->",inData)
     this.usr_ser.tool_image_upload(inData).subscribe((rdata: any) => {
       if (rdata.ret_data == "success") {
-        this.ToolForm.value.imageurl=rdata.path;
-        let filetype=rdata.file.split("/",1);
-        if(filetype[0]=="image"){
-          filetype=1;
-        }else if(filetype[0]=="audio"){
-          filetype=2;
-        }else if(filetype[0]=="video"){
-          filetype=4;
-        }else {
-          filetype=3;
+        this.ToolForm.value.imageurl = rdata.path;
+        let filetype = rdata.file.split("/", 1);
+        if (filetype[0] == "image") {
+          filetype = 1;
+        } else if (filetype[0] == "audio") {
+          filetype = 2;
+        } else if (filetype[0] == "video") {
+          filetype = 4;
+        } else {
+          filetype = 3;
         }
         let fileinfo = {
           ftype: filetype,
           fname: "uploads\\purchaseorderbillImages\\" + rdata.img_name
         }
-
       }
     });
   }
-  stock_div(){
-    this.s_stock=this.ToolForm.value['tool_total_quantity'];
+
+  stock_div() {
+    this.s_stock = this.ToolForm.value['tool_total_quantity'];
   }
 
-  rentprice_cal(){
-    let price=this.ToolForm.value['tool_cost'];
-    
-
-
-  }
-  advpercent_cal(){
-    let price=parseFloat(this.ToolForm.value['tool_rent_cost']);
-    let adv_p=this.ToolForm.value['tool_adv_price'];
-
-    this.adv_price=(price*adv_p)/100;
-    this.adv_price=parseFloat( this.adv_price).toFixed(2);
+  rentprice_cal() {
+    let price = this.ToolForm.value['tool_cost'];
   }
 
-  stock_cal(){
-    let rentstock=this.ToolForm.value['tool_rent_quantity'];
-    let availablequantity=this.ToolForm.value['tool_sale_quantity'];
-    this.s_stock=availablequantity-rentstock; 
+  advpercent_cal() {
+    let price = parseFloat(this.ToolForm.value['tool_rent_cost']);
+    let adv_p = this.ToolForm.value['tool_adv_price'];
+    this.adv_price = (price * adv_p) / 100;
+    this.adv_price = parseFloat(this.adv_price).toFixed(2);
   }
 
-  delay_cal(){
-    let price=this.ToolForm.value['tool_rent_cost'];
-    let del_per=this.ToolForm.value['tool_delay_percentage'];
-
-    this.delay_price=(price*del_per)/100;
-    //console.log("delay_price=======>",this.delay_price);
-
+  stock_cal() {
+    let rentstock = this.ToolForm.value['tool_rent_quantity'];
+    let availablequantity = this.ToolForm.value['tool_sale_quantity'];
+    this.s_stock = availablequantity - rentstock;
   }
-  depost_cal(){
-    let price=parseFloat(this.ToolForm.value['tool_rent_cost']);
-    let depositamount=this.ToolForm.value['tool_deposit_price'];
 
-    let dep_price=(price*depositamount)/100
+  delay_cal() {
+    let price = this.ToolForm.value['tool_rent_cost'];
+    let del_per = this.ToolForm.value['tool_delay_percentage'];
+    this.delay_price = (price * del_per) / 100;
+  }
 
-    this.dep_price=price+dep_price;
-    this.dep_price=parseFloat(this.dep_price).toFixed(2);
+  depost_cal() {
+    let price = parseFloat(this.ToolForm.value['tool_rent_cost']);
+    let depositamount = this.ToolForm.value['tool_deposit_price'];
+    let dep_price = (price * depositamount) / 100
+    this.dep_price = price + dep_price;
+    this.dep_price = parseFloat(this.dep_price).toFixed(2);
   }
 
 }
