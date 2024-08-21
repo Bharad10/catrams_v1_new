@@ -1,156 +1,136 @@
-<div>
-    <div class="mb-5">
-        <ol class="flex font-semibold text-primary dark:text-white-dark">
-            <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
-                <a href="javascript:;" (click)="adminsettings()"
-                    class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
-                    Admin Settings</a>
-            </li>
-            <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
-                <a href="javascript:;" (click)="servlist()"
-                    class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
-                    Services</a>
-            </li>
-            <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
-                <a
-                    class="relative flex h-full items-center bg-primary p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-primary ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-6 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180">
-                    Create Service</a>
-            </li>
-    
-        </ol>
-    </div>
-    
-   
-    <div class="flex flex-col gap-2.5 xl:flex-row">
-        <div class="panel flex flex-row w-full ltr:xl:mr-6 rtl:xl:ml-6">
-            <form [formGroup]="servform" class="flex-1 space-y-5 dark:text-white" (ngSubmit)="servcreate()" novalidate>
-                <div class="flex flex-row space-x-4">
+<div class="mb-5">
+    <ol class="flex font-semibold text-primary dark:text-white-dark">
+        <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+            <a href="javascript:;" (click)="adminsettings()"
+                class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+                Admin Settings</a>
+        </li>
+        <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+            <a href="javascript:;" (click)="servlist()"
+                class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+                Services</a>
+        </li>
+        <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
+            <a
+                class="relative flex h-full items-center bg-primary p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-primary ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-6 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180">
+                Create Service</a>
+        </li>
+    </ol>
+</div>
+<div class="flex flex-col gap-1 xl:flex-row">
+    <div class="panel flex flex-row w-full ltr:xl:mr-1 rtl:xl:ml-1">
+        <form [formGroup]="servform" class="flex-1 space-y-5 dark:text-white" (ngSubmit)="servcreate()" novalidate>
+            <div class="xs:grid-cols-1 grid grid-cols-1 gap-1 sm:grid-cols-1 md:grid-cols-5 xl:grid-cols-5">
+                <div class="mb-1 md:col-span-2 xl:col-span-2">
                     <div class="flex-2">
-                        <div [ngClass]="isSubmitForm1 ? servform.controls['servpack_name'].errors ? 'has-error' : 'has-success' : ''">
+                        <div
+                            [ngClass]="isSubmitForm1 ? servform.controls['servpack_name'].errors ? 'has-error' : 'has-success' : ''">
                             <label for="Tool Name">Service Name</label>
                             <div class="relative text-white-dark">
                                 <input id="servpack_name" type="text" placeholder="Enter Service Name"
-                                    oninput="this.value = this.value.toUpperCase()" class="form-input placeholder:text-white-dark"
-                                    formControlName="servpack_name" required />
+                                    oninput="this.value = this.value.toUpperCase()"
+                                    class="form-input placeholder:text-white-dark" formControlName="servpack_name"
+                                    required />
                             </div>
                             <ng-container *ngIf="isSubmitForm1 && !servform.controls['servpack_name'].errors">
-                    
                             </ng-container>
                             <ng-container *ngIf="isSubmitForm1 && servform.controls['servpack_name'].errors">
                                 <p class="mt-1 text-danger">Please Provide Service Name</p>
                             </ng-container>
                         </div>
-                    
                     </div>
-                    <div class="flex-2">
-                        <div [ngClass]="isSubmitForm1 ? servform.controls['servpack_cost'].errors ? 'has-error' : 'has-success' : ''">
+                    <div class="flex-2 mt-2">
+                        <div
+                            [ngClass]="isSubmitForm1 ? servform.controls['servpack_cost'].errors ? 'has-error' : 'has-success' : ''">
                             <label for="Tool Name">Service Cost</label>
                             <div class="relative text-white-dark">
-                                <input id="servpack_cost" type="number" placeholder="Enter Service Name"
-                                onKeyPress="if(this.value.length==7) return false;"
-                                oninput="validity.valid||(value='');"
-                                min="0"
-                                class="form-input placeholder:text-white-dark"
-                                    formControlName="servpack_cost" required />
+                                <input id="servpack_cost" type="number" placeholder="Enter Service Cost"
+                                    onKeyPress="if(this.value.length==7) return false;"
+                                    oninput="validity.valid||(value='');" min="0"
+                                    class="form-input placeholder:text-white-dark" formControlName="servpack_cost"
+                                    required />
                             </div>
                             <ng-container *ngIf="isSubmitForm1 && !servform.controls['servpack_cost'].errors">
-                    
                             </ng-container>
                             <ng-container *ngIf="isSubmitForm1 && servform.controls['servpack_cost'].errors">
                                 <p class="mt-1 text-danger">Please Provide Service Cost</p>
                             </ng-container>
                         </div>
-                    
                     </div>
-                    <div class="flex-1">
-                        <div [ngClass]="isSubmitForm1 ? servform.controls['servpack_desc'].errors ? 'has-error' : 'has-success' : ''">
+                    <div class="flex-2 mt-2">
+                        <div
+                            [ngClass]="isSubmitForm1 ? servform.controls['servpack_desc'].errors ? 'has-error' : 'has-success' : ''">
                             <label for="servpack_desc">Service Description</label>
                             <div class="relative text-white-dark">
-                                <textarea class="form-textarea mt-4" placeholder="Enter Service Description"
-                                name="servpack_desc" formControlName="servpack_desc"
-                                style="width:80%;margin-top: 0rem;"></textarea>
+                                <textarea class="form-textarea mt-2 w-full" placeholder="Enter Service Description"
+                                    name="servpack_desc" formControlName="servpack_desc"></textarea>
                             </div>
                             <ng-container *ngIf="isSubmitForm1 && !servform.controls['servpack_desc'].errors">
-                    
+
                             </ng-container>
                             <ng-container *ngIf="isSubmitForm1 && servform.controls['servpack_desc'].errors">
                                 <p class="mt-1 text-danger">Please Provide Service Description</p>
                             </ng-container>
                         </div>
-                    
                     </div>
                 </div>
-                <ng-container *ngIf="toollist&&(toollist.length)>0">
-                    <div class="flex flex-row space-x-4">
+                <div class="mb-1 md:col-span-2 xl:col-span-2">
 
-                        <div class="flex-2">
-                            <label class="inline-flex">
-                                <input type="checkbox" class="form-checkbox" [checked]="toolcheckflag==1"
-                                    (change)="readytoollist(toolcheckflag)" />
-                                <span>Tool Recomendation</span>
-                            </label>
-                        </div>
-    
-                    </div>
-                </ng-container>
-                
-                <div class="flex flex-row space-x-4" *ngIf="toolcheckflag==1">
+                </div>
+            </div>
+            <ng-container *ngIf="toollist&&(toollist.length)>0">
+                <div class="flex flex-row space-x-1">
                     <div class="flex-2">
-                        <div class="dropdown">
-                            <label for="btnRight">Select Tool</label>
-                            <div class="flex">
-
-                                <select name="cars" id="cars"
-                                    style="border-radius: 0.375rem;border-width: 1px;padding: 3%;" [(ngModel)]="toolid"
-                                    [ngModelOptions]="{standalone: true}" (change)="tool_name(toolid)">
-                                    <option value="-1" disabled>Select a tool to recomend</option>
-                                    <ng-container *ngFor="let tool of toollist">
-                                        <option value="{{tool.tool_id}}">{{tool.tool_name}}</option>
-                                    </ng-container>
-                                </select>
-
-
-                            </div>
-                        </div>
+                        <label class="inline-flex">
+                            <input type="checkbox" class="form-checkbox" [checked]="toolcheckflag==1"
+                                (change)="readytoollist(toolcheckflag)" />
+                            <span>Tool Recomendation</span>
+                        </label>
                     </div>
-                    &nbsp;&nbsp;
-                    <ng-container *ngIf="toolarray.length>0">
-                        <span style=" border-radius: 0.375rem;border-width: 1px;padding: 1%;border-color: #04b5f8;">
-
-                            <b *ngFor="let toolname of toolarray,let i=index">
-
-                                <span class="badge badge-outline-primary rounded-full">
-                                    
-                                    <span class="ltr:ml-2 rtl:mr-2">{{toolname.tool_name}}</span>
-                                    <span class="ltr:ml-4 rtl:mr-4 cursor-pointer hover:opacity-90"(click)="delete_tool(i)" style="cursor:pointer;color:#e7515a;">x</span></span>
-                                    
-                               
-                            </b>
-                        </span>
-                    </ng-container>
-
                 </div>
-                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-1">
-                    <div class="flex justify-end">
-                        <button type="button" class="btn btn-dark gap-2" style="margin-right: 1%;" (click)="servlist()">
-                            Cancel
-                        </button>
-                        <button type="submit" class="btn btn-success gap-2" *ngIf="button_act_state==0">
-                            Create
-                        </button>
-                        <button type="submit" class="btn btn-gradient  gap-2"
-                          *ngIf="button_act_state==1"
-                         disabled style="background-color: #00ab55;color: #f1ffd7f5;">
-                            <svg
-                            viewBox="0 0 24 24"
-                            width="24"
-                            height="24"
-                            stroke="currentColor"
-                            stroke-width="1.5"
-                            fill="none"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="inline-block h-5 w-5 shrink-0 animate-[spin_2s_linear_infinite] align-middle ltr:mr-2 rtl:ml-2" >
+            </ng-container>
+            <div *ngIf="toolcheckflag==1">
+                <div class="xs:grid-cols-1 grid grid-cols-1 gap-1 sm:grid-cols-1 md:grid-cols-5 xl:grid-cols-5">
+                    <div class="mb-1 md:col-span-2 xl:col-span-2">
+                        <div class="flex-2 mt-1">
+                            <label for="btnRight">Select Tool</label>
+                            <ng-select [ngModel]="toolid" (change)="tool_name($event)" class="custom-multiselect"
+                                style="width: 100%" [ngModelOptions]="{standalone: true}" [searchable]="true"
+                                [clearable]="false">
+                                <ng-option [value]="-1" disabled>Select a tool to recommend</ng-option>
+                                <ng-option *ngFor="let tool of toollist" [value]="tool.tool_id">
+                                    {{ tool.tool_name }}
+                                </ng-option>
+                            </ng-select>
+                        </div>
+                        <br>
+                        <ng-container *ngIf="toolarray.length > 0">
+                            <div
+                                style="border-radius: 0.375rem; border-width: 1px; padding: 1%; border-color: #04b5f8;">
+                                <div *ngFor="let toolname of toolarray; let i = index"
+                                    class="badge badge-outline-dark rounded-full mb-2 flex justify-between items-center">
+                                    <span style=" color: black; ">{{ toolname.tool_name }}</span>
+                                    <span class="cursor-pointer hover:opacity-90" (click)="delete_tool(i)"
+                                        style="cursor:pointer; color:#e7515a;">x</span>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-1">
+                <div class="flex justify-end">
+                    <button type="button" class="btn btn-dark gap-2" style="margin-right: 1%;" (click)="servlist()">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-success gap-2" *ngIf="button_act_state==0">
+                        Create
+                    </button>
+                    <button type="submit" class="btn btn-gradient  gap-2" *ngIf="button_act_state==1" disabled
+                        style="background-color: #00ab55;color: #f1ffd7f5;">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round"
+                            class="inline-block h-5 w-5 shrink-0 animate-[spin_2s_linear_infinite] align-middle ltr:mr-2 rtl:ml-2">
                             <line x1="12" y1="2" x2="12" y2="6"></line>
                             <line x1="12" y1="18" x2="12" y2="22"></line>
                             <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
@@ -160,12 +140,9 @@
                             <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
                             <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
                         </svg>
-                          
-                            
-                          </button>
-                    </div>
+                    </button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
