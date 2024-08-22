@@ -26,6 +26,7 @@ export class BannerCreateComponent implements OnInit{
   banner_image:any='';
   base_version= (environment.base_version)
   selectedType: any;
+  loading=false;
   constructor(
     private router:Router,
     private fb: FormBuilder,
@@ -217,6 +218,7 @@ custom_confirm_modal()
       if (result.value) {
        
         this.button_act_state=1
+        this.loading=true;
         this.set_serv.banner_create({'banner_data':this.BannerForm.value}).subscribe((rdata: any) => {
           if (rdata.ret_data === "success") {
             this.showMessage('Advertisement Created.', 'success');

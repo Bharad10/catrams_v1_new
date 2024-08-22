@@ -3,7 +3,7 @@ export const environment = {
     //<________________________________*****************DEV SETTINGS***************________________________________>
     //defaultLanguage: 'ae', //en //ae
     production: false,
-    Version:'2.0.1',
+    Version:'2.0.2',
     base_version: 'test',  //local,test,prodcution
     timeZone: "Asia/Kolkata",
     //base_url: "http://localhost:8080/", //LOCAL DEV

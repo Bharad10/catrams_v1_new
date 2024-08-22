@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,AbstractControl,ValidatorFn  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/service/customer/customer.service';
 import { UserService } from 'src/app/service/user-service/user.service';
@@ -28,14 +28,16 @@ export class CustomerCreatePageComponent implements OnInit {
     private router:Router,
     private fb: FormBuilder,
     public usr_ser:UserService,
-    private customerService:CustomerService
+    private customerService:CustomerService,
     
   ) {
-    let us_phone_code: number = parseInt(environment.us_phone_code, 10);
+    
+
+    
     this.CustomerForm = this.fb.group({
       customername:['', [Validators.required,Validators.maxLength(25),Validators.minLength(1)]],
-      customerphone:['', [Validators.required,Validators.maxLength(us_phone_code),Validators.minLength(us_phone_code)]],
-      alternatenumber:['',[Validators.maxLength(10),Validators.minLength(10)]],
+      customerphone: ['', [Validators.required, this.phoneNumberValidator()]],
+      alternatenumber: ['', [this.phoneNumberValidator()]],
       email:['', [ Validators.maxLength(100), Validators.email, Validators.pattern('.+@.+\..+')]],
       customeraddress:['', [Validators.maxLength(60)]],
       custtype: ['', [Validators.required]],
@@ -49,6 +51,13 @@ export class CustomerCreatePageComponent implements OnInit {
       } else {}
   });
   
+  }
+  phoneNumberValidator(): ValidatorFn {
+    
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const isValid = /^\d{10}$/.test(control.value);
+      return isValid ? null : { 'invalidPhoneNumber': { value: control.value } };
+    }
   }
 
   customercreate() {
