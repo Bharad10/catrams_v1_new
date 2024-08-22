@@ -263,7 +263,7 @@
                                                                     <input type="number" class="form-input w-32" placeholder="Price"
                                                                         [(ngModel)]="item.servpack_cost" name="servpack_cost_{{i}}" min="0"
                                                                         [disabled]="validPendingQuote()"
-                                                                        (change)="custom_total($event,i)"
+                                                                        (ngModelChange)="custom_total($event,i)"
                                                                          />
                                                                 </td>
                                                                 <!-- <td>₹{{ item.servpack_cost }}</td> -->

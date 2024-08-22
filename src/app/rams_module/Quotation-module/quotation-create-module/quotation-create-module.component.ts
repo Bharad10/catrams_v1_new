@@ -316,7 +316,7 @@ export class QuotationCreateModuleComponent implements OnInit {
   {
     //console.log("$event.value---------------->",$event.target.value);
     
-    this.quote_items[index]['servpack_cost'] = $event.target.value;
+    this.quote_items[index]['servpack_cost'] = $event;
     this.calculateTotal(this.quote_items);
   }
 
