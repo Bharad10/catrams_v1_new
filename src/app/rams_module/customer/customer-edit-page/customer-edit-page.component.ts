@@ -111,13 +111,10 @@ export class CustomerEditPageComponent {
         this.usr_ser.vendor_Assign_update({'cstm_id':this.customerForm.value['customerid'],'cstm_vendor_flag':this.v_flag?1:0, 'cstm_vendor_percent': this.percent}).subscribe((rdata: any) => {
             if (rdata.ret_data == 'success') {
               this.showMessage('Updated!!', 'success');
-              
-               
             }else{
         
             }
           });
-
     }
     
     // update_c_percent(id:any,cash:any){
@@ -158,6 +155,7 @@ export class CustomerEditPageComponent {
     }
   
     customerupdate() {
+        this.loading=true
         this.customerService.cust_update(this.customerForm.value).subscribe((rdata : any) => {
             if (rdata.ret_data == 'success') {
                 this.showMessage('Customer Updated.', 'success');
