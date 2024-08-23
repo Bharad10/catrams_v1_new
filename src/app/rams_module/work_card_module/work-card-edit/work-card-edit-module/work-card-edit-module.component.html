@@ -2440,7 +2440,7 @@
                                                                             </td>
 
                                                                             <td>
-                                                                                <input type="number"
+                                                                                <input type="number" appDisableArrowKeys
                                                                                     class="form-input w-32"
                                                                                     placeholder="Price"
                                                                                     [(ngModel)]="item.amount"
@@ -2478,14 +2478,14 @@
                                                         <div class="sm:w-2/5">
                                                             <div class="flex items-center justify-between">
                                                                 <div>{{'Subtotal'|translate}}</div>
-                                                                <div><input type="number" [(ngModel)]="subtotal"
+                                                                <div><input type="number" appDisableArrowKeys [(ngModel)]="subtotal"
                                                                         name="subamount" class="form-input w-32"
                                                                         placeholder="Price" min="0" disabled /></div>
                                                             </div>
                                                             <div
                                                                 class="mt-4 flex items-center justify-between font-semibold">
                                                                 <div>{{'Total'|translate}}</div>
-                                                                <div><input type="number" [(ngModel)]="subtotal"
+                                                                <div><input type="number" appDisableArrowKeys [(ngModel)]="subtotal"
                                                                         name="subamount" class="form-input w-32"
                                                                         placeholder="Price" min="0" disabled /></div>
                                                             </div>
@@ -2669,7 +2669,7 @@
                                                                             <label for="reciever-email"
                                                                                 class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2">{{'Enter
                                                                                 Days'|translate}}</label>
-                                                                            <input id="reciever-email" type="number"
+                                                                            <input id="reciever-email" type="number" appDisableArrowKeys
                                                                                 name="reciever-email"
                                                                                 class="form-input flex-1"
                                                                                 [(ngModel)]="days" name="email" />

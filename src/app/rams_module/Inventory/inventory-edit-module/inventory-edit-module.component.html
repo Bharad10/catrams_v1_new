@@ -62,7 +62,7 @@
             <div class="flex-4">
                 <label for="tool_total_quantity">Total Stock</label>
                 <div class="relative text-white-dark">
-                    <input id="tool_total_quantity" type="number" placeholder="Enter Available Quantity"
+                    <input id="tool_total_quantity" type="number" appDisableArrowKeys placeholder="Enter Available Quantity"
                         class="form-input placeholder:text-white-dark" formControlName="tool_total_quantity"
                          required />
                 </div>
@@ -91,7 +91,7 @@
 
                 <label for="tool_rent_quantity">Rent Stock</label>
                 <div class="relative text-white-dark">
-                    <input id="tool_rent_quantity" type="number" placeholder="Enter Rent Stock"
+                    <input id="tool_rent_quantity" type="number" appDisableArrowKeys placeholder="Enter Rent Stock"
                         class="form-input placeholder:text-white-dark" formControlName="tool_rent_quantity" required [(ngModel)]="this.r_stock"
                         min="0" (change)="stock_cal()" />
                     <br><br>
