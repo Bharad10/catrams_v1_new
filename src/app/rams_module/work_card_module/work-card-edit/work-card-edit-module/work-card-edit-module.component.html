@@ -2114,7 +2114,7 @@
 
                                                                             <div *ngIf="item.sitem_hold_flag==1">
                                                                                 <button type="button"
-                                                                                    [disabled]="app_workcard.am_status==0"
+                                                                                    [disabled]="app_workcard.am_status==0 || workCard_Unhold_Flag"
                                                                                     class="btn  btn-sm"
                                                                                     (click)="workcard_unhold(item.sitem_id,2,app_workcard.am_id)"
                                                                                     style="width: 100%;background-color: #54B435;color: #F2FFE9;">
