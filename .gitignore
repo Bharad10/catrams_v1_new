@@ -42,3 +42,7 @@ testem.log
 Thumbs.db
 
 /test.json
+
+
+#EnvirontmentTs
+/src/environments
