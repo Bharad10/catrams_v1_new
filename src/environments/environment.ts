@@ -3,16 +3,16 @@ export const environment = {
     //<________________________________*****************DEV SETTINGS***************________________________________>
     production: false,
     Version:'2.0.2',
-    base_version: 'test',  //local,test,prodcution
+    base_version: 'local',  //local,test,prodcution
     timeZone: "Asia/Kolkata",
-    // base_url: "http://192.168.1.2:8080/", //LOCAL DEV
+    // base_url: "http://localhost:8080/", //LOCAL DEV
     base_url:"https://catrams.com/catrams-api-test/", //TEST DEV
     //base_url: "https://catrams.com/catrams-api/",  //PROD DEV
-    //base_url: "http://localhost:8081/",
-    // SOCKET_ENDPOINT: "https://mychatserver-production.up.railway.app/", // TEST&LIVE DEV
-    SOCKET_ENDPOINT: "http://localhost:3000/", //LOCAL DEV
 
-    //base_img_url: "http://localhost:8080/",  //LOCAL DEV
+      SOCKET_ENDPOINT: "https://mychatserver-production.up.railway.app/", // TEST&LIVE DEV
+    //  SOCKET_ENDPOINT: "http://localhost:3000/", //LOCAL DEV
+
+    // base_img_url: "http://localhost:8080/",  //LOCAL DEV
     base_img_url: "https://catrams.com/catrams-api-test/public/", //TEST DEV
     //base_img_url: "https://catrams.com/catrams-api/public/", //LIVE DEV
 
