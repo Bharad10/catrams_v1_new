@@ -24,9 +24,10 @@ export class ToolEditModuleComponent {
   isSubmitForm1 = false;
   button_act_state = 0
   image_load_state = 0
-  renttool_id = false;
+  tool_rent_id = false;
   advanceflag = false;
   depositflag = false;
+  loader:boolean=true;
   constructor(
     private fb: FormBuilder,
     private usr_ser: UserService,
@@ -64,19 +65,20 @@ export class ToolEditModuleComponent {
   onAdvanceFlagChange(event: any) {
     const checked = event.target.checked;
     if (checked) {
-      this.ToolForm.patchValue({ depositflag: false });
+      this.ToolForm.patchValue({ tool_adv_price: 0,tool_deposit_id:1,advanceflag:false,depositflag:true });
     }
   }
 
   onDepositFlagChange(event: any) {
     const checked = event.target.checked;
     if (checked) {
-      this.ToolForm.patchValue({ advanceflag: false });
+      this.ToolForm.patchValue({ tool_adv_price: 1,tool_deposit_id:0,advanceflag:true,depositflag:false });
     }
   }
 
   ngOnInit() {
     this.usr_ser.fetch_tool_details(this.t_id).subscribe((rdata: any) => {
+
       if (rdata.ret_data == 'success') {
         this.ToolForm.setValue({
           toolid: rdata.tool_details.tool_id,
@@ -94,41 +96,20 @@ export class ToolEditModuleComponent {
           tool_deposit_price: rdata.tool_details.tool_deposit_price,
           tool_adv_payment: rdata.tool_details.tool_adv_payment,
           tool_adv_price: rdata.tool_details.tool_adv_price,
-          advanceflag: [false],
-          depositflag: [false],
+          advanceflag: [rdata.tool_details.tool_adv_price==='0'?false:true],
+          depositflag: [rdata.tool_details.tool_deposit_id==='0'?false:true],
         });
+        this.advanceflag= this.ToolForm.value['advanceflag'][0];
+        this.depositflag= this.ToolForm.value['depositflag'][0];
         this.imageurl = this.baseurl + rdata.tool_details.tool_images;
         this.delay_cal();
         if (rdata.tool_details.tool_rent_id == 1) {
-          this.renttool_id = true;
+          this.tool_rent_id = true;
           this.rent_methoed(rdata);
           this.stock_cal();
           this.delay_cal();
         }
-        const checkboxrent = document.getElementById('renttool_id') as HTMLInputElement;
-        checkboxrent.addEventListener('change', () => {
-          this.ToolForm.setValue({
-            tool_rent_id: checkboxrent.checked ? 1 : 0
-          });
-        });
-        const checkbox = document.getElementById('advanceflag') as HTMLInputElement;
-        checkbox.addEventListener('change', () => {
-          this.ToolForm.setValue({
-            tool_adv_payment: checkbox.checked ? 1 : 0,
-            tool_deposit_id: 0
-          });
-          this.advanceflag = true;
-          this.depositflag = false;
-        });
-        const checkboxdeposit = document.getElementById('depositflag') as HTMLInputElement;
-        checkboxdeposit.addEventListener('change', () => {
-          this.ToolForm.setValue({
-            tool_deposit_id: checkbox.checked ? 1 : 0,
-            tool_adv_payment: 0
-          });
-          this.depositflag = true;
-          this.advanceflag = false;
-        });
+        this.loader=false;
       }
     });
   }

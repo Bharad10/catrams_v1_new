@@ -25,6 +25,7 @@ export class ToolCreateModuleComponent implements OnInit {
   button_act_state = 0
   image_load_state = 0
   base_version = (environment.base_version)
+  loader:boolean=false;
 
   constructor(
     private router: Router,
@@ -36,7 +37,7 @@ export class ToolCreateModuleComponent implements OnInit {
       availablequantity: ['', [Validators.required]],
       price: ['', [Validators.required]],
       tooldescription: ['', [Validators.required]],
-      imageurl: "",
+      imageurl:['', [Validators.required]],
       advancePayment: '',
       renttool_id: '',
       rentprice: '',
@@ -69,11 +70,13 @@ export class ToolCreateModuleComponent implements OnInit {
   }
 
   toolcreate() {
-    this.isSubmitForm1 = true;
+  this.isSubmitForm1 = true;
+
     this.ToolForm.patchValue({
       salestock: this.s_stock
     });
     if (this.ToolForm.valid) {
+      this.loader=true;
       this.button_act_state = 1
       this.usr_ser.tool_create(this.ToolForm.value).subscribe((rdata: any) => {
         if (rdata.ret_data === "success") {

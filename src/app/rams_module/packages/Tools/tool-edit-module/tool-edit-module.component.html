@@ -17,7 +17,7 @@
         </li>
     </ol>
 </div>
-<div class="panel flex flex-row w-full ltr:xl:mr-1 rtl:xl:ml-1">
+<div class="panel flex flex-row w-full ltr:xl:mr-1 rtl:xl:ml-1" *ngIf="!loader">
     <form [formGroup]="ToolForm" class="flex-1 space-y-5 dark:text-white" (ngSubmit)="toolupdate()">
         <div class="mt-1 grid grid-cols-1 justify-between gap-1 sm:grid-cols-1 md:grid-cols-12 xl:grid-cols-12">
             <div class="md:col-span-8 xl:col-span-8">
@@ -103,7 +103,7 @@
         <div class="flex flex-row space-x-1">
             <div class="flex-1">
                 <label class="inline-flex">
-                    <input id="renttool_id" type="checkbox" class="form-checkbox text-success" [checked]="renttool_id"
+                    <input id="tool_rent_id" type="checkbox" class="form-checkbox text-success" [checked]="tool_rent_id"
                         name="tool_rent_id" />
                     <span>Include in Rent Tool Category</span>
                 </label>
@@ -142,7 +142,7 @@
                         <div class="flex-1">
                             <label class="inline-flex">
                                 <input id="advanceflag" type="checkbox" class="form-checkbox text-success"
-                                    formControlName="advanceflag" name="advanceflag"
+                                     name="advanceflag" [checked]="advanceflag"
                                     (change)="onAdvanceFlagChange($event)" />
                                 <span>{{'Need Advance Payment'|translate}}</span>
                             </label>
@@ -152,7 +152,7 @@
                         <div class="flex-1">
                             <label class="inline-flex">
                                 <input id="depositflag" type="checkbox" class="form-checkbox text-success"
-                                    formControlName="depositflag" name="depositflag"
+                                [checked]="depositflag" name="depositflag"
                                     (change)="onDepositFlagChange($event)" />
                                 <span>{{'Need Deposit'|translate}}</span>
                             </label>
@@ -161,13 +161,13 @@
                 </div>
                 <div class="grid grid-cols-1 justify-between gap-2 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-2">
                     <div class="ml-0 rounded-md pb-2 mt-1">
-                        <ng-container *ngIf="ToolForm.value.advanceflag === true">
+                        <ng-container *ngIf="ToolForm.value.tool_adv_price==='1'">
                             <div class="flex">
-                                <input type="tel" type="number" id="advancePayment"
-                                    class="form-input placeholder:text-white-dark" name="advancePayment"
+                                <input type="tel" type="number" id="tool_adv_payment"
+                                    class="form-input placeholder:text-white-dark" name="tool_adv_payment"
                                     placeholder="Enter Percentage" onKeyPress="if(this.value.length==2) return false;"
-                                    oninput="validity.valid||(value='');" min="0" formControlName="advancePayment"
-                                    [ngModel]="ToolForm.value.advancePayment" (change)="advpercent_cal()"
+                                    oninput="validity.valid||(value='');" min="0" formControlName="tool_adv_payment"
+                                    [ngModel]="ToolForm.value.tool_adv_payment" (change)="advpercent_cal()"
                                     style=" width: 100%;" min="0" maxlength="2" />
                                 <div
                                     class="bg-[#eee] flex justify-center items-center ltr:rounded-r-md rtl:rounded-l-md px-3 font-semibold border ltr:border-l-0 rtl:border-r-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]">
@@ -175,21 +175,20 @@
                                 </div>
                             </div>
                             <span>
-                                <p style="font-style:italic;color: red;">{{'Enter Maximum Percentage with respect to
-                                    Price'|translate}}</p>
+                                <p style="font-style:italic;color: red;">{{'Enter Maximum Percentage with respect to Price'|translate}}</p>
                             </span>
                         </ng-container>
                     </div>
                     <div class="ml-0 rounded-md pb-2 mt-1">
-                        <ng-container *ngIf="ToolForm.value.depositflag === true">
+                        <ng-container *ngIf="ToolForm.value.tool_deposit_id==='1'">
                             <div class="flex-1">
                                 <div class="flex">
-                                    <input type="number" id="depositamount"
-                                        class="form-input placeholder:text-white-dark" name="depositamount"
+                                    <input type="number" id="tool_deposit_price"
+                                        class="form-input placeholder:text-white-dark" name="tool_deposit_price"
                                         placeholder="Enter Percentage"
                                         onKeyPress="if(this.value.length==2) return false;"
-                                        oninput="validity.valid||(value='');" min="0" formControlName="depositamount"
-                                        [(ngModel)]="ToolForm.value.depositamount" (change)="depost_cal()"
+                                        oninput="validity.valid||(value='');" min="0" formControlName="tool_deposit_price"
+                                        [(ngModel)]="ToolForm.value.tool_deposit_price" (change)="depost_cal()"
                                         style=" width: 100%;" min="0">
                                     <div
                                         class="bg-[#eee] flex justify-center items-center ltr:rounded-r-md rtl:rounded-l-md px-3 font-semibold border ltr:border-l-0 rtl:border-r-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]">
@@ -197,8 +196,7 @@
                                     </div>
                                 </div>
                                 <span>
-                                    <p style="font-style:italic;color: red;">{{'Enter Maximum Percentage with respect to
-                                        Price'|translate}}</p>
+                                    <p style="font-style:italic;color: red;">{{'Enter Maximum Percentage with respect to Price'|translate}}</p>
                                 </span>
                             </div>
                         </ng-container>
@@ -244,42 +242,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="flex flex-row space-x-4">
-            <div class="flex-1" *ngIf="renttool_id=== true">
-                <label class="inline-flex">
-                    <input id="advanceflag" type="checkbox" class="form-checkbox text-success"
-                        formControlName="advanceflag" name="advanceflag" (change)="onAdvanceFlagChange($event)" />
-                    <span>Need Advance Payment</span>
-                </label>
-                <div class="flex-1">
-                    <div *ngIf="advanceflag=== true">
-                        <input type="number" id="advancePayment" class="form-input placeholder:text-white-dark"
-                            name="advancePayment" placeholder="Enter Percentage %" formControlName="advancePayment"
-                            [ngModel]="ToolForm.value.advancePayment" (change)="advpercent_cal()" style=" width: 60%;"
-                            min="0">
-                    </div>
-                </div>
-                <label class="inline-flex">
-                    <input id="depositflag" type="checkbox" class="form-checkbox text-success"
-                        formControlName="depositflag" name="depositflag" (change)="onDepositFlagChange($event)" />
-                    <span>Need Deposit</span>
-                </label>
-                <div class="flex-1">
-                    <div *ngIf="depositflag === true">
-                        <label for="depositflag"> Deposit Amount:<span style="color: red;">₹{{dep_price}}</span></label>
-                        <input type="number" id="depositamount" class="form-input placeholder:text-white-dark"
-                            name="depositamount" placeholder="Enter Percentage %" formControlName="tool_deposit_price"
-                            [(ngModel)]="ToolForm.value.tool_deposit_price" (change)="depost_cal()" style=" width: 60%;"
-                            min="0">
-                        <span>
-                            <p style="font-style:italic;color: red;">Enter Maximum Percentage with respect to
-                                Price</p>
-                        </span>
-                        <span>Deposit Price Per Day:₹<span style="color: red;">{{dep_price}}</span></span>
-                    </div>
-                </div>
-            </div>
-        </div> -->
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-1">
             <div class="flex justify-end">
                 <button type="button" class="btn btn-dark gap-2" style="margin-right: 1%;">
@@ -292,3 +254,4 @@
         </div>
     </form>
 </div>
+<div class="loader" *ngIf="loader"></div>

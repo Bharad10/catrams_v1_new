@@ -272,10 +272,7 @@ export class QuotationCreateModuleComponent implements OnInit {
       if (rdata.ret_data == 'success') {
 
         this.showMessage('Quote sent successfully', 'success');
-        this.loading=0;
-        setTimeout(() => {
         this.servlist();
-        }, 500);
       } else {
         this.showMessage('', 'error');
       }

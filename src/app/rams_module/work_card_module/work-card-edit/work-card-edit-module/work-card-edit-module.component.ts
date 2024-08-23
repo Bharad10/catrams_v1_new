@@ -557,7 +557,7 @@ export class WorkCardEditModuleComponent implements OnInit {
                             setTimeout(() => {
                                 window.location.reload();
                             }, 1000);
-                            this.wokCardHoldFlag=false;
+                           // this.wokCardHoldFlag=false;
                         } else {
                             this.showMessage('Error', 'error');
                             this.wokCardHoldFlag=false;
@@ -583,7 +583,7 @@ export class WorkCardEditModuleComponent implements OnInit {
                             setTimeout(() => {
                                 window.location.reload();
                             }, 1000);
-                            this.wokCardHoldFlag=false;
+                            //this.wokCardHoldFlag=false;
                         } else {
                             this.showMessage('Error', 'error');
                             this.wokCardHoldFlag=false;
