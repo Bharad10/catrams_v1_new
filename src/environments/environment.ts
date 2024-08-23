@@ -1,7 +1,6 @@
 export const environment = {
 
     //<________________________________*****************DEV SETTINGS***************________________________________>
-    //defaultLanguage: 'ae', //en //ae
     production: false,
     Version:'2.0.2',
     base_version: 'test',  //local,test,prodcution
@@ -31,6 +30,8 @@ export const environment = {
     us_currency:'₹', // ₹ , AED 
     us_country:'IND', // IND , UAE
     us_phone_code:'10', //
+    //defaultLanguage: 'ae', //en //ae
+
     //<_______________________________________________________________________________________________________________>
     
     
