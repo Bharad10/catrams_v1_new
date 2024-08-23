@@ -1,7 +1,7 @@
 <div class="mb-5">
     <ol class="flex font-semibold text-primary dark:text-white-dark">
         <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
-            <a href="javascript:;" 
+            <a href="javascript:;"
                 class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
                 {{'Admin Settings'|translate}}</a>
         </li>
@@ -18,21 +18,17 @@
     <div class="mb-5">
 
         <div class="mt-3 mb-5 flex flex-wrap border-b border-white-light dark:border-[#191e3a]">
-            <a
-                href="javascript:;"
+            <a href="javascript:;"
                 class="relative -mb-[1px] flex items-center p-5 py-3 !outline-none transition duration-300 before:absolute before:bottom-0 before:left-0 before:right-0 before:m-auto before:h-[1px] before:w-0 before:bg-secondary before:transition-all before:duration-700 hover:text-secondary hover:before:w-full"
                 [ngClass]="{ 'before:!w-full text-secondary': tab17.toLowerCase() === 'request' }"
-                (click)="tab17 = 'request'"
-            >
+                (click)="tab17 = 'request'">
                 {{'Approvals'|translate}}
             </a>
 
-            <a
-                href="javascript:;"
+            <a href="javascript:;"
                 class="relative -mb-[1px] flex items-center p-5 py-3 !outline-none transition duration-300 before:absolute before:bottom-0 before:left-0 before:right-0 before:m-auto before:h-[1px] before:w-0 before:bg-secondary before:transition-all before:duration-700 hover:text-secondary hover:before:w-full"
                 [ngClass]="{ 'before:!w-full text-secondary': tab17.toLowerCase() === 'settings' }"
-                (click)="app_service();tab17 = 'settings'"
-            >
+                (click)="app_service();tab17 = 'settings'">
                 <!-- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ltr:mr-2 rtl:ml-2">
                     <circle cx="12" cy="6" r="4" stroke="currentColor" stroke-width="1.5" />
                     <ellipse opacity="0.5" cx="12" cy="17" rx="7" ry="4" stroke="currentColor" stroke-width="1.5" />
@@ -40,7 +36,7 @@
                 {{'Service Approvals'|translate}}
             </a>
 
-           
+
         </div>
         <div class="flex-1 text-sm">
             <div *ngIf="tab17.toLowerCase() === 'request'">
@@ -48,49 +44,52 @@
                     <div class=" flex flex-col gap-5 md:flex-row md:items-center">
                         <!-- <h5 class="text-lg font-semibold dark:text-white-light">Tool Request List </h5> -->
                         <div class="ltr:ml-auto rtl:mr-auto">
-                            <input [(ngModel)]=" searchvalue" type="text" class="form-input w-auto" placeholder=" {{'Search...'|translate}}" />
+                            <input [(ngModel)]=" searchvalue" type="text" class="form-input w-auto"
+                                placeholder=" {{'Search...'|translate}}" />
                         </div>
                     </div>
-                    
-                  
+
+
                 </div>
 
                 <div class="datatable">
-                    <ng-datatable [rows]="filteredRows" [columns]="cols" skin="whitespace-nowrap bh-table-hover" [loading]="loading1" [search]="searchvalue"
+                    <ng-datatable [rows]="filteredRows" [columns]="cols" skin="whitespace-nowrap bh-table-hover"
+                        [loading]="loading1" [search]="searchvalue"
                         firstArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M13 19L7 12L13 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M16.9998 19L10.9998 12L16.9998 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
                         lastArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M11 19L17 12L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M6.99976 19L12.9998 12L6.99976 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg> '
                         previousArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M15 5L9 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
                         nextArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'>
-                  
+
                         <ng-template slot="am_updatedon_date" let-value="data">
-                      
+
                             {{ value.am_createdon | date:'dd-MMM-yyyy' }}
- 
-                         </ng-template>
-                         <ng-template slot="am_updatedon_time" let-value="data">
-                      
+
+                        </ng-template>
+                        <ng-template slot="am_updatedon_time" let-value="data">
+
                             {{ value.am_createdon | date:'hh:mm a' }}
- 
-                         </ng-template>
+
+                        </ng-template>
 
                         <ng-template slot="tool_name" let-value="data">
                             <span *ngIf="!value.pm_code">{{value.tool_name}}</span>
                             <span *ngIf="value.pm_code">{{value.pm_name}}</span>
-                            
- 
-                         </ng-template>
+
+
+                        </ng-template>
                         <ng-template slot="number" let-value="data">
-                           <span *ngIf="value.tldt_number">{{value.tldt_number}}</span>
-                           <span *ngIf="value.order_number">{{value.order_number}}</span>
-                           <span *ngIf="value.pm_code">
-                           <span style="    background:-webkit-linear-gradient(#1c63d2, #06b1f7);
+                            <span *ngIf="value.tldt_number">{{value.tldt_number}}</span>
+                            <span *ngIf="value.order_number">{{value.order_number}}</span>
+                            <span *ngIf="value.pm_code">
+                                <span style="    background:-webkit-linear-gradient(#1c63d2, #06b1f7);
                            -webkit-background-clip: text;
-                           -webkit-text-fill-color: transparent;">Premium Customer Request</span> 
-                        </span>
+                           -webkit-text-fill-color: transparent;">Premium Customer Request</span>
+                            </span>
 
                         </ng-template>
                         <ng-template slot="Status" let-value="data">
-                            <span class="badge badge-outline-warning" *ngIf="value.am_status==0&& value.am_type!=3 "> PENDING</span>
+                            <span class="badge badge-outline-warning" *ngIf="value.am_status==0&& value.am_type!=3 ">
+                                PENDING</span>
                             <span class="badge badge-outline-success" *ngIf="value.am_status==1 "> APPROVED</span>
                             <span class="badge badge-outline-danger" *ngIf="value.am_status== 2"> REJECTED</span>
                             <span class="badge badge-outline-success" *ngIf="value.am_status== 3 && !value.quote_det">
@@ -99,7 +98,8 @@
                                 Rejected</span>
                             <span class="badge badge-outline-danger"
                                 *ngIf="value.am_status== 3 && value.quote_det">Quote Rejected by customer</span>
-                            <span class="badge badge-outline-warning" *ngIf="value.am_type== 3 && value.am_status==0 ">Rent
+                            <span class="badge badge-outline-warning"
+                                *ngIf="value.am_type== 3 && value.am_status==0 ">Rent
                                 Hold Request Pending</span>
 
                         </ng-template>
@@ -162,79 +162,83 @@
                             </button>
 
 
-                            <button type="button" ngxTippy data-tippy-content="Edit" (click)="details.open()" *ngIf="value.am_type==0">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
-                                    fill="#1C274C" />
-                                <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
-                                    fill="#1C274C" />
-                                <path
-                                    d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
-                                    fill="#1C274C" />
-                                <path opacity="0.5"
-                                    d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
-                                    fill="#1C274C" />
-                            </svg>
+                            <button type="button" ngxTippy data-tippy-content="Edit" (click)="details.open()"
+                                *ngIf="value.am_type==0">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                        fill="#1C274C" />
+                                    <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                        fill="#1C274C" />
+                                    <path
+                                        d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                        fill="#1C274C" />
+                                    <path opacity="0.5"
+                                        d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                        fill="#1C274C" />
+                                </svg>
 
-                        </button>
+                            </button>
 
-                        <button type="button" ngxTippy data-tippy-content="Edit" (click)="inspectsuccess.open()" *ngIf="value.am_type==8||value.am_type==9">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
-                                    fill="#1C274C" />
-                                <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
-                                    fill="#1C274C" />
-                                <path
-                                    d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
-                                    fill="#1C274C" />
-                                <path opacity="0.5"
-                                    d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
-                                    fill="#1C274C" />
-                            </svg>
+                            <button type="button" ngxTippy data-tippy-content="Edit" (click)="inspectsuccess.open()"
+                                *ngIf="value.am_type==8||value.am_type==9">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                        fill="#1C274C" />
+                                    <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                        fill="#1C274C" />
+                                    <path
+                                        d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                        fill="#1C274C" />
+                                    <path opacity="0.5"
+                                        d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                        fill="#1C274C" />
+                                </svg>
 
-                        </button>
-                        <button type="button" ngxTippy data-tippy-content="Edit" (click)="damagedorder.open()" *ngIf="value.am_type==10">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
-                                    fill="#1C274C" />
-                                <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
-                                    fill="#1C274C" />
-                                <path
-                                    d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
-                                    fill="#1C274C" />
-                                <path opacity="0.5"
-                                    d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
-                                    fill="#1C274C" />
-                            </svg>
+                            </button>
+                            <button type="button" ngxTippy data-tippy-content="Edit" (click)="damagedorder.open()"
+                                *ngIf="value.am_type==10">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                        fill="#1C274C" />
+                                    <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                        fill="#1C274C" />
+                                    <path
+                                        d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                        fill="#1C274C" />
+                                    <path opacity="0.5"
+                                        d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                        fill="#1C274C" />
+                                </svg>
 
-                        </button>
-                        <button type="button" ngxTippy data-tippy-content="Edit" (click)="premiumcust.open()" *ngIf="value.am_type==11">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
-                                    fill="#1C274C" />
-                                <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
-                                    fill="#1C274C" />
-                                <path
-                                    d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
-                                    fill="#1C274C" />
-                                <path opacity="0.5"
-                                    d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
-                                    fill="#1C274C" />
-                            </svg>
+                            </button>
+                            <button type="button" ngxTippy data-tippy-content="Edit" (click)="premiumcust.open()"
+                                *ngIf="value.am_type==11">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M2 6.63415C2 4.07478 4.07478 2 6.63415 2C9.19351 2 11.2683 4.07478 11.2683 6.63415C11.2683 9.19351 9.19351 11.2683 6.63415 11.2683C4.07478 11.2683 2 9.19351 2 6.63415Z"
+                                        fill="#1C274C" />
+                                    <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12.7324 17.3658C12.7324 14.8065 14.8072 12.7317 17.3666 12.7317C19.9259 12.7317 22.0007 14.8065 22.0007 17.3658C22.0007 19.9252 19.9259 22 17.3666 22C14.8072 22 12.7324 19.9252 12.7324 17.3658Z"
+                                        fill="#1C274C" />
+                                    <path
+                                        d="M2 17.5C2 15.3787 2 14.318 2.65901 13.659C3.31802 13 4.37868 13 6.5 13C8.62132 13 9.68198 13 10.341 13.659C11 14.318 11 15.3787 11 17.5C11 19.6213 11 20.682 10.341 21.341C9.68198 22 8.62132 22 6.5 22C4.37868 22 3.31802 22 2.65901 21.341C2 20.682 2 19.6213 2 17.5Z"
+                                        fill="#1C274C" />
+                                    <path opacity="0.5"
+                                        d="M13 6.5C13 4.37868 13 3.31802 13.659 2.65901C14.318 2 15.3787 2 17.5 2C19.6213 2 20.682 2 21.341 2.65901C22 3.31802 22 4.37868 22 6.5C22 8.62132 22 9.68198 21.341 10.341C20.682 11 19.6213 11 17.5 11C15.3787 11 14.318 11 13.659 10.341C13 9.68198 13 8.62132 13 6.5Z"
+                                        fill="#1C274C" />
+                                </svg>
 
-                        </button>
+                            </button>
                             <modal #renthold class="extra-large-modal">
                                 <ng-template #modalHeader>
                                     <div>Rent Hold Request</div>
@@ -359,16 +363,16 @@
                                                             <label for="alternatenumber"><b> Hold Reason</b></label>
                                                             <div class="relative text-white-dark">
                                                                 <textarea id="alternatenumber" type="text"
-                                                                
-                                                                class="form-input placeholder:text-white-dark"
-                                                                readonly>
+                                                                    class="form-input placeholder:text-white-dark"
+                                                                    readonly>
                                                                 {{value.am_reason}}
                                                                 </textarea>
-                                                                
+
                                                             </div>
                                                         </div>
                                                         <div class="flex-1">
-                                                            <label for="alternatenumber"><b> Rent So far After Due</b></label>
+                                                            <label for="alternatenumber"><b> Rent So far After
+                                                                    Due</b></label>
                                                             <div class="relative text-white-dark">
                                                                 <input id="alternatenumber" type="number"
                                                                     placeholder="{{value.rpt_amount}}"
@@ -738,7 +742,7 @@
                                         disabled>Send Quoation</button>
                                 </ng-template>
                             </modal>
-                           
+
                             <modal #details class="extra-large-modal">
                                 <ng-template #modalHeader>
                                     <div>Request Details-Damaged Tool</div>
@@ -775,7 +779,7 @@
                                                     </svg>
 
                                                 </a>
-                                               
+
                                             </div>
                                             <div class="flex-1 text-sm">
                                                 <div *ngIf="tab18.toLowerCase() === 'home'">
@@ -851,14 +855,15 @@
                                                         <div *ngFor="let image of value.tracker_data">
                                                             <ng-container *ngIf="image.trt_url_type==0">
                                                                 <img src="{{baseurl+image.trt_url}}"
-                                                                style="width: 30%;    margin-left: 38%;max-height:fit-content;" >
+                                                                    style="width: 30%;    margin-left: 38%;max-height:fit-content;">
                                                             </ng-container>
                                                             <ng-container *ngIf="image.trt_url_type==1">
                                                                 <audio controls>
-                                                                    <source src="{{baseurl+image.trt_url}}" type="audio/ogg">
-                                                                  </audio>
+                                                                    <source src="{{baseurl+image.trt_url}}"
+                                                                        type="audio/ogg">
+                                                                </audio>
                                                             </ng-container>
-                                                            
+
                                                             <br><br>
                                                         </div>
 
@@ -1004,7 +1009,8 @@
                                                     </div>
                                                     <br><br><br><br>
 
-                                                    <div class="flex flex-row space-x-4" *ngIf="value.tool_rent_quantity<=10">
+                                                    <div class="flex flex-row space-x-4"
+                                                        *ngIf="value.tool_rent_quantity<=10">
 
                                                         <div class="flex-1">
                                                             <label for="Tool Name"><b>Tool Rent Stock</b></label>
@@ -1014,7 +1020,9 @@
                                                                     class="form-input placeholder:text-white-dark"
                                                                     readonly />
                                                             </div>
-                                                            <span *ngIf="value.tool_rent_quantity<10"><b style="color: red;font-style: italic;">*Low Rent Quantity</b></span>
+                                                            <span *ngIf="value.tool_rent_quantity<10"><b
+                                                                    style="color: red;font-style: italic;">*Low Rent
+                                                                    Quantity</b></span>
 
                                                         </div>
                                                         <div class="flex-1" *ngIf="value.rpt_amount==0">
@@ -1036,12 +1044,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="flex flex-row space-x-4" *ngIf="value.tool_rent_quantity<10">
-                                                            <label for="Tool Name"><b style="color: red;">No Rentable Stock</b></label>
-                                                       
+                                                    <div class="flex flex-row space-x-4"
+                                                        *ngIf="value.tool_rent_quantity<10">
+                                                        <label for="Tool Name"><b style="color: red;">No Rentable
+                                                                Stock</b></label>
+
                                                     </div>
                                                     <br><br><br><br>
-                                                    
+
                                                 </div>
                                                 <div *ngIf="tab18.toLowerCase()==='details'">
                                                     <div *ngIf="value.tracker_data">
@@ -1050,7 +1060,7 @@
                                                         <div *ngFor="let image of value.tracker_data">
 
                                                             <img src="{{baseurl+image.trt_url}}"
-                                                                style="width: 30%;    margin-left: 38%;max-height:fit-content;" >
+                                                                style="width: 30%;    margin-left: 38%;max-height:fit-content;">
                                                             <br><br>
                                                         </div>
 
@@ -1062,17 +1072,22 @@
                                 </ng-template>
                                 <ng-template #modalFooter>
                                     <ng-container *ngIf="(value.tool_rent_quantity)>10">
-                                        
-                                        <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4" 
-                                            (click)="update_amount(value.am_id,value.tldet_id,value.rpt_id,0)">Approve and Send Another Tool</button>
+
+                                        <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4"
+                                            (click)="update_amount(value.am_id,value.tldet_id,value.rpt_id,0)">Approve
+                                            and Send Another Tool</button>
                                     </ng-container>
                                     <ng-container *ngIf="(value.tool_rent_quantity)<9">
-                                        
-                                        <button type="button" class="btn btn-outline-danger" *ngIf="value.rpt_amount!= 0  " 
-                                        (click)="update_amount(value.am_id,value.tldet_id,value.rpt_id,1)">Close Request</button>
 
-                                        <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4" *ngIf="value.rpt_amount== 0 "
-                                        (click)="update_amount(value.am_id,value.tldet_id,value.rpt_id,1)">Proceed For Refund</button>
+                                        <button type="button" class="btn btn-outline-danger"
+                                            *ngIf="value.rpt_amount!= 0  "
+                                            (click)="update_amount(value.am_id,value.tldet_id,value.rpt_id,1)">Close
+                                            Request</button>
+
+                                        <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4"
+                                            *ngIf="value.rpt_amount== 0 "
+                                            (click)="update_amount(value.am_id,value.tldet_id,value.rpt_id,1)">Proceed
+                                            For Refund</button>
                                     </ng-container>
                                 </ng-template>
                             </modal>
@@ -1127,7 +1142,7 @@
                                                             fill="#1C274C" />
                                                     </svg>
                                                 </a>
-                                                
+
                                             </div>
                                             <div class="flex-1 text-sm">
                                                 <div *ngIf="tab18.toLowerCase() === 'home'">
@@ -1167,7 +1182,7 @@
                                                     </div>
                                                     <br><br><br><br>
                                                     <div class="flex flex-row space-x-4">
-                                                       
+
                                                         <div class="flex-1">
                                                             <label for="customerphone"><b> Total Price</b></label>
                                                             <div class="relative text-white-dark">
@@ -1179,15 +1194,16 @@
                                                         </div>
                                                         <div class="flex-1">
                                                             <label for="Tool Name"><b>Paid</b></label>
-                                                            <div class="relative text-white-dark" *ngIf="value.order_pay==0">
+                                                            <div class="relative text-white-dark"
+                                                                *ngIf="value.order_pay==0">
                                                                 <input id="customername" type="text"
                                                                     placeholder="Not Paid"
                                                                     class="form-input placeholder:text-white-dark"
                                                                     readonly />
                                                             </div>
-                                                            <div class="relative text-white-dark" *ngIf="value.order_pay==1">
-                                                                <input id="customername" type="text"
-                                                                    placeholder="Paid"
+                                                            <div class="relative text-white-dark"
+                                                                *ngIf="value.order_pay==1">
+                                                                <input id="customername" type="text" placeholder="Paid"
                                                                     class="form-input placeholder:text-white-dark"
                                                                     readonly />
                                                             </div>
@@ -1195,7 +1211,8 @@
                                                     </div>
                                                     <br><br><br><br>
 
-                                                    <div class="flex flex-row space-x-4" *ngIf="value.tool_rent_quantity<=10">
+                                                    <div class="flex flex-row space-x-4"
+                                                        *ngIf="value.tool_rent_quantity<=10">
 
                                                         <div class="flex-1">
                                                             <label for="Tool Name"><b>Tool Rent Stock</b></label>
@@ -1205,17 +1222,21 @@
                                                                     class="form-input placeholder:text-white-dark"
                                                                     readonly />
                                                             </div>
-                                                            <span *ngIf="value.tool_rent_quantity<10"><b style="color: red;font-style: italic;">*Low Rent Quantity</b></span>
+                                                            <span *ngIf="value.tool_rent_quantity<10"><b
+                                                                    style="color: red;font-style: italic;">*Low Rent
+                                                                    Quantity</b></span>
 
                                                         </div>
                                                     </div>
 
-                                                    <div class="flex flex-row space-x-4" *ngIf="value.tool_rent_quantity>5">
-                                                            <label for="Tool Name"><b style="color: red;">No Rentable Stock</b></label>
-                                                       
+                                                    <div class="flex flex-row space-x-4"
+                                                        *ngIf="value.tool_rent_quantity>5">
+                                                        <label for="Tool Name"><b style="color: red;">No Rentable
+                                                                Stock</b></label>
+
                                                     </div>
                                                     <br><br><br><br>
-                                                    
+
                                                 </div>
                                                 <div *ngIf="tab18.toLowerCase()==='details'">
                                                     <div *ngIf="value.tracker_data">
@@ -1224,27 +1245,29 @@
                                                         <div *ngFor="let image of value.tracker_data">
 
                                                             <img src="{{baseurl+image.trt_url}}"
-                                                                style="width: 30%;    margin-left: 38%;max-height:fit-content;" >
+                                                                style="width: 30%;    margin-left: 38%;max-height:fit-content;">
                                                             <br><br>
                                                         </div>
 
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
                                     </div>
                                 </ng-template>
                                 <ng-template #modalFooter>
-                                    
-                                        <button type="button" class="btn btn-outline-danger" *ngIf="value.rpt_amount!=0&&value.tool_rent_quantity<=10" 
+
+                                    <button type="button" class="btn btn-outline-danger"
+                                        *ngIf="value.rpt_amount!=0&&value.tool_rent_quantity<=10"
                                         (click)="sale_rejected(value.am_id,value.order_id ,1)">Reject Request</button>
 
 
-                                        <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4" *ngIf="value.tool_rent_quantity>=5"
+                                    <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4"
+                                        *ngIf="value.tool_rent_quantity>=5"
                                         (click)="sale_rejected(value.am_id,value.order_id ,0)">Proceed Request</button>
 
-                                        
+
                                 </ng-template>
                             </modal>
 
@@ -1255,110 +1278,112 @@
                                 <ng-template #modalBody>
                                     <div class="panel">
                                         <div class="mb-5">
-                                           
+
                                             <div class="flex-1 text-sm">
-                                           
-                                                    <span class="badge badge-outline-info">Customer Details</span>
 
-                                                    <br><br><br>
-                                                    <div class="flex flex-row space-x-4">
+                                                <span class="badge badge-outline-info">Customer Details</span>
 
-                                                        <div class="flex-1">
-                                                            <label for="Tool Name"><b> Customer Name</b></label>
-                                                            <div class="relative text-white-dark">
-                                                                <input id="customername" type="text"
-                                                                    placeholder="{{value.cstm_name}}"
-                                                                    class="form-input placeholder:text-white-dark"
-                                                                    readonly />
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex-1">
-                                                            <label for="customerphone"><b> Customer Phone</b></label>
-                                                            <div class="relative text-white-dark">
-                                                                <input id="customerphone" type="number"
-                                                                    placeholder="{{value.cstm_phone}}"
-                                                                    class="form-input placeholder:text-white-dark"
-                                                                    readonly />
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex-1">
-                                                            <label for="alternatenumber"><b> Customer Email</b></label>
-                                                            <div class="relative text-white-dark">
-                                                                <input id="alternatenumber" type="number"
-                                                                    placeholder="{{value.cstm_email}}"
-                                                                    class="form-input placeholder:text-white-dark"
-                                                                    readonly />
-                                                            </div>
+                                                <br><br><br>
+                                                <div class="flex flex-row space-x-4">
+
+                                                    <div class="flex-1">
+                                                        <label for="Tool Name"><b> Customer Name</b></label>
+                                                        <div class="relative text-white-dark">
+                                                            <input id="customername" type="text"
+                                                                placeholder="{{value.cstm_name}}"
+                                                                class="form-input placeholder:text-white-dark"
+                                                                readonly />
                                                         </div>
                                                     </div>
-                                                    <br><br><br><br>
-                                                    <div class="flex flex-row space-x-4">
-                                                        <div class="flex-1">
-                                                            <label for="Tool Name"><b>Product Name</b></label>
-                                                            <div class="relative text-white-dark">
-                                                                <input id="customername" type="text"
-                                                                    placeholder="{{value.pm_name}}"
-                                                                    class="form-input placeholder:text-white-dark"
-                                                                    readonly />
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex-1">
-                                                            <label for="customerphone"><b> Product Serial ID</b></label>
-                                                            <div class="relative text-white-dark">
-                                                                <input id="customerphone" type="number"
-                                                                    placeholder="{{value.pm_sl_nm}}" 
-                                                                    class="form-input placeholder:text-white-dark"
-                                                                    disabled/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex-1">
-                                                            <label for="Tool Name"><b>Product</b></label>
-                                                            <div class="relative text-white-dark">
-                                                                <input id="customername" type="text"
-                                                                    placeholder="{{value.pm_code}}"
-                                                                    class="form-input placeholder:text-white-dark"
-                                                                    readonly />
-                                                            </div>
+                                                    <div class="flex-1">
+                                                        <label for="customerphone"><b> Customer Phone</b></label>
+                                                        <div class="relative text-white-dark">
+                                                            <input id="customerphone" type="number"
+                                                                placeholder="{{value.cstm_phone}}"
+                                                                class="form-input placeholder:text-white-dark"
+                                                                readonly />
                                                         </div>
                                                     </div>
-                                                    <br><br><br><br>
-                                                    <div class="flex flex-row space-x-4">
-                                                        <div class="flex-1">
-                                                            <label for="Tool Name"><b>Product Status</b></label>
-                                                            <div class="relative text-white-dark" *ngIf="value.pm_delete_flag==0">
-                                                                <input id="customername" type="text"
-                                                                    placeholder="Product is Genuine as per the records"
-                                                                    class="form-input placeholder:text-white-dark"
-                                                                    readonly />
-                                                            </div>
-                                                            <div class="relative text-white-dark" *ngIf="value.pm_delete_flag==1">
-                                                                <input id="customername" type="text"
-                                                                    placeholder="Product is Not Genuine as per the records!!"
-                                                                    class="form-input placeholder:text-white-dark"
-                                                                    readonly />
-                                                            </div>
+                                                    <div class="flex-1">
+                                                        <label for="alternatenumber"><b> Customer Email</b></label>
+                                                        <div class="relative text-white-dark">
+                                                            <input id="alternatenumber" type="number"
+                                                                placeholder="{{value.cstm_email}}"
+                                                                class="form-input placeholder:text-white-dark"
+                                                                readonly />
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <br><br><br><br>
+                                                <div class="flex flex-row space-x-4">
+                                                    <div class="flex-1">
+                                                        <label for="Tool Name"><b>Product Name</b></label>
+                                                        <div class="relative text-white-dark">
+                                                            <input id="customername" type="text"
+                                                                placeholder="{{value.pm_name}}"
+                                                                class="form-input placeholder:text-white-dark"
+                                                                readonly />
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <label for="customerphone"><b> Product Serial ID</b></label>
+                                                        <div class="relative text-white-dark">
+                                                            <input id="customerphone" type="number"
+                                                                placeholder="{{value.pm_sl_nm}}"
+                                                                class="form-input placeholder:text-white-dark"
+                                                                disabled />
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <label for="Tool Name"><b>Product</b></label>
+                                                        <div class="relative text-white-dark">
+                                                            <input id="customername" type="text"
+                                                                placeholder="{{value.pm_code}}"
+                                                                class="form-input placeholder:text-white-dark"
+                                                                readonly />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br><br><br><br>
+                                                <div class="flex flex-row space-x-4">
+                                                    <div class="flex-1">
+                                                        <label for="Tool Name"><b>Product Status</b></label>
+                                                        <div class="relative text-white-dark"
+                                                            *ngIf="value.pm_delete_flag==0">
+                                                            <input id="customername" type="text"
+                                                                placeholder="Product is Genuine as per the records"
+                                                                class="form-input placeholder:text-white-dark"
+                                                                readonly />
+                                                        </div>
+                                                        <div class="relative text-white-dark"
+                                                            *ngIf="value.pm_delete_flag==1">
+                                                            <input id="customername" type="text"
+                                                                placeholder="Product is Not Genuine as per the records!!"
+                                                                class="form-input placeholder:text-white-dark"
+                                                                readonly />
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                                    <br><br><br><br>
+                                                <br><br><br><br>
                                             </div>
                                         </div>
                                     </div>
                                 </ng-template>
                                 <ng-template #modalFooter>
-                                   
-                                    <ng-container>
-                                        
-                                        <button type="button" class="btn btn-outline-danger" 
-                                        (click)="reject_request(value.pm_id,value.cstm_id,value.am_id,value.cp_id )">Reject</button>
 
-                                        <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4" 
-                                        (click)="accept_request(value.pm_id,value.cstm_id,value.am_id,value.cp_id)">Approve</button>
+                                    <ng-container>
+
+                                        <button type="button" class="btn btn-outline-danger"
+                                            (click)="reject_request(value.pm_id,value.cstm_id,value.am_id,value.cp_id )">Reject</button>
+
+                                        <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4"
+                                            (click)="accept_request(value.pm_id,value.cstm_id,value.am_id,value.cp_id)">Approve</button>
                                     </ng-container>
                                 </ng-template>
                             </modal>
-                            
-                         
+
+
 
                         </ng-template>
                     </ng-datatable>
@@ -1369,30 +1394,36 @@
                     <div class=" flex flex-col gap-5 md:flex-row md:items-center">
                         <!-- <h5 class="text-lg font-semibold dark:text-white-light">Tool Request List </h5> -->
                         <div class="ltr:ml-auto rtl:mr-auto">
-                            <input [(ngModel)]=" search" type="text" class="form-input w-auto" placeholder=" {{'Search...'|translate}}" />
+                            <input [(ngModel)]=" search" type="text" class="form-input w-auto"
+                                placeholder=" {{'Search...'|translate}}" />
                         </div>
                     </div>
-                    
-                  
+
+
                 </div>
-               
-                <div class="datatable" >
-                    <ng-datatable [rows]="filteredRows2" [columns]="service" skin="whitespace-nowrap bh-table-hover" [search]="search" [loading]="loading2"
+
+                <div class="datatable">
+                    <ng-datatable [rows]="filteredRows2" [columns]="service" skin="whitespace-nowrap bh-table-hover"
+                        [search]="search" [loading]="loading2"
                         firstArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M13 19L7 12L13 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M16.9998 19L10.9998 12L16.9998 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
                         lastArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M11 19L17 12L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M6.99976 19L12.9998 12L6.99976 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg> '
                         previousArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M15 5L9 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
                         nextArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'>
                         <ng-template slot="Status" let-value="data">
-                            <span class="badge badge-outline-warning" *ngIf="value.am_status==0 "> {{'PENDING'|translate}}</span>
-                            <span class="badge badge-outline-success" *ngIf="value.am_status==1 "> {{'APPROVED'|translate}}</span>
-                            <span class="badge badge-outline-danger" *ngIf="value.am_status== 2"> {{'REJECTED'|translate}}</span>
+                            <span class="badge badge-outline-warning" *ngIf="value.am_status==0 ">
+                                {{'PENDING'|translate}}</span>
+                            <span class="badge badge-outline-success" *ngIf="value.am_status==1 ">
+                                {{'APPROVED'|translate}}</span>
+                            <span class="badge badge-outline-danger" *ngIf="value.am_status== 2">
+                                {{'REJECTED'|translate}}</span>
                         </ng-template>
                         <ng-template slot="requested_by" let-value="data">
-                            <span  *ngIf="value.us_id"> {{value.us_firstname}}({{'USER'|translate}})</span>
-                            <span  *ngIf="value.cstm_id"> {{value.cstm_name}}({{'CUSTOMER'|translate}})</span>
+                            <span *ngIf="value.us_id"> {{value.us_firstname}}({{'USER'|translate}})</span>
+                            <span *ngIf="value.cstm_id"> {{value.cstm_name}}({{'CUSTOMER'|translate}})</span>
                         </ng-template>
                         <ng-template slot="Action" let-value="data">
-                            <button type="button" ngxTippy data-tippy-content="Edit" (click)="sermhold.open()" *ngIf="value.am_type==4||value.am_type==6">
+                            <button type="button" ngxTippy data-tippy-content="Edit" (click)="sermhold.open()"
+                                *ngIf="value.am_type==4||value.am_type==6">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -1409,7 +1440,8 @@
                                         fill="#1C274C" />
                                 </svg>
                             </button>
-                            <button type="button" ngxTippy data-tippy-content="Edit" (click)="sitemhold.open()" *ngIf="value.am_type==5||value.am_type==7">
+                            <button type="button" ngxTippy data-tippy-content="Edit" (click)="sitemhold.open()"
+                                *ngIf="value.am_type==5||value.am_type==7">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -1434,33 +1466,75 @@
                                 <ng-template #modalBody>
                                     <div class="flex flex-row space-x-4">
                                         <div class="flex-1">
-                                            <label for="tool_cost"><span style="color: green;">{{'Request ID'|translate}}</span>
-                                               </label>
+                                            <label for="tool_cost"><span style="color: green;">{{'Request
+                                                    ID'|translate}}</span>
+                                            </label>
                                             <div class="relative text-white-dark">
                                                 <input id="tool_cost" type="text" [(ngModel)]="value.serm_number"
-                                                    [ngModelOptions]="{standalone: true}" class="form-input placeholder:text-white-dark"
-                                                    disabled />
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    class="form-input placeholder:text-white-dark" disabled />
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                     <div class="flex flex-row space-x-4">
-                                        <div class="flex-1" >
-                                            <label for="tool_cost"><span style="color: red;">{{'Hold Reason'|translate}}:</span></label>
-                                                    <textarea class="form-textarea min-h-[130px]" [(ngModel)]="value.am_reason"  [ngModelOptions]="{standalone: true}"
-                                                    disabled></textarea>
+                                        <div class="flex-1">
+                                            <label for="tool_cost"><span style="color: red;">{{'Hold
+                                                    Reason'|translate}}:</span></label>
+                                            <textarea class="form-textarea min-h-[130px]" [(ngModel)]="value.am_reason"
+                                                [ngModelOptions]="{standalone: true}" disabled></textarea>
                                         </div>
                                     </div>
                                 </ng-template>
                                 <ng-template #modalFooter>
                                     <button type="button" class="btn btn-outline-info"
-                                    (click)="workcard_module(value.serm_id)">{{'View WorkCard Details'|translate}}</button>
-                                    
-                                    
-                                    <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4" 
-                                        [disabled]="value.am_status==1||value.am_status==2"(click)="loading2=true; value.am_type==4?workcardhold(value.serm_id,value.am_id,value.am_reason):workcard_unhold(value.serm_id,value.am_id)">
-                                       <ng-container *ngIf="value.am_type==4">{{'Hold Work Card'|translate}}</ng-container>
-                                       <ng-container *ngIf="value.am_type==6">{{'Unhold Work Card'|translate}}</ng-container>
+                                        (click)="workcard_module(value.serm_id)">{{'View WorkCard
+                                        Details'|translate}}</button>
+
+
+                                    <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4"
+                                        [disabled]="value.am_status==1||value.am_status==2 || unHoldFlag || holdFlag"
+                                        (click)="loading2=true; value.am_type==4?workcardhold(value.serm_id,value.am_id,value.am_reason):workcard_unhold(value.serm_id,value.am_id)">
+                                        <ng-container *ngIf="value.am_type==4">{{'Hold Work
+                                            Card'|translate}}
+                                            <span class="badge my-0 bg-white-light text-black ltr:ml-4 rtl:mr-4"
+                                            *ngIf="holdFlag"><svg viewBox="0 0 24 24" width="24" height="24"
+                                                stroke="currentColor" stroke-width="1.5" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="inline-block h-5 w-5 shrink-0 animate-[spin_2s_linear_infinite] align-middle">
+                                                <line x1="12" y1="2" x2="12" y2="6">
+                                                </line>
+                                                <line x1="12" y1="18" x2="12" y2="22">
+                                                </line>
+                                                <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                                                <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                                                <line x1="2" y1="12" x2="6" y2="12">
+                                                </line>
+                                                <line x1="18" y1="12" x2="22" y2="12">
+                                                </line>
+                                                <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                                                <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                                            </svg></span></ng-container>
+                                        <ng-container *ngIf="value.am_type==6">{{'Unhold Work Card'|translate}}
+                                            <span class="badge my-0 bg-white-light text-black ltr:ml-4 rtl:mr-4"
+                                                *ngIf="unHoldFlag"><svg viewBox="0 0 24 24" width="24" height="24"
+                                                    stroke="currentColor" stroke-width="1.5" fill="none"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    class="inline-block h-5 w-5 shrink-0 animate-[spin_2s_linear_infinite] align-middle">
+                                                    <line x1="12" y1="2" x2="12" y2="6">
+                                                    </line>
+                                                    <line x1="12" y1="18" x2="12" y2="22">
+                                                    </line>
+                                                    <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                                                    <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                                                    <line x1="2" y1="12" x2="6" y2="12">
+                                                    </line>
+                                                    <line x1="18" y1="12" x2="22" y2="12">
+                                                    </line>
+                                                    <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                                                    <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                                                </svg></span>
+                                        </ng-container>
                                     </button>
                                 </ng-template>
                             </modal>
@@ -1474,49 +1548,52 @@
                                 <ng-template #modalBody>
                                     <div class="flex flex-row space-x-4">
                                         <div class="flex-1">
-                                            <label for="tool_cost"><span style="color: green;">{{'Request ID'|translate}}</span>
-                                               </label>
+                                            <label for="tool_cost"><span style="color: green;">{{'Request
+                                                    ID'|translate}}</span>
+                                            </label>
                                             <div class="relative text-white-dark">
                                                 <input id="tool_cost" type="text" [(ngModel)]="value.serm_number"
-                                                    [ngModelOptions]="{standalone: true}" class="form-input placeholder:text-white-dark"
-                                                    disabled />
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    class="form-input placeholder:text-white-dark" disabled />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="flex flex-row space-x-4">
                                         <div class="flex-1">
-                                            <label for="tool_cost"><span style="color: green;">{{'Service Name'|translate}}</span>
-                                               </label>
+                                            <label for="tool_cost"><span style="color: green;">{{'Service
+                                                    Name'|translate}}</span>
+                                            </label>
                                             <div class="relative text-white-dark">
                                                 <input id="tool_cost" type="text" [(ngModel)]="value.servpack_name"
-                                                    [ngModelOptions]="{standalone: true}" class="form-input placeholder:text-white-dark"
-                                                    disabled />
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    class="form-input placeholder:text-white-dark" disabled />
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                     <div class="flex flex-row space-x-4">
-                                        <div class="flex-1" >
-                                            <label for="tool_cost"><span style="color: red;">{{'Hold Reason'|translate}}:</span></label>
-                                                    <textarea class="form-textarea min-h-[130px]" [(ngModel)]="value.am_reason"  [ngModelOptions]="{standalone: true}"
-                                                    disabled></textarea>
+                                        <div class="flex-1">
+                                            <label for="tool_cost"><span style="color: red;">{{'Hold
+                                                    Reason'|translate}}:</span></label>
+                                            <textarea class="form-textarea min-h-[130px]" [(ngModel)]="value.am_reason"
+                                                [ngModelOptions]="{standalone: true}" disabled></textarea>
                                         </div>
                                     </div>
                                 </ng-template>
                                 <ng-template #modalFooter>
                                     <button type="button" class="btn btn-outline-info"
-                                    (click)="workcard_module(value.serm_id)">{{'View WorkCard Details'|translate}}</button>
-                                    
-                                    <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4"  
-                                         [disabled]="value.am_status==1||value.am_status==2"
-                                        (click)="loading2=true;value.am_type==5?
+                                        (click)="workcard_module(value.serm_id)">{{'View WorkCard
+                                        Details'|translate}}</button>
+
+                                    <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4"
+                                        [disabled]="value.am_status==1||value.am_status==2" (click)="loading2=true;value.am_type==5?
                                         jobhold(value.sitem_id,value.serm_id,value.am_id,value.am_reason):
                                         job_unhold(value.serm_id,value.am_id,value.sitem_id)">
                                         <ng-container *ngIf="value.am_type==5"> Hold job</ng-container>
-                                       </button>
+                                    </button>
                                 </ng-template>
                             </modal>
-                        
+
                         </ng-template>
                     </ng-datatable>
                 </div>

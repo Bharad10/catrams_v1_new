@@ -33,6 +33,9 @@ get_notification(): Observable<any> {
 updatenotification(id:any): Observable<any> {
   return this.http.post(environment.base_url + 'System/UsersNotificationController/update',id, {headers : this.reqHeader});
 }
+deletenotification(id:any): Observable<any> {
+  return this.http.post(environment.base_url + 'System/UsersNotificationController/delete',id, {headers : this.reqHeader});
+}
 clear_us_notif(data:any): Observable<any> {
   return this.http.post(environment.base_url + 'clear_us_notif',data, {headers : this.reqHeader});
 }
