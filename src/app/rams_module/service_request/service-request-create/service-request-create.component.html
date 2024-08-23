@@ -9,340 +9,281 @@
         <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
             <a
                 class="relative flex h-full items-center bg-primary p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-primary ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-6 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180">
-
                 {{'Request Create'|translate}}
-
             </a>
         </li>
-
     </ol>
 </div>
-
 <ng-container *ngIf="make_list">
-
-    <div class="flex flex-col gap-2.5 xl:flex-row">
-
+    <div class="flex flex-col gap-1xl:flex-row">
         <form [formGroup]="servform" class="flex-1 space-y-5 dark:text-white">
             <div class="panel">
-                <div class=" flex-1 px-0 py-6 ltr:xl:mr-6 rtl:xl:ml-6">
-
-
-                    <div class="mt-8 px-4">
-
-                        <div class="flex flex-col justify-between lg:flex-row">
-                            <div class="mb-6 w-full lg:w-1/2 ltr:lg:mr-6 rtl:lg:ml-6">
-                                <div class="mb-6 w-full lg:w-1/2">
-                                    <div class="flex flex-1">
-                                        <div style="font-size: smaller;"
-                                            class="flex items-center justify-center border border-[#e0e6ed] bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
-                                            {{'Registration ID'|translate}}
-                                        </div>
-                                        <input id="acno" type="text" name="acno"
-                                            class="border  border-grey p-2  justify-center flex-1 rounded-r-lg"
-                                            name="no" placeholder=" {{'Request ID'|translate}} "
-                                            formControlName="serm_number" readonly readonly />
+                <div class="flex-1 px-0 py-0 ltr:xl:mr-1 rtl:xl:ml-1">
+                    <div class="flex flex-col justify-between lg:flex-row">
+                        <div class="mb-1 w-full lg:w-1/2 ltr:lg:mr-6 rtl:lg:ml-6">
+                            <div class="mb-1 w-full flex">
+                                <div class="flex flex-1 p-1">
+                                    <div style="font-size: smaller;width: 20%;"
+                                        class="flex items-center justify-center border border-[#e0e6ed] bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                                        {{'ID'|translate}}
                                     </div>
-
-                                    <br>
-                                    <div class="flex flex-1">
-                                        <div style="font-size: smaller;width: 28%;"
-                                            class="flex items-center justify-center border border-[#e0e6ed] bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
-                                            {{'Date'|translate}}
-                                        </div>
-                                        <input id="acno" type="text" name="acno"
-                                            class="border  border-grey p-2  justify-center flex-1 rounded-r-lg"
-                                            name="no" placeholder="{{ date | date:'dd-MMM-yyyy' }}" readonly readonly />
-                                    </div>
-                                    <br>
-
-
+                                    <input type="text" placeholder="{{'Request ID'|translate}}"
+                                        formControlName="serm_number"
+                                        class="form-input py-1.5 ltr:rounded-l-none rtl:rounded-r-none flex-grow"
+                                        readonly />
                                 </div>
-                                <div class="mb-6 w-full">
-
+                                <div class="flex flex-1 p-1">
+                                    <div style="font-size: smaller;width: 20%;"
+                                        class="flex items-center justify-center border border-[#e0e6ed] bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                                        {{'Date'|translate}}
+                                    </div>
+                                    <input id="acno" type="text" name="acno"
+                                        class="form-input py-1.5 ltr:rounded-l-none rtl:rounded-r-none flex-grow"
+                                        placeholder="{{ date | date:'dd-MMM-yyyy' }}" readonly />
                                 </div>
-                                <div class="mb-12 w-full">
-
-                                    <div class="mt-4 flex items-center">
-                                        <div class="flex-1">
-                                            <label for="reciever-name">{{'Customer Name'|translate}}</label>
-                                            <ng-select  name="test" (change)="selected_cust($event)"
-                                            placeholder="Select Customer"
-                                            [searchable]="true" [clearable]="false" class="custom-multiselect">
-                                            <ng-option *ngFor="let cust of cust_list" [value]="cust.cstm_id">{{ cust.cstm_name }}</ng-option>
-                                          </ng-select>
-                                        </div>
-                                        &nbsp;&nbsp;
-                                        <div class="flex-2">
-                                            <label for="reciever-number"> {{'Customer Phone Number'|translate}}</label>
-                                            <input id="reciever-number" type="text" name="reciever-number"
-                                                class="form-input flex-1" name="phone"
-                                                placeholder="{{'Customer Phone Number'|translate}}"
-                                                [(ngModel)]="cust_details.cstm_phone"
-                                                [ngModelOptions]="{standalone: true}" disabled />
-                                        </div>
-
-                                    </div>
-                                    <br>
-                                    <div class="flex flex-1" *ngIf="usritems.datacards">
-
-                                        <button type="button" class="btn btn-outline-info"
-                                            (click)="datacardmodal.open()"> {{'Data Card'|translate}}
-                                        </button>
-                                        <modal #datacardmodal>
-                                            <ng-template #modalHeader>
-                                                <div>
-                                                    <p style="color:#267fac;font-family: calibiri;">
-                                                        {{'Media'|translate}}
-                                                    </p>
-
-                                                </div>
-                                            </ng-template>
-                                            <ng-template #modalBody>
-                                                <div class="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
-                                                    <ng-container *ngFor="let item of usritems; index as i">
-                                                        <a href="javascript:;"
-                                                            [ngClass]="{ 'md:row-span-2 md:col-span-2': i == 4 }"
-                                                            (click)="opendatacard(i)">
-                                                            <img [src]="item.src" alt="image-gallery"
-                                                                class="h-full w-full rounded-md object-cover" />
-                                                        </a>
-                                                    </ng-container>
-                                                </div>
-                                            </ng-template>
-                                            <ng-template #modalFooter>
-                                                <button type="button" (click)="datacardmodal.close()"
-                                                    class="btn btn-outline-danger">{{'Cancel'|translate}}</button>
-                                            </ng-template>
-                                        </modal>
-                                    </div>
-                                    <br>
-                                    <div>
-
-                                        <div class="text-lg font-semibold"> {{'Complaint Details'|translate}}*:-</div>
-                                        <br>
-                                        <textarea id="notes" name="notes" class="form-textarea min-h-[130px]"
-                                            placeholder="{{'Complaint Details'|translate}}" name="notes"
-                                            formControlName="serm_complaint"></textarea>
-                                    </div>
-
-                                </div>
-
-
                             </div>
-                            <div class="w-full lg:w-1/2">
-                                <div class="text-lg font-semibold"> {{'Vehicle Details'|translate}}:-</div>
-                                <ng-container *ngIf="custveh_flag!=2&&veh_loader==false">
-                                    <ng-container *ngIf="custveh_flag==-1">
-
-                                        <div class="mb-5 flex items-center justify-center">
-                                            <div
-                                                class="w-full max-w-[19rem] rounded border border-[#e0e6ed] bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none">
-                                                <div class="py-7 px-6">
-                                                    <div
-                                                        class="-mx-6 -mt-7 mb-7 h-[215px] overflow-hidden rounded-tl rounded-tr">
-                                                        <img src="assets/images/car-7468385_1280.png" alt=""
-                                                            class="h-full w-full object-cover" />
-                                                    </div>
-                                                    <h5
-                                                        class="mb-4 text-xl font-semibold text-[#3b3f5c] dark:text-white-light">
-                                                        Select Customer</h5>
-                                                    <p class="text-white-dark">Select Customer To View Vehicles.</p>
-
+                            <div class="mb-12 w-full">
+                                <div class="mt-2 flex items-center">
+                                    <div class="flex-1 p-1">
+                                        <label for="reciever-name">{{'Customer Name'|translate}}</label>
+                                        <ng-select name="test" (change)="selected_cust($event)"
+                                            placeholder="Select Customer" [searchable]="true" [clearable]="false"
+                                            class="custom-multiselect">
+                                            <ng-option *ngFor="let cust of cust_list" [value]="cust.cstm_id">{{
+                                                cust.cstm_name }}</ng-option>
+                                        </ng-select>
+                                    </div>
+                                    <div class="flex-1 p-1">
+                                        <label for="reciever-number"> {{'Customer Phone Number'|translate}}</label>
+                                        <input id="reciever-number" type="text" name="reciever-number"
+                                            class="form-input flex-1" name="phone"
+                                            placeholder="{{'Customer Phone Number'|translate}}"
+                                            [(ngModel)]="cust_details.cstm_phone" [ngModelOptions]="{standalone: true}"
+                                            disabled />
+                                    </div>
+                                </div>
+                                <div class="flex flex-1" *ngIf="usritems.datacards">
+                                    <button type="button" class="btn btn-outline-info" (click)="datacardmodal.open()">
+                                        {{'Data Card'|translate}}
+                                    </button>
+                                    <modal #datacardmodal>
+                                        <ng-template #modalHeader>
+                                            <div>
+                                                <p style="color:#267fac;font-family: calibiri;">
+                                                    {{'Media'|translate}}
+                                                </p>
+                                            </div>
+                                        </ng-template>
+                                        <ng-template #modalBody>
+                                            <div class="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+                                                <ng-container *ngFor="let item of usritems; index as i">
+                                                    <a href="javascript:;"
+                                                        [ngClass]="{ 'md:row-span-2 md:col-span-2': i == 4 }"
+                                                        (click)="opendatacard(i)">
+                                                        <img [src]="item.src" alt="image-gallery"
+                                                            class="h-full w-full rounded-md object-cover" />
+                                                    </a>
+                                                </ng-container>
+                                            </div>
+                                        </ng-template>
+                                        <ng-template #modalFooter>
+                                            <button type="button" (click)="datacardmodal.close()"
+                                                class="btn btn-outline-danger">{{'Cancel'|translate}}</button>
+                                        </ng-template>
+                                    </modal>
+                                </div>
+                                <div class="flex-1 p-1">
+                                    <label for="reciever-name"> {{'Complaint Details'|translate}}*:-</label>
+                                    <textarea id="notes" name="notes" class="form-textarea" rows="4"
+                                        placeholder="{{'Complaint Details'|translate}}" name="notes"
+                                        formControlName="serm_complaint" style="text-transform: capitalize;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full lg:w-1/2">
+                            <label for="reciever-name"> {{'Vehicle Details'|translate}}:-</label>
+                            <ng-container *ngIf="custveh_flag!=2 && veh_loader==false">
+                                <ng-container *ngIf="custveh_flag==-1">
+                                    <div class="mb-1 flex items-center justify-center">
+                                        <div
+                                            class="w-full max-w-[19rem] rounded border border-[#e0e6ed] bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none">
+                                            <div class="py-2 px-7">
+                                                <div class="mb-1 h-[150px] overflow-hidden rounded-tl rounded-tr">
+                                                    <img src="assets/images/car-7468385_1280.png" alt=""
+                                                        class="h-full w-full object-cover" />
                                                 </div>
+                                                <h5
+                                                    class="mb-1 text-xl font-semibold text-[#3b3f5c] dark:text-white-light">
+                                                    Select Customer</h5>
+                                                <label> Select Customer To View Vehicles </label>
+                                                <p class="text-white-dark"></p>
                                             </div>
                                         </div>
-                                    </ng-container>
-                                    <ng-container *ngIf="custveh_flag==0">
-
-                                        <div class="panel  overflow-hidden border-0 p-0" style="max-height: 88%;">
-                                            <div class="min-h-[300px] bg-gradient-to-r from-[#4361ee] to-[#160f6b] p-6">
-                                                <div class="mb-6 flex items-center justify-between">
-                                                    <div
-                                                        class="flex items-center rounded-full bg-black/50 p-3 font-semibold text-white ltr:pr-3 rtl:pl-3">
-
-                                                        {{cust_details.cstm_name}}
-                                                    </div>
-                                                    <button (click)="add_new_Veh(0)" type="button"
-                                                        class="flex h-9 w-9 items-center justify-between rounded-md bg-black text-white hover:opacity-80 ltr:ml-auto rtl:mr-auto">
-                                                        <svg class="m-auto h-6 w-6" viewBox="0 0 24 24"
-                                                            stroke="currentColor" stroke-width="1.5" fill="none"
-                                                            stroke-linecap="round" stroke-linejoin="round">
-                                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                                        </svg>
-                                                    </button>
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngIf="custveh_flag==0">
+                                    <div class="panel  overflow-hidden border-0 p-0" style="max-height: 75%;">
+                                        <div class="min-h-[300px] bg-gradient-to-r from-[#4361ee] to-[#160f6b] p-6">
+                                            <div class="mb-6 flex items-center justify-between">
+                                                <div
+                                                    class="flex items-center rounded-full bg-black/50 p-3 font-semibold text-white ltr:pr-3 rtl:pl-3">
+                                                    {{cust_details.cstm_name}}
                                                 </div>
-
-                                                <div class="flex items-center justify-between text-white mb-20">
-
-                                                    <a class="curs" (click)="select_veh(index,2)"
-                                                        [ariaDisabled]="index==cust_veh.length">
-                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                <button (click)="add_new_Veh(0)" type="button"
+                                                    class="flex h-9 w-9 items-center justify-between rounded-md bg-black text-white hover:opacity-80 ltr:ml-auto rtl:mr-auto">
+                                                    <svg class="m-auto h-6 w-6" viewBox="0 0 24 24"
+                                                        stroke="currentColor" stroke-width="1.5" fill="none"
+                                                        stroke-linecap="round" stroke-linejoin="round">
+                                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="flex items-center justify-between text-white mb-6">
+                                                <a class="curs" (click)="select_veh(index,2)"
+                                                    [ariaDisabled]="index==cust_veh.length">
+                                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M15 5L9 12L15 19" stroke="currentColor"
+                                                            stroke-width="1.5" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                </a>
+                                                <p class="text-xl">{{make_veh}} {{model_veh}} {{varaint_veh}} </p>
+                                                <a class="curs" (click)="select_veh(index,1)"
+                                                    [ariaDisabled]="index==cust_veh.length">
+                                                    <h5 class="text-2xl ltr:ml-auto rtl:mr-auto"><svg width="16"
+                                                            height="16" viewBox="0 0 24 24" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M15 5L9 12L15 19" stroke="currentColor"
+                                                            <path d="M9 5L15 12L9 19" stroke="currentColor"
                                                                 stroke-width="1.5" stroke-linecap="round"
-                                                                stroke-linejoin="round" />
-                                                        </svg>
-                                                    </a>
-                                                    <p class="text-xl">{{make_veh}} {{model_veh}} {{varaint_veh}} </p>
-                                                    <a class="curs" (click)="select_veh(index,1)"
-                                                        [ariaDisabled]="index==cust_veh.length">
-                                                        <h5 class="text-2xl ltr:ml-auto rtl:mr-auto"><svg width="16"
-                                                                height="16" viewBox="0 0 24 24" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M9 5L15 12L9 19" stroke="currentColor"
-                                                                    stroke-width="1.5" stroke-linecap="round"
-                                                                    stroke-linejoin="round"></path>
-                                                            </svg></h5>
-                                                    </a>
-
+                                                                stroke-linejoin="round"></path>
+                                                        </svg></h5>
+                                                </a>
+                                            </div>
+                                            <div class="mt-0 grid grid-cols-2 gap-2 px-8">
+                                                <div class="rounded-md bg-white pt-2.5 shadow dark:bg-[#060818]">
+                                                    <span
+                                                        class="pmcst mb-2 flex items-center justify-center dark:text-white">
+                                                        {{custveh_regnumber}}
+                                                    </span>
                                                 </div>
-                                                <div class="-mt-10 grid grid-cols-2 gap-2 px-8">
-                                                    <div
-                                                        class="rounded-md bg-white px-4 py-2.5 shadow dark:bg-[#060818]">
-                                                        <span
-                                                            class="pmcst mb-4 flex items-center justify-center dark:text-white">
-                                                            {{custveh_regnumber}}
-
-                                                        </span>
-                                                    </div>
-                                                    <div
-                                                        class="rounded-md bg-white px-4 py-2.5 shadow dark:bg-[#060818]">
-                                                        <span
-                                                            class="pmcst mb-4 flex items-center justify-center dark:text-white">
-                                                            {{custveh_vinnumber}}
-
-                                                        </span>
-                                                    </div>
-
+                                                <div class="rounded-md bg-white pt-2.5 shadow dark:bg-[#060818]">
+                                                    <span
+                                                        class="pmcst mb-2 flex items-center justify-center dark:text-white">
+                                                        {{custveh_vinnumber}}
+                                                    </span>
                                                 </div>
-                                                <div class="mt-5 flex justify-center">
-                                                    <button type="button" class="btn btn-success "
-                                                        (click)="proceed_veh()">{{'Select Vehicle'|translate}}
-                                                    </button>
-                                                </div>
-
                                             </div>
-
-
-
-                                        </div>
-                                    </ng-container>
-
-                                    
-
-                                    <ng-container *ngIf="custveh_flag==1">
-                                        <div class="mt-4 flex items-center">
-                                            <label for="acno" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2">{{'Registration  Number'|translate}} *</label>
-                                            <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
-                                                style="text-transform: uppercase;"
-                                                placeholder=" {{'Please enter Registration number'|translate}} "
-                                                [(ngModel)]="custveh_regnumber" [ngModelOptions]="{standalone: true}" />
-                                        </div>
-                                        <div class="mt-4 flex items-center">
-                                            <label for="acno" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2"> {{'Vin  Number'|translate}}*</label>
-                                            <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
-                                                style="text-transform: uppercase;" [maxlength]="17" min="0"
-                                                placeholder=" {{'Please Enter Vin Number'|translate}}"
-                                                [(ngModel)]="custveh_vinnumber" [ngModelOptions]="{standalone: true}" />
-                                        </div>
-                                        <div class="mt-4 flex items-center">
-                                            <div class="flex-2"><label for="vehmake" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2">
-                                                {{'Make'|translate}}*</label></div>
-                                            <div class="flex-1">
-                                                  
-                                                <ng-select  name="ctnSelect1" (change)="retrieve_models($event)"
-                                                            placeholder="Select Models"
-                                                            [searchable]="true" [clearable]="false" class="custom-multiselect">
-                                                            <ng-option *ngFor="let make of make_list" [value]="make.make_name">{{ make.make_name }}</ng-option>
-                                                </ng-select>
+                                            <div class="mt-5 flex justify-center">
+                                                <button type="button" class="btn btn-success "
+                                                    (click)="proceed_veh()">{{'Select Vehicle'|translate}}
+                                                </button>
                                             </div>
-                                          
-                                            
                                         </div>
-                                        <div class="mt-4 flex items-center">
-                                            <div class="flex-2"><label for="Variant" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2">
-                                                {{'Model'|translate}}*</label></div>
-                                            <div class="flex-1">
-                                                  
-                                                <ng-select  name="ctnSelect1" (change)="retrieve_varients($event)"
-                                                            placeholder="Select Vehicle Model"
-                                                            [searchable]="true" [clearable]="false" class="custom-multiselect">
-                                                            <ng-option *ngFor="let model of model_list" [value]="model.model_name">{{ model.model_name }}</ng-option>
-                                                </ng-select>
-                                            </div>
-                                          
-                                            
-                                        </div>
-                                        <div class="mt-4 flex items-center">
-                                            <div class="flex-2"><label for="Variant" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2">
-                                                {{'Variant'|translate}}*</label></div>
-                                            <div class="flex-1">
-                                                  
-                                                <ng-select  name="ctnSelect1" (change)="selected_Veh($event)"
-                                                            placeholder="Select Vehicle Variant"
-                                                            [searchable]="true" [clearable]="false" class="custom-multiselect">
-                                                            <ng-option *ngFor="let varient of varient_list" [value]="varient.id">{{ varient.variant_name }}</ng-option>
-                                                </ng-select>
-                                            </div>
-                                          
-                                            
-                                        </div>
-                                        <div class="mt-4 flex items-center">
-                                            <button type="button" class="btn btn-success" (click)="proceed_veh()"
-                                                [disabled]="cust_vehicle_id==-1"> {{'Proceed Vehicle'|translate}}</button>
-                                        </div>
-                                    </ng-container>
-
-
-
-                                </ng-container>
-                                <ng-container *ngIf="custveh_flag!=2&&veh_loader==true">
-                                    <div class="veh_loader"></div>
-                                </ng-container>
-
-
-
-
-                                <ng-container *ngIf="custveh_flag==2">
-
-
-                                    <div class="flex flex-1">
-                                        <div
-                                            class="flex items-center justify-center border border-[#e0e6ed] bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
-                                            {{'Make'|translate}}
-                                        </div>
-                                        <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
-                                            [maxlength]="17" min="0" readonly
-                                            placeholder="Please Enter Vin Number  {{'Please Enter Vin Number'|translate}}"
-                                            [(ngModel)]="make_veh" [ngModelOptions]="{standalone: true}" />
-                                    </div>
-                                    <br>
-                                    <div class="flex flex-1">
-                                        <div
-                                            class="flex items-center justify-center border border-[#e0e6ed] bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
-                                            {{'Model'|translate}}
-                                        </div>
-                                        <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
-                                            [maxlength]="17" min="0" readonly
-                                            placeholder="  {{'Please Enter Vin Number'|translate}}"
-                                            [(ngModel)]="model_veh" [ngModelOptions]="{standalone: true}" />
-                                    </div>
-                                    <br>
-                                    <div class="flex flex-1">
-                                        <div
-                                            class="flex items-center justify-center border border-[#e0e6ed] bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
-                                            {{'Variant'|translate}}
-                                        </div>
-                                        <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
-                                            [maxlength]="17" min="0" readonly
-                                            placeholder=" {{'Please Enter Vin Number'|translate}}"
-                                            [(ngModel)]="varaint_veh" [ngModelOptions]="{standalone: true}" />
                                     </div>
                                 </ng-container>
-
+                                <ng-container *ngIf="custveh_flag==1">
+                                    <div
+                                        class="grid grid-cols-1 justify-between gap-2 sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1">
+                                        <div class="ml-0 rounded-md">
+                                            <div class="mt-0 flex items-center">
+                                                <label for="acno" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2">{{'Registration
+                                                    Number'|translate}} *</label>
+                                                <input id="acno" type="text" name="acno" class="form-input flex-1"
+                                                    name="no" style="text-transform: uppercase;"
+                                                    placeholder=" {{'Please enter Registration number'|translate}} "
+                                                    [(ngModel)]="custveh_regnumber"
+                                                    [ngModelOptions]="{standalone: true}" />
+                                            </div>
+                                            <div class="mt-2 flex items-center">
+                                                <label for="acno" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2"> {{'Vin
+                                                    Number'|translate}}*</label>
+                                                <input id="acno" type="text" name="acno" class="form-input flex-1"
+                                                    name="no" style="text-transform: uppercase;" [maxlength]="17"
+                                                    min="0" placeholder=" {{'Please Enter Vin Number'|translate}}"
+                                                    [(ngModel)]="custveh_vinnumber"
+                                                    [ngModelOptions]="{standalone: true}" />
+                                            </div>
+                                            <div class="mt-2 flex items-center">
+                                                <label for="acno" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2">
+                                                    {{'Make'|translate}}* </label>
+                                                <ng-select name="ctnSelect1" (change)="retrieve_models($event)"
+                                                    placeholder="Select Models" [searchable]="true" [clearable]="false"
+                                                    class="custom-multiselect" style="width: 65%;">
+                                                    <ng-option *ngFor="let make of make_list"
+                                                        [value]="make.make_name">{{
+                                                        make.make_name }}</ng-option>
+                                                </ng-select>
+                                            </div>
+                                            <div class="mt-2 flex items-center">
+                                                <label for="acno" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2">
+                                                    {{'Model'|translate}}* </label>
+                                                <ng-select name="ctnSelect1" (change)="retrieve_varients($event)"
+                                                    placeholder="Select Vehicle Model" [searchable]="true"
+                                                    [clearable]="false" class="custom-multiselect"  style="width: 65%;">
+                                                    <ng-option *ngFor="let model of model_list"
+                                                        [value]="model.model_name">{{ model.model_name }}</ng-option>
+                                                </ng-select>
+                                            </div>
+                                            <div class="mt-2 flex items-center">
+                                                <label for="acno" class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2">
+                                                    {{'Variant'|translate}}* </label>
+                                                    <ng-select name="ctnSelect1" (change)="selected_Veh($event)"
+                                                    placeholder="Select Vehicle Variant" [searchable]="true"
+                                                    [clearable]="false" class="custom-multiselect" style="width: 65%;">
+                                                    <ng-option *ngFor="let varient of varient_list" [value]="varient.id">{{
+                                                        varient.variant_name }}</ng-option>
+                                                </ng-select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 flex items-center">
+                                        <button type="button" class="btn btn-success" (click)="proceed_veh()"
+                                            [disabled]="cust_vehicle_id==-1"> {{'Proceed
+                                            Vehicle'|translate}}</button>
+                                    </div>
+                                </ng-container>
+                            </ng-container>
+                            <ng-container *ngIf="custveh_flag!=2&&veh_loader==true">
+                                <div class="veh_loader"></div>
+                            </ng-container>
+                            <ng-container *ngIf="custveh_flag==2">
+                                <div class="flex flex-1">
+                                    <div
+                                        class="flex items-center justify-center border border-[#e0e6ed] bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                                        {{'Make'|translate}}
+                                    </div>
+                                    <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
+                                        [maxlength]="17" min="0" readonly
+                                        placeholder="Please Enter Vin Number  {{'Please Enter Vin Number'|translate}}"
+                                        [(ngModel)]="make_veh" [ngModelOptions]="{standalone: true}" />
+                                </div>
                                 <br>
-                            </div>
+                                <div class="flex flex-1">
+                                    <div
+                                        class="flex items-center justify-center border border-[#e0e6ed] bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                                        {{'Model'|translate}}
+                                    </div>
+                                    <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
+                                        [maxlength]="17" min="0" readonly
+                                        placeholder="  {{'Please Enter Vin Number'|translate}}" [(ngModel)]="model_veh"
+                                        [ngModelOptions]="{standalone: true}" />
+                                </div>
+                                <br>
+                                <div class="flex flex-1">
+                                    <div
+                                        class="flex items-center justify-center border border-[#e0e6ed] bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                                        {{'Variant'|translate}}
+                                    </div>
+                                    <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
+                                        [maxlength]="17" min="0" readonly
+                                        placeholder=" {{'Please Enter Vin Number'|translate}}" [(ngModel)]="varaint_veh"
+                                        [ngModelOptions]="{standalone: true}" />
+                                </div>
+                            </ng-container>
+
+                            <br>
                         </div>
                     </div>
                 </div>
@@ -399,7 +340,7 @@
         &nbsp;&nbsp;
         <ng-container *ngIf="this.role_id==1">
             <button type="button" (click)="create_service()" [disabled]="asignee_id=='-1' || buttonClicked "
-                class="btn btn-outline-success"> 
+                class="btn btn-outline-success">
                 <span>
                     {{'Proceed To Make Quote'|translate}}
                 </span>
