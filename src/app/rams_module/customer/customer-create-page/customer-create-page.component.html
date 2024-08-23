@@ -1,85 +1,152 @@
-<div>
-    <h5 class="text-xl font-semibold dark:text-white-light">Customer Create</h5>
-    <div class="flex flex-col gap-2.5 xl:flex-row">
-        <div class="panel flex flex-row w-full ltr:xl:mr-6 rtl:xl:ml-6">
-            <form [formGroup]="CustomerForm" class="flex-1 space-y-5 dark:text-white" (ngSubmit)="customercreate()">
-                <div class="flex flex-row space-x-4">
-                    <div class="flex-1">
-                        <label for="Tool Name">Customer Name</label>
-                        <div class="relative text-white-dark">
-                            <input id="customername" type="text" placeholder="Enter Customer Name"
-                                class="form-input placeholder:text-white-dark" maxlength="50" formControlName="customername" />
+<div class="mb-5">
+    <ol class="flex font-semibold text-primary dark:text-white-dark">
+        <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+            <a href="javascript:;" routerLink="/customer-list"
+                class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+                {{'Customer List'|translate}}</a>
+        </li>
+        <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
+            <a
+                class="relative flex h-full items-center bg-primary p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-primary ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-6 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180">
+                {{'Create Customer'|translate}}</a>
+        </li>
+
+    </ol>
+</div>
+   
+
+<div class="panel" *ngIf="loading==false && cust_types">
+    <div class="mb-5">
+        <div class="space-y-2 font-semibold">
+            <div class="rounded border border-[#d3d3d3] dark:border-[#1b2e4b]">
+                <button
+                    type="button"
+                    class="flex w-full items-center p-4 text-white-dark dark:bg-[#1b2e4b]"
+                    [ngClass]="{ '!text-primary': accordians1 === 1 }"
+                    (click)="accordians1 === 1 ? (accordians1 = null) : (accordians1 = 1)"
+                >
+                   {{'Customer Details'|translate}}
+                    <div class="ltr:ml-auto rtl:mr-auto" [ngClass]="{ 'rotate-180': accordians1 === 1 }">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4">
+                            <path d="M19 9L12 15L5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </button>
+                <div [@slideDownUp]="accordians1 !== 1" class="accordion-content">
+                    <div class="space-y-2 border-t border-[#d3d3d3] p-4 text-[13px] text-white-dark dark:border-[#1b2e4b]">
+                        <div class="flex flex-col gap-2.5 xl:flex-row">
+                            <div class=" flex flex-row w-full ltr:xl:mr-6 rtl:xl:ml-6">
+                                <form [formGroup]="CustomerForm" class="flex-1 space-y-5 dark:text-white" novalidate (ngSubmit)="customercreate()">
+                                    <div class="flex flex-row space-x-4">
+                                        <div class="flex-1" [ngClass]="isSubmitForm1 ? CustomerForm.controls['customername'].errors ? 'has-error' : 'has-success' : ''">
+                                            <label for="Tool Name">Customer Name</label>
+                                            <div class="relative text-white-dark">
+                                                <input id="customername" type="text" placeholder="Enter Customer Name"
+                                                    class="form-input placeholder:text-white-dark" formControlName="customername" />
+                                            </div>
+                                            <ng-container *ngIf="isSubmitForm1 && CustomerForm.controls['customername'].errors">
+                                                <p class="mt-1 text-danger">Please provide name</p>
+                                            </ng-container>
+                                        </div>
+                                        <div class="flex-1" [ngClass]="isSubmitForm1 ? CustomerForm.controls['customerphone'].errors ? 'has-error' : 'has-success' : ''">
+                                            <label for="customerphone">Customer Phone</label>
+                                            <div class="relative text-white-dark">
+                                                <input id="customerphone" type="number" placeholder="Enter Customer Phone"
+                                                onKeyPress="if(this.value.length==10) return false;" oninput="validity.valid||(value='');"
+                                                min="0"
+                                                class="form-input placeholder:text-white-dark" formControlName="customerphone" maxlength="10" />
+                                            </div>
+                                            <ng-container *ngIf="isSubmitForm1 && CustomerForm.controls['customerphone'].errors">
+                                                <p class="mt-1 text-danger">Please provide a valid phone number</p>
+                                            </ng-container>
+                                        </div>
+                                        <div class="flex-1" [ngClass]="isSubmitForm1 ? CustomerForm.controls['alternatenumber'].errors ? 'has-error' : 'has-success' : ''">
+                                            <label for="alternatenumber">Customer Alternate Number</label>
+                                            <div class="relative text-white-dark">
+                                                <input id="alternatenumber" type="number" placeholder="Enter Alternate Number"
+                                                    class="form-input placeholder:text-white-dark" formControlName="alternatenumber" />
+                                            </div>
+                                            <ng-container *ngIf="isSubmitForm1 && CustomerForm.controls['alternatenumber'].errors">
+                                                <p class="mt-1 text-danger">Please provide a valid phone number</p>
+                                            </ng-container>
+                                        </div>
+                                        <div class="flex-1" [ngClass]="isSubmitForm1 ? CustomerForm.controls['email'].errors ? 'has-error' : 'has-success' : ''">
+                                            <label for="rentdays">Customer Email</label>
+                                            <div class="relative text-white-dark">
+                                                <input id="email" type="email" placeholder="Enter Email"
+                                                    class="form-input placeholder:text-white-dark" formControlName="email" />
+                                            </div>
+                                            <ng-container *ngIf="isSubmitForm1 && CustomerForm.controls['email'].errors">
+                                                <p class="mt-1 text-danger">Please provide a valid email</p>
+                                            </ng-container>
+                                        </div>
+                                         
+                                    </div>
+                                    <div class="flex flex-row space-x-4">
+                                        
+                                        <div class="flex-1"  [ngClass]="isSubmitForm1 ? CustomerForm.controls['gstin'].errors ? 'has-error' : 'has-success' : ''">
+                                            <label for="rentdays">GSTIN Number</label>
+                                            <div class="relative text-white-dark">
+                                                <input id="gstin" type="text" placeholder="Enter GSTIN"
+                                                    class="form-input placeholder:text-white-dark" formControlName="gstin" />
+                                                    <ng-container *ngIf="isSubmitForm1 && CustomerForm.controls['gstin'].errors">
+                                                        <p class="mt-1 text-danger">Please provide a valid GST</p>
+                                                    </ng-container>
+                                            </div>
+                                        </div>
+                                        <div class="flex-1" [ngClass]="isSubmitForm1 ? CustomerForm.controls['custtype'].errors ? 'has-error' : 'has-success' : ''">
+                                            <label for="custtype">Customer Type</label>
+                                            <ng-select name="ctnSelect1"
+                                            (change)="setcusttype($event);"
+                                            placeholder="Select Customer Type" 
+                                            appendTo="body"
+                                            [searchable]="true"
+                                            [clearable]="false"
+                                            class="custom-multiselect">
+                                            <ng-option
+                                                *ngFor="let option of cust_types"
+                                                [value]="option.cstr_id">{{option.cstr_name}}</ng-option>
+                                        </ng-select>
+                                        <ng-container *ngIf="isSubmitForm1 && CustomerForm.controls['custtype'].errors">
+                                            <p class="mt-1 text-danger">Please select customer type</p>
+                                        </ng-container>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="flex flex-row space-x-4">
+                                        
+                                        <div class="flex-1" [ngClass]="isSubmitForm1 ? CustomerForm.controls['customeraddress'].errors ? 'has-error' : 'has-success' : ''">
+                                            <label for="email">Customer Address</label>
+                                            <div class="relative text-white-dark">
+                                                <textarea class="form-textarea mt-4" placeholder="Enter Customer Address"  formControlName="customeraddress"
+                                                    name="customeraddress"></textarea>
+                                            </div>
+                                            <ng-container *ngIf="isSubmitForm1 && CustomerForm.controls['customeraddress'].errors">
+                                                <p class="mt-1 text-danger">Please select customer type</p>
+                                            </ng-container>
+                                        </div>
+                                        
+                                        
+                                    </div> 
+                                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-1">
+                                        <div class="flex justify-end">
+                                            <button type="button" class="btn btn-dark gap-2" style="margin-right: 1%;">
+                                                Cancel
+                                            </button>
+                                            <button type="submit" class="btn btn-success gap-2">
+                                                Create
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex-1">
-                        <label for="customerphone">Customer Phone</label>
-                        <div class="relative text-white-dark">
-                            <input id="customerphone" type="number" placeholder="Enter Customer Phone"
-                                class="form-input placeholder:text-white-dark" maxlength="100" formControlName="customerphone" />
-                        </div>
-                    </div>
-                    <div class="flex-1">
-                        <label for="alternatenumber">Customer Alternate Number</label>
-                        <div class="relative text-white-dark">
-                            <input id="alternatenumber" type="number" maxlength="15" placeholder="Enter Alternate Number"
-                                class="form-input placeholder:text-white-dark" formControlName="alternatenumber" />
-                        </div>
-                    </div>
-                    <div class="flex-1">
-                        <label for="rentdays">Customer Email</label>
-                        <div class="relative text-white-dark">
-                            <input id="email" type="email" placeholder="Enter Email"
-                                class="form-input placeholder:text-white-dark" maxlength="100" formControlName="email" />
-                        </div>
-                    </div>
-                    <div class="flex-1">
-                        <label for="rentdays">GSTIN Number</label>
-                        <div class="relative text-white-dark">
-                            <input id="gstin" type="text" placeholder="Enter GSTIN"
-                                class="form-input placeholder:text-white-dark" formControlName="gstin" />
-                        </div>
-                    </div>    
                 </div>
-                <div class="flex flex-row space-x-4">
-                    
-                    <div class="flex-1">
-                        <label for="email">Customer Address</label>
-                        <div class="relative text-white-dark">
-                            <textarea class="form-textarea mt-4" placeholder="Enter Customer Address"  formControlName="customeraddress"
-                                name="customeraddress"></textarea>
-                        </div>
-                    </div>
-                    <div class="flex-1">
-                        <label for="custtype">Customer Type</label>
-                        <select id="custtype" class="form-select text-white-dark" required  formControlName="custtype">
-                            <option value="1" selected>Individual</option>
-                            <option value="2">Dealer</option>
-                        </select>
-                    </div>
-                    <!-- <div class="flex-1">
-                        <div class="image-upload" align="center" style="height: 150px">
-                            <label for="file-input">Profile Image</label><br/>
-                            <img [src]="imageurl" class="user-img" accept="image/*" alt="" width="120px" height="120px" />
-                            <input id="file-input" #file type="file" (change)="onFileChanged()" />
-                        </div>
-                        <div align="center" style="margin-top: 2%">
-                            <button type="button" class="btn btn-info gap-2" (click)="file.click()">
-                                CHOOSE
-                            </button>
-                        </div>
-                    </div> -->
-                </div> 
-                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-1">
-                    <div class="flex justify-end">
-                        <button type="button" class="btn btn-dark gap-2" style="margin-right: 1%;">
-                            Cancel
-                        </button>
-                        <button type="submit" class="btn btn-success gap-2">
-                            Create
-                        </button>
-                    </div>
-                </div>
-            </form>
+            </div>
+        
+            
         </div>
     </div>
 </div>
+<div class="loader" *ngIf="loading==true"></div>

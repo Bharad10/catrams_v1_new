@@ -350,7 +350,7 @@ export class ServiceRequestDetailsComponent {
             link.href = fileURL;
 
             // Set the download attribute with the filename
-            link.setAttribute('download', rmedia_url.substring(rmedia_url.lastIndexOf('/') + 1) + '.pdf');
+            link.setAttribute('download', rmedia_url);
 
             // Append the link to the body
             document.body.appendChild(link);
