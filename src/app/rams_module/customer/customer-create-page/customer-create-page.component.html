@@ -53,7 +53,7 @@
                                             <div class="relative text-white-dark">
                                                 <input id="customerphone" type="number" placeholder="Enter Customer Phone"
                                                 onKeyPress="if(this.value.length==10) return false;" oninput="validity.valid||(value='');"
-                                                min="0"
+                                                
                                                 class="form-input placeholder:text-white-dark" formControlName="customerphone" maxlength="10" />
                                             </div>
                                             <ng-container *ngIf="isSubmitForm1 && CustomerForm.controls['customerphone'].errors">
