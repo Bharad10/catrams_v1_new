@@ -104,7 +104,7 @@
                                 <div class="table-responsive" *ngIf="filteredRows">
                                     <table class="table-hover">
                                         <tbody>
-                                            <tr *ngFor="let value of filteredRows;let i = index">
+                                            <tr *ngFor="let value of paginated_rows;let i = index">
                                                 <div class="border-b border-[#d3d3d3] dark:border-[#3b3f5c]">
                                                     <button type="button"
                                                         class="flex w-full items-center p-4 text-white-dark dark:bg-[#1b2e4b]"
@@ -219,54 +219,7 @@
                                                                                             <b style="padding: 2%;"> {{'Payment Details'|translate}}</b>
                                                                                         </ng-template>
                                                                                     
-                                                                                        <!-- <ng-template #modalBody>
-                                                                                            <div class="w-full lg:w-1/2">
-                                                                                                <div class="flex flex-2">
-                                                                                                    <div
-                                                                                                        class="flex items-center justify-center border border-[#e0e6ed] 
-                                                                                                        bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
-                                                                                                        {{'Transaction ID'|translate}}
-                                                                                                    </div>
-                                                                                                    <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
-                                                                                                        placeholder="{{'UPI ID'|translate}}" [(ngModel)]="cus_upi_id"
-                                                                                                        [ngModelOptions]="{standalone: true}"  />
-                                                                                                </div>
-                                                                                    
-                                                                                                <br>
-                                                                                                <div class="flex flex-2">
-                                                                                                    <div
-                                                                                                        class="flex items-center justify-center border border-[#e0e6ed] 
-                                                                                                        bg-[#eee] px-3 font-semibold ltr:rounded-l-md ltr:border-r-0 
-                                                                                                        rtl:rounded-r-md rtl:border-l-0 dark:border-[#17263c] dark:bg-[#1b2e4b]">
-                                                                                                        {{'Bank Account Number'|translate}}
-                                                                                                    </div>
-                                                                                                    <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
-                                                                                                        placeholder="{{'Bank Account Number'|translate}}"
-                                                                                                         [(ngModel)]="cus_b_account"
-                                                                                                        [ngModelOptions]="{standalone: true}"  />
-                                                                                                </div>
-                                                                                                <br>
-                                                                                                <div class="flex flex-2">
-                                                                                                    <div
-                                                                                                        class="flex items-center justify-center border
-                                                                                                         border-[#e0e6ed] bg-[#eee] px-3 font-semibold
-                                                                                                          ltr:rounded-l-md ltr:border-r-0 rtl:rounded-r-md rtl:border-l-0
-                                                                                                           dark:border-[#17263c] dark:bg-[#1b2e4b]">
-                                                                                                        {{'IFSC Code'|translate}}
-                                                                                                    </div>
-                                                                                                    <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
-                                                                                                        placeholder="{{'IFSC Code'|translate}}" [(ngModel)]="cus_ifsc"
-                                                                                                        [ngModelOptions]="{standalone: true}"  />
-                                                                                                </div>
-                                                                                    
-                                                                                                
-                                                                                                
-                                                                                    
-                                                                                    
-                                                                                            </div>
-                                                                                    
-                                                                                    
-                                                                                        </ng-template> -->
+                                                                                       
 
                                                                                         <ng-template #modalBody>
                                                                                             <div class="w-full lg:w-1/2">
@@ -329,61 +282,9 @@
                                                     </div>
                                                 </div>
                                             </tr>
+                                            <span class="badge badge-outline-primary">Primary</span><span class="badge badge-outline-primary">Primary</span>
                                             <br>
-                                            <!-- <tr>
-                                                <div class="mb-5">
-                                                    <div class="flex w-full flex-col justify-center">
-                                                       
-                                                        <ul class="m-auto inline-flex items-center space-x-1 rtl:space-x-reverse">
-                                                            <li>
-                                                                <button
-                                                                    type="button"
-                                                                    class="flex justify-center rounded-full bg-white-light p-2 font-semibold text-dark transition hover:bg-primary hover:text-white dark:bg-[#191e3a] dark:text-white-light dark:hover:bg-primary"
-                                                                >
-                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 rtl:rotate-180">
-                                                                        <path d="M15 5L9 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                                    </svg>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button
-                                                                    type="button"
-                                                                    class="flex justify-center rounded-full bg-white-light px-3.5 py-2 font-semibold text-dark transition hover:bg-primary hover:text-white dark:bg-[#191e3a] dark:text-white-light dark:hover:bg-primary"
-                                                                >
-                                                                    1
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button
-                                                                    type="button"
-                                                                    class="flex justify-center rounded-full bg-primary px-3.5 py-2 font-semibold text-white transition dark:bg-primary dark:text-white-light"
-                                                                >
-                                                                    2
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button
-                                                                    type="button"
-                                                                    class="flex justify-center rounded-full bg-white-light px-3.5 py-2 font-semibold text-dark transition hover:bg-primary hover:text-white dark:bg-[#191e3a] dark:text-white-light dark:hover:bg-primary"
-                                                                >
-                                                                    3
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button
-                                                                    type="button"
-                                                                    class="flex justify-center rounded-full bg-white-light p-2 font-semibold text-dark transition hover:bg-primary hover:text-white dark:bg-[#191e3a] dark:text-white-light dark:hover:bg-primary"
-                                                                >
-                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 rtl:rotate-180">
-                                                                        <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                                    </svg>
-                                                                </button>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div> 
-                                            </tr> -->
-
+                                         
                                         </tbody>
                                     </table>
                                 </div>

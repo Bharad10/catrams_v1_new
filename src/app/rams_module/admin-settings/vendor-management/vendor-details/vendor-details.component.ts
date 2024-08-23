@@ -30,7 +30,7 @@ export class VendorDetailsComponent implements OnInit{
   permission_Denied=0;
   cstmid: any;
   loading = true;
-  accordians1:any = 1;
+  accordians1:any = 2;
   vendor_data: any;
   cust_info: any;
   accordians2:any ;
@@ -54,10 +54,6 @@ export class VendorDetailsComponent implements OnInit{
 
     this.access_data = localStorage.getItem("access_data");
     this.cstmid = this.activerouter.snapshot.paramMap.get('id')!;
-    
-    
-    
-
   }
 
   ngOnInit() {
@@ -103,6 +99,9 @@ export class VendorDetailsComponent implements OnInit{
     const endIndex = startIndex + this.itemsPerPage;
    
     this.paginated_rows= this.filteredRows.slice(startIndex, endIndex);
+
+    console.log("this.paginated_rows-------------->",this.paginated_rows);
+    
     
   }
 

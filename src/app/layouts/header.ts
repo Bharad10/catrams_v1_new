@@ -277,8 +277,7 @@ export class HeaderComponent {
             },
             target: document.getElementById(color + '-toast') || 'body',
             willClose: () => {
-                // Log 'hello' when the toast is closed
-                console.log('hello');
+           
                 this.removeMessage(msg.nt_id)
             }
         });

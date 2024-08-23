@@ -1524,7 +1524,7 @@
                                             <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
                                                 <div class="mb-5 flex flex-col gap-5 md:flex-row md:items-center">
                                                     <div class=" flex flex-col gap-5 md:flex-row md:items-center">
-                                                        <!-- <h5 class="text-lg font-semibold dark:text-white-light">Tool Request List </h5> -->
+                                                        
                                                         <div class="ltr:ml-auto rtl:mr-auto">
                                                             <div class="text-lg font-semibold f_color"
                                                                 style="font-size: 25px;">{{'Work Status'|translate}} :-
@@ -1575,6 +1575,35 @@
 
                                             </div>
 
+                                            <br>
+                                            <div class="w-full" *ngIf="request_details.serm_vendor_flag==1">
+                                                <div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-2">
+                                                        <div
+                                                            class="relative flex items-center rounded border border-warning bg-warning-light p-3.5 text-warning ltr:border-l-[64px] rtl:border-r-[64px] dark:bg-warning-dark-light"
+                                                        >
+                                                            <span class="absolute inset-y-0 m-auto h-6 w-6 text-white ltr:-left-11 rtl:-right-11">
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6">
+                                                                    <path
+                                                                        opacity="0.5"
+                                                                        d="M5.31171 10.7615C8.23007 5.58716 9.68925 3 12 3C14.3107 3 15.7699 5.58716 18.6883 10.7615L19.0519 11.4063C21.4771 15.7061 22.6897 17.856 21.5937 19.428C20.4978 21 17.7864 21 12.3637 21H11.6363C6.21356 21 3.50217 21 2.40626 19.428C1.31034 17.856 2.52291 15.7061 4.94805 11.4063L5.31171 10.7615Z"
+                                                                        stroke="currentColor"
+                                                                        stroke-width="1.5"
+                                                                    />
+                                                                    <path d="M12 8V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                                                    <circle cx="12" cy="16" r="1" fill="currentColor" />
+                                                                </svg>
+                                                            </span>
+                                                            <span class="ltr:pr-2 rtl:pl-2"><strong class="ltr:mr-1 rtl:ml-1">Expert Request!</strong>Request is assigned to expert <strong class="ltr:mr-1 rtl:ml-1">{{request_details.expert_details.cstm_name}}!</strong>.</span>
+                                                            <button type="button"
+                                                             class="btn btn-warning btn-sm ltr:ml-auto rtl:mr-auto"
+                                                            
+                                                            (click)="viewExpertDetails(request_details.expert_details.cstm_id)" >
+                                                            View Details
+                                                        </button>
+                                                        </div>
+             
+                                                     </div>
+                                            </div>
                                             <br>
                                             <div class="w-full lg:w-1/2"
                                                 *ngIf="request_details.serm_status == 56 && request_details.serm_reopen_by==1">
@@ -2260,7 +2289,7 @@
                                                                                 </ng-template>
                                                                             </modal>
                                                                         </td>
-                                                                        <td *ngIf="item.sitem_assignee_type==1||request_details.serm_vendor_flag==0">
+                                                                        <td *ngIf="item.sitem_assignee_type==1&&request_details.serm_vendor_flag==0">
                                                                             <button
                                                                                 *ngIf="item.sitem_status_flag!=6||item.sitem_status_flag!=7"
                                                                                 type="button" class="btn  btn-sm"
