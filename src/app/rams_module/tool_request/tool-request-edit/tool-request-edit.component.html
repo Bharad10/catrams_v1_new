@@ -342,7 +342,7 @@
                                                             <label for="custname" class="adv"
                                                                 *ngIf="request_list.tool_adv_payment == 1">{{'Quantity Requested' | translate }}</label>
                                                             <div class="relative text-white-dark">
-                                                                <input id="toolquantity" type="number"
+                                                                <input id="toolquantity" type="number" appDisableArrowKeys
                                                                     [(ngModel)]="request_list.tldt_tool_quant"
                                                                     [ngModelOptions]="{ standalone: true }"
                                                                     class="form-input flex-1" readonly />
@@ -358,7 +358,7 @@
                                                                 *ngIf="request_list.tool_adv_payment == 1">{{'Rent Duration Requested' | translate }} 
                                                             </label>
                                                             <div class="relative text-white-dark">
-                                                                <input id="toolduration" type="number"
+                                                                <input id="toolduration" type="number" appDisableArrowKeys
                                                                     [(ngModel)]="request_list.tldt_tool_duration"
                                                                     [ngModelOptions]="{ standalone: true }"
                                                                     class="form-input placeholder:text-white-dark" readonly />
@@ -372,7 +372,7 @@
                                                             <label for="custname" class="adv"
                                                                 *ngIf="request_list.tool_adv_payment == 1">{{'Rent Stock' | translate}} </label>
                                                             <div class="relative text-white-dark">
-                                                                <input id="toolduration" type="number"
+                                                                <input id="toolduration" type="number" appDisableArrowKeys
                                                                     [(ngModel)]="request_list.tool_rent_quantity"
                                                                     [ngModelOptions]="{ standalone: true }"
                                                                     class="form-input placeholder:text-white-dark" readonly />
@@ -661,28 +661,28 @@
                                                     <div class="flex flex-row space-x-4" *ngIf="request_list.tool_deposit_id == 1">
                                                         <div class="flex-2">
                                                             <label for="tool_cost" class="deposit">{{"Deposit Amount"|translate}}</label>
-                                                            <input id="toolduration" type="number" [(ngModel)]="deposit_price"
+                                                            <input id="toolduration" type="number" appDisableArrowKeys [(ngModel)]="deposit_price"
                                                                 [ngModelOptions]="{ standalone: true }"
                                                                 class="form-input placeholder:text-white-dark" readonly />
                                                         </div>
                                                         <div class="flex-1">
                                                             <label for="tool_cost" class="deposit">{{"Payment Status"|translate}}</label>
                                                             <ng-container *ngIf="request_list.rpt_amount == null">
-                                                                <input id="toolduration" type="number"
+                                                                <input id="toolduration" type="number" appDisableArrowKeys
                                                                     class="form-input placeholder:text-white-dark"
                                                                     placeholder="Deposit Amount yet to be Paid" readonly />
                                                             </ng-container>
                                         
                                                             <ng-container *ngIf="request_list.rpt_status == 0">
                                                                 <ng-container *ngIf="request_list.tldt_advpaymt_flag == 0">
-                                                                    <input id="toolduration" type="number"
+                                                                    <input id="toolduration" type="number" appDisableArrowKeys
                                                                         class="form-input placeholder:text-white-dark" placeholder="{{'Deposit Amount paid'|translate}} ₹ {{ deposit_price }}.{{'Balance Amount to pay'|translate}} {{'₹'|translate}} {{
                                                                             updated_deposit
                                                                         }}" readonly />
                                                                 </ng-container>
                                         
                                                                 <ng-container *ngIf="request_list.tldt_advpaymt_flag == 1">
-                                                                    <input id="toolduration" type="number"
+                                                                    <input id="toolduration" type="number" appDisableArrowKeys
                                                                         class="form-input placeholder:text-white-dark"
                                                                         placeholder="{{'Deposit Amount not paid'|translate}} {{'₹'|translate}} {{ request_list.rpt_amount }}"
                                                                         readonly />
@@ -690,7 +690,7 @@
                                                             </ng-container>
                                         
                                                             <ng-container *ngIf="request_list.rpt_status == 2">
-                                                                <input id="toolduration" type="number"
+                                                                <input id="toolduration" type="number" appDisableArrowKeys
                                                                     class="form-input placeholder:text-white-dark"
                                                                     placeholder="{{'Amount to be paid'|translate}} ₹ {{ request_list.rpt_amount }}"
                                                                     readonly />
@@ -700,28 +700,28 @@
                                                     <div class="flex flex-row space-x-4" *ngIf="request_list.tool_adv_payment == 1">
                                                         <div class="flex-2">
                                                             <label for="tool_cost" class="adv">{{"Advance Amount"|translate}}</label>
-                                                            <input id="toolduration" type="number" [(ngModel)]="advance_price"
+                                                            <input id="toolduration" type="number" appDisableArrowKeys [(ngModel)]="advance_price"
                                                                 [ngModelOptions]="{ standalone: true }"
                                                                 class="form-input placeholder:text-white-dark" readonly />
                                                         </div>
                                                         <div class="flex-1">
                                                             <label for="tool_cost" class="adv">{{"Payment Status"|translate}}</label>
                                                             <ng-container *ngIf="request_list.rpt_amount == null">
-                                                                <input id="toolduration" type="number"
+                                                                <input id="toolduration" type="number" appDisableArrowKeys
                                                                     class="form-input placeholder:text-white-dark"
                                                                     placeholder="{{'Advance Amount yet to be Paid'|translate}}" readonly />
                                                             </ng-container>
                                         
                                                             <ng-container *ngIf="request_list.rpt_status == 0">
                                                                 <ng-container *ngIf="request_list.tldt_advpaymt_flag == 0">
-                                                                    <input id="toolduration" type="number"
+                                                                    <input id="toolduration" type="number" appDisableArrowKeys
                                                                         class="form-input placeholder:text-white-dark" placeholder=
                                                                         
                                                                         "{{'Advance Amount paid'|translate}} ₹ {{ advance_price }}.{{'Balance Amount to pay'|translate}} ₹ {{ total_amount}}" readonly />
                                                                 </ng-container>
                                         
                                                                 <ng-container *ngIf="request_list.tldt_advpaymt_flag == 1">
-                                                                    <input id="toolduration" type="number"
+                                                                    <input id="toolduration" type="number" appDisableArrowKeys
                                                                         class="form-input placeholder:text-white-dark"
                                                                         placeholder="{{'Advance Amount not paid'|translate}} ₹ {{ request_list.rpt_amount }}"
                                                                         readonly />
@@ -729,7 +729,7 @@
                                                             </ng-container>
                                         
                                                             <ng-container *ngIf="request_list.rpt_status == 2">
-                                                                <input id="toolduration" type="number"
+                                                                <input id="toolduration" type="number" appDisableArrowKeys
                                                                     class="form-input placeholder:text-white-dark"
                                                                     placeholder="{{'Amount to be paid'|translate}} ₹ {{ request_list.rpt_amount }}"
                                                                     readonly />
@@ -761,7 +761,7 @@
                                                             <ng-container *ngIf="request_list.tool_deposit_id == 1">
                                         
                                                                 <div class="relative text-white-dark" >
-                                                                    <input id="tool_cost" type="number" [(ngModel)]="actual_price"
+                                                                    <input id="tool_cost" type="number" appDisableArrowKeys [(ngModel)]="actual_price"
                                                                         [ngModelOptions]="{ standalone: true }"
                                                                         class="form-input placeholder:text-white-dark" readonly />
                                                                 </div>
@@ -769,7 +769,7 @@
                                                             <ng-container *ngIf="request_list.tool_adv_payment == 1">
                                         
                                                                 <div class="relative text-white-dark" >
-                                                                    <input id="tool_cost" type="number" [(ngModel)]="total_amount"
+                                                                    <input id="tool_cost" type="number" appDisableArrowKeys [(ngModel)]="total_amount"
                                                                         [ngModelOptions]="{ standalone: true }"
                                                                         class="form-input placeholder:text-white-dark" readonly />
                                                                 </div>
@@ -777,7 +777,7 @@
                                                            
                                                             <ng-container *ngIf="request_list.tool_adv_payment == 0&&request_list.tool_deposit_id == 0">
                                                                 <div class="relative text-white-dark" >
-                                                                    <input id="tool_cost" type="number" [(ngModel)]="total_amount"
+                                                                    <input id="tool_cost" type="number" appDisableArrowKeys [(ngModel)]="total_amount"
                                                                         [ngModelOptions]="{ standalone: true }"
                                                                         class="form-input placeholder:text-white-dark" readonly />
                                                                 </div>
@@ -787,7 +787,7 @@
                                                         <div class="flex-1" *ngIf="request_list.due_rent_price">
                                                             <label for="tool_cost"><span style="color: red">{{"Updated Total cost After Due"|translate}}:</span></label>
                                                             <div class="relative text-white-dark">
-                                                                <input id="tool_cost" type="number"
+                                                                <input id="tool_cost" type="number" appDisableArrowKeys
                                                                     [(ngModel)]="request_list.rpt_amount"
                                                                     [ngModelOptions]="{ standalone: true }" class="form-input"
                                                                     readonly />

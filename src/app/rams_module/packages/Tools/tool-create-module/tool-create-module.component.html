@@ -43,7 +43,8 @@
                                 [ngClass]="isSubmitForm1 ? ToolForm.controls['availablequantity'].errors ? 'has-error' : 'has-success' : ''">
                                 <label for="availableQuantity">Total Stock</label>
                                 <div class="relative text-white-dark">
-                                    <input id="availablequantity" type="number" placeholder="Enter Available Quantity"
+                                    <input id="availablequantity" type="number" appDisableArrowKeys placeholder="Enter Available Quantity"
+                                    appDisableArrowKeys
                                         onKeyPress="if(this.value.length==3) return false;"
                                         oninput="validity.valid||(value='');" min="0"
                                         class="form-input placeholder:text-white-dark" formControlName="availablequantity"
@@ -59,10 +60,11 @@
                                 [ngClass]="isSubmitForm1 ? ToolForm.controls['price'].errors ? 'has-error' : 'has-success' : ''">
                                 <label for="Price">Enter Tool Sale Price</label>
                                 <div class="relative text-white-dark">
-                                    <input id="price" type="number" placeholder="Enter Tool Price"
+                                    <input id="price" type="number" appDisableArrowKeys placeholder="Enter Tool Price"
                                         onKeyPress="if(this.value.length==10) return false;"
                                         oninput="validity.valid||(value='');" min="0"
                                         class="form-input placeholder:text-white-dark" formControlName="price"
+                                        appDisableArrowKeys
                                         (change)="rentprice_cal()" required />
                                 </div>
                                 <ng-container *ngIf="isSubmitForm1 && ToolForm.controls['price'].errors">
@@ -149,7 +151,7 @@
                         <div class="flex-1">
                             <label for="rentstock">Rent Stock</label>
                             <div class=" relative text-white-dark">
-                                <input id="rentstock" type="number" placeholder="Enter Rent Stock" min="0"
+                                <input id="rentstock" type="number" appDisableArrowKeys placeholder="Enter Rent Stock" min="0" appDisableArrowKeys
                                     class="form-input placeholder:text-white-dark" formControlName="rentstock" required
                                     max={{this.s_stock}} (ngModelChange)="stock_cal()" />
                             </div>
@@ -157,7 +159,7 @@
                         <div class="flex-1">
                             <label for="rentprice">Rent Price</label>
                             <div class="relative text-white-dark">
-                                <input id="rentprice" type="number" placeholder="Enter Rent Price per day"
+                                <input id="rentprice" type="number" appDisableArrowKeys placeholder="Enter Rent Price per day" appDisableArrowKeys
                                     class="form-input placeholder:text-white-dark" formControlName="rentprice" required
                                     onKeyPress="if(this.value.length==10) return false;"
                                     oninput="validity.valid||(value='');" min="0" />
@@ -166,7 +168,7 @@
                         <div class="flex-1">
                             <label for="rentdelay">Tool Delay Due(%)</label>
                             <div class="relative text-white-dark">
-                                <input id="rentdelay" type="number" placeholder="Enter Percentage for delayed return "
+                                <input id="rentdelay" type="number" appDisableArrowKeys placeholder="Enter Percentage for delayed return " appDisableArrowKeys
                                     class="form-input placeholder:text-white-dark" formControlName="rentdelay" required
                                     onKeyPress="if(this.value.length==2) return false;"
                                     oninput="validity.valid||(value='');" min="0" (ngModelChange)="delay_cal()" />
@@ -199,7 +201,7 @@
                         <div class="ml-0 rounded-md pb-2 mt-1">
                             <ng-container *ngIf="ToolForm.value.advanceflag === true">
                                 <div class="flex">
-                                    <input type="tel" type="number" id="advancePayment"
+                                    <input type="tel" type="number" appDisableArrowKeys id="advancePayment" appDisableArrowKeys
                                         class="form-input placeholder:text-white-dark" name="advancePayment"
                                         placeholder="Enter Percentage" onKeyPress="if(this.value.length==2) return false;"
                                         oninput="validity.valid||(value='');" min="0" formControlName="advancePayment"
@@ -219,7 +221,7 @@
                             <ng-container *ngIf="ToolForm.value.depositflag === true">
                                 <div class="flex-1">
                                     <div class="flex">
-                                        <input type="number" id="depositamount"
+                                        <input type="number" appDisableArrowKeys id="depositamount" appDisableArrowKeys
                                             class="form-input placeholder:text-white-dark" name="depositamount"
                                             placeholder="Enter Percentage"
                                             onKeyPress="if(this.value.length==2) return false;"

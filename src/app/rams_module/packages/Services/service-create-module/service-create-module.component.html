@@ -44,7 +44,7 @@
                             [ngClass]="isSubmitForm1 ? servform.controls['servpack_cost'].errors ? 'has-error' : 'has-success' : ''">
                             <label for="Tool Name">Service Cost</label>
                             <div class="relative text-white-dark">
-                                <input id="servpack_cost" type="number" placeholder="Enter Service Cost"
+                                <input id="servpack_cost" type="number" appDisableArrowKeys placeholder="Enter Service Cost"
                                     onKeyPress="if(this.value.length==7) return false;"
                                     oninput="validity.valid||(value='');" min="0"
                                     class="form-input placeholder:text-white-dark" formControlName="servpack_cost"

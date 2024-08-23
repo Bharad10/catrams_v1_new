@@ -28,21 +28,21 @@
                         <div class="flex-1">
                             <label for="quantity"> Quantity</label>
                             <div class="relative text-white-dark">
-                                <input id="quantity" type="number" placeholder="3"
+                                <input id="quantity" type="number" appDisableArrowKeys placeholder="3"
                                     class="form-input placeholder:text-white-dark" formControlName="toolquantity"readonly/>
                             </div>
                         </div>
                         <div class="flex-1">
                             <label for="toolprice">Price</label>
                             <div class="relative text-white-dark">
-                                <input id="toolprice" type="number" placeholder="900/days"
+                                <input id="toolprice" type="number" appDisableArrowKeys placeholder="900/days"
                                     class="form-input placeholder:text-white-dark" formControlName="toolprice" readonly/>
                             </div>
                         </div>
                         <div class="flex-1">
                             <label for="toolduration">Rented Days</label>
                             <div class="relative text-white-dark">
-                                <input id="toolduration" type="number" placeholder="900/days"
+                                <input id="toolduration" type="number" appDisableArrowKeys placeholder="900/days"
                                     class="form-input placeholder:text-white-dark" formControlName="toolduration" readonly/>
                             </div>
                         </div>
@@ -175,7 +175,7 @@
                                 <div class="flex-1" *ngIf="request_list.tldt_damaged==0">
                                     <label for="toolprice">Enter Due Price</label>
                                     <div class="relative text-white-dark">
-                                        <input id="toolprice" type="number" placeholder="Enter Due Price"
+                                        <input id="toolprice" type="number" appDisableArrowKeys placeholder="Enter Due Price"
                                             class="form-input placeholder:text-white-dark" [(ngModel)]="price"/>
                                     </div>
                                 </div>
@@ -184,7 +184,7 @@
                                 <div class="flex-1" *ngIf="request_list.tldt_damaged==1">
                                     <label for="toolprice">Enter Due Price</label>
                                     <div class="relative text-white-dark">
-                                        <input id="toolprice" type="number" placeholder="Enter Due Price"
+                                        <input id="toolprice" type="number" appDisableArrowKeys placeholder="Enter Due Price"
                                             class="form-input placeholder:text-white-dark" [(ngModel)]="due_cost"/>
                                     </div>
                                 </div>

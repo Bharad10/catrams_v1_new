@@ -166,7 +166,7 @@
                             <label for="coupon_total_usage">{{'No of Usage'|translate}}</label>
                             <div class="relative text-white-dark">
 
-                                <input id="coupon_total_usage" type="number" placeholder="Enter No: of usage"
+                                <input id="coupon_total_usage" type="number" appDisableArrowKeys placeholder="Enter No: of usage"
                                 formControlName="coupon_total_usage" class="form-input placeholder:text-white-dark"
                                 name="coupon_total_usage" />
                             </div>
@@ -206,7 +206,7 @@
                         <div [ngClass]="isSubmitForm1 ? CouponForm.controls['coupon_min_amount'].errors ? 'has-error' : 'has-success' : ''">
                             <label for="coupon_min_amount">{{'Minimum Service Amount'|translate}}</label>
                             <div class="relative text-white-dark">
-                                <input id="coupon_min_amount" type="number" placeholder="{{'Enter minimum service amount'|translate}}"
+                                <input id="coupon_min_amount" type="number" appDisableArrowKeys placeholder="{{'Enter minimum service amount'|translate}}"
                                 formControlName="coupon_min_amount" class="form-input placeholder:text-white-dark"
                                 name="coupon_min_amount" onKeyPress="if(this.value.length==6) return false;"
                                 oninput="validity.valid||(value='');" min="0" autocomplete="off" />
@@ -224,7 +224,7 @@
                         <div [ngClass]="isSubmitForm1 ? CouponForm.controls['coupon_max_discount'].errors ? 'has-error' : 'has-success' : ''">
                             <label for="coupon_max_discount">{{'Maximum discount amount'|translate}}</label>
                             <div class="relative text-white-dark">
-                                <input id="coupon_max_discount" type="number" placeholder="{{'Enter Maximum discount amount'|translate}}"
+                                <input id="coupon_max_discount" type="number" appDisableArrowKeys placeholder="{{'Enter Maximum discount amount'|translate}}"
                                     formControlName="coupon_max_discount" class="form-input placeholder:text-white-dark"
                                     name="coupon_max_discount" />
                             <ng-container *ngIf="isSubmitForm1 && !CouponForm.controls['coupon_max_discount'].errors">
@@ -242,7 +242,7 @@
                         <div [ngClass]="isSubmitForm1 ? CouponForm.controls['coupon_discount'].errors ? 'has-error' : 'has-success' : ''">
                             <label for="coupon_discount">{{'Discount'|translate}}</label>
                             <div class="relative text-white-dark">
-                                <input id="coupon_discount" type="number" placeholder="{{'Enter Discount Price'|translate}}"
+                                <input id="coupon_discount" type="number" appDisableArrowKeys placeholder="{{'Enter Discount Price'|translate}}"
                                     formControlName="coupon_discount" class="form-input placeholder:text-white-dark"
                                     onKeyPress="if(this.value.length==6) return false;"
                                     oninput="validity.valid||(value='');" min="0"

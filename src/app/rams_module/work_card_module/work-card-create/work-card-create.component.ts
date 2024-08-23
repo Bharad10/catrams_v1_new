@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
 import Swiper, { Autoplay, Navigation, Pagination } from 'swiper';
 import { DatePipe } from '@angular/common';
+import { forkJoin } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-work-card-create',
@@ -59,57 +61,62 @@ export class WorkCardCreateComponent {
   custom_cost: any;
   amounttopay: any;
     
-    constructor(private router: Router,
-        private activerouter: ActivatedRoute,
-        private requestService:ServicerequestService,
-        private usr_ser: UserService,
-        private datePipe: DatePipe)  {
-      this.role_id = localStorage.getItem("us_role_id");
-      this.role_id=atob(atob(this.role_id));
-      this.request_id = this.activerouter.snapshot.paramMap.get('id')!;
-         
-          if(this.request_id){
-            this.usr_ser.fetch_service_details(this.request_id).subscribe((rdata: any) => {
-                if (rdata.ret_data == 'success') {
-                  this.request_details = rdata.result;
-                  
-                  this.amount(0,0)
-                  this.package_details=rdata.Packages;
-                  this.services=rdata.services;
-                  this.medias=rdata.medias;
-        this.date = this.datePipe.transform(this.request_details.serm_createdon, 'dd-MMM-yyyy hh:mm a');
-        
-             this.calculate_subtotal();
-             this.calculate_amountopay();
-                  if(rdata.services.filter((d: any) => d.sitem_status_flag !== '2').length==0) this.completeflag=true;
-                }
-              });
-              this.usr_ser.fetch_user().subscribe((rdata: any) => {
-                if (rdata.ret_data == 'success') {
-                  this.user_list=rdata.user_list
-          
-                }
-              });
-              let data={
-                'serm_id':this.request_id
-              }
-              this.usr_ser.fetch_sr_timeline(data).subscribe((rdata: any) => {
-                if (rdata.ret_data == 'success') {
-                    this.history_list=rdata.srqst.history_details;
-                    
-                  setTimeout(() => {
-                    this.loading=false
-                  }, 1300);
-                 }else{
-                   let no_data_msg=rdata.Message;
-                   setTimeout(() => {
-                    this.loading=false
-                  }, 1300);
-                 }
-              });
-              
-          }
+  constructor(
+    private router: Router,
+    private activerouter: ActivatedRoute,
+    private requestService: ServicerequestService,
+    private usr_ser: UserService,
+    private datePipe: DatePipe
+) {
+    this.role_id = atob(atob(localStorage.getItem("us_role_id")!));
+    this.request_id = this.activerouter.snapshot.paramMap.get('id')!;
+
+    if (this.request_id) {
+        this.loadData(this.request_id);
     }
+}
+
+
+
+  async  loadData(request_id: string): Promise<void> {
+  try {
+      const serviceDetails = await firstValueFrom(this.usr_ser.fetch_service_details(request_id));
+      const userDetails = await firstValueFrom(this.usr_ser.fetch_user());
+      const timeline = await firstValueFrom(this.usr_ser.fetch_sr_timeline({ serm_id: request_id }));
+
+      if (serviceDetails.ret_data === 'success') {
+          this.request_details = serviceDetails.result;
+          this.package_details = serviceDetails.Packages;
+          this.services = serviceDetails.services;
+          this.medias = serviceDetails.medias;
+          this.date = this.datePipe.transform(this.request_details.serm_createdon, 'dd-MMM-yyyy hh:mm a');
+
+          this.calculate_subtotal();
+          this.calculate_amountopay();
+
+          if (this.services.filter((d: any) => d.sitem_status_flag !== '2').length === 0) {
+              this.completeflag = true;
+          }
+      }
+
+      if (userDetails.ret_data === 'success') {
+          this.user_list = userDetails.user_list;
+      }
+
+      if (timeline.ret_data === 'success') {
+          this.history_list = timeline.srqst.history_details;
+      }
+
+      if (serviceDetails.ret_data === 'success') {
+          this.loading = false;
+      }
+  } catch (error) {
+      console.error("An error occurred while loading data", error);
+      // Handle error accordingly
+  }
+}
+
+
     calculate_amountopay(){
 
       if(this.request_details.cstm_type==1){
@@ -348,5 +355,25 @@ servhist(){
     this.router.navigateByUrl('/quotation-create/' + srid + '/' + qtm_id);
   }
 
+  custom_confirm_modal(data:any)
+  {
+
+    Swal.fire({
+      icon: 'warning',
+      title: "Are you sure to re-open this workcard ?",
+      text: "You won't be able to revert this!",
+      showCancelButton: true,
+      confirmButtonText: 'Proceed',
+      padding: '2em',
+      reverseButtons:true,
+      customClass: 'sweet-alerts',
+  }).then((result) => {
+      if (result.value) {
+        this.reopen_workcard(data)
+        
+        
+      }
+  });
+  }
   
 }

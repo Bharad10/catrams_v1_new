@@ -41,7 +41,7 @@ export class VendorDetailsComponent implements OnInit{
   cus_amount: any;
   txn_id: any;
   itemsPerPage:number=5
-  currentPage:number = 1
+  currentPage=0
   totalPages: any;
   paginated_rows:any
 
@@ -54,10 +54,6 @@ export class VendorDetailsComponent implements OnInit{
 
     this.access_data = localStorage.getItem("access_data");
     this.cstmid = this.activerouter.snapshot.paramMap.get('id')!;
-    
-    
-    
-
   }
 
   ngOnInit() {
@@ -93,16 +89,20 @@ export class VendorDetailsComponent implements OnInit{
 
   }
 
-  paginate_page(request_data:any)
+  paginate_page(filteredRows:any) {
+    
+    this.paginated_rows = [];
+    const totalItems = filteredRows.length;
+    const totalPages = Math.ceil(totalItems / this.itemsPerPage);
+  
+    for (let i = 0; i < totalPages; i++) {
+      const start = i * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      const pageItems = filteredRows.slice(start, end);
+      this.paginated_rows.push(pageItems);
+    }
 
-  {
-
-    this.filteredRows=request_data;
-    this.totalPages = Math.ceil(this.filteredRows.length / this.itemsPerPage);
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-   
-    this.paginated_rows= this.filteredRows.slice(startIndex, endIndex);
+    console.log("paginated page-->",this.paginated_rows);
     
   }
 
@@ -199,6 +199,16 @@ payment_response(data:any)
      
     }
   });
+}
+
+nextPage(currentPage:any){
+  if(this.paginated_rows.length===currentPage)return;
+  this.currentPage=currentPage
+}
+prvPage(currentPage:any){
+
+  if(currentPage-1<0)return;
+  this.currentPage=currentPage
 }
 showMessage(msg = '', type='' ) {
   const toast: any = Swal.mixin({

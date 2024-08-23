@@ -248,9 +248,14 @@ export class HeaderComponent {
                 popup: `color-${color}`,
             },
             target: document.getElementById(color + '-toast') || 'body',
+            willClose: () => {
+           
+                this.removeMessage(msg.nt_id)
+            }
         });
+    
         toast.fire({
-            title: msg,
+            title: msg.nt_content,
         });
 
         this.deleteMessage(this.notification[0]['nt_id']);

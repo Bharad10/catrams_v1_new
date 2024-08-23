@@ -41,7 +41,7 @@
                             [ngClass]="isSubmitForm1 ? ToolForm.controls['availablequantity'].errors ? 'has-error' : 'has-success' : ''">
                             <label for="availableQuantity">Total Stock</label>
                             <div class="relative text-white-dark">
-                                <input id="tool_total_quantity" type="number" placeholder="Enter Available Quantity"
+                                <input id="tool_total_quantity" type="number" appDisableArrowKeys placeholder="Enter Available Quantity"
                                     class="form-input placeholder:text-white-dark" formControlName="tool_total_quantity"
                                     required (change)="stock_div()" />
                             </div>
@@ -55,7 +55,7 @@
                             [ngClass]="isSubmitForm1 ? ToolForm.controls['price'].errors ? 'has-error' : 'has-success' : ''">
                             <label for="Price">Enter Tool Sale Price</label>
                             <div class="relative text-white-dark">
-                                <input id="tool_cost" type="number" placeholder="Enter Tool Price"
+                                <input id="tool_cost" type="number" appDisableArrowKeys placeholder="Enter Tool Price"
                                     class="form-input placeholder:text-white-dark" formControlName="tool_cost"
                                     (change)="rentprice_cal()" min="0" required />
                             </div>
@@ -115,7 +115,7 @@
                     <div class="flex-1">
                         <label for="rentstock">Rent Stock</label>
                         <div class=" relative text-white-dark">
-                            <input id="rentstock" type="number" placeholder="Enter Rent Stock"
+                            <input id="rentstock" type="number" appDisableArrowKeys placeholder="Enter Rent Stock"
                                 class="form-input placeholder:text-white-dark" formControlName="tool_rent_quantity"
                                 required min="0" (change)="stock_cal()" />
                         </div>
@@ -123,7 +123,7 @@
                     <div class="flex-1">
                         <label for="rentprice">Rent Price</label>
                         <div class="relative text-white-dark">
-                            <input id="rentprice" type="number" placeholder="Enter Rent Price per day"
+                            <input id="rentprice" type="number" appDisableArrowKeys placeholder="Enter Rent Price per day"
                                 class="form-input placeholder:text-white-dark" formControlName="tool_rent_cost" required
                                 min="0" />
                         </div>
@@ -131,7 +131,7 @@
                     <div class="flex-1">
                         <label for="rentdelay">Tool Delay Due(%)</label>
                         <div class="relative text-white-dark">
-                            <input id="rentdelay" type="number" placeholder="Enter Percentage for delayed return "
+                            <input id="rentdelay" type="number" appDisableArrowKeys placeholder="Enter Percentage for delayed return "
                                 class="form-input placeholder:text-white-dark" formControlName="tool_delay_percentage"
                                 required min="0" (change)="delay_cal()" />
                         </div>
@@ -163,7 +163,7 @@
                     <div class="ml-0 rounded-md pb-2 mt-1">
                         <ng-container *ngIf="ToolForm.value.tool_adv_price==='1'">
                             <div class="flex">
-                                <input type="tel" type="number" id="tool_adv_payment"
+                                <input type="tel" type="number" appDisableArrowKeys id="tool_adv_payment"
                                     class="form-input placeholder:text-white-dark" name="tool_adv_payment"
                                     placeholder="Enter Percentage" onKeyPress="if(this.value.length==2) return false;"
                                     oninput="validity.valid||(value='');" min="0" formControlName="tool_adv_payment"
@@ -183,7 +183,7 @@
                         <ng-container *ngIf="ToolForm.value.tool_deposit_id==='1'">
                             <div class="flex-1">
                                 <div class="flex">
-                                    <input type="number" id="tool_deposit_price"
+                                    <input type="number" appDisableArrowKeys id="tool_deposit_price"
                                         class="form-input placeholder:text-white-dark" name="tool_deposit_price"
                                         placeholder="Enter Percentage"
                                         onKeyPress="if(this.value.length==2) return false;"

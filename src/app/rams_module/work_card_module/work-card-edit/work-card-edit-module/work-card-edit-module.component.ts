@@ -1395,9 +1395,11 @@ onFileChanged(event: any) {
     
   }
 
-  inProgressButtonValidation(){
-    
+  viewExpertDetails(cstm_id:any){
+    this.router.navigateByUrl('expert-details/'+btoa(cstm_id));
   }
+
+
 
 
     

@@ -51,7 +51,7 @@
                                         <div class="flex-1" [ngClass]="isSubmitForm1 ? CustomerForm.controls['customerphone'].errors ? 'has-error' : 'has-success' : ''">
                                             <label for="customerphone">Customer Phone</label>
                                             <div class="relative text-white-dark">
-                                                <input id="customerphone" type="number" placeholder="Enter Customer Phone"
+                                                <input id="customerphone" type="number" appDisableArrowKeys placeholder="Enter Customer Phone"
                                                 onKeyPress="if(this.value.length==10) return false;" oninput="validity.valid||(value='');"
                                                 
                                                 class="form-input placeholder:text-white-dark" formControlName="customerphone" maxlength="10" />
@@ -63,7 +63,7 @@
                                         <div class="flex-1" [ngClass]="isSubmitForm1 ? CustomerForm.controls['alternatenumber'].errors ? 'has-error' : 'has-success' : ''">
                                             <label for="alternatenumber">Customer Alternate Number</label>
                                             <div class="relative text-white-dark">
-                                                <input id="alternatenumber" type="number" placeholder="Enter Alternate Number"
+                                                <input id="alternatenumber" type="number" appDisableArrowKeys placeholder="Enter Alternate Number"
                                                     class="form-input placeholder:text-white-dark" formControlName="alternatenumber" />
                                             </div>
                                             <ng-container *ngIf="isSubmitForm1 && CustomerForm.controls['alternatenumber'].errors">

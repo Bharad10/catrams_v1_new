@@ -45,7 +45,7 @@
                     <div class="flex-1">
                         <label for="rentdays">Mobile Number*</label>
                         <div class="relative text-white-dark">
-                            <input id="mobilenumber" type="number" onKeyPress="if(this.value.length==10) return false;" style="    width: 70%;"
+                            <input id="mobilenumber" type="number" appDisableArrowKeys onKeyPress="if(this.value.length==10) return false;" style="    width: 70%;"
                             oninput="validity.valid||(value='');"
                              placeholder="Enter Mobile Number"
                                 class="form-input placeholder:text-white-dark" formControlName="mobilenumber"/>

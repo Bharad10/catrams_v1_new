@@ -43,3 +43,16 @@
       19px 0     0 0px, 38px 0     0 5px, 57px 0     0 0px,
       19px 19px  0 5px, 38px 19px  0 0px, 57px 19px  0 0px}
   }
+
+
+  /* Hide arrows in Chrome, Safari, and Edge */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide arrows in Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}

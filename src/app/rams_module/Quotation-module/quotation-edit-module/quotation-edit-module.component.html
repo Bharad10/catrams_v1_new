@@ -210,7 +210,7 @@
                                             </td>
 
                                             <td>
-                                                <input type="number" class="form-input w-32" placeholder="Price"
+                                                <input type="number" appDisableArrowKeys class="form-input w-32" placeholder="Price"
                                                     [(ngModel)]="item.qti_cost" name="servpack_cost_{{i}}" min="0" readonly
                                                     
                                                      />
@@ -236,7 +236,7 @@
                             <div class="sm:w-2/5">
                                 <div class="flex items-center justify-between">
                                     <div>{{'Subtotal'|translate}}</div>
-                                    <div><input type="number" name="subservpack_cost" class="form-input w-32"
+                                    <div><input type="number" appDisableArrowKeys name="subservpack_cost" class="form-input w-32"
                                             placeholder="{{'Subtotal'|translate}}" onKeyPress="if(this.value.length==6) return false;"
                                             oninput="validity.valid||(value='');" min="0" [(ngModel)]="subtotal"
                                             [ngModelOptions]="{ standalone: true }"  autocomplete="off" readonly /></div>
@@ -244,13 +244,13 @@
                                 <br>
                                 <div class="flex items-center justify-between">
                                     <div>{{'Expert Cash Percent'|translate}}
-                                        <input type="number" name="subservpack_cost" class="form-input w-32"
+                                        <input type="number" appDisableArrowKeys name="subservpack_cost" class="form-input w-32"
                                          onKeyPress="if(this.value.length==2) return false;"
                                         oninput="validity.valid||(value='');" min="0" [(ngModel)]="exp_percnt" (change)="calculateTotal(services)"
                                         [ngModelOptions]="{ standalone: true }"  autocomplete="off" />
                                     </div>
                                     <div>
-                                        <input type="number" name="subservpack_cost" class="form-input w-32"
+                                        <input type="number" appDisableArrowKeys name="subservpack_cost" class="form-input w-32"
                                             placeholder="{{'Expert Cash Percent'|translate}}" onKeyPress="if(this.value.length==6) return false;"
                                             oninput="validity.valid||(value='');" min="0" [(ngModel)]="wk_price"
                                             [ngModelOptions]="{ standalone: true }" disabled autocomplete="off" />
@@ -268,7 +268,7 @@
 
                                     </div>
                                     <span *ngIf="!charges" style="color: red;font-style: italic;">{{'Enter the value to include a custom charge'|translate}}</span>
-                                    <div><input name="charges" class="form-input w-32" placeholder="{{'Enter the value to include a custom charge'|translate}}" type="number"
+                                    <div><input name="charges" class="form-input w-32" placeholder="{{'Enter the value to include a custom charge'|translate}}" type="number" appDisableArrowKeys
                                             onKeyPress="if(this.value.length==6) return false;"
                                             oninput="validity.valid||(value='');" min="0" [(ngModel)]="charges"
                                             [ngModelOptions]="{ standalone: true }" (change)="calculate_tax();expense_header()"
@@ -279,7 +279,7 @@
 
                                 <div class="mt-4 flex items-center justify-between font-semibold">
                                     <div>{{'Grand Total'|translate}}</div>
-                                    <div><input type="number" name="grand_total" class="form-input w-32"
+                                    <div><input type="number" appDisableArrowKeys name="grand_total" class="form-input w-32"
                                             placeholder="{{'Grand Total'|translate}}" [(ngModel)]="grandtotal"
                                             [ngModelOptions]="{ standalone: true }" disabled  /></div>
                                 </div>
@@ -342,7 +342,7 @@
                 <div class="flex-1">
                     <label for="servpack_cost">{{'Service Cost'|translate}}</label>
                     <div class="relative text-white-dark">
-                        <input id="servpack_cost" type="number" placeholder="{{'Service Cost'|translate}}"
+                        <input id="servpack_cost" type="number" appDisableArrowKeys placeholder="{{'Service Cost'|translate}}"
                             class="form-input placeholder:text-white-dark" formControlName="servpack_cost"
                             onKeyPress="if(this.value.length==6) return false;" oninput="validity.valid||(value='');"
                             min="0" (change)="calculate_tax()" autocomplete="off" />
@@ -443,7 +443,7 @@
                 </div>
                 <br><br>
                 <div class="flex-1"><label>Expense Price</label>
-                    <input name="charges" class="form-input w-32" placeholder="Price" type="number"
+                    <input name="charges" class="form-input w-32" placeholder="Price" type="number" appDisableArrowKeys
                         onKeyPress="if(this.value.length==6) return false;" oninput="validity.valid||(value='');"
                         min="0" [(ngModel)]="charges" [ngModelOptions]="{ standalone: true }" (change)="calculate_tax()"
                         autocomplete="off" />
