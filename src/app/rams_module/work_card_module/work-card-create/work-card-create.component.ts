@@ -348,5 +348,25 @@ servhist(){
     this.router.navigateByUrl('/quotation-create/' + srid + '/' + qtm_id);
   }
 
+  custom_confirm_modal(data:any)
+  {
+
+    Swal.fire({
+      icon: 'warning',
+      title: "Are you sure to re-open this workcard ?",
+      text: "You won't be able to revert this!",
+      showCancelButton: true,
+      confirmButtonText: 'Proceed',
+      padding: '2em',
+      reverseButtons:true,
+      customClass: 'sweet-alerts',
+  }).then((result) => {
+      if (result.value) {
+        this.reopen_workcard(data)
+        
+        
+      }
+  });
+  }
   
 }

@@ -119,8 +119,8 @@
                                                 <button type="button"
                                                     [disabled]="request_details.days_left_to_reopen==0"
                                                     class="btn btn-info my-4"
-                                                    (click)="reopen_workcard(request_details)">
-                                                    Work Not Completed to Re-open
+                                                    (click)="custom_confirm_modal(request_details)">
+                                                    Work Card Re-opened
                                                 </button>
 
                                             </ng-container>
@@ -128,7 +128,7 @@
                                                 <button type="button"
                                                     [disabled]="reOpenFlag"
                                                     class="btn btn-info my-4"
-                                                    (click)="reopen_workcard(request_details)">Re-open Work Card
+                                                    (click)="custom_confirm_modal(request_details)">Re-open Work Card  
                                                     <span
                                                         class="badge my-0 bg-white-light text-black ltr:ml-4 rtl:mr-4">{{request_details.days_left_to_reopen}}
                                                         Days Left</span>
@@ -156,8 +156,7 @@
                                                 <button type="button" class="btn btn-warning my-4"
                                                     (click)="payment.open()"
                                                     [disabled]="request_details.rpt_data.rpt_status==1||request_details.rpt_data.rpt_status==3">
-                                                    {{request_details.rpt_data.rpt_status==1||request_details.rpt_data.rpt_status==3?'Payment
-                                                    paid':'Waive off payment'}}
+                                                    {{request_details.rpt_data.rpt_status==1||request_details.rpt_data.rpt_status==3?'Payment paid':'Waive off payment'}}
                                                 </button>
 
                                                 <modal #payment>
@@ -884,7 +883,7 @@
                                                     *ngIf="data.status_id==23 || data.status_id==24 || data.status_id==29 || data.status_id==31||data.status_id==57 || data.status_id==32 || data.status_id==33">
                                                     {{ data.status_name }}</span>
                                                 <span class="badge badge-outline-warning"
-                                                    *ngIf="data.status_id==20|| data.status_id==28 || data.status_id==30 || data.status_id==35|| data.status_id==50 ">
+                                                    *ngIf="data.status_id==20|| data.status_id==28 || data.status_id==30 || data.status_id==35|| data.status_id==50||data.status_id==58 ">
                                                     {{ data.status_name }}</span>
                                                 <span class="badge badge-outline-danger"
                                                     *ngIf="data.status_id==22 || data.status_id==34|| data.status_id==56 ">{{

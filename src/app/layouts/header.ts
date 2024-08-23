@@ -99,7 +99,7 @@ export class HeaderComponent {
                 this.notcount=rdata.notif_len
 
                 if((this.notification.length)>0){
-                    this.notification_alert(this.notification[0]['nt_content'])
+                    this.notification_alert(this.notification[0])
                     
                     
                 }
@@ -263,21 +263,28 @@ export class HeaderComponent {
         });
     }
 
-    notification_alert(msg :any) {
-        const position = 'bottom-end', showCloseButton = true, duration = 3000,color='info'
+    notification_alert(msg: any) {
+        const position = 'bottom-end', showCloseButton = true, duration = 3000, color = 'info';
+    
         const toast = Swal.mixin({
             toast: true,
             position: <any>(position || 'bottom-start'),
             showConfirmButton: false,
-             timer: duration,
+            timer: duration,
             showCloseButton: showCloseButton,
             customClass: {
                 popup: `color-${color}`,
             },
             target: document.getElementById(color + '-toast') || 'body',
+            willClose: () => {
+                // Log 'hello' when the toast is closed
+                console.log('hello');
+                this.removeMessage(msg.nt_id)
+            }
         });
+    
         toast.fire({
-            title: msg,
+            title: msg.nt_content,
         });
     }
 
