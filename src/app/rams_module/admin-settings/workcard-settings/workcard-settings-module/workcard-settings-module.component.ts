@@ -25,22 +25,11 @@ export class WorkcardSettingsModuleComponent implements OnInit {
   ngOnInit() {
     this.set_serv.wk_settlist().subscribe((rdata: any) => {
       if (rdata.ret_data == 'success') {
-          
-          
-          setTimeout(() => {
-            this.setlist=rdata.result
-            this.days=this.setlist.ws_rp_days
-            this.loading=false;
-            }, 1300); 
+        this.setlist=rdata.result
+        this.days=this.setlist.ws_rp_days
+        
       }
-      
-       else {
-     
-        setTimeout(() => {
-         
-          this.loading=false;
-               }, 1300); 
-      }
+      this.loading=false;
   });
   }
 
@@ -58,22 +47,11 @@ export class WorkcardSettingsModuleComponent implements OnInit {
     this.set_serv.update_wkset(days).subscribe((rdata: any) => {
 
       if (rdata.ret_data == 'success') {
-          setTimeout(() => {
-            
-            this.days=rdata.result.ws_rp_days
-           this.showMessage('Updated','success')
-           this.loading=false;
-            }, 250); 
+        this.days=rdata.result.ws_rp_days
+        this.showMessage('Updated','success')
+        
       }
-      
-       else {
-     
-        setTimeout(() => {
-
-          this.showMessage('Error!!Please Try Again','error')
-          this.loading=false;     
-          }, 250); 
-      }
+      this.loading=false;
   });
   }
   showMessage(msg = '', type='' ) {

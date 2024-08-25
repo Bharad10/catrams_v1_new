@@ -211,9 +211,7 @@ export class ToolRequestListComponent implements OnInit{
              else {
                 
             }
-            setTimeout(() => {
-                this.loading = false;
-                  }, 550); 
+            this.loading = false;
         });
         
     }

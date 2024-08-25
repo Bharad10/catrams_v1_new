@@ -438,9 +438,7 @@ export class WorkCardEditModuleComponent implements OnInit {
 
         this.usr_ser.update_workcard(input_data).subscribe((rdata : any) => {
             if (rdata.ret_data == 'success') { // this.showMessage('Quote sent successfully', 'success');
-                setTimeout(() => {
-                    this.router.navigateByUrl('quotation-request-list');
-                }, 1000);
+                this.router.navigateByUrl('quotation-request-list');
             } else {}
         });
 
@@ -507,9 +505,7 @@ export class WorkCardEditModuleComponent implements OnInit {
         this.usr_ser.servicestatus_update(inData).subscribe((rdata : any) => {
             if (rdata.ret_data == 'success') {
                 this.showMessage('Work completed', 'success');
-                setTimeout(() => {
-                    this.router.navigateByUrl('work-card-list');
-                }, 1000);
+                this.router.navigateByUrl('work-card-list');
             } else {
                 this.loader=false
                 this.showMessage('Error', 'error');
@@ -554,9 +550,7 @@ export class WorkCardEditModuleComponent implements OnInit {
                         if (rdata.ret_data == 'success') {
                             this.pauseStopwatch()
                             this.showMessage('WorkCard is in Hold', 'success');
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, 1000);
+                            window.location.reload();
                            // this.wokCardHoldFlag=false;
                         } else {
                             this.showMessage('Error', 'error');
@@ -580,9 +574,7 @@ export class WorkCardEditModuleComponent implements OnInit {
                         if (rdata.ret_data == 'success') {
                             this.pauseStopwatch()
                             this.showMessage('Requested For Admin Approval', 'success');
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, 1000);
+                            window.location.reload();
                             //this.wokCardHoldFlag=false;
                         } else {
                             this.showMessage('Error', 'error');
@@ -602,9 +594,7 @@ export class WorkCardEditModuleComponent implements OnInit {
                     this.usr_ser.hold_workcard(data).subscribe((rdata : any) => {
                         if (rdata.ret_data == 'success') {
                             this.showMessage('WorkCard is in Hold', 'success');
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, 1000);
+                            window.location.reload();
                         } else {
                             this.showMessage('Error', 'error');
                         }
@@ -618,9 +608,7 @@ export class WorkCardEditModuleComponent implements OnInit {
                     this.usr_ser.holdreq_by_user(data).subscribe((rdata : any) => {
                         if (rdata.ret_data == 'success') {
                             this.showMessage('Requested For Admin Approval', 'success');
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, 1000);
+                            window.location.reload();
                         } else {
                             this.showMessage('Error', 'error');
                         }
@@ -651,9 +639,7 @@ export class WorkCardEditModuleComponent implements OnInit {
                         if (rdata.ret_data == 'success') {
                             this.startStopwatch();
                             this.showMessage('WorkCard Resumed', 'success');
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, 1000);
+                            window.location.reload();
                         } else {
                             this.workCard_Unhold_Flag=false;
                             this.showMessage('Error', 'error');
@@ -670,9 +656,7 @@ export class WorkCardEditModuleComponent implements OnInit {
                         if (rdata.ret_data == 'success') {
                             this.startStopwatch();
                             this.showMessage('Requested For Admin Approval', 'success');
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, 1000);
+                            window.location.reload();
                         } else {
                             this.workCard_Unhold_Flag=false;
                             this.showMessage('Error', 'error');
@@ -694,9 +678,7 @@ export class WorkCardEditModuleComponent implements OnInit {
                 this.usr_ser.workcard_unhold(data).subscribe((rdata : any) => {
                     if (rdata.ret_data == 'success') {
                         this.showMessage('WorkCard Resumed', 'success');
-                        setTimeout(() => {
-                            window.location.reload();
-                        }, 1000);
+                        window.location.reload();
                     } else {
                         this.workCard_Unhold_Flag=false;
                         this.showMessage('Error', 'error');
@@ -711,9 +693,7 @@ export class WorkCardEditModuleComponent implements OnInit {
                 this.usr_ser.unholdreq_by_user(data).subscribe((rdata : any) => {
                     if (rdata.ret_data == 'success') {
                         this.showMessage('Requested For Admin Approval', 'success');
-                        setTimeout(() => {
-                            window.location.reload();
-                        }, 1000);
+                        window.location.reload();
                     } else {
                         this.workCard_Unhold_Flag=false;
                         this.showMessage('Error', 'error');
@@ -746,9 +726,7 @@ export class WorkCardEditModuleComponent implements OnInit {
         this.usr_ser.delete_service(inData).subscribe((rdata : any) => {
             if (rdata.ret_data == 'success') {
                 this.showMessage('Service Deleted', 'success');
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
+                window.location.reload();
             } else {
                 this.showMessage('Error', 'error');
             }
@@ -1044,10 +1022,7 @@ export class WorkCardEditModuleComponent implements OnInit {
 
             };
             
-            setTimeout(() => {
-                this.chat_loading = false;
-
-            }, 1800);
+            this.chat_loading = false;
             this.scrollToBottom();
 
         });

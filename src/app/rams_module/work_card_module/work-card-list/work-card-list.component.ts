@@ -41,19 +41,9 @@ export class WorkCardListComponent implements OnInit {
                         this.rows = this.wk_list;
                         this.open_works=rdata.open_works;
                         this.nrq_flag=(this.open_works!=0)?true:false;
-                        setTimeout(() => {
-                            this.loading = false;
-                        }, 1500);
-
                         this.ready_data(1)
-                        
-
-                    } else {
-                        setTimeout(() => {
-                            this.loading = false;
-                        }, 1500);
-
                     }
+                    this.loading = false;
                 });
             } else {
                 this.usr_ser.getwork_by_role().subscribe((rdata : any) => {
@@ -63,16 +53,8 @@ export class WorkCardListComponent implements OnInit {
                         this.nrq_flag=(this.open_works!=0)?true:false;
                         this.rows = this.wk_list;
                         this.ready_data(2)
-                        setTimeout(() => {
-                            this.loading = false;
-                        }, 1500);
 
-                    } else {
-                        setTimeout(() => {
-                            this.loading = false;
-                        }, 1500);
-
-                    }
+                    } this.loading = false;
                 });
             }
         } else {}

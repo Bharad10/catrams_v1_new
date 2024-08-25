@@ -74,21 +74,11 @@ export class ChatmoduleComponent implements OnInit {
             // });
             this.usr_ser.fetch_cust_list().subscribe((rdata : any) => {
                 if (rdata.ret_data == 'success') {
-
-
-                    setTimeout(() => {
-                        this.cust_list = rdata.cust_list
-
-                        this.contactList = this.cust_list
-                        // this.custlist();
-                    }, 500)
-
-                    this.loading = false;
-                } else {
-                    setTimeout(() => {
-                        this.loading = false;
-                    }, 550);
-                }
+                    this.cust_list = rdata.cust_list
+                    this.contactList = this.cust_list
+                    
+                } 
+                this.loading = false;
             });
 
             this.socket.on('disconnect', () => {
@@ -148,9 +138,7 @@ export class ChatmoduleComponent implements OnInit {
     }
     scrollToBottom() {
         if (this.isShowUserChat) {
-            setTimeout(() => {
-                this.scrollable.scrollTo({bottom: 0});
-            });
+            this.scrollable.scrollTo({bottom: 0});
         }
     }
 
@@ -240,11 +228,9 @@ export class ChatmoduleComponent implements OnInit {
 
             };
 
-            setTimeout(() => {
-                this.chat_loading=false;
-                
-            }, 1800);
+           
             this.messages = isChat==true?rdata.chat_hist:[];
+            this.chat_loading=false;
             this.scrollToBottom();
 
 
