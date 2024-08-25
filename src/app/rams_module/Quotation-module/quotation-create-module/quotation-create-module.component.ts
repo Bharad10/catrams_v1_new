@@ -40,9 +40,9 @@ export class QuotationCreateModuleComponent implements OnInit {
   discount = 0;
   shippingCharge = 0;
   paymentMethod = 'bank';
-  subtotal = 0.00;
+  subtotal:any = 0.00;
   charges :any= 0.00;
-  grandtotal = 0.00;
+  grandtotal:any = 0.00;
   charges_text = ''
   newpack_data: any;
   checkflag=0;
@@ -190,7 +190,7 @@ export class QuotationCreateModuleComponent implements OnInit {
       this.expense_id = event.target.value;
       for (let i = 0; i < this.expense_list.length; i++) {
         if (this.expense_list[i]['exp_id'] == this.expense_id) {
-          this.charges = parseFloat(this.expense_list[i]['exp_cost']);
+          this.charges = parseFloat(this.expense_list[i]['exp_cost']).toFixed(2);
           this.charge_type = 1
           this.charges_text = this.expense_list[i]['exp_name'];
           break;
@@ -217,6 +217,7 @@ export class QuotationCreateModuleComponent implements OnInit {
     
     this.calculate_tax();
     this.charges=this.charges!=0?this.charges:0.00
+    this.charges=parseFloat(this.charges).toFixed(2);
     this.addChargeFlag=(this.charges_text&&this.charges!=-1)||(!this.charges_text&&this.charges==0)?false:true;
     
   }
@@ -226,7 +227,8 @@ export class QuotationCreateModuleComponent implements OnInit {
 
   calculate_tax() {
 
-    this.grandtotal = this.subtotal + this.charges;
+    this.grandtotal = parseFloat(this.subtotal) + parseFloat(this.charges);
+    this.grandtotal=parseFloat(this.grandtotal).toFixed(2)
     if (this.charge_type == 0) {
       this.charge_type = 2
     }
@@ -325,11 +327,14 @@ export class QuotationCreateModuleComponent implements OnInit {
 
     this.subtotal = 0.00;
     if (quote_items.length > 0) {
-      quote_items.forEach(element => {
-        this.subtotal = this.subtotal + parseFloat(element['servpack_cost']);
+      quote_items.forEach(element  => {
+        this.subtotal = parseFloat(this.subtotal) + parseFloat(element['servpack_cost']);
       });
-
+      this.subtotal=parseFloat(this.subtotal).toFixed(2)
+     
+      
       this.grandtotal = this.subtotal +parseFloat(this.charges) ;
+      this.grandtotal=parseFloat(this.grandtotal).toFixed(2)
     }
     if (this.quote_items.length == 0) {
       this.grandtotal = 0;

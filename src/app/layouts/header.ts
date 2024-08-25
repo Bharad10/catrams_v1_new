@@ -90,7 +90,7 @@ export class HeaderComponent {
 
                 
                 if (this.notification.length > 0 && this.notification[0]['nt_deleteflag'] == '0') {
-                    this.notification_alert(this.notification[0]['nt_content']);
+                    this.notification_alert(this.notification[0]);
                 }
             } else if (rdata.ret_data == 'fail') {
                 this.notification = [];
@@ -253,8 +253,6 @@ export class HeaderComponent {
                 this.removeMessage(msg.nt_id)
             }
         });
-        console.log("mes---------------->",msg);
-        
         toast.fire({
             title: msg.nt_content,
         });
