@@ -253,11 +253,12 @@ export class HeaderComponent {
                 this.removeMessage(msg.nt_id)
             }
         });
-    
+        console.log("mes---------------->",msg);
+        
         toast.fire({
             title: msg.nt_content,
         });
 
-        this.deleteMessage(this.notification[0]['nt_id']);
+        this.deleteMessage(msg.nt_id);
     }
 }

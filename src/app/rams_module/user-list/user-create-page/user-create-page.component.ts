@@ -25,7 +25,9 @@ export class UserCreatePageComponent {
   selectedusertype:any;
   maxDate: any;
   store:any
- 
+  isuserSubmitform:boolean=false;
+  isuserSubmitFormValid:boolean=false;
+  loading:boolean=false;
   constructor(
     private router:Router,
     private fb: FormBuilder,
@@ -48,34 +50,52 @@ export class UserCreatePageComponent {
       mobilenumber:['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern('.+@.+\..+')]],
       userrole:['', [Validators.required]],
-      dateofjoining:['', [Validators.required]],
+      dateofjoining:[, [Validators.required]],
       username:['', [Validators.required]],
     });
 
 
     
   }
-  selectEvent($event:any,index:any){
-   
-
-    
-
-// this.subtotal =this.subtotal+parseFloat($event.servpack_cost)
-
-}
+  setusRole(typeId:any){ this.UserForm.patchValue({userrole:typeId})}
 
   usercreate() {
-    let userdata =
-    {'user_data':this.UserForm.value}
     
-  this.usr_ser.create_user(userdata).subscribe((rdata: any) => {
-    if (rdata.ret_data === "success") {
-      this.showMessage('User Created.', 'success');
-        setTimeout(() => this.router.navigate(['/user-list']), 500);
-    } 
-    else{
-      this.showMessage(rdata.Message, 'error');
+    this.isuserSubmitform=true;
+
+    if(this.UserForm.valid){
+      this.isuserSubmitFormValid=true;
+      this.custom_confirm_modal();
+      
     }
+    
+
+  }
+
+  custom_confirm_modal()
+  {
+
+    Swal.fire({
+      icon: 'warning',
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      showCancelButton: true,
+      confirmButtonText: 'Proceed',
+      padding: '2em',
+      customClass: 'sweet-alerts',
+  }).then((result) => {
+      if (result.value) {
+        this.usr_ser.create_user({'user_data':this.UserForm.value}).subscribe((rdata: any) => {
+          if (rdata.ret_data === "success") {
+            this.showMessage('User Created.', 'success');
+              setTimeout(() => this.router.navigate(['/user-list']), 500);
+          } 
+          else{
+            this.showMessage(rdata.Message, 'error');
+          }
+        });
+          
+      }
   });
   }
   

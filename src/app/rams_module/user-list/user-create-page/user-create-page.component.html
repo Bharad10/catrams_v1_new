@@ -1,48 +1,82 @@
+<div class="mb-5">
+    <ol class="flex font-semibold text-primary dark:text-white-dark">
+        <li class="bg-[#ebedf2] ltr:rounded-l-md rtl:rounded-r-md dark:bg-[#1b2e4b]">
+            <a href="javascript:;" routerLink="/user-list"
+                class="relative flex h-full items-center p-1.5 before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-[#ebedf2] hover:text-primary/70 ltr:pl-3 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-3 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180 dark:before:border-l-[#1b2e4b] dark:hover:text-white-dark/70">
+                {{'User List'|translate}}</a>
+        </li>
+        <li class="bg-[#ebedf2] dark:bg-[#1b2e4b]">
+            <a
+                class="relative flex h-full items-center bg-primary p-1.5 text-white-light before:absolute before:inset-y-0 before:z-[1] before:m-auto before:h-0 before:w-0 before:border-[16px] before:border-l-[15px] before:border-r-0 before:border-t-transparent before:border-b-transparent before:border-l-primary ltr:pl-6 ltr:pr-2 ltr:before:-right-[15px] rtl:pr-6 rtl:pl-2 rtl:before:-left-[15px] rtl:before:rotate-180">
+                {{'Create User'|translate}}</a>
+        </li>
+
+    </ol>
+</div>
+
 <div>
-    <h5 class="text-xl font-semibold dark:text-white-light">User Create</h5>
+   
     <div class="flex flex-col gap-2.5 xl:flex-row">
         <div class="panel flex flex-row w-full ltr:xl:mr-6 rtl:xl:ml-6">
-            <form [formGroup]="UserForm" class="flex-1 space-y-5 dark:text-white" (ngSubmit)="usercreate()">
+            <form [formGroup]="UserForm" class="flex-1 space-y-5 dark:text-white" (ngSubmit)="usercreate()" novalidate>
                 <div class="flex flex-row space-x-3">
-                    <div class="flex-1" >
+                    
+                    <div class="flex-1" [ngClass]="isuserSubmitform ? UserForm.controls['username'].errors ? 'has-error' : 'has-success' : ''">
                         <label for="Tool Name">User Name*</label>
                         <div class="relative text-white-dark">
-                            <input id="username" type="text" placeholder="Enter User Name" style="    width: 70%;"
+                            <input id="username" type="text" placeholder="Enter User Name" 
                                 class="form-input placeholder:text-white-dark" formControlName="username"/>
                         </div>
+                        <ng-container *ngIf="isuserSubmitform && UserForm.controls['username'].errors">
+                            <p class="mt-1 text-danger">Please provide a user name</p>
+                        </ng-container>
                     </div>
-                    <div class="flex-1">
+
+          
+                    <div class="flex-1" [ngClass]="isuserSubmitform ? UserForm.controls['dateofjoining'].errors ? 'has-error' : 'has-success' : ''">
                         <label for="dateofjoining">Date of Joining*</label>
                         <div class="relative text-white-dark">
                             <input id="dateofjoining" type="date" placeholder="Date of joining" style="    width: 70%;"
                           class="form-input placeholder:text-white-dark" formControlName="dateofjoining"
                      [max]="maxDate"/>
+                     <ng-container *ngIf="isuserSubmitform && UserForm.controls['dateofjoining'].errors">
+                        <p class="mt-1 text-danger">Please provide date of joining</p>
+                    </ng-container>
                                 
                               
                         </div>
                     </div>
-                    <div class="flex-1">
+                    <div class="flex-1" [ngClass]="isuserSubmitform ? UserForm.controls['userrole'].errors ? 'has-error' : 'has-success' : ''">
                         <label for="userrole">User Role*</label>
-                        
-                        <select id="ctnSelect1" class="form-select text-white-dark" required style="    width: 70%;" formControlName="userrole">
-                            <option value="" disabled selected>Select User Role</option>
-                            <option *ngFor="let data of userroledata; index as i" [value]="data.role_Id">
-                                {{ data.role_name }}
-                            </option>
-                        </select>
-                        
+                        <ng-select name="ctnSelect1"
+                        (change)="setusRole($event);"
+                        placeholder="Select User Role" 
+                        appendTo="body"
+                        [searchable]="true"
+                        [clearable]="false"
+                        class="custom-multiselect">
+                        <ng-option
+                            *ngFor="let option of userroledata"
+                            [value]="option.role_Id">{{option.role_name}}</ng-option>
+                        </ng-select>
+                        <ng-container *ngIf="isuserSubmitform && UserForm.controls['userrole'].errors">
+                            <p class="mt-1 text-danger">Please provide a user role</p>
+                        </ng-container>
                         
                     </div>
                 </div>
                 <div class="flex flex-row space-x-3">
-                    <div class="flex-1">
+                    <div class="flex-1" [ngClass]="isuserSubmitform ? UserForm.controls['email'].errors ? 'has-error' : 'has-success' : ''">
                         <label for="rentdays">Email*</label>
                         <div class="relative text-white-dark">
                             <input id="email" type="email" placeholder="Enter Email" style="    width: 70%;"
                                 class="form-input placeholder:text-white-dark" formControlName="email"/>
                         </div>
+                        <ng-container *ngIf="isuserSubmitform && UserForm.controls['email'].errors">
+                            <p class="mt-1 text-danger">Please provide a user email</p>
+                        </ng-container>
                     </div>
-                    <div class="flex-1">
+                    <div class="flex-1" [ngClass]="isuserSubmitform ? UserForm.controls['mobilenumber'].errors ? 'has-error' : 'has-success' : ''">
                         <label for="rentdays">Mobile Number*</label>
                         <div class="relative text-white-dark">
                             <input id="mobilenumber" type="number" appDisableArrowKeys onKeyPress="if(this.value.length==10) return false;" style="    width: 70%;"
@@ -50,13 +84,19 @@
                              placeholder="Enter Mobile Number"
                                 class="form-input placeholder:text-white-dark" formControlName="mobilenumber"/>
                         </div>
+                        <ng-container *ngIf="isuserSubmitform && UserForm.controls['mobilenumber'].errors">
+                            <p class="mt-1 text-danger">Please provide a user number</p>
+                        </ng-container>
                     </div>
-                    <div class="flex-1">
+                    <div class="flex-1" [ngClass]="isuserSubmitform ? UserForm.controls['password'].errors ? 'has-error' : 'has-success' : ''">
                         <label for="rentdays">Password*</label>
                         <div class="relative text-white-dark">
                             <input id="password" type="text" placeholder="Enter Password" style="    width: 70%;"
                                 class="form-input placeholder:text-white-dark" formControlName="password"/>
                         </div>
+                        <ng-container *ngIf="isuserSubmitform && UserForm.controls['password'].errors">
+                            <p class="mt-1 text-danger">Please provide a user password</p>
+                        </ng-container>
                     </div>
                 </div> 
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-1">
@@ -64,32 +104,10 @@
                         <button type="button" class="btn btn-dark gap-2" style="margin-right: 1%;" (click)="user_list()">
                             Cancel
                         </button>
-                        <button type="button" class="btn btn-success gap-2" [disabled]="!UserForm.valid" (click)="acceptmodal?.open()">
+                        <button type="submit" class="btn btn-success gap-2">
                             Create
                         </button>
-                        <modal #acceptmodal>
-                            <ng-template #modalHeader>
-                                <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M12 6.25C12.4142 6.25 12.75 6.58579 12.75 7V13C12.75 13.4142 12.4142 13.75 12 13.75C11.5858 13.75 11.25 13.4142 11.25 13V7C11.25 6.58579 11.5858 6.25 12 6.25Z"
-                                            fill="#1C274C" />
-                                        <path
-                                            d="M12 17C12.5523 17 13 16.5523 13 16C13 15.4477 12.5523 15 12 15C11.4477 15 11 15.4477 11 16C11 16.5523 11.4477 17 12 17Z"
-                                            fill="#1C274C" />
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M1.25 12C1.25 6.06294 6.06294 1.25 12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12ZM12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 17.1086 6.89137 21.25 12 21.25C17.1086 21.25 21.25 17.1086 21.25 12C21.25 6.89137 17.1086 2.75 12 2.75Z"
-                                            fill="#1C274C" />
-                                    </svg>Do You Really want to create the user</div>
-                            </ng-template>
-                            
-                            <ng-template #modalFooter>
-                                <button type="button" (click)="acceptmodal.close()"
-                                    class="btn btn-outline-danger">Cancel</button>
-                                    <button type="submit" 
-                                    class="btn btn-primary ltr:ml-4 rtl:mr-4">Create User</button>
-                            </ng-template>
-                        </modal>
+                       
                     </div>
                 </div>
             </form>
