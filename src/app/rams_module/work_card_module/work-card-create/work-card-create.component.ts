@@ -93,6 +93,7 @@ export class WorkCardCreateComponent {
 
           this.calculate_subtotal();
           this.calculate_amountopay();
+          this.amount(1,1);
 
           if (this.services.filter((d: any) => d.sitem_status_flag !== '2').length === 0) {
               this.completeflag = true;
@@ -266,7 +267,7 @@ amount(event:any,id:any){
 
   const bal_amount=this.request_details.serm_cost-this.request_details.serm_custpay_amount
 
-    this.custom_cost=bal_amount;
+  this.custom_cost=bal_amount;
   this.custom_cost=parseFloat(this.custom_cost).toFixed(2);
 
 
