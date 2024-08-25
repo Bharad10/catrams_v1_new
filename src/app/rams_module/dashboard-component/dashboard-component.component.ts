@@ -97,7 +97,6 @@ export class DashboardComponentComponent implements OnInit {
 
         this.usr_serv.fetch_total_hist().subscribe((rdata: any) => {
             if (rdata.ret_data == "success") {
-                setTimeout(() => {
                 this.user_list=rdata.user_list;
                 this.total_tickets = rdata.user_list.total_tickets;
                 this.total_closed = rdata.user_list.total_closed;
@@ -122,9 +121,6 @@ export class DashboardComponentComponent implements OnInit {
                 this.rows = this.tool_Data.length > 0 ? this.tool_Data.sort((a: any, b: any) => b.due_days - a.due_days) : [];
                 this.upd_msg=true;
                 this.def_tool=this.user_list?true:false;
-                
-                this.initStore();
-                },1500);
             }else{
                 this.user_list=rdata.code;
             }

@@ -142,7 +142,7 @@ export class LoginComponentComponent implements OnInit {
             });
             localStorage.setItem("access_data", btoa(btoa(JSON.stringify(temp_array))));
             this.showToast(1);
-            setTimeout(() => this.router.navigate(['/dashboard']), 500);
+            this.router.navigate(['/dashboard']);
           }
 
           else {

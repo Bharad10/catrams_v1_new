@@ -175,9 +175,7 @@ export class WorkCardCreateComponent {
     this.usr_ser.update_workcard(input_data).subscribe((rdata: any) => {
         if (rdata.ret_data == 'success') {
             //this.showMessage('Quote sent successfully', 'success');
-            setTimeout( () => {
-                this.router.navigateByUrl('quotation-request-list');
-            }, 800);
+            this.router.navigateByUrl('quotation-request-list');
         }else{
            // this.showMessage('poyitt pinne vaa', 'error');
         }
@@ -195,9 +193,7 @@ export class WorkCardCreateComponent {
     this.usr_ser.servicestatus_update(inData).subscribe((rdata: any) => {
        if (rdata.ret_data == 'success') {
             this.showMessage('Work Updated', 'success');
-            setTimeout( () => {
-                window.location.reload();
-            }, 1000);
+            window.location.reload();
         }else{
             this.showMessage('Error', 'error');
         }
@@ -214,10 +210,7 @@ export class WorkCardCreateComponent {
     this.usr_ser.servicestatus_update(inData).subscribe((rdata: any) => {
         if (rdata.ret_data == 'success') {
             this.showMessage('Work Started', 'success');
-            setTimeout( () => {
-              
-                this.router.navigateByUrl('work-card-list');
-            }, 800);
+            this.router.navigateByUrl('work-card-list');
             
         }else{
            this.showMessage('Error', 'error');
@@ -236,9 +229,8 @@ export class WorkCardCreateComponent {
     this.usr_ser.servicestatus_update(inData).subscribe((rdata: any) => {
         if (rdata.ret_data == 'success') {
             this.showMessage('Work completed', 'success');
-            setTimeout( () => {
-                this.router.navigateByUrl('work-card-list');
-            }, 1000);
+            this.router.navigateByUrl('work-card-list');
+
         }else{
             this.showMessage('Error', 'error');
         }
@@ -286,9 +278,8 @@ payoffcost(){
     this.usr_ser.serv_payment(inData).subscribe((rdata: any) => {
         if (rdata.ret_data == 'success') {
           this.showMessage('Payment Waived Off Successfully','success')
-            setTimeout( () => {
-                this.router.navigateByUrl('service-request-history');
-            }, 1200);
+          this.router.navigateByUrl('service-request-history');
+
         }else{
           this.loading=false;
             this.showMessage('Server Error!!!!Please try again later.', 'error');
@@ -311,9 +302,8 @@ servhist(){
     this.usr_ser.reopen_workcard(sdata).subscribe((rdata: any) => {
         if (rdata.ret_data == 'success') {
           this.showMessage('Work Card Reopend','success')
-            setTimeout( () => {
-                this.router.navigateByUrl('work-card-list');
-            }, 800);
+          this.router.navigateByUrl('work-card-list');
+
         }else{
             this.showMessage('Server Error!!!!Please try again later.', 'error');
         }
@@ -328,15 +318,11 @@ servhist(){
     this.usr_ser.fetch_specific_pay_hist(sdata).subscribe((rdata: any) => {
       if (rdata.ret_data == 'success') {
 
-       
-        setTimeout(() => {
           this.rows=rdata.payhist;
-          
           this.payloading=false;
-        }, 1300);
        
       }else{
-          this.showMessage('Server Error!!!!Please try again later.', 'error');
+          // this.showMessage('Server Error!!!!Please try again later.', 'error');
       }
     });
   }

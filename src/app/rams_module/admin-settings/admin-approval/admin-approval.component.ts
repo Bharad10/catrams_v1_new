@@ -82,16 +82,10 @@ export class AdminApprovalComponent {
             _lightboxConfig.positionFromTop = 0;
             _lightboxConfig.disableScrolling = true;
             if (rdata.ret_data == 'success') {
-                setTimeout(() => {
                     this.approval_list = rdata.approval_list;
                     this.rows = this.approval_list;
                     this.filteredRows = this.rows;
                     this.loading1 = false;
-                }, 1300);
-            } else {
-                setTimeout(() => {
-                    this.loading1 = false;
-                }, 1300);
             }
         });
     }
@@ -108,11 +102,8 @@ export class AdminApprovalComponent {
             if (rdata.ret_data == 'success') {
                 if (status == 1) {
                     this.showMessage(' success.', 'success');
-                    setTimeout(() => this.router.navigate(['tool-request-list']), 500);
-                } else {
-                    this.showMessage('success', 'success');
-                    setTimeout(() => this.router.navigate(['tool-request-list']), 500);
-                }
+                } 
+                this.router.navigate(['tool-request-list'])
             }
         });
     }
@@ -155,11 +146,7 @@ export class AdminApprovalComponent {
                 this.systemService.update_hold_req(data).subscribe((rdata: any) => {
                     if (rdata.ret_data == 'success') {
                         this.showMessage(' success.', 'success');
-                        setTimeout(() => this.router.navigate(['tool-request-list']), 500);
-                    } else {
-                        this.showMessage(' Fail.', 'error');
-                        setTimeout(() => this.router.navigate(['admin-approval']), 500);
-                    }
+                    } this.router.navigate(['tool-request-list'])
                 });
             } else {
                 this.router.navigateByUrl('tool-request-edit/' + btoa(tldet_id));
@@ -207,17 +194,11 @@ export class AdminApprovalComponent {
     app_service() {
         this.systemService.app_service().subscribe((rdata: any) => {
             if (rdata.ret_data == 'success') {
-                setTimeout(() => {
                     this.services_approval = rdata.approval_list;
                     this.srows = this.services_approval;
                     this.filteredRows2 = this.srows;
-                    this.loading2 = false;
-                }, 1300);
-            } else {
-                setTimeout(() => {
-                    this.loading2 = false;
-                }, 1300);
-            }
+                    
+            } this.loading2 = false;
         });
     }
 
@@ -266,13 +247,12 @@ export class AdminApprovalComponent {
         this.usr_ser.hold_workcard(data).subscribe((rdata: any) => {
             if (rdata.ret_data == 'success') {
                 this.showMessage('WorkCard is in Hold', 'success');
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
+                window.location.reload();
             } else {
                 this.showMessage('Error', 'error');
-                this.holdFlag = false;
+                
             }
+            this.holdFlag = false;
         });
     }
 
@@ -286,13 +266,12 @@ export class AdminApprovalComponent {
         this.usr_ser.workcard_unhold(data).subscribe((rdata: any) => {
             if (rdata.ret_data == 'success') {
                 this.showMessage('WorkCard Resumed', 'success');
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
+                window.location.reload();
             } else {
                 this.showMessage('Error', 'error');
-                this.unHoldFlag = false;
+                
             }
+            this.unHoldFlag = false;
         });
     }
 
@@ -307,9 +286,7 @@ export class AdminApprovalComponent {
         this.usr_ser.hold_workcard(data).subscribe((rdata: any) => {
             if (rdata.ret_data == 'success') {
                 this.showMessage('WorkCard is in Hold', 'success');
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
+                window.location.reload();
             } else {
                 this.showMessage('Error', 'error');
             }
@@ -326,9 +303,7 @@ export class AdminApprovalComponent {
         this.usr_ser.workcard_unhold(data).subscribe((rdata: any) => {
             if (rdata.ret_data == 'success') {
                 this.showMessage('WorkCard Resumed', 'success');
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
+                window.location.reload();
             } else {
                 this.showMessage('Error', 'error');
             }
@@ -347,9 +322,7 @@ export class AdminApprovalComponent {
         this.usr_ser.premium_approval(data).subscribe((rdata: any) => {
             if (rdata.ret_data == 'success') {
                 this.showMessage('Rejected', 'success');
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
+                window.location.reload();
             } else {
                 this.showMessage('Error', 'error');
             }
@@ -368,9 +341,7 @@ export class AdminApprovalComponent {
         this.usr_ser.premium_approval(data).subscribe((rdata: any) => {
             if (rdata.ret_data == 'success') {
                 this.showMessage('Approved', 'success');
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
+                window.location.reload();
             } else {
                 this.showMessage('Error', 'error');
             }

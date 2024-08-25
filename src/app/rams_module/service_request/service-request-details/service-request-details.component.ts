@@ -218,8 +218,6 @@ export class ServiceRequestDetailsComponent {
         
         if(this.vendor_id!==-1){
             this.loader=true;
-            console.log("serm_assigne:this.vendor_id------------->",this.vendor_id);
-            
             this.usr_ser.update_assigne({serm_id: this.srid,serm_assigne:this.vendor_id,flag: 1}).subscribe((rdata : any) => {
                 if (rdata.ret_data === 'success') {
                     this.showMessage('Assigned successfully.', 'success');

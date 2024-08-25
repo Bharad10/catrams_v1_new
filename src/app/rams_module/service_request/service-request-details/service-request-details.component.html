@@ -142,61 +142,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="border-t border-[#d3d3d3] p-4 text-[13px] dark:border-[#1b2e4b]">
-                            <div class="mt-2 px-4">
-                                <div class="flex flex-col justify-between lg:flex-row">
-                                    <div class="mb-2 w-full lg:w-1/2 ltr:lg:mr-6 rtl:lg:ml-6">
-                                        <div class="mt-4 flex items-center">
-                                            <span class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 ng-tns-c35-2 f_color">
-                                                {{'Registration Number'|translate}}</span>
-                                            <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
-                                                placeholder="  {{'Registration number not mentioned'|translate}}"
-                                                [(ngModel)]="serv_pack_list.custveh_regnumber" disabled />
-                                        </div>
-                                        <div class="mt-4 flex items-center">
-                                            <span class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 ng-tns-c35-2 f_color">
-                                                {{'Vin Number'|translate}}</span>
-                                            <input id="acno" type="text" name="acno" class="form-input flex-1" name="no"
-                                                placeholder=" {{'Vin number not mentioned'|translate}}"
-                                                [(ngModel)]="serv_pack_list.custveh_vinnumber" disabled />
-                                            <a (click)="copytext(serv_pack_list.custveh_vinnumber)"
-                                                style=" cursor: pointer;">
-                                                <svg width="18" height="18" ngxTippy="copy" viewBox="0 0 24 24"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M6 11C6 8.17157 6 6.75736 6.87868 5.87868C7.75736 5 9.17157 5 12 5H15C17.8284 5 19.2426 5 20.1213 5.87868C21 6.75736 21 8.17157 21 11V16C21 18.8284 21 20.2426 20.1213 21.1213C19.2426 22 17.8284 22 15 22H12C9.17157 22 7.75736 22 6.87868 21.1213C6 20.2426 6 18.8284 6 16V11Z"
-                                                        stroke="#09a4f0" stroke-width="1.5" />
-                                                    <path
-                                                        d="M6 19C4.34315 19 3 17.6569 3 16V10C3 6.22876 3 4.34315 4.17157 3.17157C5.34315 2 7.22876 2 11 2H15C16.6569 2 18 3.34315 18 5"
-                                                        stroke="#09a4f0" stroke-width="1.5" />
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="w-full lg:w-1/2">
-                                        <div class="mt-11 flex items-center">
-                                            <span class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 f_color"> {{'Make'|translate}}
-                                            </span>
-                                            <input id="vehmake" type="text" class="form-input w-80"
-                                                [(ngModel)]="serv_pack_list.make_name" disabled />
-                                        </div>
-                                        <div class="mt-4 flex items-center">
-                                            <span class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 f_color">
-                                                {{'Model'|translate}}</span>
-                                            <input id="vehmodel" type="text" class="form-input w-80"
-                                                [(ngModel)]="serv_pack_list.model_name" disabled />
-                                        </div>
-                                        <div class="mt-4 flex items-center">
-                                            <span class=" mb-0 w-1/3 ltr:mr-2 rtl:ml-2 f_color">
-                                                {{'Variant'|translate}}</span>
-                                            <input id="vinnum" type="text" class="form-input w-80"
-                                                [(ngModel)]="serv_pack_list.variant_name" disabled />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="rounded border border-[#d3d3d3] dark:border-[#1b2e4b]">
@@ -311,7 +256,7 @@
         <div class="mt-2 px-4">
             <div class="flex flex-col justify-between lg:flex-row">
                 <div class="mb-2 w-full lg:w-1/2 ltr:lg:mr-6 rtl:lg:ml-6">
-                    <ng-container *ngIf="(serv_pack_list.serm_status==57||serv_pack_list.serm_status==22)">
+                    <ng-container *ngIf="(serv_pack_list.serm_status==57||serv_pack_list.serm_status==22||serv_pack_list.serm_status==20)">
                         <div class="mt-4 gap-2 flex items-center" *ngIf="serv_pack_list.assignee_name">
                             <ng-container *ngIf="serv_pack_list.serm_vendor_flag==1">
                                 <div class="mt-4 gap-2 flex items-center">

@@ -69,7 +69,7 @@ export class CustomerCreatePageComponent implements OnInit {
     this.customerService.cust_create(this.CustomerForm.value).subscribe((rdata: any) => {
       if (rdata.ret_data === "success") {
         this.showMessage('Customer Created.', 'success');
-          setTimeout(() => this.router.navigate(['customer-list']), 500);
+        this.router.navigate(['customer-list'])
       } 
       else{
         this.showMessage(rdata.Message, 'error');
