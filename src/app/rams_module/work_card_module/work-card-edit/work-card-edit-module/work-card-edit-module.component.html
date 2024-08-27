@@ -120,7 +120,8 @@
                                                         class="block rounded-md p-3.5 py-2 !outline-none transition-all duration-300 hover:bg-info hover:text-white"
                                                         [ngClass]="{ '!bg-primary text-white': tab10.toLowerCase() === 's_details' }"
                                                         (click)="tab10 = 's_details'">
-                                                        <span style="font-size: 73%; ">{{'Service Details'|translate}}</span>
+                                                        <span style="font-size: 73%; ">{{'Service
+                                                            Details'|translate}}</span>
 
                                                     </a>
                                                     <br>
@@ -128,14 +129,16 @@
                                                         class="block rounded-md p-3.5 py-2 !outline-none transition-all duration-300 hover:bg-info hover:text-white"
                                                         [ngClass]="{ '!bg-primary text-white': tab10.toLowerCase() === 'v_details' }"
                                                         (click)="tab10 = 'v_details'">
-                                                        <span style="font-size: 74%; ">{{'Vehicle Details'|translate}}</span>
+                                                        <span style="font-size: 74%; ">{{'Vehicle
+                                                            Details'|translate}}</span>
                                                     </a>
 
                                                     <br> <a href="javascript:;"
                                                         class="block rounded-md p-3.5 py-2 !outline-none transition-all duration-300 hover:bg-info hover:text-white"
                                                         [ngClass]="{ '!bg-primary text-white': tab10.toLowerCase() === 'medias' }"
                                                         (click)="tab10 = 'medias'">
-                                                        <span style="font-size: 74%; ">{{'Medias & Attachments'|translate}}</span>
+                                                        <span style="font-size: 74%; ">{{'Medias &
+                                                            Attachments'|translate}}</span>
 
 
                                                     </a>
@@ -143,7 +146,8 @@
                                                         class="block rounded-md p-3.5 py-2 !outline-none transition-all duration-300 hover:bg-info hover:text-white"
                                                         [ngClass]="{ '!bg-primary text-white': tab10.toLowerCase() === 'chat' }"
                                                         (click)="tab10 = 'chat'">
-                                                        <span style="font-size: 74%; ">{{'Chat Details'|translate}}</span>
+                                                        <span style="font-size: 74%; ">{{'Chat
+                                                            Details'|translate}}</span>
 
 
                                                     </a>
@@ -155,7 +159,8 @@
                                                         <div class="mt-4 flex items-center">
 
                                                             <span
-                                                                class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2 f_color">{{'WorkCard Number'|translate}}</span>
+                                                                class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2 f_color">{{'WorkCard
+                                                                Number'|translate}}</span>
 
                                                             <input id="reciever-number" type="text"
                                                                 name="reciever-number" class="form-input flex-1"
@@ -166,7 +171,8 @@
                                                         <div class="mt-4 flex items-center">
 
                                                             <span
-                                                                class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2 f_color">{{'WorkCard  Created On'|translate}}</span>
+                                                                class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2 f_color">{{'WorkCard
+                                                                Created On'|translate}}</span>
 
                                                             <input id="reciever-number" type="text"
                                                                 name="reciever-number" class="form-input flex-1"
@@ -174,9 +180,11 @@
                                                         </div>
 
                                                         <div class="mt-4 flex items-center">
-                                                            <span class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2 f_color">{{'View WorkCard Details'|translate}}</span>
+                                                            <span class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2 f_color">{{'View
+                                                                WorkCard Details'|translate}}</span>
                                                             <button type="button" class="btn btn-info"
-                                                                (click)="workcard_details(request_details.serm_id)">{{'View Full Details'|translate}}
+                                                                (click)="workcard_details(request_details.serm_id)">{{'View
+                                                                Full Details'|translate}}
                                                             </button>
                                                         </div>
                                                     </div>
@@ -191,7 +199,8 @@
                                                             </div>
                                                             <div class="mt-4 flex items-center">
                                                                 <span
-                                                                    class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2 f_color">{{'Vehicle Brand'|translate}}</span>
+                                                                    class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2 f_color">{{'Vehicle
+                                                                    Brand'|translate}}</span>
 
                                                                 <input id="acno" type="text" name="acno"
                                                                     class="form-input flex-1"
@@ -1524,7 +1533,7 @@
                                             <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
                                                 <div class="mb-5 flex flex-col gap-5 md:flex-row md:items-center">
                                                     <div class=" flex flex-col gap-5 md:flex-row md:items-center">
-                                                        
+
                                                         <div class="ltr:ml-auto rtl:mr-auto">
                                                             <div class="text-lg font-semibold f_color"
                                                                 style="font-size: 25px;">{{'Work Status'|translate}} :-
@@ -1578,31 +1587,32 @@
                                             <br>
                                             <div class="w-full" *ngIf="request_details.serm_vendor_flag==1">
                                                 <div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-2">
-                                                        <div
-                                                            class="relative flex items-center rounded border border-warning bg-warning-light p-3.5 text-warning ltr:border-l-[64px] rtl:border-r-[64px] dark:bg-warning-dark-light"
-                                                        >
-                                                            <span class="absolute inset-y-0 m-auto h-6 w-6 text-white ltr:-left-11 rtl:-right-11">
-                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6">
-                                                                    <path
-                                                                        opacity="0.5"
-                                                                        d="M5.31171 10.7615C8.23007 5.58716 9.68925 3 12 3C14.3107 3 15.7699 5.58716 18.6883 10.7615L19.0519 11.4063C21.4771 15.7061 22.6897 17.856 21.5937 19.428C20.4978 21 17.7864 21 12.3637 21H11.6363C6.21356 21 3.50217 21 2.40626 19.428C1.31034 17.856 2.52291 15.7061 4.94805 11.4063L5.31171 10.7615Z"
-                                                                        stroke="currentColor"
-                                                                        stroke-width="1.5"
-                                                                    />
-                                                                    <path d="M12 8V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                                                    <circle cx="12" cy="16" r="1" fill="currentColor" />
-                                                                </svg>
-                                                            </span>
-                                                            <span class="ltr:pr-2 rtl:pl-2"><strong class="ltr:mr-1 rtl:ml-1">Expert Request!</strong>Request is assigned to expert <strong class="ltr:mr-1 rtl:ml-1">{{request_details.expert_details.cstm_name}}!</strong>.</span>
-                                                            <button type="button"
-                                                             class="btn btn-warning btn-sm ltr:ml-auto rtl:mr-auto"
-                                                            
-                                                            (click)="viewExpertDetails(request_details.expert_details.cstm_id)" >
+                                                    <div
+                                                        class="relative flex items-center rounded border border-warning bg-warning-light p-3.5 text-warning ltr:border-l-[64px] rtl:border-r-[64px] dark:bg-warning-dark-light">
+                                                        <span
+                                                            class="absolute inset-y-0 m-auto h-6 w-6 text-white ltr:-left-11 rtl:-right-11">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg" class="h-6 w-6">
+                                                                <path opacity="0.5"
+                                                                    d="M5.31171 10.7615C8.23007 5.58716 9.68925 3 12 3C14.3107 3 15.7699 5.58716 18.6883 10.7615L19.0519 11.4063C21.4771 15.7061 22.6897 17.856 21.5937 19.428C20.4978 21 17.7864 21 12.3637 21H11.6363C6.21356 21 3.50217 21 2.40626 19.428C1.31034 17.856 2.52291 15.7061 4.94805 11.4063L5.31171 10.7615Z"
+                                                                    stroke="currentColor" stroke-width="1.5" />
+                                                                <path d="M12 8V13" stroke="currentColor"
+                                                                    stroke-width="1.5" stroke-linecap="round" />
+                                                                <circle cx="12" cy="16" r="1" fill="currentColor" />
+                                                            </svg>
+                                                        </span>
+                                                        <span class="ltr:pr-2 rtl:pl-2"><strong
+                                                                class="ltr:mr-1 rtl:ml-1">Expert
+                                                                Request!</strong>Request is assigned to expert <strong
+                                                                class="ltr:mr-1 rtl:ml-1">{{request_details.expert_details.cstm_name}}!</strong>.</span>
+                                                        <button type="button"
+                                                            class="btn btn-warning btn-sm ltr:ml-auto rtl:mr-auto"
+                                                            (click)="viewExpertDetails(request_details.expert_details.cstm_id)">
                                                             View Details
                                                         </button>
-                                                        </div>
-             
-                                                     </div>
+                                                    </div>
+
+                                                </div>
                                             </div>
                                             <br>
                                             <div class="w-full lg:w-1/2"
@@ -1611,7 +1621,8 @@
                                                 <input type="text" class="form-input min-w-[200px]"
                                                     [(ngModel)]="request_details.serm_reopen_desc" [disabled]="true" />
                                             </div>
-                                            <div class="w-full lg:w-1/2" *ngIf="request_details.serm_hold_flag==0 && request_details.serm_status!=56">
+                                            <div class="w-full lg:w-1/2"
+                                                *ngIf="request_details.serm_hold_flag==0 && request_details.serm_status!=56">
                                                 <div class="mt-4 flex items-center">
                                                     <div class="flex items-center justify-center">
                                                         <button type="button" class="btn" (click)="message.open()"
@@ -1804,38 +1815,46 @@
                                                                     <tr class="align-top"
                                                                         *ngIf="item.sitem_status_flag==2||item.sitem_status_flag==6">
                                                                         <td>
-                                                                            <ng-container *ngIf="request_details.serm_vendor_flag==0">
+                                                                            <ng-container
+                                                                                *ngIf="request_details.serm_vendor_flag==0">
                                                                                 <input type="text"
-                                                                                class="form-input min-w-[200px]"
-                                                                                placeholder="Enter Item Name"
-                                                                                [(ngModel)]="item.servpack_name"
-                                                                                name="service_name_{{i}}" disabled />
-                                                                            <ng-template #itemTemplate let-item>
-                                                                                <a [innerHTML]="item.servpack_name"></a>
-                                                                            </ng-template>
+                                                                                    class="form-input min-w-[200px]"
+                                                                                    placeholder="Enter Item Name"
+                                                                                    [(ngModel)]="item.servpack_name"
+                                                                                    name="service_name_{{i}}"
+                                                                                    disabled />
+                                                                                <ng-template #itemTemplate let-item>
+                                                                                    <a
+                                                                                        [innerHTML]="item.servpack_name"></a>
+                                                                                </ng-template>
 
-                                                                            <ng-template #notFoundTemplate let-notFound>
-                                                                                <div [innerHTML]="notFound"></div>
-                                                                            </ng-template>    
-                                                                                
+                                                                                <ng-template #notFoundTemplate
+                                                                                    let-notFound>
+                                                                                    <div [innerHTML]="notFound"></div>
+                                                                                </ng-template>
+
                                                                             </ng-container>
-                                                                            <ng-container *ngIf="request_details.serm_vendor_flag==1">
+                                                                            <ng-container
+                                                                                *ngIf="request_details.serm_vendor_flag==1">
                                                                                 <input type="text"
-                                                                                class="form-input min-w-[200px]"
-                                                                                placeholder="Enter Item Name"
-                                                                                [(ngModel)]="item.sitem_vendor"
-                                                                                name="service_name_{{i}}" disabled />
-                                                                            <ng-template #itemTemplate let-item>
-                                                                                <a [innerHTML]="item.sitem_vendor"></a>
-                                                                            </ng-template>
+                                                                                    class="form-input min-w-[200px]"
+                                                                                    placeholder="Enter Item Name"
+                                                                                    [(ngModel)]="item.sitem_vendor"
+                                                                                    name="service_name_{{i}}"
+                                                                                    disabled />
+                                                                                <ng-template #itemTemplate let-item>
+                                                                                    <a
+                                                                                        [innerHTML]="item.sitem_vendor"></a>
+                                                                                </ng-template>
 
-                                                                            <ng-template #notFoundTemplate let-notFound>
-                                                                                <div [innerHTML]="notFound"></div>
-                                                                            </ng-template>
-                                                                            
+                                                                                <ng-template #notFoundTemplate
+                                                                                    let-notFound>
+                                                                                    <div [innerHTML]="notFound"></div>
+                                                                                </ng-template>
+
                                                                             </ng-container>
 
-                                                                           
+
                                                                         </td>
                                                                         <td
                                                                             *ngIf="request_details.serm_status>27&&request_details.serm_status!=50">
@@ -1848,8 +1867,8 @@
                                                                                         [searchable]="true"
                                                                                         [clearable]="false"
                                                                                         class="custom-multiselect">
-                                                                                        <ng-option value="-1">{{'Not Yet
-                                                                                            Accepted'|translate}}</ng-option>
+                                                                                        <!-- <ng-option value="-1">{{'Not Yet
+                                                                                            Accepted'|translate}}</ng-option> -->
                                                                                         <ng-option value="0"
                                                                                             class="pend_status">{{'Pending'|translate}}</ng-option>
                                                                                         <ng-option value="1"
@@ -1917,105 +1936,125 @@
                                                                     <!-- in-progress -->
                                                                     <tr class="align-top"
                                                                         *ngIf="item.sitem_status_flag!=2 && item.sitem_status_flag!=6">
-                                                                    <ng-container *ngIf="request_details.serm_vendor_flag==0">
-                                                                        <td *ngIf="item.sitem_active_flag==2"
-                                                                            style="border: 3px solid #ffefbb;">
-
-                                                                            <input type="text"
-                                                                                class="form-input min-w-[200px]"
-                                                                                placeholder="Enter Item Name"
-                                                                                [(ngModel)]="item.servpack_name"
-                                                                                name="service_name_{{i}}" disabled />
-                                                                            <ng-template #itemTemplate let-item>
-                                                                                <a [innerHTML]="item.servpack_name"></a>
-                                                                            </ng-template>
-
-                                                                            <ng-template #notFoundTemplate let-notFound>
-                                                                                <div [innerHTML]="notFound"></div>
-                                                                            </ng-template>
-                                                                        </td>
-                                                                        <td *ngIf="item.sitem_active_flag==3"
-                                                                            style="border: 3px solid #ffdfdf;">
-                                                                            <input type="text"
-                                                                                class="form-input min-w-[200px]"
-                                                                                placeholder="Enter Item Name"
-                                                                                [(ngModel)]="item.servpack_name"
-                                                                                name="service_name_{{i}}" disabled />
-                                                                            <ng-template #itemTemplate let-item>
-                                                                                <a [innerHTML]="item.servpack_name"></a>
-                                                                            </ng-template>
-
-                                                                            <ng-template #notFoundTemplate let-notFound>
-                                                                                <div [innerHTML]="notFound"></div>
-                                                                            </ng-template>
-                                                                        </td>
-                                                                        <td
-                                                                            *ngIf="item.sitem_active_flag==0||item.sitem_active_flag==1">
-                                                                            <input type="text"
-                                                                                class="form-input min-w-[200px]"
-                                                                                placeholder="Enter Item Name"
-                                                                                [(ngModel)]="item.servpack_name"
-                                                                                name="service_name_{{i}}" disabled />
-                                                                            <ng-template #itemTemplate let-item>
-                                                                                <a [innerHTML]="item.servpack_name"></a>
-                                                                            </ng-template>
-
-                                                                            <ng-template #notFoundTemplate let-notFound>
-                                                                                <div [innerHTML]="notFound"></div>
-                                                                            </ng-template>
-                                                                        </td>
-                                                                    </ng-container>
-                                                                       
-
-                                                                        <ng-container *ngIf="request_details.serm_vendor_flag==1">
+                                                                        <ng-container
+                                                                            *ngIf="request_details.serm_vendor_flag==0">
                                                                             <td *ngIf="item.sitem_active_flag==2"
-                                                                            style="border: 3px solid #ffefbb;">
+                                                                                style="border: 3px solid #ffefbb;">
 
-                                                                            <input type="text"
-                                                                                class="form-input min-w-[200px]"
-                                                                                placeholder="Enter Item Name"
-                                                                                [(ngModel)]="item.sitem_vendor"
-                                                                                name="service_name_{{i}}" disabled />
-                                                                            <ng-template #itemTemplate let-item>
-                                                                                <a [innerHTML]="item.sitem_vendor"></a>
-                                                                            </ng-template>
+                                                                                <input type="text"
+                                                                                    class="form-input min-w-[200px]"
+                                                                                    placeholder="Enter Item Name"
+                                                                                    [(ngModel)]="item.servpack_name"
+                                                                                    name="service_name_{{i}}"
+                                                                                    disabled />
+                                                                                <ng-template #itemTemplate let-item>
+                                                                                    <a
+                                                                                        [innerHTML]="item.servpack_name"></a>
+                                                                                </ng-template>
 
-                                                                            <ng-template #notFoundTemplate let-notFound>
-                                                                                <div [innerHTML]="notFound"></div>
-                                                                            </ng-template>
-                                                                        </td>
-                                                                        <td *ngIf="item.sitem_active_flag==3"
-                                                                            style="border: 3px solid #ffdfdf;">
-                                                                            <input type="text"
-                                                                                class="form-input min-w-[200px]"
-                                                                                placeholder="Enter Item Name"
-                                                                                [(ngModel)]="item.sitem_vendor"
-                                                                                name="service_name_{{i}}" disabled />
-                                                                            <ng-template #itemTemplate let-item>
-                                                                                <a [innerHTML]="item.sitem_vendor"></a>
-                                                                            </ng-template>
+                                                                                <ng-template #notFoundTemplate
+                                                                                    let-notFound>
+                                                                                    <div [innerHTML]="notFound"></div>
+                                                                                </ng-template>
+                                                                            </td>
+                                                                            <td *ngIf="item.sitem_active_flag==3"
+                                                                                style="border: 3px solid #ffdfdf;">
+                                                                                <input type="text"
+                                                                                    class="form-input min-w-[200px]"
+                                                                                    placeholder="Enter Item Name"
+                                                                                    [(ngModel)]="item.servpack_name"
+                                                                                    name="service_name_{{i}}"
+                                                                                    disabled />
+                                                                                <ng-template #itemTemplate let-item>
+                                                                                    <a
+                                                                                        [innerHTML]="item.servpack_name"></a>
+                                                                                </ng-template>
 
-                                                                            <ng-template #notFoundTemplate let-notFound>
-                                                                                <div [innerHTML]="notFound"></div>
-                                                                            </ng-template>
-                                                                        </td>
-                                                                        <td
-                                                                            *ngIf="item.sitem_active_flag==0||item.sitem_active_flag==1">
-                                                                            <input type="text"
-                                                                                class="form-input min-w-[200px]"
-                                                                                placeholder="Enter Item Name"
-                                                                                [(ngModel)]="item.sitem_vendor"
-                                                                                name="service_name_{{i}}" disabled />
-                                                                            <ng-template #itemTemplate let-item>
-                                                                                <a [innerHTML]="item.sitem_vendor"></a>
-                                                                            </ng-template>
+                                                                                <ng-template #notFoundTemplate
+                                                                                    let-notFound>
+                                                                                    <div [innerHTML]="notFound"></div>
+                                                                                </ng-template>
+                                                                            </td>
+                                                                            <td
+                                                                                *ngIf="item.sitem_active_flag==0||item.sitem_active_flag==1">
+                                                                                <input type="text"
+                                                                                    class="form-input min-w-[200px]"
+                                                                                    placeholder="Enter Item Name"
+                                                                                    [(ngModel)]="item.servpack_name"
+                                                                                    name="service_name_{{i}}"
+                                                                                    disabled />
+                                                                                <ng-template #itemTemplate let-item>
+                                                                                    <a
+                                                                                        [innerHTML]="item.servpack_name"></a>
+                                                                                </ng-template>
 
-                                                                            <ng-template #notFoundTemplate let-notFound>
-                                                                                <div [innerHTML]="notFound"></div>
-                                                                            </ng-template>
-                                                                        </td>
-                                                                            </ng-container>
-                                                                       
+                                                                                <ng-template #notFoundTemplate
+                                                                                    let-notFound>
+                                                                                    <div [innerHTML]="notFound"></div>
+                                                                                </ng-template>
+                                                                            </td>
+                                                                        </ng-container>
+
+
+                                                                        <ng-container
+                                                                            *ngIf="request_details.serm_vendor_flag==1">
+                                                                            <td *ngIf="item.sitem_active_flag==2"
+                                                                                style="border: 3px solid #ffefbb;">
+
+                                                                                <input type="text"
+                                                                                    class="form-input min-w-[200px]"
+                                                                                    placeholder="Enter Item Name"
+                                                                                    [(ngModel)]="item.sitem_vendor"
+                                                                                    name="service_name_{{i}}"
+                                                                                    disabled />
+                                                                                <ng-template #itemTemplate let-item>
+                                                                                    <a
+                                                                                        [innerHTML]="item.sitem_vendor"></a>
+                                                                                </ng-template>
+
+                                                                                <ng-template #notFoundTemplate
+                                                                                    let-notFound>
+                                                                                    <div [innerHTML]="notFound"></div>
+                                                                                </ng-template>
+                                                                            </td>
+                                                                            <td *ngIf="item.sitem_active_flag==3"
+                                                                                style="border: 3px solid #ffdfdf;">
+                                                                                <input type="text"
+                                                                                    class="form-input min-w-[200px]"
+                                                                                    placeholder="Enter Item Name"
+                                                                                    [(ngModel)]="item.sitem_vendor"
+                                                                                    name="service_name_{{i}}"
+                                                                                    disabled />
+                                                                                <ng-template #itemTemplate let-item>
+                                                                                    <a
+                                                                                        [innerHTML]="item.sitem_vendor"></a>
+                                                                                </ng-template>
+
+                                                                                <ng-template #notFoundTemplate
+                                                                                    let-notFound>
+                                                                                    <div [innerHTML]="notFound"></div>
+                                                                                </ng-template>
+                                                                            </td>
+                                                                            <td
+                                                                                *ngIf="item.sitem_active_flag==0||item.sitem_active_flag==1">
+                                                                                <input type="text"
+                                                                                    class="form-input min-w-[200px]"
+                                                                                    placeholder="Enter Item Name"
+                                                                                    [(ngModel)]="item.sitem_vendor"
+                                                                                    name="service_name_{{i}}"
+                                                                                    disabled />
+                                                                                <ng-template #itemTemplate let-item>
+                                                                                    <a
+                                                                                        [innerHTML]="item.sitem_vendor"></a>
+                                                                                </ng-template>
+
+                                                                                <ng-template #notFoundTemplate
+                                                                                    let-notFound>
+                                                                                    <div [innerHTML]="notFound"></div>
+                                                                                </ng-template>
+                                                                            </td>
+                                                                        </ng-container>
+
                                                                         <td>
                                                                             <ng-container
                                                                                 *ngIf="request_details.serm_status==28&&(item.sitem_active_flag==0||item.sitem_active_flag==1)">
@@ -2030,8 +2069,9 @@
                                                                                             [searchable]="true"
                                                                                             [clearable]="false"
                                                                                             class="custom-multiselect">
-                                                                                            <ng-option value="-1">{{'Not Yet
-                                                                                                Accepted'|translate}}</ng-option>
+                                                                                            <!-- <ng-option value="-1">{{'Not
+                                                                                                Yet
+                                                                                                Accepted'|translate}}</ng-option> -->
                                                                                             <ng-option value="0"
                                                                                                 class="pend_status">{{'Pending'|translate}}</ng-option>
                                                                                             <ng-option value="1"
@@ -2045,17 +2085,18 @@
                                                                             </ng-container>
                                                                             <ng-container name="ctnSelect1"
                                                                                 placeholder="Select Status"
-                                                                                [(ngModel)]="item.sitem_status_flag"
-                                                                                appendTo="body"
+                                                                                appendTo="body" bindva
                                                                                 *ngIf="request_details.serm_status!=27&&item.sitem_active_flag==2">
                                                                                 <div class="flex-1">
                                                                                     <span>
                                                                                         <ng-select [searchable]="true"
                                                                                             [clearable]="false"
-                                                                                            class="custom-multiselect">
+                                                                                            class="custom-multiselect"
+                                                                                            [(ngModel)]="item.sitem_status_flag"
                                                                                             [disabled]="item.sitem_active_flag==2">
                                                                                             <ng-option value="0"
-                                                                                                class="pend_status">{{'Service  Pending'|translate}}</ng-option>
+                                                                                                class="pend_status">{{'Service
+                                                                                                Pending'|translate}}</ng-option>
                                                                                         </ng-select>
                                                                                     </span>
                                                                                 </div>
@@ -2064,14 +2105,14 @@
                                                                             </ng-container>
                                                                             <ng-container name="ctnSelect1"
                                                                                 placeholder="Select Status"
-                                                                                [(ngModel)]="item.sitem_status_flag"
                                                                                 appendTo="body"
                                                                                 *ngIf="request_details.serm_status!=27&&item.sitem_active_flag==3">
                                                                                 <div class="flex-1">
                                                                                     <span>
                                                                                         <ng-select [searchable]="true"
                                                                                             [clearable]="false"
-                                                                                            class="custom-multiselect">
+                                                                                            class="custom-multiselect"
+                                                                                            [(ngModel)]="item.sitem_status_flag"
                                                                                             [disabled]="item.sitem_active_flag==3">
                                                                                             <ng-option value="0"
                                                                                                 class="pend_status">{{'Service
@@ -2125,7 +2166,9 @@
                                                                                                     name="hold_reason"></textarea>
                                                                                                 <span
                                                                                                     *ngIf="!sitem_hold_reason"
-                                                                                                    style="color: red;font-size:13px;"><i><b>*{{'Please enter Hold Reason'|translate}}.</b></i></span>
+                                                                                                    style="color: red;font-size:13px;"><i><b>*{{'Please
+                                                                                                            enter Hold
+                                                                                                            Reason'|translate}}.</b></i></span>
 
 
                                                                                             </div>
@@ -2228,7 +2271,7 @@
                                                                             <button type="button" class="btn  btn-sm"
                                                                                 (click)="expertassign.open()"
                                                                                 style="width: 100%;background-color: #09a4f0;color: white;"
-                                                                                [disabled]="app_workcard.am_status==0 || item.sitem_active_flag==2 || item.sitem_active_flag==3 || item.sitem_hold_flag==1">
+                                                                                [disabled]="app_workcard.am_status==0 || item.sitem_active_flag==2 || item.sitem_active_flag==3 || item.sitem_hold_flag==1 || request_details.serm_hold_flag == '1'">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                     fill="none" viewBox="0 0 24 24"
                                                                                     height="24" width="24">
@@ -2241,7 +2284,8 @@
                                                                                         clip-rule="evenodd"
                                                                                         fill-rule="evenodd"></path>
                                                                                 </svg>
-                                                                                {{item.sitem_status_flag==7?'Reassign To Expert':'Assign To Expert'}} </button>
+                                                                                {{item.sitem_status_flag==7?'Reassign To
+                                                                                Expert':'Assign To Expert'}} </button>
                                                                             <modal #expertassign>
                                                                                 <ng-template #modalHeader>
                                                                                     <div>{{"Assign To
@@ -2289,7 +2333,8 @@
                                                                                 </ng-template>
                                                                             </modal>
                                                                         </td>
-                                                                        <td *ngIf="item.sitem_assignee_type==1&&request_details.serm_vendor_flag==0">
+                                                                        <td
+                                                                            *ngIf="item.sitem_assignee_type==1&&request_details.serm_vendor_flag==0">
                                                                             <button
                                                                                 *ngIf="item.sitem_status_flag!=6||item.sitem_status_flag!=7"
                                                                                 type="button" class="btn  btn-sm"
@@ -2307,7 +2352,7 @@
                                                                                         clip-rule="evenodd"
                                                                                         fill-rule="evenodd"></path>
                                                                                 </svg>
-                                                                                
+
                                                                                 {{'Assigned To Expert'|translate}}
                                                                                 &nbsp; ({{item.sitem_assign}})
                                                                             </button>
@@ -2440,11 +2485,13 @@
                                                                             </td>
 
                                                                             <td>
-                                                                                <input type="number" appDisableArrowKeys
+
+                                                                                <input type="text" appDisableArrowKeys
                                                                                     class="form-input w-32"
                                                                                     placeholder="Price"
                                                                                     [(ngModel)]="item.amount"
                                                                                     name="amount_{{i}}" min="0"
+                                                                                    [maxlength]="8" [disabled]="true"
                                                                                     (ngModelChange)="changeAmount(i,item.amount)" />
                                                                             </td>
                                                                             <td>
@@ -2478,16 +2525,18 @@
                                                         <div class="sm:w-2/5">
                                                             <div class="flex items-center justify-between">
                                                                 <div>{{'Subtotal'|translate}}</div>
-                                                                <div><input type="number" appDisableArrowKeys [(ngModel)]="subtotal"
-                                                                        name="subamount" class="form-input w-32"
-                                                                        placeholder="Price" min="0" disabled /></div>
+                                                                <div><input type="number" appDisableArrowKeys
+                                                                        [(ngModel)]="subtotal" name="subamount"
+                                                                        class="form-input w-32" placeholder="Price"
+                                                                        min="0" disabled /></div>
                                                             </div>
                                                             <div
                                                                 class="mt-4 flex items-center justify-between font-semibold">
                                                                 <div>{{'Total'|translate}}</div>
-                                                                <div><input type="number" appDisableArrowKeys [(ngModel)]="subtotal"
-                                                                        name="subamount" class="form-input w-32"
-                                                                        placeholder="Price" min="0" disabled /></div>
+                                                                <div><input type="number" appDisableArrowKeys
+                                                                        [(ngModel)]="subtotal" name="subamount"
+                                                                        class="form-input w-32" placeholder="Price"
+                                                                        min="0" disabled /></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2669,7 +2718,8 @@
                                                                             <label for="reciever-email"
                                                                                 class="mb-0 w-1/3 ltr:mr-2 rtl:ml-2">{{'Enter
                                                                                 Days'|translate}}</label>
-                                                                            <input id="reciever-email" type="number" appDisableArrowKeys
+                                                                            <input id="reciever-email" type="number"
+                                                                                appDisableArrowKeys
                                                                                 name="reciever-email"
                                                                                 class="form-input flex-1"
                                                                                 [(ngModel)]="days" name="email" />
@@ -2681,8 +2731,37 @@
                                                                             class="btn btn-outline-danger">Close</button>
                                                                         <button type="button"
                                                                             (click)="toolrecomendation(data)"
-                                                                            [disabled]="days==0"
-                                                                            class="btn btn-primary ltr:ml-4 rtl:mr-4">{{'Proceed'|translate}}</button>
+                                                                            [disabled]="days==0 || days == ''|| days== null || proceedFlag"
+                                                                            class="btn btn-primary ltr:ml-4 rtl:mr-4">{{'Proceed'|translate}}
+                                                                            <span
+                                                                                class="badge my-0 bg-white-light text-black ltr:ml-4 rtl:mr-4"
+                                                                                *ngIf="proceedFlag"><svg
+                                                                                    viewBox="0 0 24 24" width="24"
+                                                                                    height="24" stroke="currentColor"
+                                                                                    stroke-width="1.5" fill="none"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    class="inline-block h-5 w-5 shrink-0 animate-[spin_2s_linear_infinite] align-middle">
+                                                                                    <line x1="12" y1="2" x2="12" y2="6">
+                                                                                    </line>
+                                                                                    <line x1="12" y1="18" x2="12"
+                                                                                        y2="22">
+                                                                                    </line>
+                                                                                    <line x1="4.93" y1="4.93" x2="7.76"
+                                                                                        y2="7.76"></line>
+                                                                                    <line x1="16.24" y1="16.24"
+                                                                                        x2="19.07" y2="19.07"></line>
+                                                                                    <line x1="2" y1="12" x2="6" y2="12">
+                                                                                    </line>
+                                                                                    <line x1="18" y1="12" x2="22"
+                                                                                        y2="12">
+                                                                                    </line>
+                                                                                    <line x1="4.93" y1="19.07" x2="7.76"
+                                                                                        y2="16.24"></line>
+                                                                                    <line x1="16.24" y1="7.76"
+                                                                                        x2="19.07" y2="4.93"></line>
+                                                                                </svg></span>
+                                                                        </button>
                                                                     </ng-template>
 
                                                                 </modal>

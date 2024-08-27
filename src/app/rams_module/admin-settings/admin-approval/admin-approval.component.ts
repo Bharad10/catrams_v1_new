@@ -36,6 +36,8 @@ export class AdminApprovalComponent {
     service: any = [];
     unHoldFlag: boolean = false;
     holdFlag: boolean = false;
+    approveFlag: boolean = false;
+    rejectFlag: boolean = false;
 
     constructor(
         public fb: FormBuilder,
@@ -91,6 +93,11 @@ export class AdminApprovalComponent {
     }
 
     request_update(id: any, status: any, tldet_id: any) {
+        if(status == 2){
+            this.rejectFlag=true;
+        }else{
+            this.approveFlag=true;
+        }
         let data = {
             am_id: id,
             status: status,
@@ -102,6 +109,7 @@ export class AdminApprovalComponent {
             if (rdata.ret_data == 'success') {
                 if (status == 1) {
                     this.showMessage(' success.', 'success');
+                    this.approveFlag=false;
                 } 
                 this.router.navigate(['tool-request-list'])
             }

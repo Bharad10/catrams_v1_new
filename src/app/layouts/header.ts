@@ -250,7 +250,7 @@ export class HeaderComponent {
             target: document.getElementById(color + '-toast') || 'body',
             willClose: () => {
            
-                this.removeMessage(msg.nt_id)
+                //this.removeMessage(msg.nt_id)
             }
         });
         toast.fire({

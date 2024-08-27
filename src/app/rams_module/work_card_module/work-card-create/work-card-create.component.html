@@ -155,7 +155,7 @@
                                                 *ngIf="request_details.rpt_data.rpt_status!=1||request_details.rpt_data.rpt_status!=3">
                                                 <button type="button" class="btn btn-warning my-4"
                                                     (click)="payment.open()"
-                                                    [disabled]="request_details.rpt_data.rpt_status==1||request_details.rpt_data.rpt_status==3">
+                                                    [disabled]="request_details.rpt_data.rpt_status==1||request_details.rpt_data.rpt_status==3 ||request_details.serm_status != 30 ">
                                                     {{request_details.rpt_data.rpt_status==1||request_details.rpt_data.rpt_status==3?'Payment paid':'Waive off payment'}}
                                                 </button>
 
@@ -194,7 +194,7 @@
                                                                     font-semibold border ltr:border-r-0 rtl:border-l-0 border-[#e0e6ed]
                                                                     dark:border-[#17263c] dark:bg-[#1b2e4b]"> Amount To be
                                                                         Waived Off</div>
-                                                                    <input type="number" appDisableArrowKeys placeholder="cstm_email"
+                                                                    <input type="number" appDisableArrowKeys placeholder="amount"
                                                                         class="form-input ltr:rounded-l-none rtl:rounded-r-none"
                                                                         readonly [(ngModel)]="custom_cost"
                                                                         (change)="amount($event,1)" />
@@ -555,7 +555,7 @@
                                                             <th>Status</th>
                                                             <th>Status Updated On</th>
 
-                                                            <th style="text-align: right;">Service Cost</th>
+                                                            <th style="text-align: right;">Service Cost1</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody style="text-align: right;">
