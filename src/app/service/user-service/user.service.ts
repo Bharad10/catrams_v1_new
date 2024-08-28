@@ -160,8 +160,6 @@ export class UserService {
     return this.http.get(environment.base_url + 'getquote_byroleid', { headers: this.reqHeader });
   }
   get_quotedetails(data: any): Observable<any> {
-    console.log("get_quotedetails------------------------>",data);
-    
     return this.http.get(environment.base_url + 'Quote/QuoteMasterController/' + data, { headers: this.reqHeader });
   }
   recent_quotes(data: any): Observable<any> {
