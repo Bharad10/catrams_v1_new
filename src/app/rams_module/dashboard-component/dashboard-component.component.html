@@ -172,7 +172,7 @@
 
     
     <div class="mb-6 grid gap-6 xl:grid-cols-3" style="margin-left: -40px;margin-top: -15px;">
-        <div class="panel h-full xl:col-span-2" style="height: 250px ;">
+        <div class="panel h-full xl:col-span-2" style="height: 250px ;" *ngIf="total_pending&&total_open&&total_closed">
             <apx-chart [series]="followers.series" [chart]="followers.chart" [stroke]="followers.stroke"
             [colors]="followers.colors" [legend]="followers.legend" [grid]="followers.grid"
             [yaxis]="followers.yaxis" [tooltip]="followers.tooltip" class="rounded-lg bg-white dark:bg-black">

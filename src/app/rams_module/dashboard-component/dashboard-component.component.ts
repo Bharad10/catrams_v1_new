@@ -121,9 +121,11 @@ export class DashboardComponentComponent implements OnInit {
                 this.rows = this.tool_Data.length > 0 ? this.tool_Data.sort((a: any, b: any) => b.due_days - a.due_days) : [];
                 this.upd_msg=true;
                 this.def_tool=this.user_list?true:false;
+                
             }else{
                 this.user_list=rdata.code;
             }
+            this.initStore()
         });
 
         this.usr_serv.check_reopen_workcard().subscribe((rdata: any) => {});

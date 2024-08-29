@@ -297,11 +297,13 @@ export class WorkCardEditModuleComponent implements OnInit {
         this.rec_toolarray = [];
 
         for (let i = 0; i < this.package_details.length; i++) {
+            
             for (let j = 0; j < this.services.length; j++) {
                 if (this.package_details[i]['servpack_id'] == this.services[j]['servpack_id']) {
                     if (this.package_details[i]['tools']) {
-                        this.set_tool_rec(this.package_details[i]['tools']);
+                        if(this.package_details[i]['tools']['tool_rent_id']==1)this.set_tool_rec(this.package_details[i]['tools']);
                     }
+                        
                 }
             }
         }
@@ -713,6 +715,7 @@ export class WorkCardEditModuleComponent implements OnInit {
         console.log('index:any,amount:any', index, amount);
         this.subtotal = 0;
         this.quote_items[index]['amount'] = amount;
+        this.quote_items[index]['servpack_cost']=amount;
         this.calculateTotal(this.quote_items);
     }
 
