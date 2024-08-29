@@ -2069,9 +2069,9 @@
                                                                                             [searchable]="true"
                                                                                             [clearable]="false"
                                                                                             class="custom-multiselect">
-                                                                                            <!-- <ng-option value="-1">{{'Not
+                                                                                            <ng-option *ngIf="item.sitem_status_flag == '-1'" value="-1">{{'Not
                                                                                                 Yet
-                                                                                                Accepted'|translate}}</ng-option> -->
+                                                                                                Accepted'|translate}}</ng-option>
                                                                                             <ng-option value="0"
                                                                                                 class="pend_status">{{'Pending'|translate}}</ng-option>
                                                                                             <ng-option value="1"
@@ -2491,7 +2491,7 @@
                                                                                     placeholder="Price"
                                                                                     [(ngModel)]="item.amount"
                                                                                     name="amount_{{i}}" min="0"
-                                                                                    [maxlength]="8" [disabled]="true"
+                                                                                    [maxlength]="6" 
                                                                                     (ngModelChange)="changeAmount(i,item.amount)" />
                                                                             </td>
                                                                             <td>

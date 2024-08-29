@@ -142,9 +142,10 @@
                         <div class="flex-1">
                             <label class="inline-flex">
                                 <input id="advanceflag" type="checkbox" class="form-checkbox text-success"
-                                     name="advanceflag" [checked]="advanceflag"
+                                     name="advanceflag" formControlName="advanceflag"
                                     (change)="onAdvanceFlagChange($event)" />
                                 <span>{{'Need Advance Payment'|translate}}</span>
+                                <!-- [checked]="advanceflag" -->
                             </label>
                         </div>
                     </div>
@@ -152,23 +153,25 @@
                         <div class="flex-1">
                             <label class="inline-flex">
                                 <input id="depositflag" type="checkbox" class="form-checkbox text-success"
-                                [checked]="depositflag" name="depositflag"
-                                    (change)="onDepositFlagChange($event)" />
+                                name="depositflag" formControlName="depositflag"
+                                (change)="onDepositFlagChange($event)" />
                                 <span>{{'Need Deposit'|translate}}</span>
+                                <!-- [checked]="depositflag" -->
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 justify-between gap-2 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-2">
                     <div class="ml-0 rounded-md pb-2 mt-1">
-                        <ng-container *ngIf="ToolForm.value.tool_adv_price==='1'">
+                        <ng-container *ngIf="ToolForm.value.tool_adv_payment===1">
                             <div class="flex">
-                                <input type="tel" type="number" appDisableArrowKeys id="tool_adv_payment"
-                                    class="form-input placeholder:text-white-dark" name="tool_adv_payment"
+                                <input type="tel" type="number" appDisableArrowKeys id="tool_adv_price"
+                                    class="form-input placeholder:text-white-dark" name="tool_adv_price"
                                     placeholder="Enter Percentage" onKeyPress="if(this.value.length==2) return false;"
-                                    oninput="validity.valid||(value='');" min="0" formControlName="tool_adv_payment"
-                                    [ngModel]="ToolForm.value.tool_adv_payment" (change)="advpercent_cal()"
+                                    oninput="validity.valid||(value='');" min="0" formControlName="tool_adv_price"
+                                    (change)="advpercent_cal()"
                                     style=" width: 100%;" min="0" maxlength="2" />
+                                    <!-- [ngModel]="ToolForm.value.tool_adv_payment" -->
                                 <div
                                     class="bg-[#eee] flex justify-center items-center ltr:rounded-r-md rtl:rounded-l-md px-3 font-semibold border ltr:border-l-0 rtl:border-r-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]">
                                     %
@@ -180,7 +183,7 @@
                         </ng-container>
                     </div>
                     <div class="ml-0 rounded-md pb-2 mt-1">
-                        <ng-container *ngIf="ToolForm.value.tool_deposit_id==='1'">
+                        <ng-container *ngIf="ToolForm.value.tool_deposit_id===1">
                             <div class="flex-1">
                                 <div class="flex">
                                     <input type="number" appDisableArrowKeys id="tool_deposit_price"
@@ -188,8 +191,9 @@
                                         placeholder="Enter Percentage"
                                         onKeyPress="if(this.value.length==2) return false;"
                                         oninput="validity.valid||(value='');" min="0" formControlName="tool_deposit_price"
-                                        [(ngModel)]="ToolForm.value.tool_deposit_price" (change)="depost_cal()"
+                                         (change)="depost_cal()"
                                         style=" width: 100%;" min="0">
+                                        <!-- [(ngModel)]="ToolForm.value.tool_deposit_price" -->
                                     <div
                                         class="bg-[#eee] flex justify-center items-center ltr:rounded-r-md rtl:rounded-l-md px-3 font-semibold border ltr:border-l-0 rtl:border-r-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]">
                                         %

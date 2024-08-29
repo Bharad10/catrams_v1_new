@@ -77,7 +77,6 @@ export class QuotationEditModuleComponent implements OnInit {
           if (rdata.ret_data == 'success') {
             this.request_details = rdata.result;
             this.exp_percnt=this.request_details['cstm_vendor_percent'];
-          
             this.services = rdata.services;
             this.calculateTotal(this.services)
           }
