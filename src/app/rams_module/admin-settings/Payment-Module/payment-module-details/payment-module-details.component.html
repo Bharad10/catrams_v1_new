@@ -372,7 +372,7 @@
                     <ng-template #modalFooter>
                         <button type="button" (click)="waiveoff.close()" class="btn btn-outline-danger">Close</button>
                         &nbsp; &nbsp; &nbsp;
-                        <button type="button" (click)="payoff()" class="btn btn-outline-success" [disabled]="!reason">Waive
+                        <button type="button" (click)="payoff()" class="btn btn-outline-success" [disabled]="!reason || waiveOffFlag">Waive
                             off</button>
                     </ng-template>
                 </modal>
