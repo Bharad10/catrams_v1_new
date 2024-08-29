@@ -3,10 +3,10 @@ export const environment = {
     //<________________________________*****************DEV SETTINGS***************________________________________>
     production: false,
     Version:'2.0.5',
-    base_version: 'local',  //local,test,prod
+    base_version: 'test',  //local,test,prod
     timeZone: "Asia/Kolkata",
-    base_url: "http://localhost:8081/", //LOCAL DEV
-    //base_url:"https://catrams.com/catrams-api-test/", //TEST DEV
+    // base_url: "http://localhost:8081/", //LOCAL DEV
+    base_url:"https://catrams.com/catrams-api-test/", //TEST DEV
     //base_url: "https://catrams.com/catrams-api/",  //PROD DEV
 
     SOCKET_ENDPOINT: "https://mychatserver-production.up.railway.app/", // TEST&LIVE DEV
