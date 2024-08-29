@@ -125,10 +125,8 @@
 
                                             </ng-container>
                                             <ng-container *ngIf="request_details.days_left_to_reopen!=0">
-                                                <button type="button"
-                                                    [disabled]="reOpenFlag"
-                                                    class="btn btn-info my-4"
-                                                    (click)="custom_confirm_modal(request_details)">Re-open Work Card  
+                                                <button type="button" [disabled]="reOpenFlag" class="btn btn-info my-4"
+                                                    (click)="custom_confirm_modal(request_details)">Re-open Work Card
                                                     <span
                                                         class="badge my-0 bg-white-light text-black ltr:ml-4 rtl:mr-4">{{request_details.days_left_to_reopen}}
                                                         Days Left</span>
@@ -156,7 +154,8 @@
                                                 <button type="button" class="btn btn-warning my-4"
                                                     (click)="payment.open()"
                                                     [disabled]="request_details.rpt_data.rpt_status==1||request_details.rpt_data.rpt_status==3 ||request_details.serm_status != 30 ">
-                                                    {{request_details.rpt_data.rpt_status==1||request_details.rpt_data.rpt_status==3?'Payment paid':'Waive off payment'}}
+                                                    {{request_details.rpt_data.rpt_status==1||request_details.rpt_data.rpt_status==3?'Payment
+                                                    paid':'Waive off payment'}}
                                                 </button>
 
                                                 <modal #payment>
@@ -192,9 +191,11 @@
                                                                 <div class="mt-4 flex  items-center">
                                                                     <div class="bg-[#eee] flex justify-center items-center ltr:rounded-l-md rtl:rounded-r-md px-3 
                                                                     font-semibold border ltr:border-r-0 rtl:border-l-0 border-[#e0e6ed]
-                                                                    dark:border-[#17263c] dark:bg-[#1b2e4b]"> Amount To be
+                                                                    dark:border-[#17263c] dark:bg-[#1b2e4b]"> Amount To
+                                                                        be
                                                                         Waived Off</div>
-                                                                    <input type="number" appDisableArrowKeys placeholder="amount"
+                                                                    <input type="number" appDisableArrowKeys
+                                                                        placeholder="amount"
                                                                         class="form-input ltr:rounded-l-none rtl:rounded-r-none"
                                                                         readonly [(ngModel)]="custom_cost"
                                                                         (change)="amount($event,1)" />
@@ -555,7 +556,7 @@
                                                             <th>Status</th>
                                                             <th>Status Updated On</th>
 
-                                                            <th style="text-align: right;">Service Cost1</th>
+                                                            <th style="text-align: right;">Service Cost</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody style="text-align: right;">
@@ -578,11 +579,15 @@
                                                                     </td>
                                                                     <td>
                                                                         <span
-                                                                            *ngIf="item.sitem_status_flag==0">Pending</span>
-                                                                        <span *ngIf="item.sitem_status_flag==1">In
+                                                                            *ngIf="item.sitem_status_flag==0 && item.sitem_active_flag!=3">Pending</span>
+                                                                        <span
+                                                                            *ngIf="item.sitem_status_flag==1 && item.sitem_active_flag!=3">In
                                                                             Progress</span>
                                                                         <span
-                                                                            *ngIf="item.sitem_status_flag==2">Completed</span>
+                                                                            *ngIf="item.sitem_status_flag==2 && item.sitem_active_flag!=3">Completed</span>
+                                                                        <span
+                                                                            *ngIf="item.sitem_status_flag==0 && item.sitem_active_flag==3">Service
+                                                                            Rejected</span>
                                                                     </td>
                                                                     <td>
                                                                         <span>

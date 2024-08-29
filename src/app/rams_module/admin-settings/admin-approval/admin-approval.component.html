@@ -1564,11 +1564,12 @@
                                     </div>
                                 </ng-template>
                                 <ng-template #modalFooter>
-                                    <button type="button" class="btn btn-outline-info"
+                                    <button type="button" class="btn btn-outline-danger"
+                                        (click)="workcard_rejected(value.serm_id,value.am_id)"
+                                        [disabled]="value.am_status==2||value.am_status==1 " *ngIf="value.am_status == '0' ">Reject Request</button>
+                                    <button type="button" class="btn btn-outline-info  ltr:ml-4 rtl:mr-4"
                                         (click)="workcard_module(value.serm_id)">{{'View WorkCard
                                         Details'|translate}}</button>
-
-
                                     <button type="button" class="btn btn-outline-success ltr:ml-4 rtl:mr-4"
                                         [disabled]="value.am_status==1||value.am_status==2 || unHoldFlag || holdFlag"
                                         (click)="loading2=true; value.am_type==4?workcardhold(value.serm_id,value.am_id,value.am_reason):workcard_unhold(value.serm_id,value.am_id)">

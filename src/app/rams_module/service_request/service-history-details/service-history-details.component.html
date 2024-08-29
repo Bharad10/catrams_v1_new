@@ -141,7 +141,7 @@
                 </thead>
                 <tbody>
                     <ng-container *ngFor="let data of services let i = index">
-                        <tr>
+                        <tr *ngIf="data.sitem_active_flag != '3' ">
                             <td>{{  i+1 }}</td>
                             <td>
                                 <ng-container *ngIf="data.sitem_type==0">

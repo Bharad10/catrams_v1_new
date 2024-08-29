@@ -283,6 +283,22 @@ export class AdminApprovalComponent {
         });
     }
 
+    workcard_rejected(serm_id: any,am_id: any){
+        let data = {
+            serm_id: serm_id,
+            am_id: am_id,
+        };
+        this.usr_ser.workcard_reject(data).subscribe((rdata: any) => {
+            if (rdata.ret_data == 'success') {
+                this.showMessage('WorkCard Resumed', 'success');
+                window.location.reload();
+            } else {
+                this.showMessage('Error', 'error');
+                
+            }
+        });
+    }
+
     jobhold(sid: any, serm_id: any, amid: any, reason: any) {
         let data = {
             serm_id: serm_id,

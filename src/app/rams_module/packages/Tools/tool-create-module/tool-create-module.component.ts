@@ -75,6 +75,8 @@ export class ToolCreateModuleComponent implements OnInit {
     this.ToolForm.patchValue({
       salestock: this.s_stock
     });
+
+    console.log("toolform valid>>>>>>>>>>",this.ToolForm.valid)
     if (this.ToolForm.valid) {
       this.loader=true;
       this.button_act_state = 1

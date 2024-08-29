@@ -49,12 +49,12 @@ export class ToolEditModuleComponent {
       tool_rent_quantity: '',
       tool_rent_cost: '',
       tool_delay_percentage: '',
-      tool_deposit_id: '',
+      tool_deposit_id: 0,
       tool_deposit_price: '',
-      tool_adv_payment: '',
+      tool_adv_payment: 0,
       tool_adv_price: '',
-      advanceflag: [false],
-      depositflag: [false],
+      advanceflag: false,
+      depositflag: false,
     });
   }
 
@@ -65,14 +65,14 @@ export class ToolEditModuleComponent {
   onAdvanceFlagChange(event: any) {
     const checked = event.target.checked;
     if (checked) {
-      this.ToolForm.patchValue({ tool_adv_price: 0,tool_deposit_id:1,advanceflag:false,depositflag:true });
+      this.ToolForm.patchValue({ tool_adv_payment: 1,tool_deposit_id:0,advanceflag:true,depositflag:false });
     }
   }
 
   onDepositFlagChange(event: any) {
     const checked = event.target.checked;
     if (checked) {
-      this.ToolForm.patchValue({ tool_adv_price: 1,tool_deposit_id:0,advanceflag:true,depositflag:false });
+      this.ToolForm.patchValue({ tool_adv_payment: 0,tool_deposit_id:1,advanceflag:false,depositflag:true });
     }
   }
 
@@ -92,12 +92,12 @@ export class ToolEditModuleComponent {
           tool_rent_quantity: rdata.tool_details.tool_rent_quantity,
           tool_rent_cost: rdata.tool_details.tool_rent_cost,
           tool_delay_percentage: rdata.tool_details.tool_delay_percentage,
-          tool_deposit_id: rdata.tool_details.tool_deposit_id,
+          tool_deposit_id: rdata.tool_details.tool_deposit_id  == '1'? 1:0,
           tool_deposit_price: rdata.tool_details.tool_deposit_price,
-          tool_adv_payment: rdata.tool_details.tool_adv_payment,
+          tool_adv_payment: rdata.tool_details.tool_adv_payment == '1'? 1:0,
           tool_adv_price: rdata.tool_details.tool_adv_price,
-          advanceflag: [rdata.tool_details.tool_adv_price==='0'?false:true],
-          depositflag: [rdata.tool_details.tool_deposit_id==='0'?false:true],
+          advanceflag: rdata.tool_details.tool_adv_price==='0'?false:true,
+          depositflag: rdata.tool_details.tool_deposit_id==='0'?false:true,
         });
         this.advanceflag= this.ToolForm.value['advanceflag'][0];
         this.depositflag= this.ToolForm.value['depositflag'][0];
@@ -131,7 +131,7 @@ export class ToolEditModuleComponent {
   toolupdate() {
     let tooldata =
       { 'tool_data': this.ToolForm.value }
-    this.usr_ser.update_tool_details(tooldata).subscribe((rdata: any) => {
+    this.usr_ser.update_tool_details({tool_data:this.ToolForm.value }).subscribe((rdata: any) => {
       if (rdata.ret_data === "success") {
         this.showMessage('Tool Updated.', 'success');
         setTimeout(() => this.router.navigate(['/tool-package-list']), 500);

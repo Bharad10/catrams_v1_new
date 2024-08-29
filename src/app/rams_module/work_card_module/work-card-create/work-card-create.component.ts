@@ -131,6 +131,7 @@ export class WorkCardCreateComponent {
     }
 
     calculate_subtotal(){
+      console.log("this.request_details",this.request_details)
         this.sub=this.request_details.serm_cost- this.request_details.serm_ad_charge_cost
         this.subtotal=(this.sub).toFixed(2)
     }

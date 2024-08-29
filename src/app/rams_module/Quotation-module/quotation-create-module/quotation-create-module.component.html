@@ -263,7 +263,7 @@
                                                                     <!-- [disabled]="validPendingQuote()" -->
                                                                     <input type="text" appDisableArrowKeys class="form-input w-32" placeholder="Price"
                                                                         [(ngModel)]="item.servpack_cost" name="servpack_cost_{{i}}"  min="0"
-                                                                        [maxlength]="7" [disabled]="validPendingQuote()"
+                                                                        [maxlength]="6" [disabled]="validPendingQuote()"
                                                                         (ngModelChange)="custom_total($event,i)"
                                                                          />
                                                                 </td>

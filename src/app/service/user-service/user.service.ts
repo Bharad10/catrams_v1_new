@@ -210,6 +210,9 @@ export class UserService {
   workcard_unhold(data: any) {
     return this.http.post(environment.base_url + 'WorkCard/WorkCardMasterController/workcard_unhold', data, { headers: this.reqHeader });
   }
+  workcard_reject(data: any) {
+    return this.http.post(environment.base_url + 'WorkCard/WorkCardMasterController/workcard_reject', data, { headers: this.reqHeader });
+  }
   unholdjob_by_user(data: any) {
     return this.http.post(environment.base_url + 'unholdjob_by_user', data, { headers: this.reqHeader });
   }

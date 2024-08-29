@@ -199,7 +199,7 @@ export class PaymentModuleDetailsComponent {
                     });
                 }
                 // please check this condition needed or not
-            } else if (this.request_list.tldt_status == 15) {
+            } else if (this.request_list.tldt_status == 15 || this.request_list.tldt_status == 5) {
                 const data = {
                     tr_id: this.request_list.tldet_id,
                     status_id: this.request_list.tldt_status,
