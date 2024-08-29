@@ -2,7 +2,7 @@ export const environment = {
 
     //<________________________________*****************DEV SETTINGS***************________________________________>
     production: false,
-    Version:'2.0.4',
+    Version:'2.0.5',
     base_version: 'local',  //local,test,prod
     timeZone: "Asia/Kolkata",
     base_url: "http://localhost:8081/", //LOCAL DEV
